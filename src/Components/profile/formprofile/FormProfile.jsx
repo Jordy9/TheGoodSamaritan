@@ -29,7 +29,7 @@ export const FormProfile = () => {
                         <h5 class="card-header bg-dark text-white">Información personal</h5>
                         <div class="card-body">
                             <form className = 'needs-validation'>
-                                <div className="row">
+                                <div className="row">s
                                     <div className="col form-group">
                                         <label>Nombre</label>
                                         <input name = 'nombre' type="text" onChange = {HandledInputChange} value = {nombre} placeholder = 'Juan' className = 'form-control' />
