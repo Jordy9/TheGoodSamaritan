@@ -1,23 +1,28 @@
 import React from 'react'
-import wayding from '../../../heroes/Wayding.png'
+import wayding from '../../../heroes/Jordy.jpg'
 
 export const ProfileImg = () => {
     return (
         <>
-            <div class="card">
-                <h5 class="card-header bg-dark text-white">Foto de Perfil</h5>
-                <div class="card-body">
-                    <div className="row">
-                        <div className="col-6">
-                            <img src = {wayding} className="img-thumbnail" alt="..." style = {{boxShadow: '0px 0PX 3px 0px'}} />
-                        </div>
-
-                        <div className="col-6">
-                            <button className = 'form-control btn btn-dark mt-5'>Subir foto de perfil <i className="bi bi-person-bounding-box"></i></button>
-                        </div>
-                    </div>
+            <div className = 'shadow d-flex justify-content-center align-items-center p-4 my-2 bg-dark rounded-lg flex-column'>
+                <div className="person-img">
+                    <img src = {wayding} className="img-fluid rounded-circle" alt="..." style = {{height: '350px', width: '300px'}} />
                 </div>
-            </div>   
+
+                <div className="person-name my-3">
+                    <h3 className = 'text-white'>Juan Taveras</h3>
+                </div>
+
+                <div className="my-3">
+                    <h6 className = 'text-white'>Plan Normal</h6>
+                </div>
+
+                <div className="info my-3">
+                    <h6 className = 'text-white'>Reinversiones</h6>
+                </div>
+                
+                <button type = 'submit' className = 'my-1 btn btn-secondary btn-lg btn-block'>Subir Foto</button>
+            </div>  
         </>
     )
 }

@@ -4,9 +4,9 @@ export const useForm = (initialState = {}) => {
 
     const [Value, setValue] = useState(initialState)
 
-    const Reset = () => {
-        setValue(initialState)
-    }
+    // const Reset = () => {
+    //     setValue(initialState)
+    // }
 
     const HanldedInputChange = ({target}) => {
         setValue({

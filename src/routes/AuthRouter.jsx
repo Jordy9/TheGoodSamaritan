@@ -20,19 +20,21 @@ export const AuthRouter = () => {
         <>
         <Navb />
         <Container>
-            <Switch>
-                <Route path = '/Dashboard' component = {Dashboard} />
-                <Route path = '/Plans' component = {Plans} />
-                <Route path = '/Referred' component = {Referred} />
-                <Route path = '/Reports' component = {Reports} />
-                <Route path = '/subscriptions' component = {subscriptions} />
-                <Route path = '/Invoices' component = {Invoices} />
-                <Route path = '/PayOuts' component = {PayOuts} />
-                <Route path = '/Withdrawal' component = {WithdrawalScreen} />
-                <Route path = '/Profile' component = {Profile} />
+            <div className = 'my-4'>
+                <Switch>
+                    <Route path = '/Dashboard' component = {Dashboard} />
+                    <Route path = '/Plans' component = {Plans} />
+                    <Route path = '/Referred' component = {Referred} />
+                    <Route path = '/Reports' component = {Reports} />
+                    <Route path = '/subscriptions' component = {subscriptions} />
+                    <Route path = '/Invoices' component = {Invoices} />
+                    <Route path = '/PayOuts' component = {PayOuts} />
+                    <Route path = '/Withdrawal' component = {WithdrawalScreen} />
+                    <Route path = '/Profile' component = {Profile} />
 
-                <Redirect to = '/Dashboard' />
-            </Switch>
+                    <Redirect to = '/Dashboard' />
+                </Switch>
+            </div>
         </Container>
     </>
     )

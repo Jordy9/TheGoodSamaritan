@@ -4,7 +4,7 @@ export const Cards = () => {
     return (
         <>
             <div className = 'row'>
-                <div className = 'col-4 mt-3'>
+                <div className = 'col-4'>
                     <div className="card text-dark bg-light mb-3" style = {{boxShadow: '0px 0px 3px 0px'}}>
                         <div className="card-header bg-dark" style = {{color: 'white'}}>SALDO DE BILLETERA</div>
                         <div className="card-body">
@@ -13,7 +13,7 @@ export const Cards = () => {
                     </div>
                 </div>
 
-                <div className="col-4 mt-3">
+                <div className="col-4">
                     <div className="card text-dark bg-light mb-3" style = {{boxShadow: '0px 0px 3px 0px'}}>
                         <div className="card-header bg-dark" style = {{color: 'white'}}>RECOMPENSAS TOTALES</div>
                             <div className="card-body">
@@ -22,7 +22,7 @@ export const Cards = () => {
                     </div>
                 </div>
                             
-                <div className="col-4 mt-3">
+                <div className="col-4">
                     <div className="card text-dark bg-light mb-3" style = {{boxShadow: '0px 0px 3px 0px'}}>
                         <div className="card-header bg-dark" style = {{color: 'white'}}>TOTAL DIARIO</div>
                         <div className="card-body">
@@ -33,7 +33,7 @@ export const Cards = () => {
             </div>
 
             <div className = 'row'>
-                <div className = 'col-4 mt-3'>
+                <div className = 'col-4'>
                     <div className="card text-dark bg-light mb-3" style = {{boxShadow: '0px 0px 3px 0px'}}>
                         <div className="card-header bg-dark" style = {{color: 'white'}}>TOTAL RETIRADO</div>
                         <div className="card-body">

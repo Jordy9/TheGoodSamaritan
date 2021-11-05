@@ -5,8 +5,8 @@ export const WithdrawalCard = () => {
       <>
         <div className="modal fade" id="WithdrawalModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div className="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-            <div className="modal-content">
-              <div className="modal-header">
+            <div className="modal-content shadow p-4 my-2 bg-dark rounded-lg flex-column">
+              <div className="modal-header" style = {{border: 'none'}}>
                 <h5 className="modal-title" id="exampleModalLabel">Retirar</h5>
                 <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
@@ -20,13 +20,13 @@ export const WithdrawalCard = () => {
 
                 <div className="form-group">
                   <p className = 'text-center'>Cantidad a retirar</p>
-                  <input type="number" placeholder = '50' className = 'form-control' />
+                  <input type="number" placeholder = '50' className = 'form-control' style = {{backgroundColor: 'transparent', color: 'white'}} />
                 </div>
 
               </form>
               </div>
-                <div className="modal-footer">
-                  <button className = 'btn btn-primary form-control'>Retirar</button>
+                <div className="modal-footer" style = {{border: 'none'}}>
+                  <button className = 'btn btn-outline-primary form-control'>Retirar</button>
                 </div>
             </div>
           </div>

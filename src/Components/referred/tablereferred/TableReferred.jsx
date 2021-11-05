@@ -6,9 +6,9 @@ export const TableReferred = () => {
         <>
         <div className = 'row'>
             <div className="col-7">
-            <div className="card border-dark" style = {{overflow: 'auto', maxHeight: '212px'}}>
+            <div className="shadow d-flex p-4 bg-dark rounded-lg flex-column" style = {{overflow: 'auto', maxHeight: '212px'}}>
                 <div className="card-body">
-                    <table className="table table-hover table-responsive">
+                    <table className="table table-hover table-responsive text-white">
                     <thead>
                         <tr>
                         <th scope="col">#</th>
@@ -57,7 +57,7 @@ export const TableReferred = () => {
             </div>
             </div>
 
-            <div className="col-5">
+            {/* <div className="col-5">
                 <div className="card border-dark">
                     <div className="card-body">
                         <table className="table">
@@ -78,16 +78,13 @@ export const TableReferred = () => {
                         </table>
                     </div>
                 </div>
-                <div className="row">
-                    <Popovers />
-                </div>
-            </div>
+            </div> */}
         </div>
 
         <div className="row">
-        <div className="col-6">
+            <div className="col-6">
                 <h1 style = {{marginTop: '70px'}}>Mi link de Referidos</h1>
-                <input type="text" className = 'form-control' value = 'Loremp ipsum sdfjvsjdvfhsgdfj jsdvfjdsjfsd fj 54651dsfds6d5f464dsfjosdkf' />
+                <input readOnly type="text" className = 'form-control bg-transparent text-white' value = 'Loremp ipsum sdfjvsjdvfhsgdfj jsdvfjdsjfsd fj 54651dsfds6d5f464dsfjosdkf' />
             </div>
         </div>
     </>

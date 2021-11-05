@@ -4,7 +4,7 @@ import { TableInvoices } from '../tableinvoices/TableInvoices'
 
 export const NavInvoices = () => {
     return (
-        <div className="card border-dark mt-3" style = {{overflow: 'auto', height: '550px'}}>
+        <div className="card border-dark" style = {{overflow: 'auto', height: '550px'}}>
             <div className="card-header" style = {{color: 'white'}}>
                 <nav style = {{color: 'black'}}>
                     <div class="nav nav-tabs" id="nav-tab" role="tablist">

@@ -5,32 +5,29 @@ export const DepositCard = () => {
     return (
         <>
             <div className="row">
-                <div className="col-4 mt-5">
-                    <div class="card text-center" style = {{boxShadow: '0px 0px 3px 0px'}}>
-                        <div className="bg-dark text-white card-header">Depositar</div>
-                        <div class="card-body">
-                            <p class="card-text">Depositos Rápidos</p>
-                            <button data-bs-toggle="modal" data-bs-target="#exampleModal" className="btn btn-primary">Deposite</button>
+                <div className="col-4 my-2">
+                    <div className="shadow d-flex justify-content-center align-items-center p-4 bg-dark rounded-lg flex-column" style = {{boxShadow: '0px 0px 3px 0px', backgroundColor: '#193049', color: 'white'}}>
+                        <h5 className="card-text">Depositos Rápidos</h5>
+                        <div className="card-body">
+                            <button data-bs-toggle="modal" data-bs-target="#exampleModal" className="btn btn-outline-primary">Deposite</button>
                         </div>
                     </div>
                 </div>
 
-                <div className="col-4 mt-5">
-                    <div class="card text-center" style = {{boxShadow: '0px 0px 3px 0px'}}>
-                        <div className="bg-dark text-white card-header">Reinvertir</div>
-                            <div class="card-body">
-                            <p class="card-text">Inversiones al minuto</p>
-                            <button data-bs-toggle="modal" data-bs-target="#ReinvestModal" className="btn btn-primary">Invierta</button>
+                <div className="col-4 my-2">
+                    <div className="shadow d-flex justify-content-center align-items-center p-4 bg-dark rounded-lg flex-column" style = {{boxShadow: '0px 0px 3px 0px', backgroundColor: '#193049', color: 'white'}}>
+                        <h5 className="card-text">Inversiones al minuto</h5>
+                        <div className="card-body">
+                            <button data-bs-toggle="modal" data-bs-target="#ReinvestModal" className="btn btn-outline-primary">Invierta</button>
                         </div>
                     </div>
                 </div>
 
-                <div className="col-4 mt-5">
-                    <div class="card text-center" style = {{boxShadow: '0px 0px 3px 0px'}}>
-                        <div className="bg-dark text-white card-header">Retirar</div>
-                        <div class="card-body">
-                            <p class="card-text">Retiros con 0% de comision y a la mayor velocidad</p>
-                            <button data-bs-toggle="modal" data-bs-target="#WithdrawalModal" className="btn btn-primary">Retire</button>
+                <div className="col-4 my-2">
+                    <div className="shadow d-flex justify-content-center align-items-center p-4 bg-dark rounded-lg flex-column" style = {{boxShadow: '0px 0px 3px 0px', backgroundColor: '#193049', color: 'white'}}>
+                        <h5 className="card-text">0% de comision y a la mayor velocidad</h5>
+                        <div className="card-body">
+                            <button data-bs-toggle="modal" data-bs-target="#WithdrawalModal" className="btn btn-outline-primary form-control">Retire</button>
                         </div>
                     </div>
                 </div>

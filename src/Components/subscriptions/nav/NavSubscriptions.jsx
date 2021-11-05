@@ -4,10 +4,10 @@ import { TableSubscriptions } from '../tablesubscriptions/TableSubscriptions'
 
 export const NavSubscriptions = () => {
     return (
-        <div className="card border-dark mt-3" style = {{overflow: 'auto', height: '550px'}}>
+        <div className="shadow p-4 bg-dark rounded-lg flex-column" style = {{overflow: 'auto', height: '550px'}}>
             <div className="card-header" style = {{color: 'white', border: 'none'}}>
                 <nav style = {{color: 'black'}}>
-                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                    <div className="nav nav-tabs" id="nav-tab" role="tablist">
                         <button style = {{color: '#495057'}} className="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Todo</button>
                         <button style = {{color: '#495057'}} className="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Aplicando</button>
                         <button style = {{color: '#495057'}} className="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Completados</button>

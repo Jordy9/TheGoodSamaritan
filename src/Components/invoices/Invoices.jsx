@@ -4,7 +4,7 @@ import {NavInvoices} from './nav/NavInvoices'
 export const Invoices = () => {
     return (
         <>
-            <h1 style = {{marginTop: '70px'}}>Facturas</h1>
+            <h1>Facturas</h1>
             <NavInvoices />
         </>
     )

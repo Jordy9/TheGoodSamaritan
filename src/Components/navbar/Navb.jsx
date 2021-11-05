@@ -5,7 +5,7 @@ import './Navb.css'
 export const Navb = () => {
     return (
         <div className = 'floatt'>
-            <Navbar bg="dark" variant="dark">
+            <Navbar bg = 'dark' variant="dark">
                 <Container>
                 <Navbar.Brand>
                     <span className = 'Navb-tittle d-flex justify-content-end'>
@@ -22,7 +22,7 @@ export const Navb = () => {
                 
                 <Nav>
                     <NavLink to = '/Profile'><i className="bi bi-person-circle" style = {{fontSize: '32px', cursor: 'pointer', color: 'white'}}></i></NavLink>
-                    <NavLink to = '/Login' className = 'nav-link mt-1'>Cerrar sesión</NavLink>
+                    <NavLink to = '/Home' className = 'nav-link mt-1'>Cerrar sesión</NavLink>
                 </Nav>
                 </Container>
             </Navbar>

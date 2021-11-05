@@ -4,27 +4,43 @@ import {
     Redirect,
     Route
 } from 'react-router-dom';
-import { Login } from '../Components/Wayding/login/Login';
-import { Register } from '../Components/Wayding/register/Register';
+import { Footer } from '../Components/footer/Footer';
+import { AboutUs } from '../Components/Wayding/about us/AboutUs';
+import { Conctact } from '../Components/Wayding/contact/Conctact';
+import { HomeScreen } from '../Components/Wayding/login/HomeScreen';
+import { LoginScreen } from '../Components/Wayding/login/LoginScreen';
+import { NavbHomeScreen } from '../Components/Wayding/login/navbar/NavbHomeScreen';
 import { AuthRouter } from './AuthRouter';
 
 export const AppRouter = () => {
+    
 
     return (
         <Router>
 
             <div>
+                <NavbHomeScreen />
 
                 <Switch>
-                    <Route exact path = '/Login' component = {Login} />
+                    {/* <Route exact path = '/Login' component = {Login} /> */}
 
-                    <Route exact path = '/Register' component = {Register} />
+                    <Route exact path = '/Home' component = {HomeScreen} />
+
+                    <Route exact path = '/AboutUs' component = {AboutUs} />
+
+                    <Route exact path = '/Contact' component = {Conctact} />
+
+                    <Route exact path = '/Login' component = {LoginScreen} />
+
 
                     <Route path = '/' component = {AuthRouter} />
 
-                    <Redirect to = '/Login' />
+                    <Redirect to = '/Home' />
                 </Switch>
 
+            </div>
+            <div className = 'mt-5'>
+                <Footer />
             </div>
 
         </Router>

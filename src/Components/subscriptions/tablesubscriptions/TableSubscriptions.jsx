@@ -5,9 +5,9 @@ export const TableSubscriptions = () => {
         <>
             <div className = 'row'>
                     <div className="col-12">
-                        <div className="card border-dark mt-3" style = {{overflow: 'auto', height: '550px', border: 'none'}}>
+                        <div className="shadow d-flex p-4 bg-dark rounded-lg flex-column" style = {{overflow: 'auto', height: '550px', border: 'none'}}>
                             <div className="card-body">
-                                <table className="table table-hover table-responsive">
+                                <table className="table table-hover table-responsive text-white">
                                 <thead>
                                     <tr>
                                     <th scope="col">Identificación</th>

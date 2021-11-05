@@ -4,7 +4,7 @@ import { CardPay } from './cardpay/CardPay'
 export const PayOuts = () => {
     return (
         <>
-            <h1 style = {{marginTop: '70px'}}>Pagos</h1>
+            <h1>Pagos</h1>
             <CardPay />
         </>
     )

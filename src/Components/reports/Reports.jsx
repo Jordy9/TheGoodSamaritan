@@ -5,7 +5,7 @@ import { NavReports } from "./nav/NavReports"
 export const Reports = () => {
     return (
         <>
-            <h1 style = {{marginTop: '70px'}}>Informes</h1>
+            <h1>Informes</h1>
             <Cards />
             <NavReports />
         </>
