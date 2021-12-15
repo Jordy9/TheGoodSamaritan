@@ -25,11 +25,11 @@ export const FormProfile = () => {
     return (
         <>
             <div className="row">
-                <div className="col-3">
+                <div className="col-xs-12 col-sm-12 col-md-5 col-lg-3 col-xl-3">
                     <ProfileImg />
                 </div>
 
-                <div className="col-9">
+                <div className="col-xs-12 col-sm-12 col-md-7 col-lg-9 col-xl-9">
                     <div className="mb-3" style = {{border: 'none'}}>
                         <div className = 'shadow p-2 mt-2 bg-dark rounded-lg flex-column text-white'>
                             <h5 className="text-white text-center mt-2">Información personal</h5>
@@ -115,7 +115,7 @@ export const FormProfile = () => {
                                         </div>
                                     </div>
                                 </form>
-                                <button className = 'btn btn-secondary form-control'>Guardar</button>
+                                <button className = 'btn btn-outline-primary form-control'>Guardar</button>
                             </div>
                         </div>
                     </div>

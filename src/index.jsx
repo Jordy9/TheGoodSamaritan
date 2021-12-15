@@ -1,13 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import { CryptoMoney } from './CryptoMoney';
+import { GoodSamaritan } from './GoodSamaritan';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
 
 ReactDOM.render(
   <React.StrictMode>
-    <CryptoMoney />
+    <GoodSamaritan />
   </React.StrictMode>,
   document.getElementById('root')
 );

@@ -1,19 +1,21 @@
 import React from 'react'
 import { AboutUsLink } from './AboutUsLink'
 import { Carrousel } from './Carrousel'
-import { Form } from './Form'
+import { Events } from './Events'
 import { InfoService } from './InfoService'
+import { ModalPray } from './ModalPray'
 import { ProfileRandom } from './ProfileRandom'
 
 export const Home = () => {
 
     return (
-        <>
-            <Form />
+        <div className = 'all'>
             <Carrousel />
             <InfoService />
-            <ProfileRandom />
+            <ModalPray />
+            <Events />
             <AboutUsLink />
-        </>
+            <ProfileRandom />
+        </div>
     )
 }

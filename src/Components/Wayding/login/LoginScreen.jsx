@@ -43,10 +43,14 @@ export const LoginScreen = () => {
                                         <label className="form-check-label">Recuerdame</label>
                                     </div>
                                 </form>
-                                <NavLink to = '/Dashboard' className = 'btn btn-outline-primary form-control' style = {{borderRadius: '50px'}}>Comencemos</NavLink>
+                                <NavLink to = '/Dashboard' className = 'btn btn-outline-primary form-control' style = {{borderRadius: '50px'}}>Iniciar sesión</NavLink>
 
-                                <div className = 'text-center my-5'>
-                                    <NavLink to = '/Home' style = {{borderRadius: '50px', textDecoration: 'none'}}>¿Aun no tienes una cuenta? Registrate</NavLink>
+                                <div className = 'text-center my-4'>
+                                    <NavLink to = '/Register' style = {{borderRadius: '50px', textDecoration: 'none'}}>¿Aun no tienes una cuenta? Registrate</NavLink>
+                                </div>
+                                
+                                <div className = 'text-center'>
+                                    <NavLink to = '/Home' style = {{borderRadius: '50px', textDecoration: 'none'}}>¿Olvidaste tu contraseña?</NavLink>
                                 </div>
                             </div>
                         </div>
