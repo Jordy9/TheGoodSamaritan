@@ -9,7 +9,7 @@ import { ModalMiniSerie } from './modal/ModalMiniSerie'
 export const Dashboard = () => {
     return (
         <>
-            <h1 style = {{marginTop: '70px'}}>Inicioass</h1>
+            <h1 style = {{marginTop: '70px'}}>Iniciodsfsssds</h1>
             <Carousel />
             <CarrouselEvents />
             <CarouselSketch />
