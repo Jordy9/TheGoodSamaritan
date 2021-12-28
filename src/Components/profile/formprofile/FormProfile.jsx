@@ -160,7 +160,7 @@ export const FormProfile = () => {
                                     <div className="row">
                                         <div className="col from-group">
                                             <label>Imagen</label>
-                                            <button className='btn btn-outline-primary form-control my-3' onClick={handledImage}>Seleccionar foto de perfil</button>
+                                            <button type='button' className='btn btn-outline-primary form-control my-3' onClick={handledImage}>Seleccionar foto de perfil</button>
                                             <input id='fileSelector' hidden = {true} type="file" className='form-control bg-transparent text-white' name='image' onChange={(e) => {
                                                 setFieldValue('image', e.currentTarget.files[0], (e.currentTarget.files[0]) && setimag(URL.createObjectURL(e.currentTarget.files[0]) || ''))
                                             }} />

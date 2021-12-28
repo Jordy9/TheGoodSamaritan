@@ -138,55 +138,171 @@ export const startUpdateUser = (name, lastName, age, date, email, address, count
             formData.append('file', file)
             formData.append('title', name)
 
-            const res = await axios.post('http://localhost:4000/api/image/upload', formData, {headers: {'x-token': token}})
+            if (activeUser?.urlImage) {
+                const ress = await axios.delete(`http://localhost:4000/api/image/upload/${activeUser.idImage}`, {headers: {'x-token': token}})
 
-            const urlImage = res.data.image.url
-        
-            const resp = await fetchConToken(`users/update/${activeUser.id}`, {name, lastName, age, date, email, address, country, city, number, biliever, discipleship, tracking, password, urlImage}, 'PUT')
-            const body = await resp.json()
-
-            console.log(body.users)
-
-            if(body.ok) {
-                dispatch(updateUser(body.users))
-                dispatch(setActiveUser(body.users))
-                const Toast = Swal.mixin({
-                    toast: true,
-                    position: 'top-end',
-                    showConfirmButton: false,
-                    timer: 10000,
-                    timerProgressBar: true,
-                    didOpen: (toast) => {
-                    toast.addEventListener('mouseenter', Swal.stopTimer)
-                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                if (ress.data.ok) {
+                    console.log(ress, 'eliminada esa imagen')
+    
+                    const res = await axios.post('http://localhost:4000/api/image/upload', formData, {headers: {'x-token': token}})
+    
+                    if (res.data.ok) {
+                        const urlImage = res.data.image.url
+                        const idImage = res.data.image.id
+                    
+                        const resp = await fetchConToken(`users/update/${activeUser.id}`, {name, lastName, age, date, email, address, country, city, number, biliever, discipleship, tracking, password, urlImage, idImage}, 'PUT')
+                        const body = await resp.json()
+    
+                        console.log(body.users)
+    
+                        if(body.ok) {
+                            dispatch(updateUser(body.users))
+                            dispatch(setActiveUser(body.users))
+                            const Toast = Swal.mixin({
+                                toast: true,
+                                position: 'top-end',
+                                showConfirmButton: false,
+                                timer: 10000,
+                                timerProgressBar: true,
+                                didOpen: (toast) => {
+                                toast.addEventListener('mouseenter', Swal.stopTimer)
+                                toast.addEventListener('mouseleave', Swal.resumeTimer)
+                                }
+                            })
+                        
+                            return Toast.fire({
+                                icon: 'success',
+                                title: 'Usuario actualizado correctamente'
+                            })
+                        } else {
+                            const Toast = Swal.mixin({
+                                toast: true,
+                                position: 'top-end',
+                                showConfirmButton: false,
+                                timer: 10000,
+                                timerProgressBar: true,
+                                didOpen: (toast) => {
+                                toast.addEventListener('mouseenter', Swal.stopTimer)
+                                toast.addEventListener('mouseleave', Swal.resumeTimer)
+                                }
+                            })
+                            
+                            return Toast.fire({
+                                icon: 'error',
+                                title: `${body.msg}`
+                            })
+                        }
+                    } else {
+                        const Toast = Swal.mixin({
+                            toast: true,
+                            position: 'top-end',
+                            showConfirmButton: false,
+                            timer: 10000,
+                            timerProgressBar: true,
+                            didOpen: (toast) => {
+                            toast.addEventListener('mouseenter', Swal.stopTimer)
+                            toast.addEventListener('mouseleave', Swal.resumeTimer)
+                            }
+                        })
+                        
+                        return Toast.fire({
+                            icon: 'error',
+                            title: `${res.data.msg}`
+                        })
                     }
-                })
+                } else {
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 10000,
+                        timerProgressBar: true,
+                        didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
+                    })
+                    
+                    return Toast.fire({
+                        icon: 'error',
+                        title: `${ress.data.msg}`
+                    })
+                }
+
+            } else{
+                const res = await axios.post('http://localhost:4000/api/image/upload', formData, {headers: {'x-token': token}})
+    
+                if (res.data.ok) {
+                    const urlImage = res.data.image.url
+                    const idImage = res.data.image.id
                 
-                return Toast.fire({
-                    icon: 'success',
-                    title: 'Usuario actualizado correctamente'
-                })
-            } else {
-                const Toast = Swal.mixin({
-                    toast: true,
-                    position: 'top-end',
-                    showConfirmButton: false,
-                    timer: 10000,
-                    timerProgressBar: true,
-                    didOpen: (toast) => {
-                    toast.addEventListener('mouseenter', Swal.stopTimer)
-                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    const resp = await fetchConToken(`users/update/${activeUser.id}`, {name, lastName, age, date, email, address, country, city, number, biliever, discipleship, tracking, password, urlImage, idImage}, 'PUT')
+                    const body = await resp.json()
+
+                    console.log(body.users)
+
+                    if(body.ok) {
+                        dispatch(updateUser(body.users))
+                        dispatch(setActiveUser(body.users))
+                        const Toast = Swal.mixin({
+                            toast: true,
+                            position: 'top-end',
+                            showConfirmButton: false,
+                            timer: 10000,
+                            timerProgressBar: true,
+                            didOpen: (toast) => {
+                            toast.addEventListener('mouseenter', Swal.stopTimer)
+                            toast.addEventListener('mouseleave', Swal.resumeTimer)
+                            }
+                        })
+                    
+                        return Toast.fire({
+                            icon: 'success',
+                            title: 'Usuario actualizado correctamente'
+                        })
+                    } else {
+                        const Toast = Swal.mixin({
+                            toast: true,
+                            position: 'top-end',
+                            showConfirmButton: false,
+                            timer: 10000,
+                            timerProgressBar: true,
+                            didOpen: (toast) => {
+                            toast.addEventListener('mouseenter', Swal.stopTimer)
+                            toast.addEventListener('mouseleave', Swal.resumeTimer)
+                            }
+                        })
+                        
+                        return Toast.fire({
+                            icon: 'error',
+                            title: `${body.msg}`
+                        })
                     }
-                })
-                
-                return Toast.fire({
-                    icon: 'error',
-                    title: `${body.msg}`
-                })
+                } else {
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 10000,
+                        timerProgressBar: true,
+                        didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
+                    })
+                    
+                    return Toast.fire({
+                        icon: 'error',
+                        title: `${res.data.msg}`
+                    })
+                }
             }
+
+            
         } else {
             const urlImage = activeUser.urlImage
-            const resp = await fetchConToken(`users/update/${activeUser.id}`, {name, lastName, age, date, email, address, country, city, number, biliever, discipleship, tracking, password, urlImage}, 'PUT')
+            const idImage = activeUser.idImage
+            const resp = await fetchConToken(`users/update/${activeUser.id}`, {name, lastName, age, date, email, address, country, city, number, biliever, discipleship, tracking, password, urlImage, idImage}, 'PUT')
             const body = await resp.json()
 
             console.log(body.users)
