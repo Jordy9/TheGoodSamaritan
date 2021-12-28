@@ -1,7 +1,7 @@
 import React from 'react'
 import { Carousel } from 'react-bootstrap'
 import { useSelector } from 'react-redux'
-import parse from 'html-react-parser'
+import moment from 'moment'
 
 export const Events = () => {
     const {Eventos} = useSelector(state => state.ev)
@@ -27,7 +27,7 @@ export const Events = () => {
                                                 />
                                                 <Carousel.Caption>
                                                     <h3>{evento.title}</h3>
-                                                    <p>{parse(evento.descripcion)}</p>
+                                                    <p>{(evento.date) ? moment(evento?.date).format('MMMM Do YYYY, h:mm a') : ''}</p>
                                                 </Carousel.Caption>
                                             </Carousel.Item>
                                     )

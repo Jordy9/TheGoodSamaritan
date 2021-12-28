@@ -1,12 +1,20 @@
 export const Types = {
-    
 
-
-
-
-
-
-
+    ytgetYoutube: '[YT] get Youtube',
+    ytcreateYoutube: '[YT] create Youtube',
+    ytSetYoutube: '[YT] set Youtube',
+    ytSetYoutubeForm: '[YT] set Youtube form',
+    ytClearSetYoutube: '[YT] clear set Youtube',
+    ytUpdateYoutube: '[YT] update Youtube',
+    ytDeleteYoutube: '[YT] delete Youtube',
+    ytSetYoutubeStart: '[YT] set Youtube start',
+    // 
+    cocreateContact: '[CO] create Contact',
+    // 
+    cagetCapsules: '[CA] get Capsules',
+    caSetCapsule: '[CA] set Capsule',
+    caSetCapsuleStart: '[CA] set Capsule start',
+    // 
     gagetGallerys: '[GA] get Gallerys',
     gaSetGallery: '[GA] set Gallery',
     //
@@ -20,13 +28,20 @@ export const Types = {
     evSetEvent: '[EV] set Event',
     //
     ptgetPetitions: '[PT] get Petitions',
+    ptgetMyPetitions: '[PT] get My Petitions',
+    ptgetPetitionesUser: '[PT] get Petitiones User',
     ptSetPetition: '[PT] set Petition',
+    ptSetPetitionUser: '[PT] set Petition User',
+    ptCreatePetition: '[PT create Petition', 
+    ptUpdatePetition: '[PT Update Petition', 
+    ptDeletePetition: '[PT Delete Petition', 
     //
     migetSeries: '[Mi] get series',
     miSetSerie: '[Mi] set serie',
     //
     sktgetBosquejos: '[SKT] get bosquejos',
     sktSetBosquejo: '[SKT] set bosquejo',
+    sktSetBosquejoStart: '[SKT] set bosquejo start',
     //
     authChecking: '[Auth] checking login state',
     authCheckingFinish: '[Auth] finish checking login state',
@@ -38,5 +53,6 @@ export const Types = {
     authStartTokenRenew: '[Auth] start token renew ',
     authLogout: '[Auth] logout ',
     authSetUser: '[Auth set user',
+    authImageUser: '[Auth image user',
     authDeleteUser: '[Auth] delete user'
 }

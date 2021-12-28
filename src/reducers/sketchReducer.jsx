@@ -2,8 +2,7 @@ import { Types } from "../types/Types";
 
 const initialState = {
     Bosquejos: null,
-    activeBosquejo: ''
-}
+    activeBosquejo: ''}
 
 export const sketchReducer = (state = initialState, action) => {
     switch (action.type) {

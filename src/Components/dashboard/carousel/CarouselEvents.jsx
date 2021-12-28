@@ -1,8 +1,7 @@
 import React from 'react'
 import { Carousel } from 'react-bootstrap'
 import {useSelector} from 'react-redux'
-import parse from 'html-react-parser'
-
+import moment from 'moment'
 
 export const CarrouselEvents = () => {
 
@@ -22,8 +21,8 @@ export const CarrouselEvents = () => {
                                     alt="First slide"
                                 />
                                 <Carousel.Caption>
-                                    <h3 className = 'overlay'>{evento.title}</h3>
-                                    <p className = 'overlay'>{parse(evento.descripcion)}</p>
+                                    <h3 className = 'overlay'>{evento?.title}</h3>
+                                    <p className = 'overlay'>{(evento.date) ? moment(evento?.date).format('MMMM Do YYYY, h:mm a') : ''}</p>
                                 </Carousel.Caption>
                             </Carousel.Item>
                         )

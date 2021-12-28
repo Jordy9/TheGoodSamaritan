@@ -19,11 +19,11 @@ function generateSignature(apiKey, apiSecret, meetingNumber, role) {
 
     let apiKey = '_qZEDubES5uMlI-Rrzotzg'
     let apiSecret = 'ohNGaOc7qmsj2GTkgv76mJkOaAzT7OpawCiO'
-    let meetingNumber = 72495696917
+    let meetingNumber = 82531085187
     let leaveUrl = 'http://localhost:3000'
     let userName = 'WebSDK'
     let userEmail = 'xilero45@gmail.com'
-    let passWord = 'Gs9M3i'
+    let passWord = 'ccbs1234'
 
     let signature = '' 
     generateSignature(apiKey, apiSecret, meetingNumber, 0).then((res) => {

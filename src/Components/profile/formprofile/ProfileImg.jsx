@@ -1,27 +1,27 @@
 import React from 'react'
-import perfil1 from '../../../heroes/Perfil1.jpg'
+import { useSelector } from 'react-redux'
+import perfil1 from '../../../heroes/User.png'
 
-export const ProfileImg = () => {
+export const ProfileImg = ({imag}) => {
+
+    const {activeUser} = useSelector(state => state.auth)
     return (
         <>
             <div className = 'shadow d-flex justify-content-center align-items-center p-4 my-2 bg-dark rounded-lg flex-column'>
                 <div className="person-img">
-                    <img src = {perfil1} className="img-fluid rounded-circle" alt="..." style = {{height: '350px', width: '300px'}} />
+                    {
+                        (activeUser?.urlImage)
+                        ?
+                        <img src = {imag || activeUser?.urlImage} className="img-fluid rounded-circle" alt="..." style = {{height: '350px', width: '300px'}} />
+                        :
+                        <img src = {imag || perfil1} className="img-fluid rounded-circle" alt="..." style = {{height: '350px', width: '300px'}} />
+                    }
                 </div>
 
                 <div className="person-name my-3">
-                    <h3 className = 'text-white'>Juan Taveras</h3>
-                </div>
-
-                <div className="my-3">
-                    <h6 className = 'text-white'>Plan Normal</h6>
-                </div>
-
-                <div className="info my-3">
-                    <h6 className = 'text-white'>Reinversiones</h6>
+                    <h3 className = 'text-white'>{activeUser?.name} {activeUser?.lastName}</h3>
                 </div>
                 
-                <button type = 'submit' className = 'my-1 btn btn-outline-primary btn-lg btn-block'>Subir Foto</button>
             </div>  
         </>
     )

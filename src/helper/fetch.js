@@ -38,3 +38,13 @@ export const fetchConToken = (endpoint, data, method = 'GET') => {
         })
     }
 }
+
+// export const prepareUser = (peticiones, uid, name) => {
+//     return peticiones.map(
+//         (e) => ({
+//             ...e,
+//             uid,
+//             name
+//         })
+//     )
+// }

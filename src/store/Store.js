@@ -1,24 +1,30 @@
 import {createStore, combineReducers, applyMiddleware, compose} from 'redux';
 import thunk from 'redux-thunk';
+import { capsuleReducer } from '../reducers/capsuleReducer';
 import { eventReducer } from '../reducers/eventReducer';
+import { galleryReducer } from '../reducers/galleryReducer';
 import { mainReducer } from '../reducers/mainReducer';
 import { miniSerieReducer } from '../reducers/miniSerieReducer';
 import { petitionReducer } from '../reducers/petitionReducer';
 import { sketchReducer } from '../reducers/sketchReducer';
-import { UiReducer } from '../reducers/UiReducer';
+import { usersReducer } from '../reducers/users';
+import { youtubeReducer } from '../reducers/youtubeReducer';
 import { zoomReducer } from '../reducers/zoomReducer';
 
 
 const composeEnhancers = (typeof window !== 'undefined' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose;
 
 const reducers = combineReducers({
-    ui: UiReducer,
     mi: miniSerieReducer,
     ev: eventReducer,
     skt: sketchReducer,
     zm: zoomReducer,
     pt: petitionReducer,
-    ma: mainReducer
+    ma: mainReducer,
+    ga: galleryReducer,
+    ca: capsuleReducer,
+    auth: usersReducer,
+    yt: youtubeReducer
 });
 
 export const store =  createStore(

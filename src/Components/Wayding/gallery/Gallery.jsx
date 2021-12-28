@@ -1,85 +1,101 @@
-import React from 'react'
-import Miercoles from '../../../heroes/Miercoles.jpeg'
-import Domingos from '../../../heroes/Domingo.jpeg'
-import Jovenes from '../../../heroes/Jovenes.jpeg'
+import React, { useState } from 'react'
+import { useSelector } from 'react-redux'
+import './Gallery.css'
+import Gallery from "react-photo-gallery";
+import { Modal } from 'react-bootstrap';
+import Slider from 'react-slick';
 
-export const Gallery = () => {
+export const Galleryy = () => {
+
+    var settings = {
+        dots: true,
+        infinite: false,
+        speed: 500,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        initialSlide: 0,
+        responsive: [
+          {
+            breakpoint: 1024,
+            settings: {
+              slidesToShow: 3,
+              slidesToScroll: 3,
+              infinite: true,
+              dots: true
+            }
+          },
+          {
+            breakpoint: 600,
+            settings: {
+              slidesToShow: 2,
+              slidesToScroll: 2,
+              initialSlide: 2
+            }
+          },
+          {
+            breakpoint: 480,
+            settings: {
+              slidesToShow: 1,
+              slidesToScroll: 1
+            }
+          }
+        ]
+      };
+
+    const {Gallery: img} = useSelector(state => state.ga)
+
+    const [Show, setShow] = useState(false)
+
+    const click = (e) => {
+        console.log(e)
+        setShow(true)
+    }
+
+
     return (
         <>
             <div className="container my-5">
-            <div className = 'shadow d-flex justify-content-center align-items-center p-4 my-5 bg-dark rounded-lg flex-column'>
-                <div className="row">
+              {
+                (img)
+                  &&
+                <>
+                  <Gallery onClick={click} margin={2} photos={img?.map(imgage => {
+                    return (
+                      {
+                        src: imgage?.image,
+                        width: imgage?.width,
+                        height: imgage?.height
+                      }
+                    )
+                  })} />
 
-                    <div className="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 form-group">
-                        <div id="carouselExampleSlidesOnly" className="carousel slide" data-bs-ride="carousel">
-                            <div className="carousel-inner">
-                                <div className="carousel-item active">
-                                    <img src={Miercoles} className="d-block w-100 rounded" alt="..." />
-                                </div>
-                                {/* <div className="carousel-item">
-                                    <img src={imagen6} className="d-block w-100 rounded" alt="..." />
-                                </div>
-                                <div className="carousel-item">
-                                    <img src={imagen7} className="d-block w-100 rounded" alt="..." />
-                                </div> */}
+                  <Modal
+                      contentClassName='bg-dark'
+                      centered
+                      size="xl"
+                      show={Show}
+                      onHide={() => setShow(false)}
+                      aria-labelledby="example-modal-sizes-title-lg"
+                  >
+                  <Modal.Header closeButton>
+                  </Modal.Header>
+                  <Modal.Body> 
+                    <div className="row">
+                      <Slider {...settings}>
+                        {img?.map(image => {
+                          return(
+                            <div className='col-12'>
+                              <img src = {image.image} className="d-block w-100 rounded" style={{width: '500px', height: '800px'}} alt="" />
                             </div>
-                        </div>
+                          )
+                        })}
+                      </Slider>
                     </div>
-
-                    <div className="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 form-group d-flex justify-content-center align-items-center">
-                        <label className = ''>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam suscipit obcaecati cupiditate soluta vitae, a expedita tempore esse quas temporibus iure unde aspernatur minus porro fugiat, deserunt voluptates ducimus qui?</label>
-                    </div>
-                </div>
+                  </Modal.Body>
+                  </Modal>
+                </>
+              }
             </div>
-
-            <div className = 'shadow d-flex justify-content-center align-items-center p-4 my-2 bg-dark rounded-lg flex-column'>
-                <div className="row">
-                    <div className="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 form-group d-flex justify-content-center align-items-center">
-                        <label className = ''>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam suscipit obcaecati cupiditate soluta vitae, a expedita tempore esse quas temporibus iure unde aspernatur minus porro fugiat, deserunt voluptates ducimus qui?</label>
-                    </div>
-
-                    <div className="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 form-group">
-                        <div id="carouselExampleSlidesOnly" className="carousel slide" data-bs-ride="carousel">
-                            <div className="carousel-inner">
-                                <div className="carousel-item active">
-                                    <img src={Domingos} className="d-block w-100 rounded" alt="..." />
-                                </div>
-                                {/* <div className="carousel-item">
-                                    <img src={imagen6} className="d-block w-100 rounded" alt="..." />
-                                </div>
-                                <div className="carousel-item">
-                                    <img src={imagen7} className="d-block w-100 rounded" alt="..." />
-                                </div> */}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div className = 'shadow d-flex justify-content-center align-items-center p-4 my-5 bg-dark rounded-lg flex-column'>
-                <div className="row">
-                    <div className="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 form-group d-flex justify-content-center align-items-center">
-                        <label className = ''>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam suscipit obcaecati cupiditate soluta vitae, a expedita tempore esse quas temporibus iure unde aspernatur minus porro fugiat, deserunt voluptates ducimus qui?</label>
-                    </div>
-
-                    <div className="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 form-group">
-                        <div id="carouselExampleSlidesOnly" className="carousel slide" data-bs-ride="carousel">
-                            <div className="carousel-inner">
-                                <div className="carousel-item active">
-                                    <img src={Jovenes} className="d-block w-100 rounded" alt="..." />
-                                </div>
-                                {/* <div className="carousel-item">
-                                    <img src={imagen6} className="d-block w-100 rounded" alt="..." />
-                                </div>
-                                <div className="carousel-item">
-                                    <img src={imagen7} className="d-block w-100 rounded" alt="..." />
-                                </div> */}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
         </>
     )
 }

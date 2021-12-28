@@ -99,6 +99,15 @@ code {
     background-color: black;
   }
 
+  audio:hover, audio:focus, audio:active {
+    transform: scale(1.05);
+  }
+
+  audio {
+    transition: all 0.5s linear;
+  }
+  
+
 
 /* Modal
 .ReactModalPortal > div{

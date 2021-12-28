@@ -5,13 +5,14 @@ import { NavLink } from 'react-router-dom'
 
 export const NextSteps = () => {
     return (
-        <div className="container">
+        <>
             <div className="row">
                 <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                     <img src={imagen7} style = {{width: '100%', height: '400px'}} className = 'rounded' alt = 'imagen' />
                 </div>
             </div>
 
+            <div className="container">
             <div className = 'shadow d-flex justify-content-center align-items-center p-4 my-4 bg-dark rounded-lg flex-column'>
                 <div className="row">
 
@@ -21,12 +22,6 @@ export const NextSteps = () => {
                                 <div className="carousel-item active">
                                     <img src={Domingo} className="d-block w-100 rounded" alt="..." />
                                 </div>
-                                {/* <div className="carousel-item">
-                                    <img src={imagen6} className="d-block w-100 rounded" alt="..." />
-                                </div>
-                                <div className="carousel-item">
-                                    <img src={imagen7} className="d-block w-100 rounded" alt="..." />
-                                </div> */}
                             </div>
                         </div>
                     </div>
@@ -62,6 +57,7 @@ export const NextSteps = () => {
                     </div>
                 </div>
             </div>
-        </div>
+            </div>
+        </>
     )
 }

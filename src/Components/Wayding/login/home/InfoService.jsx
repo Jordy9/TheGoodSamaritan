@@ -9,7 +9,7 @@ export const InfoService = () => {
                 <div className="row">
                     <div className="col-xs-2 col-sm-6 col-md-6 col-lg-3 col-xl-3 p-4 hom" data-bs-toggle="modal" data-bs-target="#exampleModal">
                         <i className="fas fa-pray d-flex justify-content-center" style = {{fontSize: '32px'}}></i>
-                        <h4 className = 'text-center'>¿Quieres oración?</h4>
+                        <h4 className = 'text-center'>¿Deseas oración?</h4>
                     </div>
 
                     <NavLink className="col-xs-2 col-sm-6 col-md-6 col-lg-3 col-xl-3 p-4 hom"  to = '/schedule' style = {{textDecoration: 'none', color: '#FFFFFF'}}>
@@ -19,12 +19,12 @@ export const InfoService = () => {
 
                     <NavLink className="col-xs-2 col-sm-6 col-md-6 col-lg-3 col-xl-3 p-4 hom"  to = '/Messages' style = {{textDecoration: 'none', color: '#FFFFFF'}}>
                         <i className="bi bi-cast d-flex justify-content-center" style = {{fontSize: '32px'}}></i>
-                        <h4 className = 'text-center'>Transmision en vivo de nuestro canal</h4>
+                        <h4 className = 'text-center'>Transmisión en vivo de nuestro canal</h4>
                     </NavLink>
 
-                    <NavLink className="col-xs-2 col-sm-6 col-md-6 col-lg-3 col-xl-3 p-4 hom" to = '/Sketch' style = {{textDecoration: 'none', color: '#FFFFFF'}}>
+                    <NavLink className="col-xs-2 col-sm-6 col-md-6 col-lg-3 col-xl-3 p-4 hom" to = '/Capsule' style = {{textDecoration: 'none', color: '#FFFFFF'}}>
                         <i className="bi bi-chat-square-text d-flex justify-content-center" style = {{fontSize: '32px'}}></i>
-                        <h4 className = 'text-center'>Lea nuestro bosquejo del dia</h4>
+                        <h4 className = 'text-center'>Lea nuestra cápsula del día</h4>
                     </NavLink>
                 </div>
             </div>
