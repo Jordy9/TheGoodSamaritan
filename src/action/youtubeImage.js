@@ -10,7 +10,7 @@ export const startGetYoutube = () => {
 
         if(body.ok) {
             dispatch(Youtube(body.youtube))
-            dispatch(YoutubeStart(body.youtube[body.youtube.length-1]))
+            dispatch(YoutubeStart(body.youtube[0]))
 
         }
     }

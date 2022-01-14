@@ -1,5 +1,14 @@
 export const Types = {
 
+    chtImageMessage: '[CHT] image message',
+    chtClearState: '[CHT] clear state',
+    chtUsuariosCargados: '[CHT] usuarios cargados',
+    chtCargarChat: '[CHT] cargar chat',
+    chtActiveChat: '[CHT] active chat',
+    chtActiveMessage: '[CHT] active message',
+    // 
+    skStatusSocket: '[SK] status socket',
+    // 
     ytgetYoutube: '[YT] get Youtube',
     ytcreateYoutube: '[YT] create Youtube',
     ytSetYoutube: '[YT] set Youtube',
@@ -53,6 +62,7 @@ export const Types = {
     authStartTokenRenew: '[Auth] start token renew ',
     authLogout: '[Auth] logout ',
     authSetUser: '[Auth set user',
+    authForgotPassword: '[Auth forgot password',
     authImageUser: '[Auth image user',
     authDeleteUser: '[Auth] delete user'
 }

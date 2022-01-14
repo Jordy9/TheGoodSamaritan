@@ -18,7 +18,7 @@ export const ModalPetition = () => {
                     <div className="modal-body">
                         <div className = 'shadow p-4 my-2 bg-dark rounded-lg flex-column'>
                             <div className="row">
-                                <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                                <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12" style={{fontSize: '25px'}}>
                                     {
                                         (activePetitions)
                                             &&

@@ -13,8 +13,9 @@ import {ModalBileve} from '../Components/modalBeleave/ModalBileve'
 import moment from 'moment';
 import { useDispatch, useSelector } from 'react-redux';
 import { startUpdateUserDate } from '../action/user';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { YoutubeVideo } from '../Components/youtubeVideo/YoutubeVideo';
+import { ChatPage } from '../Components/chat/ChatPage';
 
 export const AuthRouter = () => {
 
@@ -57,6 +58,7 @@ export const AuthRouter = () => {
                     <Route path = '/Lives' component = {Lives} />
                     <Route path = '/YoutubeVideos' component = {YoutubeVideo} />
                     <Route path = '/Petitions' component = {Petitions} />
+                    <Route path = '/Chat' component = {ChatPage} />
                     <Route path = '/Profile' component = {Profile} />
 
                     <Redirect to = '/Dashboard' />

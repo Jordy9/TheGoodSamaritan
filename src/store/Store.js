@@ -1,12 +1,14 @@
 import {createStore, combineReducers, applyMiddleware, compose} from 'redux';
 import thunk from 'redux-thunk';
 import { capsuleReducer } from '../reducers/capsuleReducer';
+import { chatReducer } from '../reducers/chatReducer';
 import { eventReducer } from '../reducers/eventReducer';
 import { galleryReducer } from '../reducers/galleryReducer';
 import { mainReducer } from '../reducers/mainReducer';
 import { miniSerieReducer } from '../reducers/miniSerieReducer';
 import { petitionReducer } from '../reducers/petitionReducer';
 import { sketchReducer } from '../reducers/sketchReducer';
+import { socketReducer } from '../reducers/socketReducer';
 import { usersReducer } from '../reducers/users';
 import { youtubeReducer } from '../reducers/youtubeReducer';
 import { zoomReducer } from '../reducers/zoomReducer';
@@ -24,7 +26,9 @@ const reducers = combineReducers({
     ga: galleryReducer,
     ca: capsuleReducer,
     auth: usersReducer,
-    yt: youtubeReducer
+    yt: youtubeReducer,
+    sk: socketReducer,
+    cht: chatReducer
 });
 
 export const store =  createStore(

@@ -39,14 +39,14 @@ export const LoginScreen = () => {
                 <div className="row">
                     <div className="col-12 my-5 d-flex justify-content-center">
                         <div className = 'shadow p-2 mt-2 bg-dark rounded-lg flex-column text-white' style = {{width: '400px', height: '525px'}}>
-                            <h4 className = 'text-center my-4'>Login</h4>
+                            <h4 className = 'text-center my-4'>Iniciar sesión</h4>
                             <div className="container card-body">
                                 <form onSubmit={handleSubmit} className = 'my-4'>
                                     <div className="row">
 
                                         <div className="col form-group">
                                             <label>Correo electrónico</label>
-                                            <input type="text" {...getFieldProps('email')} placeholder = 'Juan@hotmail.com' className = 'form-control bg-transparent text-white' />
+                                            <input autoComplete='off' type="text" {...getFieldProps('email')} placeholder = 'Ejemplo@hotmail.com' className = 'form-control bg-transparent text-white' />
                                             {touched.email && errors.email && <span style={{color: 'red'}}>{errors.email}</span>}
                                         </div>
 
@@ -74,7 +74,7 @@ export const LoginScreen = () => {
                                 </div>
                                 
                                 <div className = 'text-center'>
-                                    <NavLink to = '/Home' style = {{borderRadius: '50px', textDecoration: 'none'}}>¿Olvidaste tu contraseña?</NavLink>
+                                    <NavLink to = '/ForgotPassword' style = {{borderRadius: '50px', textDecoration: 'none'}}>¿Olvidaste tu contraseña?</NavLink>
                                 </div>
                             </div>
                         </div>

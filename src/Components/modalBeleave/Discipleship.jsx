@@ -1,12 +1,11 @@
 import React from 'react'
-import ModalBiliever from '../../heroes/ModalBiliever.png'
+import ModalBiliever from '../../heroes/RBD.png'
 
 export const Discipleship = () => {
 
     return (
         <>
-            {/* <h1 className='my-2 text-center'>Aliméntate espiritualmente con TeleBendición</h1> */}
-            <h3 className='my-2 text-center'>Esta ubicada en la pestaña de Mensajes</h3>
+            <h1 className='my-2 text-center'>Alimenta tu alma con Radio Bonao Bendición</h1>
             <img src={ModalBiliever} className='img-fluid' alt="" />
         </>
     )

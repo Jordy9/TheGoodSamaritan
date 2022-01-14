@@ -1,9 +1,12 @@
 import { Container, Nav, Navbar } from 'react-bootstrap'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useLocation } from 'react-router-dom'
 import './Navb.css'
 import { useDispatch } from 'react-redux'
 import { setActiveUser, startLogout } from '../../action/user'
 import { useSelector } from 'react-redux'
+import logo from '../../heroes/logo.png'
+import { useEffect, useState } from 'react'
+
 export const Navb = () => {
 
     const dispatch = useDispatch()
@@ -14,13 +17,27 @@ export const Navb = () => {
         dispatch(startLogout())
     }
 
+    const location = useLocation()
+    const locat = location.pathname
+
+    const [Show, setShow] = useState(false)
+
+    useEffect(() => {
+        if (locat === '/ZoomScreen') {
+            setShow(true)
+        } else {
+            setShow(false)
+        }
+    }, [locat])
+
     return (
         <>
-            <Navbar fixed = 'top' className = 'col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12' expand="lg" bg = 'dark' variant="dark">
+            <Navbar hidden = {Show} fixed = 'top' className = 'col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12' expand="lg" bg = 'dark' variant="dark">
                 <Container>
-                    <Navbar.Brand style = {{cursor: 'pointer'}} >
-                        <span className = 'Navb-tittle d-flex justify-content-end'>
-                            <NavLink style = {{textDecoration: 'none', color: 'white'}} to = '/Dashboard'>El Buen Samaritano</NavLink>
+                    <Navbar.Brand style = {{cursor: 'pointer', margin: 0, padding: 0}} >
+                        <span className = 'Navb-tittle d-flex justify-content-end align-items-center'>
+                            <img src={logo} className='img-fluid' style={{width: 'auto', height: '40px'}} alt="" />
+                            <NavLink style = {{textDecoration: 'none', color: 'white'}} to = '/Dashboard'>Centro Cristiano El Buen Samaritano</NavLink>
                         </span>
                     </Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -31,6 +48,7 @@ export const Navb = () => {
                             <NavLink to = '/Lives' className = 'nav-link'>Zoom</NavLink>
                             <NavLink to = '/YoutubeVideos' className = 'nav-link'>Mensajes</NavLink>
                             <NavLink to = '/Petitions' className = 'nav-link'>Peticiones</NavLink>
+                            <NavLink to = '/Chat' className = 'nav-link'>Chat</NavLink>
                         </Nav>
 
                         <Nav>

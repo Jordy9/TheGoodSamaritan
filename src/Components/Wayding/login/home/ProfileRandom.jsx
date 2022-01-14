@@ -1,9 +1,11 @@
 import React from 'react'
 import Slider from 'react-slick'
-import perfil1 from '../../../../heroes/Perfil1.jpg'
-import perfil2 from '../../../../heroes/Perfil2.jpg'
-import perfil3 from '../../../../heroes/Perfil3.jpg'
-import perfil4 from '../../../../heroes/Perfil4.jpg'
+import perfil1 from '../../../../heroes/pastor1.jpg'
+import perfil2 from '../../../../heroes/pastor2.jpg'
+import perfil3 from '../../../../heroes/pastor3.jpg'
+import perfil4 from '../../../../heroes/pastor4.jpg'
+import perfil5 from '../../../../heroes/pastor5.jpg'
+import perfil6 from '../../../../heroes/pastor6.jpg'
 
 export const ProfileRandom = () => {
 
@@ -51,16 +53,13 @@ export const ProfileRandom = () => {
                         </div>
 
                         <div className="person-name my-3">
-                            <h3 className = 'text-white'>Juan Taveras</h3>
+                            <h3 className = 'text-white'>Raffi Inoa</h3>
                         </div>
 
                         <div className="my-3">
-                            <h6 className = 'text-white'>Plan Normal</h6>
+                            <h4 className = 'text-white'>Pastor</h4>
                         </div>
 
-                        <div className="info my-3">
-                            <h6 className = 'text-white'>Reinversiones</h6>
-                        </div>
                     </div>  
 
                     <div className = 'shadow d-flex justify-content-center align-items-center p-4 my-2 bg-dark rounded-lg flex-column'>
@@ -69,16 +68,13 @@ export const ProfileRandom = () => {
                         </div>
 
                         <div className="person-name my-3">
-                            <h3 className = 'text-white'>Raul Coste</h3>
+                            <h3 className = 'text-white'>Edward Ureña</h3>
                         </div>
 
                         <div className="my-3">
-                            <h6 className = 'text-white'>Plan Normal</h6>
+                            <h4 className = 'text-white'>Pastor</h4>
                         </div>
 
-                        <div className="info my-3">
-                            <h6 className = 'text-white'>Reinversiones</h6>
-                        </div>
                     </div>  
 
                     <div className = 'shadow d-flex justify-content-center align-items-center p-4 my-2 bg-dark rounded-lg flex-column'>
@@ -87,16 +83,13 @@ export const ProfileRandom = () => {
                         </div>
 
                         <div className="person-name my-3">
-                            <h3 className = 'text-white'>Maria O'Connel</h3>
+                            <h3 className = 'text-white'>Luis García</h3>
                         </div>
 
                         <div className="my-3">
-                            <h6 className = 'text-white'>Plan Normal</h6>
+                            <h4 className = 'text-white'>Pastor</h4>
                         </div>
 
-                        <div className="info my-3">
-                            <h6 className = 'text-white'>Reinversiones</h6>
-                        </div>
                     </div>  
 
                     <div className = 'shadow d-flex justify-content-center align-items-center p-4 my-2 bg-dark rounded-lg flex-column'>
@@ -105,34 +98,43 @@ export const ProfileRandom = () => {
                         </div>
 
                         <div className="person-name my-3">
-                            <h3 className = 'text-white'>Julio Cuevas</h3>
+                            <h3 className = 'text-white'>Luis Acosta</h3>
                         </div>
 
                         <div className="my-3">
-                            <h6 className = 'text-white'>Plan Normal</h6>
+                            <h4 className = 'text-white'>Pastor</h4>
                         </div>
 
-                        <div className="info my-3">
-                            <h6 className = 'text-white'>Reinversiones</h6>
-                        </div>
                     </div>  
 
                     <div className = 'shadow d-flex justify-content-center align-items-center p-4 my-2 bg-dark rounded-lg flex-column'>
                         <div className="person-img">
-                            <img src = {perfil4} className="img-fluid rounded-circle" alt="..." style = {{height: '350px', width: '300px'}} />
+                            <img src = {perfil5} className="img-fluid rounded-circle" alt="..." style = {{height: '350px', width: '300px'}} />
                         </div>
 
                         <div className="person-name my-3">
-                            <h3 className = 'text-white'>Julio Cuevas</h3>
+                            <h3 className = 'text-white'>Felipe Solano</h3>
                         </div>
 
                         <div className="my-3">
-                            <h6 className = 'text-white'>Plan Normal</h6>
+                            <h4 className = 'text-white'>Pastor</h4>
                         </div>
 
-                        <div className="info my-3">
-                            <h6 className = 'text-white'>Reinversiones</h6>
+                    </div>  
+
+                    <div className = 'shadow d-flex justify-content-center align-items-center p-4 my-2 bg-dark rounded-lg flex-column'>
+                        <div className="person-img">
+                            <img src = {perfil6} className="img-fluid rounded-circle" alt="..." style = {{height: '350px', width: '300px'}} />
                         </div>
+
+                        <div className="person-name my-3">
+                            <h3 className = 'text-white'>Francis Abreu</h3>
+                        </div>
+
+                        <div className="my-3">
+                            <h4 className = 'text-white'>Pastor</h4>
+                        </div>
+
                     </div>  
                 </Slider>
             </div>

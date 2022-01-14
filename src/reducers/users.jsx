@@ -3,7 +3,8 @@ import { Types } from '../types/Types';
 const initialState = {
     checking: true,
     users: [],
-    activeUser: ''
+    activeUser: '',
+    forgotPassword: ''
 }
 
 export const usersReducer = (state = initialState, action) => {
@@ -41,6 +42,12 @@ export const usersReducer = (state = initialState, action) => {
             return {
                 ...state,
                 activeUser: action.payload
+            }
+
+        case Types.authForgotPassword:
+            return {
+                ...state,
+                forgotPassword: action.payload
             }
 
         case Types.authCheckingFinish:

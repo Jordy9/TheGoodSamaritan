@@ -4,9 +4,12 @@ import { NavLink } from 'react-router-dom'
 import { useLocation } from 'react-router'
 import './NavbLogin.css'
 import { startGetUsers } from '../../../../action/user'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import logo from '../../../../heroes/logo.png'
 
 export const NavbHomeScreen = () => {
+
+    const {uid} = useSelector(state => state.auth)
 
     const dispatch = useDispatch()
     
@@ -20,7 +23,7 @@ export const NavbHomeScreen = () => {
     const [Login, setLogin] = useState(false)
 
    useEffect(() => {
-    if (locat === '/Petitions' || locat === '/Dashboard' || locat === '/Lives' || locat === '/Referred' || locat === '/Investments' || locat === '/History' || locat === '/Profile') {
+    if (uid) {
         setState(true)
     } else {
         setState(false)
@@ -48,9 +51,10 @@ export const NavbHomeScreen = () => {
         <div hidden = {state}>
             <Navbar className = 'col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12' expand="lg" bg = 'dark' variant="dark">
                 <Container>
-                    <Navbar.Brand style = {{cursor: 'pointer'}} >
-                        <span className = 'Navb-tittle d-flex justify-content-end'>
-                            <NavLink style = {{textDecoration: 'none', color: 'white'}} to = '/Home'>El Buen Samaritano</NavLink>
+                    <Navbar.Brand style = {{cursor: 'pointer', margin: 0, padding: 0}} >
+                        <span className = 'Navb-tittle d-flex justify-content-end align-items-center'>
+                            <img src={logo} className='img-fluid' style={{width: 'auto', height: '40px'}} alt="" />
+                            <NavLink style = {{textDecoration: 'none', color: 'white'}} to = '/Home'>Centro Cristiano El Buen Samaritano</NavLink>
                         </span>
                     </Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />

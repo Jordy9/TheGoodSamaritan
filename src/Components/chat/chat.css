@@ -1,0 +1,157 @@
+img {
+    max-width: 100%;
+}
+
+/* .inbox_people {
+    background: #f8f8f8 none repeat scroll 0 0;
+    float: left;
+    overflow: hidden;
+    border-right: 1px solid #c4c4c4;
+} */
+
+.inbox_msg {
+    clear: both;
+    overflow-y: auto;
+    height: 70vh;
+}
+
+.top_spac {
+    margin: 20px 0 0;
+}
+
+.headind_srch {
+    padding: 10px 10px 10px 10px;
+    overflow: hidden;
+    border-bottom: 1px solid #c4c4c4;
+}
+
+.recent_heading h4 {
+    color: #0d6efd;
+    font-size: 18px;
+    margin: auto;
+}
+
+.chat_ib h5 {
+    font-size: 15px;
+    color: #464646;
+    margin: 0 0 8px 0;
+}
+
+.chat_img {
+    float: left;
+    width: 11%;
+}
+
+.chat_ib {
+    float: left;
+    padding: 0 0 0 15px;
+    width: auto;
+}
+
+.chat_people {
+    overflow: hidden;
+    clear: both;
+}
+
+.chat_list {
+    border-bottom: 1px solid #c4c4c4;
+    cursor: pointer;
+    margin: 0;
+    padding: 18px 16px 10px;
+}
+
+.inbox_chat {
+    height: 100vh;
+    overflow-y: scroll;
+}
+
+.active_chat {
+    cursor: pointer;
+    background-color: rgb(54, 53, 53) !important;
+    border-radius: 10px;
+}
+
+.incoming_msg_img {
+    display: inline-block;
+    width: 6%;
+}
+
+.received_msg {
+    display: inline-block;
+    padding: 0 0 0 10px;
+    vertical-align: top;
+    width: auto;
+}
+
+.received_withd_msg p {
+    background: #ebebeb none repeat scroll 0 0;
+    border-radius: 50px;
+    color: #646464;
+    font-size: 14px;
+    margin: 0;
+    padding: 5px 10px 5px 12px;
+    width: auto;
+}
+
+.time_date {
+    color: #747474;
+    display: block;
+    font-size: 12px;
+    margin: 8px 0 0;
+}
+
+.received_withd_msg {
+    width: auto;
+}
+
+.mesgs {
+    /* float: left; */
+    padding: 30px 15px 0 25px;
+    height: 70vh;
+}
+
+.sent_msg p {
+    background: #0d6efd none repeat scroll 0 0;
+    border-radius: 50px;
+    font-size: 14px;
+    margin: 0;
+    color: #fff;
+    padding: 5px 10px 5px 12px;
+    width: auto;
+}
+
+.outgoing_msg {
+    overflow: hidden;
+    margin: 26px 0 26px;
+}
+
+.sent_msg {
+    float: right;
+    width: auto;
+}
+
+
+.msg_history {
+    height: 85%;
+    overflow: auto;
+}
+
+.extra_space {
+    height: 150px;
+}
+
+.search-bar:focus, .write_msg:focus {
+    outline: none;
+}
+
+
+@media (max-width: 768px) {
+    .msg_history {
+        height: 75%;
+        overflow: auto;
+    }
+
+    .butt {
+        margin-top: 50vh;
+    }
+}

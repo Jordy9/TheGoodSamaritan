@@ -79,13 +79,13 @@ export const ModalBileve = () => {
                 <Modal.Body> 
                 <div className="row">
                     <Slider {...settings}>
-                      <div className='col-12'>
+                      <div className='col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12'>
                         <ContentBiliever />
                       </div>
-                      <div className='col-12'>
+                      <div className='col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12'>
                         <Discipleship />
                       </div>
-                      <div className='col-12'>
+                      <div className='col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12'>
                         <Tracking />
                       </div>
                       {/* <div className='col-12'>

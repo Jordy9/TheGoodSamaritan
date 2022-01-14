@@ -15,10 +15,14 @@ export const PrayLives = () => {
 
       <div className="container my-5">
             <div className = 'shadow d-flex justify-content-center align-items-center p-4 my-2 bg-dark rounded-lg flex-column'>
-                <button onClick={handledImage} className = 'btn btn-outline-primary my-4'>Unirme al zoom</button>
                 <div className="row">
                     <div className="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 form-group d-flex justify-content-center align-items-center">
-                        <h1>{zoom?.title}</h1>
+                        <div className="row">
+                            <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                                <h1>{zoom?.title}</h1>
+                                <button onClick={handledImage} className = 'btn btn-outline-primary my-4 form-control' style={{fontSize: '20px'}}>Unirme al zoom <i className="bi bi-camera-video"></i></button>
+                            </div>
+                        </div>
                     </div>
 
                     <div className="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 form-group">

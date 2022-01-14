@@ -7,7 +7,7 @@ export const ModalSketch = () => {
 
     return (
 
-        <div className="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div className="modal fade" id="exampleModal2" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div className="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
                 <div className="modal-content shadow bg-dark">
                     <div className="modal-header" style = {{border: 'none'}}>

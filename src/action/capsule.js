@@ -8,7 +8,7 @@ export const startGetCapsules = () => {
 
         if(body.ok) {
             dispatch(Capsules(body.capsules))
-            dispatch(CapsuleStart(body.capsules[body.capsules.length-1]))
+            dispatch(CapsuleStart(body.capsules[0]))
         }
     }
 }

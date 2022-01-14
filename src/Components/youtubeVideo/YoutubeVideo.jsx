@@ -79,7 +79,7 @@ export const YoutubeVideo = () => {
                                   Youtube?.map(youtube => {
                                       return (
                                           <div className = 'col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 my-5'>
-                                              <div style={{cursor: 'pointer'}} onClick={() => handledSet(youtube)}><h3 className='text-center'><img src={outube} className='img-fluid' alt=''/>{youtube?.title}</h3></div>
+                                              <div style={{cursor: 'pointer'}} onClick={() => handledSet(youtube)}><h3 className='text-center'><img src={outube} className='img-fluid rounded imgag' alt=''/>{youtube?.title}</h3></div>
                                           </div>
                                       )
                                   })
