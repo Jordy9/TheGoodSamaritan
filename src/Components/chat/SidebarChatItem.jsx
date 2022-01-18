@@ -8,7 +8,7 @@ export const SidebarChatItem = ({usuarios}) => {
 
     const dispatch = useDispatch()
 
-    const {chatActivo} = useSelector(state => state.cht)
+    const {chatActivo, notificationes} = useSelector(state => state.cht)
 
     const onclick = () => {
         dispatch(activeChat(usuarios.id))
@@ -28,6 +28,7 @@ export const SidebarChatItem = ({usuarios}) => {
                             :
                         <img src={user} alt="sunil" />
                     }
+                    <span className="badge bg-danger">{notificationes}</span>
                 </div>
                 <div className="chat_ib">
                     <h5 className='text-white'>{usuarios.name} {usuarios.lastName}</h5>

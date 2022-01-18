@@ -2,7 +2,7 @@ import React from 'react'
 
 export const ChatSelect = () => {
     return (
-        <div className="text-center alert-info">
+        <div className="text-center alert-primary">
             <hr />
             <h3>Seleccione una persona</h3>
             <span>

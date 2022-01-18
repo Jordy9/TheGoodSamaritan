@@ -44,6 +44,7 @@ import { useSocket } from '../hooks/useSocket';
 import { AuthRouter } from './AuthRouter';
 import { PrivateRoute } from './PrivateRoute';
 import { PublicRoute } from './PublicRoute';
+import 'moment/locale/es'
 
 moment.locale('es');
 
