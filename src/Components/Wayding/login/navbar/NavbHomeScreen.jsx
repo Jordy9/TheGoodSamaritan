@@ -35,7 +35,7 @@ export const NavbHomeScreen = () => {
         setLogin(false)
     }
 
-    if(locat === '/Home') {
+    if(locat === '/Home' || locat === '/Login') {
         dispatch(startGetUsers())
     }
 

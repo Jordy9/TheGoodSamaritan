@@ -6,6 +6,7 @@ import perfil3 from '../../../../heroes/pastor3.jpg'
 import perfil4 from '../../../../heroes/pastor4.jpg'
 import perfil5 from '../../../../heroes/pastor5.jpg'
 import perfil6 from '../../../../heroes/pastor6.jpg'
+import perfil7 from '../../../../heroes/pastor7.jpg'
 
 export const ProfileRandom = () => {
 
@@ -94,7 +95,7 @@ export const ProfileRandom = () => {
 
                     <div className = 'shadow d-flex justify-content-center align-items-center p-4 my-2 bg-dark rounded-lg flex-column'>
                         <div className="person-img">
-                            <img src = {perfil4} className="img-fluid rounded-circle" alt="..." style = {{height: '350px', width: '300px'}} />
+                            <img src = {perfil4} className="img-fluid rounded-circle" alt="..." style = {{height: '350px', width: '300px', margin: 0}} />
                         </div>
 
                         <div className="person-name my-3">
@@ -129,6 +130,21 @@ export const ProfileRandom = () => {
 
                         <div className="person-name my-3">
                             <h3 className = 'text-white'>Francis Abreu</h3>
+                        </div>
+
+                        <div className="my-3">
+                            <h4 className = 'text-white'>Pastor</h4>
+                        </div>
+
+                    </div>  
+
+                    <div className = 'shadow d-flex justify-content-center align-items-center p-4 my-2 bg-dark rounded-lg flex-column'>
+                        <div className="person-img">
+                            <img src = {perfil7} className="img-fluid rounded-circle" alt="..." style = {{height: '350px', width: '300px'}} />
+                        </div>
+
+                        <div className="person-name my-3">
+                            <h3 className = 'text-white'>Carlos Reyes</h3>
                         </div>
 
                         <div className="my-3">

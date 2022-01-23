@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import io from 'socket.io-client';
 import { UsuariosCargados } from '../action/chat';
+import { BorrarNotificaciones, NotificacionesCargadas } from '../action/notifications';
 
 
 export const useSocket = ( serverPath ) => {
@@ -49,8 +50,15 @@ export const useSocket = ( serverPath ) => {
             dispatch(UsuariosCargados(usuarios))
         })
     }, [ socket, dispatch ])
-    
 
+    useEffect(() => {
+        socket?.on('lista-notificaciones', (notificaciones) => {
+            dispatch(NotificacionesCargadas(notificaciones))
+
+            dispatch(BorrarNotificaciones())
+        })
+    }, [ socket, dispatch])
+    
     return {
         socket,
         online,

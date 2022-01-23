@@ -1,5 +1,9 @@
 export const Types = {
 
+    ntDeleteNotification: '[NT] delete notification',
+    ntNotificacionesCargadas: '[NT] notificaciones cargadas',
+    ntCargarNotificaciones: '[NT] cargar notificaciones',
+    // 
     chtImageMessage: '[CHT] image message',
     chtClearState: '[CHT] clear state',
     chtUsuariosCargados: '[CHT] usuarios cargados',

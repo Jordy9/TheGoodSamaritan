@@ -6,8 +6,7 @@ import {
     BrowserRouter as Router,
     Switch,
     Redirect,
-    Route,
-    useHistory
+    Route
 } from 'react-router-dom';
 import { startGetCapsules } from '../action/capsule';
 import { activeMessage } from '../action/chat';
@@ -45,6 +44,7 @@ import { AuthRouter } from './AuthRouter';
 import { PrivateRoute } from './PrivateRoute';
 import { PublicRoute } from './PublicRoute';
 import 'moment/locale/es'
+import { cargarNotificaciones } from '../action/notifications';
 
 moment.locale('es');
 
@@ -71,6 +71,7 @@ export const AppRouter = () => {
         dispatch(startGetUsers())
         dispatch(setActiveUser())
         dispatch(startGetYoutube())
+        dispatch(cargarNotificaciones())
     }, [dispatch])
 
     useEffect(() => {

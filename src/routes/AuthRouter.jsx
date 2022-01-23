@@ -24,10 +24,6 @@ export const AuthRouter = () => {
     const {uid, users, activeUser} = useSelector(state => state.auth)
     const user = users?.find(user => user.id === uid)
 
-    console.log(moment(activeUser?.createdAt).startOf().fromNow())
-
-    console.log(moment(user?.createdAt, "YYYYMMDD").fromNow())
-
     const StateNow = localStorage.getItem('State')
 
     useEffect(() => {
@@ -35,7 +31,7 @@ export const AuthRouter = () => {
         if(activeUser?.biliever || activeUser?.discipleship || activeUser?.tracking) {
 
             if (!StateNow) {
-                if (moment(user?.createdAt, "YYYYMMDD").fromNow() === '13 hours ago') {
+                if (moment(user?.createdAt, "YYYYMMDD").fromNow() > 'hace 18 días') {
                     setTimeout(() => {
                         dispatch(startUpdateUserDate())
                         localStorage.setItem('State', true)

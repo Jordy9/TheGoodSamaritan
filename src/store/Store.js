@@ -6,6 +6,7 @@ import { eventReducer } from '../reducers/eventReducer';
 import { galleryReducer } from '../reducers/galleryReducer';
 import { mainReducer } from '../reducers/mainReducer';
 import { miniSerieReducer } from '../reducers/miniSerieReducer';
+import { notificacionReducer } from '../reducers/notificacionReducer';
 import { petitionReducer } from '../reducers/petitionReducer';
 import { sketchReducer } from '../reducers/sketchReducer';
 import { socketReducer } from '../reducers/socketReducer';
@@ -28,7 +29,8 @@ const reducers = combineReducers({
     auth: usersReducer,
     yt: youtubeReducer,
     sk: socketReducer,
-    cht: chatReducer
+    cht: chatReducer,
+    nt: notificacionReducer
 });
 
 export const store =  createStore(

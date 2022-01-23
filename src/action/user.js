@@ -142,12 +142,12 @@ export const startUpdateUser = (name, lastName, age, date, email, address, count
             formData.append('title', name)
 
             if (activeUser?.urlImage) {
-                const ress = await axios.delete(`http://localhost:4000/api/image/upload/${activeUser.idImage}`, {headers: {'x-token': token}})
+                const ress = await axios.delete(`${process.env.REACT_APP_API_URL}/image/upload/${activeUser.idImage}`, {headers: {'x-token': token}})
 
                 if (ress.data.ok) {
                     console.log(ress, 'eliminada esa imagen')
     
-                    const res = await axios.post('http://localhost:4000/api/image/upload', formData, {headers: {'x-token': token}})
+                    const res = await axios.post(`${process.env.REACT_APP_API_URL}/image/upload`, formData, {headers: {'x-token': token}})
     
                     if (res.data.ok) {
                         const urlImage = res.data.image.url
@@ -233,7 +233,7 @@ export const startUpdateUser = (name, lastName, age, date, email, address, count
                 }
 
             } else{
-                const res = await axios.post('http://localhost:4000/api/image/upload', formData, {headers: {'x-token': token}})
+                const res = await axios.post(`${process.env.REACT_APP_API_URL}/image/upload`, formData, {headers: {'x-token': token}})
     
                 if (res.data.ok) {
                     const urlImage = res.data.image.url

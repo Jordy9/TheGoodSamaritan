@@ -1,5 +1,5 @@
 import { useFormik } from 'formik'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import * as Yup from 'yup'
@@ -8,20 +8,32 @@ import { startLogin } from '../../../action/user'
 export const LoginScreen = () => {
     const dispatch = useDispatch()
 
-    const {handleSubmit, resetForm, getFieldProps, touched, errors} = useFormik({
+    const email = localStorage.getItem('email')
+
+    const [remember, setRemember] = useState();
+
+    useEffect(() => {
+      if (email) {
+        setRemember(true)
+      }
+    }, [email]);
+    
+    
+    const {handleSubmit, getFieldProps, touched, errors} = useFormik({
         initialValues: {
-            email: '', 
+            email: localStorage.getItem('email') || '', 
             password: '', 
-            rememberme: false
+            rememberme: (email) ? true : false
         },
         enableReinitialize: true,
-        onSubmit: ({email, password}) => {
+        onSubmit: ({email, password, rememberme}) => {
+            (rememberme)
+                ?
+            localStorage.setItem('email', email)
+            :
+            localStorage.removeItem('email')
             dispatch(startLogin(email, password))
-            resetForm({
-                email: '',
-                password: '',
-                rememberme: false
-            })
+
         },
         validationSchema: Yup.object({
             email: Yup.string()
@@ -63,10 +75,10 @@ export const LoginScreen = () => {
                                     </div>
 
                                     <div className="form-check">
-                                        <input {...getFieldProps('rememberme')} type="checkbox" className="form-check-input" id="exampleCheck1" />
+                                        <input {...getFieldProps('rememberme')} defaultChecked = {(email) && true} type="checkbox" className="form-check-input" id="exampleCheck1" />
                                         <label className="form-check-label">Recuerdame</label>
                                     </div>
-                                    <button type='submit' className = 'btn btn-outline-primary form-control' style = {{borderRadius: '50px'}}>Iniciar sesión</button>
+                                    <button type='submit' className = 'btn btn-outline-primary form-control mt-4' style = {{borderRadius: '50px'}}>Iniciar sesión</button>
                                 </form>
 
                                 <div className = 'text-center my-4'>
