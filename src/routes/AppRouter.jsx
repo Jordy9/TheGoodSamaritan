@@ -9,7 +9,7 @@ import {
     Route
 } from 'react-router-dom';
 import { startGetCapsules } from '../action/capsule';
-import { activeMessage } from '../action/chat';
+import { activeMessage, isTyping } from '../action/chat';
 import { startGetEventos } from '../action/event';
 import { startGetGallery } from '../action/gallery';
 import { startGetMains } from '../action/main';
@@ -37,7 +37,6 @@ import { NextSteps } from '../Components/Wayding/next steps/NextSteps';
 import { RadioBonaoBlessing } from '../Components/Wayding/radioBonaoBlessing/RadioBonaoBlessing';
 import { Register } from '../Components/Wayding/register/Register';
 import { Schedule } from '../Components/Wayding/schedule/Schedule';
-import { scrollToBottomAnimated } from '../helper/ScrollToBottom';
 import { useSocket } from '../hooks/useSocket';
 // import { Sketch } from '../Components/Wayding/sketch/Sketch';
 import { AuthRouter } from './AuthRouter';
@@ -93,8 +92,13 @@ export const AppRouter = () => {
     useEffect(() => {
         socket?.on('mensaje-personal', (mensaje) => {
             dispatch(activeMessage(mensaje))
+        })
+    }, [socket, dispatch])
 
-            scrollToBottomAnimated('messages')
+    useEffect(() => {
+        socket?.on('escribiendo', (typing) => {
+            console.log(typing);
+            dispatch(isTyping(typing))
         })
     }, [socket, dispatch])
     

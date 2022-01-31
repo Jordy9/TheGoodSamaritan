@@ -39,13 +39,7 @@ export const NavbHomeScreen = () => {
         dispatch(startGetUsers())
     }
 
-   }, [locat, log, dispatch])
-
-   console.log(locat)
-    
-
-
-    // const locat = history.location.pathname
+   }, [locat, log, dispatch, uid])
 
     return (
         <div hidden = {state}>

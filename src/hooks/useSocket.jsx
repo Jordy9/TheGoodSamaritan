@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import io from 'socket.io-client';
 import { UsuariosCargados } from '../action/chat';
 import { BorrarNotificaciones, NotificacionesCargadas } from '../action/notifications';
+import { ZoomAnuncio, startGetZoom } from '../action/zoom';
 
 
 export const useSocket = ( serverPath ) => {
@@ -56,6 +57,13 @@ export const useSocket = ( serverPath ) => {
             dispatch(NotificacionesCargadas(notificaciones))
 
             dispatch(BorrarNotificaciones())
+        })
+    }, [ socket, dispatch])
+
+    useEffect(() => {
+        socket?.on('reunion-anunciada', (zoom) => {
+            dispatch(startGetZoom())
+            dispatch(ZoomAnuncio(zoom))
         })
     }, [ socket, dispatch])
     

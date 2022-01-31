@@ -1,7 +1,14 @@
 import React, { useEffect } from 'react'
 import ZoomMtgEmbedded from "@zoomus/websdk/embedded";
+import { useSelector } from 'react-redux';
 
 export const Zoom = () => {
+
+    const {Zoom} = useSelector(state => state.zm)
+
+    const {name} = useSelector(state => state.auth)
+
+    const zoom = Zoom[0]
 
 const crypto = require('crypto')
 
@@ -19,10 +26,10 @@ function generateSignature(apiKey, apiSecret, meetingNumber, role) {
 
     let apiKey = '_qZEDubES5uMlI-Rrzotzg'
     let apiSecret = 'ohNGaOc7qmsj2GTkgv76mJkOaAzT7OpawCiO'
-    let meetingNumber = 76839872471
+    let meetingNumber = zoom?.id
     // let leaveUrl = 'http://localhost:3000'
-    let userName = 'CCBS'
-    let passWord = 'f36TGQ'
+    let userName = name
+    let passWord = `${zoom?.password}`
 
     let signature = ""
     generateSignature(apiKey, apiSecret, meetingNumber, 0).then((res) => {

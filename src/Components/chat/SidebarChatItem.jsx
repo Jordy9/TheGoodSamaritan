@@ -5,11 +5,11 @@ import { activeChat, cargarChat } from '../../action/chat'
 import { BorrarNotificaciones } from '../../action/notifications'
 import user from '../../heroes/user-profile.png'
 
-export const SidebarChatItem = ({usuarios}) => {
+export const SidebarChatItem = ({usuarios, istyping}) => {
 
     const dispatch = useDispatch()
 
-    const {chatActivo} = useSelector(state => state.cht)
+    const {chatActivo, typing} = useSelector(state => state.cht)
 
     const {uid} = useSelector(state => state.auth)
 
@@ -22,9 +22,6 @@ export const SidebarChatItem = ({usuarios}) => {
 
         if (notificaciones.length !== 0) {
             dispatch(BorrarNotificaciones(uid, chatActivo))
-
-            console.log(notificaciones)
-
         } else {
             return
         }
@@ -38,7 +35,7 @@ export const SidebarChatItem = ({usuarios}) => {
         <div className={`chat_list ${(usuarios.id === chatActivo) && 'active_chat'}`} onClick={onclick}>
             {/* active_chat */}
             <div className="chat_people">
-                <div className="chat_img"> 
+                <div className="chat_img">
                     {
                         (usuarios.urlImage)
                             ?
@@ -50,6 +47,14 @@ export const SidebarChatItem = ({usuarios}) => {
                 </div>
                 <div className="chat_ib">
                     <h5 className='text-white'>{usuarios.name} {usuarios.lastName}</h5>
+                    {
+                        (istyping[0] === usuarios && typing?.typing === false)
+                            &&
+                            <>
+                        <span className="d-flex text-secondary">Escribiendo</span>
+                            </>
+
+                    }
                     {
                         (usuarios.online)
                             ?

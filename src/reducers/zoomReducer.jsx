@@ -1,4 +1,3 @@
-import React from 'react'
 import { Types } from '../types/Types';
 
 const initialState = {
@@ -10,6 +9,12 @@ const initialState = {
 export const zoomReducer = (state = initialState, action) => {
     switch (action.type) {
         case Types.zmgetZooms:
+            return {
+                ...state,
+                Zoom: action.payload
+            }
+    
+        case Types.zmAnuncio:
             return {
                 ...state,
                 Zoom: action.payload

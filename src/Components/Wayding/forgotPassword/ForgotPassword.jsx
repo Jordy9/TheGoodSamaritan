@@ -46,7 +46,7 @@ export const ForgotPassword = () => {
 
                                     </div>
 
-                                    <button type='submit' className = 'btn btn-outline-primary form-control my-2' style = {{borderRadius: '50px'}}>Iniciar sesión</button>
+                                    <button type='submit' className = 'btn btn-outline-primary form-control my-2' style = {{borderRadius: '50px'}}>Enviar</button>
                                 </form>
                             </div>
                         </div>

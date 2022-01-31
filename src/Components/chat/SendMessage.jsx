@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useFormik } from 'formik';
 import * as Yup from 'yup'
 import { useSelector } from 'react-redux';
@@ -8,6 +8,8 @@ export const SendMessage = () => {
     const {socket} = useSelector(state => state.sk)
     const {uid} = useSelector(state => state.auth)
     const {chatActivo} = useSelector(state => state.cht)
+
+    let typing = true
 
     const {handleSubmit, resetForm, getFieldProps} = useFormik({
         initialValues: {
@@ -26,6 +28,11 @@ export const SendMessage = () => {
                 to: chatActivo,
                 notificacion: message
             })
+
+            socket?.emit('usuario-escribiendo-admin', {typing, chatActivo, uid})
+            resetForm({
+                message: ''
+            })
             resetForm({
                 message: ''
             })
@@ -39,6 +46,20 @@ export const SendMessage = () => {
                         .required('Requerido')
         })
     })
+
+    useEffect(() => {
+        const {value} = getFieldProps('message')
+        let typing = false
+        setTimeout(() => {
+            if (value.trim().length > 0 && chatActivo) {
+                typing = false
+                socket?.emit('usuario-escribiendo-admin', {typing, chatActivo, uid})
+            } else {
+                typing = true
+                socket?.emit('usuario-escribiendo-admin', {typing, chatActivo, uid})
+            }
+        }, 3000);
+    }, [socket, chatActivo, uid, getFieldProps]);
 
     return (
         <form onSubmit={handleSubmit}>

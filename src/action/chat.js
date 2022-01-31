@@ -49,3 +49,8 @@ const chatCarga = (chat) => ({
 export const clearChat = () => ({
     type: Types.chtClearState
 })
+
+export const isTyping = (typing) => ({
+    type: Types.chtTyping,
+    payload: typing
+})

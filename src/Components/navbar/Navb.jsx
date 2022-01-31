@@ -1,5 +1,5 @@
 import { Container, Nav, Navbar } from 'react-bootstrap'
-import { NavLink, useLocation } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import './Navb.css'
 import { useDispatch } from 'react-redux'
 import { setActiveUser, startLogout } from '../../action/user'
@@ -11,28 +11,27 @@ export const Navb = () => {
 
     const dispatch = useDispatch()
 
-    const {activeUser} = useSelector(state => state.auth)
+    const {activeUser, uid} = useSelector(state => state.auth)
+
+    const {notificaciones} = useSelector(state => state.nt)
 
     const logout = () => {
         dispatch(startLogout())
     }
 
-    const location = useLocation()
-    const locat = location.pathname
-
-    const [Show, setShow] = useState(false)
+    const [changeColor, setChangeColor] = useState(false);
 
     useEffect(() => {
-        if (locat === '/ZoomScreen') {
-            setShow(true)
+        if (notificaciones.filter(not => not.to === uid).length !== 0) {
+            notificaciones?.map(notificaciones => (notificaciones.to === uid && notificaciones.length !== 0) && setChangeColor(true))
         } else {
-            setShow(false)
+            setChangeColor(false)
         }
-    }, [locat])
+    }, [notificaciones, uid]);
 
     return (
         <>
-            <Navbar hidden = {Show} fixed = 'top' className = 'col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12' expand="lg" bg = 'dark' variant="dark">
+            <Navbar fixed = 'top' className = 'col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12' expand="lg" bg = 'dark' variant="dark">
                 <Container>
                     <Navbar.Brand style = {{cursor: 'pointer', margin: 0, padding: 0}} >
                         <span className = 'Navb-tittle d-flex justify-content-end align-items-center'>
@@ -48,7 +47,7 @@ export const Navb = () => {
                             <NavLink to = '/Lives' className = 'nav-link'>Zoom</NavLink>
                             <NavLink to = '/YoutubeVideos' className = 'nav-link'>Mensajes</NavLink>
                             <NavLink to = '/Petitions' className = 'nav-link'>Peticiones</NavLink>
-                            <NavLink to = '/Chat' className = 'nav-link'>Chat</NavLink>
+                            <NavLink to = '/Chat' className = 'nav-link'>Chat <i className="bi bi-chat-text-fill" style={{color: (changeColor) && 'red'}}></i></NavLink>
                         </Nav>
 
                         <Nav>

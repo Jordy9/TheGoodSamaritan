@@ -4,6 +4,7 @@ export const Types = {
     ntNotificacionesCargadas: '[NT] notificaciones cargadas',
     ntCargarNotificaciones: '[NT] cargar notificaciones',
     // 
+    chtTyping: '[CHT] typing',
     chtImageMessage: '[CHT] image message',
     chtClearState: '[CHT] clear state',
     chtUsuariosCargados: '[CHT] usuarios cargados',
@@ -34,6 +35,7 @@ export const Types = {
     magetMains: '[Ma] get Mains',
     maSetMain: '[Ma] set Main',
     //
+    zmAnuncio: '[ZM] anuncio',
     zmgetZooms: '[ZM] get Zooms',
     zmSetZoom: '[ZM] set Zoom',
     //

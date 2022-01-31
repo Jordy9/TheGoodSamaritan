@@ -7,6 +7,17 @@ import moment from "moment";
 
 export const startLogin = (email, password) => {
     return async(dispatch) => {
+
+        const greeting = moment().hour()
+        let greet
+        if (greeting >= 0 && greeting <= 11) {
+            greet = '🌄 Buenos días'
+        } else if (greeting >= 12 && greeting <= 18) {
+            greet = '☀️ Buenas tardes'
+        } else if (greeting >= 19 && greeting <= 23) {
+            greet = '🌙 Buenas noches'
+        }
+
         const resp = await fetchSinToken('users', {email, password}, 'POST');
         const body = await resp.json();
 
@@ -21,6 +32,22 @@ export const startLogin = (email, password) => {
                 name: body.name
             }))
             dispatch(setActiveUser())
+
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 5000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                  toast.addEventListener('mouseenter', Swal.stopTimer)
+                  toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+              })
+              
+              return Toast.fire({
+                title: `${greet} ${body.name}`
+              })             
         } else {
             const Toast = Swal.mixin({
                 toast: true,
