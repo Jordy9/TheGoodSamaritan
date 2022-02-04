@@ -14,7 +14,7 @@ export const PetitionModalUser = () => {
 
     const dispatch = useDispatch()
 
-    const {handleSubmit, resetForm, getFieldProps, touched, errors} = useFormik({
+    const {handleSubmit, getFieldProps, touched, errors} = useFormik({
         initialValues: {
             name: activePetitionsUser?.name, 
             title: activePetitionsUser?.title, 
@@ -23,13 +23,6 @@ export const PetitionModalUser = () => {
         enableReinitialize: true,
         onSubmit: ({name, title, descripcion}) => {
             dispatch(startUpdatePetition(name, title, descripcion))
-            resetForm({
-                initialValues: {
-                    name: '', 
-                    title: '', 
-                    descripcion: '',
-                },
-            })
         },
         validationSchema: Yup.object({
             name: Yup.string()

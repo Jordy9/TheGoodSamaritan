@@ -45,7 +45,7 @@ export const Navb = () => {
                         <Nav className="mx-auto">
                             <NavLink to = '/Dashboard' className = 'nav-link'>Inicio</NavLink>
                             <NavLink to = '/Lives' className = 'nav-link'>Zoom</NavLink>
-                            <NavLink to = '/YoutubeVideos' className = 'nav-link'>Mensajes</NavLink>
+                            <NavLink to = '/YoutubeVideos' className = 'nav-link'>Videos</NavLink>
                             <NavLink to = '/Petitions' className = 'nav-link'>Peticiones</NavLink>
                             <NavLink to = '/Chat' className = 'nav-link'>Chat <i className="bi bi-chat-text-fill" style={{color: (changeColor) && 'red'}}></i></NavLink>
                         </Nav>

@@ -8,6 +8,10 @@ export const Conctact = () => {
 
     const dispatch = useDispatch()
 
+    const redirect = () => {
+        window.open('https://www.google.es/maps/place/Centro+Cristiano+El+Buen+Samaritano+Inc./@18.9440073,-70.4099232,17z/data=!4m5!3m4!1s0x8eafdf6b2a7c9287:0x6e2367cc556b399b!8m2!3d18.9440507!4d-70.4078234?hl=es')
+    }
+
     const {handleSubmit, resetForm, getFieldProps, touched, errors} = useFormik({
         initialValues: {
             name: '', 
@@ -85,7 +89,7 @@ export const Conctact = () => {
                             </div>
 
                             <div className="col-3">
-                                <i className="bi bi-geo-alt" style = {{fontSize: '32px'}}></i>
+                                <i onClick = {redirect} className="bi bi-geo-alt" style = {{fontSize: '32px', cursor: 'pointer'}}></i>
                             </div>
 
                             <div className="col-9">

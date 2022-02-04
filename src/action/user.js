@@ -53,7 +53,7 @@ export const startLogin = (email, password) => {
                 toast: true,
                 position: 'top-end',
                 showConfirmButton: false,
-                timer: 10000,
+                timer: 5000,
                 timerProgressBar: true,
                 didOpen: (toast) => {
                   toast.addEventListener('mouseenter', Swal.stopTimer)
@@ -92,7 +92,7 @@ export const startRegister = (name, lastName, age, date, email, address, country
                 toast: true,
                 position: 'top-end',
                 showConfirmButton: false,
-                timer: 10000,
+                timer: 5000,
                 timerProgressBar: true,
                 didOpen: (toast) => {
                   toast.addEventListener('mouseenter', Swal.stopTimer)
@@ -192,7 +192,7 @@ export const startUpdateUser = (name, lastName, age, date, email, address, count
                                 toast: true,
                                 position: 'top-end',
                                 showConfirmButton: false,
-                                timer: 10000,
+                                timer: 5000,
                                 timerProgressBar: true,
                                 didOpen: (toast) => {
                                 toast.addEventListener('mouseenter', Swal.stopTimer)
@@ -209,7 +209,7 @@ export const startUpdateUser = (name, lastName, age, date, email, address, count
                                 toast: true,
                                 position: 'top-end',
                                 showConfirmButton: false,
-                                timer: 10000,
+                                timer: 5000,
                                 timerProgressBar: true,
                                 didOpen: (toast) => {
                                 toast.addEventListener('mouseenter', Swal.stopTimer)
@@ -227,7 +227,7 @@ export const startUpdateUser = (name, lastName, age, date, email, address, count
                             toast: true,
                             position: 'top-end',
                             showConfirmButton: false,
-                            timer: 10000,
+                            timer: 5000,
                             timerProgressBar: true,
                             didOpen: (toast) => {
                             toast.addEventListener('mouseenter', Swal.stopTimer)
@@ -245,7 +245,7 @@ export const startUpdateUser = (name, lastName, age, date, email, address, count
                         toast: true,
                         position: 'top-end',
                         showConfirmButton: false,
-                        timer: 10000,
+                        timer: 5000,
                         timerProgressBar: true,
                         didOpen: (toast) => {
                         toast.addEventListener('mouseenter', Swal.stopTimer)
@@ -278,7 +278,7 @@ export const startUpdateUser = (name, lastName, age, date, email, address, count
                             toast: true,
                             position: 'top-end',
                             showConfirmButton: false,
-                            timer: 10000,
+                            timer: 5000,
                             timerProgressBar: true,
                             didOpen: (toast) => {
                             toast.addEventListener('mouseenter', Swal.stopTimer)
@@ -295,7 +295,7 @@ export const startUpdateUser = (name, lastName, age, date, email, address, count
                             toast: true,
                             position: 'top-end',
                             showConfirmButton: false,
-                            timer: 10000,
+                            timer: 5000,
                             timerProgressBar: true,
                             didOpen: (toast) => {
                             toast.addEventListener('mouseenter', Swal.stopTimer)
@@ -313,7 +313,7 @@ export const startUpdateUser = (name, lastName, age, date, email, address, count
                         toast: true,
                         position: 'top-end',
                         showConfirmButton: false,
-                        timer: 10000,
+                        timer: 5000,
                         timerProgressBar: true,
                         didOpen: (toast) => {
                         toast.addEventListener('mouseenter', Swal.stopTimer)
@@ -344,7 +344,7 @@ export const startUpdateUser = (name, lastName, age, date, email, address, count
                     toast: true,
                     position: 'top-end',
                     showConfirmButton: false,
-                    timer: 10000,
+                    timer: 5000,
                     timerProgressBar: true,
                     didOpen: (toast) => {
                     toast.addEventListener('mouseenter', Swal.stopTimer)
@@ -361,7 +361,7 @@ export const startUpdateUser = (name, lastName, age, date, email, address, count
                     toast: true,
                     position: 'top-end',
                     showConfirmButton: false,
-                    timer: 10000,
+                    timer: 5000,
                     timerProgressBar: true,
                     didOpen: (toast) => {
                     toast.addEventListener('mouseenter', Swal.stopTimer)
@@ -458,11 +458,12 @@ export const forgotPassword = (email) => {
         localStorage.setItem('tokennINIT', (new Date().getTime()))
 
         if(body.ok) {
+            dispatch(forgot(body.token))
             const Toast = Swal.mixin({
                 toast: true,
                 position: 'top-end',
                 showConfirmButton: false,
-                timer: 10000,
+                timer: 5000,
                 timerProgressBar: true,
                 didOpen: (toast) => {
                 toast.addEventListener('mouseenter', Swal.stopTimer)
@@ -474,9 +475,24 @@ export const forgotPassword = (email) => {
                 icon: 'success',
                 title: 'Revisa tu correo electrónico'
             })
+        } else {
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 5000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            })
+            
+            return Toast.fire({
+                icon: 'error',
+                title: `${body.msg}`
+            })
         }
-
-        dispatch(forgot(body.token))
     }
 }
 
@@ -496,7 +512,7 @@ export const newPassword = (password) => {
                 toast: true,
                 position: 'top-end',
                 showConfirmButton: false,
-                timer: 10000,
+                timer: 5000,
                 timerProgressBar: true,
                 didOpen: (toast) => {
                 toast.addEventListener('mouseenter', Swal.stopTimer)
@@ -523,7 +539,7 @@ export const newPassword = (password) => {
                     toast: true,
                     position: 'top-end',
                     showConfirmButton: false,
-                    timer: 10000,
+                    timer: 5000,
                     timerProgressBar: true,
                     didOpen: (toast) => {
                     toast.addEventListener('mouseenter', Swal.stopTimer)

@@ -13,7 +13,7 @@ export const ModalMiniSerie = () => {
                     <div className="modal-header" style = {{border: 'none'}}>
                         <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <h1 className='d-flex justify-content-center'>{activeSerie.title}</h1>
+                    <h1 className='text-center'>{activeSerie.title}</h1>
 
                     <div className="modal-body">
                         <div className = 'shadow d-flex justify-content-center align-items-center p-4 my-2 bg-dark rounded-lg flex-column'>
@@ -30,7 +30,7 @@ export const ModalMiniSerie = () => {
                                     <div id="carouselExampleSlidesOnly" className="carousel slide" data-bs-ride="carousel">
                                         <div className="carousel-inner">
                                             <div className="carousel-item active">
-                                                <img src={activeSerie.image} className="d-block w-100 rounded" alt="..." />
+                                                <img src={activeSerie.image} className="d-block w-100 rounded img-fluid" alt="..." />
                                             </div>
                                         </div>
                                     </div>

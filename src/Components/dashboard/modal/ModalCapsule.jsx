@@ -13,7 +13,7 @@ export const ModalCapsule = () => {
                     <div className="modal-header" style = {{border: 'none'}}>
                         <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <h1 className='d-flex justify-content-center'>{activeCapsule.title}</h1>
+                    <h1 className='text-center'>{activeCapsule.title}</h1>
 
                     <div className="modal-body">
                         <div className = 'shadow d-flex justify-content-center align-items-center p-4 my-2 bg-dark rounded-lg flex-column'>

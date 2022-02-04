@@ -60,6 +60,7 @@ export const Carousel = () => {
                       return (
                         <div key={Serie._id} className = 'col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12'>
                           <img src={Serie.image} onClick={() => handledSet(Serie)} data-bs-toggle="modal" data-bs-target="#exampleModal3" className="d-block w-100 rounded imgag" style={{height: '355px'}} alt="..." />
+                          <h5 className='text-center'>{Serie.title}</h5>
                         </div>
                       )
                     })

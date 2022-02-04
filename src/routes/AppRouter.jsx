@@ -28,12 +28,10 @@ import { Conctact } from '../Components/Wayding/contact/Conctact';
 import { ForgotPassword } from '../Components/Wayding/forgotPassword/ForgotPassword';
 import { ResetPassword } from '../Components/Wayding/forgotPassword/ResetPassword';
 import { Galleryy } from '../Components/Wayding/gallery/Gallery';
-import { Location } from '../Components/Wayding/location/Location';
 import { Home } from '../Components/Wayding/login/home/Home';
 import { LoginScreen } from '../Components/Wayding/login/LoginScreen';
 import { NavbHomeScreen } from '../Components/Wayding/login/navbar/NavbHomeScreen';
 import { Messages } from '../Components/Wayding/messages/Messages';
-import { NextSteps } from '../Components/Wayding/next steps/NextSteps';
 import { RadioBonaoBlessing } from '../Components/Wayding/radioBonaoBlessing/RadioBonaoBlessing';
 import { Register } from '../Components/Wayding/register/Register';
 import { Schedule } from '../Components/Wayding/schedule/Schedule';
@@ -116,14 +114,12 @@ export const AppRouter = () => {
                     <PublicRoute exact path = '/Login' component = {LoginScreen} isAuthenticated = {!!uid} />
                     <PublicRoute exact path = '/Register' component = {Register} isAuthenticated = {!!uid} />
                     <Route exact path = '/Home' component = {Home} />
-                    <Route exact path = '/Messages' component = {Messages} />
+                    <Route exact path = '/Teleblessing' component = {Messages} />
                     <Route exact path = '/RadioBonaoBlessing' component = {RadioBonaoBlessing} />
                     <Route exact path = '/Contact' component = {Conctact} />
                     <Route exact path = '/Capsule' component = {Capsule} />
                     <Route exact path = '/Schedule' component = {Schedule} />
-                    <Route exact path = '/NextSteps' component = {NextSteps} />
                     <Route exact path = '/Gallery' component = {Galleryy} />
-                    <Route exact path = '/Location' component = {Location} />
                     <Route exact path = '/ForgotPassword' component = {ForgotPassword} />
                     <Route exact path = {`/resetPassword/${token}`} component = {ResetPassword} />
 

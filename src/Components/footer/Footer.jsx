@@ -86,7 +86,7 @@ export const Footer = () => {
                                 <i className="fas fa-home mr-3"></i>República Dominicana, Bonao, Padre Fantino.
                             </p>
                             <p>
-                                <i className="fas fa-envelope mr-3"></i>ccbs@gmail.com
+                                <i className="fas fa-envelope mr-3"></i>centrocristiano777@gmai.com
                             </p>
                             <p>
                                 <i className="fas fa-phone mr-3"></i>+1 (809)-296-1771
@@ -102,7 +102,7 @@ export const Footer = () => {
                         <div className="col text-center">
                             <p>	Copyright ©2020 All rights reserved by:
                                 <span style={{textDecoration: "none"}}>
-                                    <strong> El Buen Samaritano</strong>
+                                    <strong>Centro Cristiano El Buen Samaritano</strong>
                                 </span></p>
                             
                         </div>

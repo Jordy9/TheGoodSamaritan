@@ -24,7 +24,7 @@ export const ZoomAnuncio = (zoom) => {
             toast: true,
             position: 'top-end',
             showConfirmButton: false,
-            timer: 10000,
+            timer: 5000,
             showCloseButton: true,
             background: '#292b2c',
         })

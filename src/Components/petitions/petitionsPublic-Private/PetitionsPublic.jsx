@@ -8,7 +8,6 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup'
 import { PetitionModalUser } from '../modal/ModalPetitionUser';
 import Login from '../../../heroes/peticiones.jpg'
-import pastores from '../../../heroes/pastores.png'
 
 export const PetitionsPublic = () => {
 
@@ -130,7 +129,8 @@ export const PetitionsPublic = () => {
                                 MyPetitions?.map(peticion => {
                                     return (
                                         <div className = 'col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12'>
-                                            <div style={{cursor: 'pointer'}} data-bs-toggle="modal" data-bs-target="#exampleModal10" onClick={() => hanldedSetPetitionUser(peticion)}><h3 className='text-center'><img src={Login} className='img-fluid rounded imgag' alt=''/>{peticion?.title}</h3></div>
+                                            <div key={peticion._id} style={{cursor: 'pointer'}} data-bs-toggle="modal" data-bs-target="#exampleModal10" onClick={() => hanldedSetPetitionUser(peticion)}><img src={Login} className='img-fluid rounded imgag' alt=''/></div>
+                                            <h4 className='text-center'>{peticion.title}</h4>
                                         </div>
                                     )
                                 })
@@ -145,7 +145,8 @@ export const PetitionsPublic = () => {
                             Peticiones?.map(peticion => {
                                 return (
                                     <div className = 'col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12'>
-                                        <div data-bs-toggle="modal" data-bs-target="#exampleModal7" style={{cursor: 'pointer'}} onClick={() => hanldedSetPetition(peticion)}><h3 className='text-center'><img src={Login} className='img-fluid rounded imgag' alt=''/>{peticion?.title}</h3></div>
+                                        <div data-bs-toggle="modal" data-bs-target="#exampleModal7" style={{cursor: 'pointer'}} onClick={() => hanldedSetPetition(peticion)}><img src={Login} className='img-fluid rounded imgag' alt=''/></div>
+                                        <h4 className='text-center'>{peticion.title}</h4>
                                     </div>
                                 )
                             })
@@ -160,7 +161,8 @@ export const PetitionsPublic = () => {
                             PeticionesUser?.map(peticion => {
                                 return (
                                     <div className = 'col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12'>
-                                        <div data-bs-toggle="modal" data-bs-target="#exampleModal7" style={{cursor: 'pointer'}} onClick={() => hanldedSetPetition(peticion)}><h3 className='text-center'><img src={Login} className='img-fluid rounded imgag' alt=''/>{peticion?.title}</h3></div>
+                                        <div data-bs-toggle="modal" data-bs-target="#exampleModal7" style={{cursor: 'pointer'}} onClick={() => hanldedSetPetition(peticion)}><img src={Login} className='img-fluid rounded imgag' alt=''/></div>
+                                        <h4 className='text-center'>{peticion.title}</h4>
                                     </div>
                                 )
                             })

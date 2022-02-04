@@ -59,6 +59,7 @@ export const CarouselSketch = () => {
                       return (
                         <div key={bosquejo._id} className = 'col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12'>
                             <img src={bosquejo.image} onClick={() => handledSet(bosquejo)} data-bs-toggle="modal" data-bs-target="#exampleModal2" className="d-block w-100 rounded imgag" alt="..." style={{height: '355px'}} />
+                            <h5 className='text-center'>{bosquejo.title}</h5>
                         </div>
                       )
                     })
