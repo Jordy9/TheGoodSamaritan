@@ -102,7 +102,7 @@ export const Footer = () => {
                         <div className="col text-center">
                             <p>	Copyright ©2020 All rights reserved by:
                                 <span style={{textDecoration: "none"}}>
-                                    <strong>Centro Cristiano El Buen Samaritano</strong>
+                                    <strong> Centro Cristiano El Buen Samaritano</strong>
                                 </span></p>
                             
                         </div>
