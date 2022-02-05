@@ -27,7 +27,7 @@ export const Galleryy = () => {
                   <SRLWrapper options={options}>
                     {img.map(image => {
                       return (
-                        <img src={image.image} className='img-fluid' style={{width: '25%', height: 'auto', cursor: 'pointer'}} alt="" />
+                        <img src={image.image} className='img-fluid' style={{width: '25%', height: '300px', cursor: 'pointer'}} alt="" />
                       )
                     })}
 

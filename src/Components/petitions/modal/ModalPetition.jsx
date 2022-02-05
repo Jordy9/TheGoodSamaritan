@@ -1,6 +1,7 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import parse from 'html-react-parser'
+import moment from 'moment'
 
 export const ModalPetition = () => {
     const {activePetitions} = useSelector(state => state.pt)
@@ -13,6 +14,7 @@ export const ModalPetition = () => {
                     <div className="modal-header" style = {{border: 'none'}}>
                         <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
+                    <span className='text-right mr-4'>{moment(activePetitions?.date).format('MMMM Do YYYY, h:mm a')}</span>
                     <h1 className='text-center'>{activePetitions?.title}</h1>
 
                     <div className="modal-body">

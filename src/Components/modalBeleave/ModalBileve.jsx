@@ -19,8 +19,8 @@ export const ModalBileve = () => {
           {
             breakpoint: 1024,
             settings: {
-              slidesToShow: 3,
-              slidesToScroll: 3,
+              slidesToShow: 1,
+              slidesToScroll: 1,
               infinite: true,
               dots: true
             }
@@ -65,7 +65,7 @@ export const ModalBileve = () => {
     }, [Show, ShowNow])
 
     return (
-        <>
+        <div className='col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12'>
             <Modal
                 contentClassName='bg-dark'
                 centered
@@ -79,22 +79,19 @@ export const ModalBileve = () => {
                 <Modal.Body> 
                 <div className="row">
                     <Slider {...settings}>
-                      <div className='col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12'>
+                      <div>
                         <ContentBiliever />
                       </div>
-                      <div className='col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12'>
+                      <div>
                         <Discipleship />
                       </div>
-                      <div className='col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12'>
+                      <div>
                         <Tracking />
                       </div>
-                      {/* <div className='col-12'>
-                        <img src="https://source.unsplash.com/I1ASdgphUH4/800x599" className="d-block w-100" style={{width: '500px', height: '800px'}} alt="" />
-                      </div> */}
                     </Slider>
                   </div>
                 </Modal.Body>
             </Modal>
-        </>
+        </div>
     )
 }
