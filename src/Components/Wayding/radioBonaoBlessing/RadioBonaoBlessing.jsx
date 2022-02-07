@@ -3,7 +3,7 @@ import RadioBonaoBendi from '../../../heroes/BonaoBendicionn.jpg'
 
 export const RadioBonaoBlessing = () => {
     
-    const RadioBonaoBendicion = 'http://51.15.160.78:8171/live'
+    const RadioBonaoBendicion = 'https://51.15.160.78:8171/live'
 
     return (
         <div className='container'>
@@ -17,7 +17,7 @@ export const RadioBonaoBlessing = () => {
 
             <div className="row">
                 <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 d-flex justify-content-center align-items-center">
-                    <audio crossorigin = {false} controls autoPlay src={RadioBonaoBendicion}></audio>
+                    <audio controls autoPlay src={RadioBonaoBendicion}></audio>
                 </div>
             </div>
 
