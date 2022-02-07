@@ -3,7 +3,7 @@ import RadioBonaoBendi from '../../../heroes/BonaoBendicionn.jpg'
 
 export const RadioBonaoBlessing = () => {
     
-    const RadioBonaoBendicion = 'http://178.33.166.7:7504/;stream.nsv'
+    const RadioBonaoBendicion = 'http://51.15.160.78:8171/live'
 
     return (
         <div className='container'>
