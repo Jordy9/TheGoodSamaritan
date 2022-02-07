@@ -1,5 +1,6 @@
 import React from 'react'
 import RadioBonaoBendi from '../../../heroes/BonaoBendicionn.jpg'
+import ReactHlsPlayer from 'react-hls-player';
 
 export const RadioBonaoBlessing = () => {
     
@@ -14,6 +15,14 @@ export const RadioBonaoBlessing = () => {
                     </div>
                 </div>
             </div>
+
+            <ReactHlsPlayer
+    src="http://ss5.domint.net:2180/tbt_str/telebendicion/playlist.m3u8"
+    autoPlay={false}
+    controls={true}
+    width="100%"
+    height="auto"
+  />,
 
             <div className="row">
                 <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 d-flex justify-content-center align-items-center">
