@@ -15,7 +15,7 @@ export const RadioBonaoBlessing = () => {
                 </div>
             </div>
 
-            <iframe title='lol' width="800px" height="450px" frameborder="0" allowfullscreen="" allow-same-origin="" allow-scripts="" src="https://dominicanplayers.com/video-player/346/0"></iframe>
+            <iframe title='lol' width="800px" height="450px" frameborder="0" allowfullscreen="" allow-same-origin="" allow-scripts="" src="http://ss5.domint.net:2180/tbt_str/telebendicion/playlist.m3u8"></iframe>
 
             <div className="row">
                 <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 d-flex justify-content-center align-items-center">
