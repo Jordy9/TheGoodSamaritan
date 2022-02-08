@@ -1,8 +1,14 @@
 import React, { useEffect } from 'react'
 import ZoomMtgEmbedded from "@zoomus/websdk/embedded";
 import { useSelector } from 'react-redux';
+import Swal from 'sweetalert2';
+import { useHistory, useLocation } from 'react-router-dom';
 
 export const Zoom = () => {
+
+    const {pathname} = useLocation()
+
+    const history = useHistory()
 
     const {Zoom} = useSelector(state => state.zm)
 
@@ -61,6 +67,10 @@ function generateSignature(apiKey, apiSecret, meetingNumber, role) {
                 }
             }
         });
+
+        if (pathname !== '/Lives') {
+            client.leaveMeeting()
+        }
         
         client.join({
             apiKey: apiKey,
@@ -68,13 +78,29 @@ function generateSignature(apiKey, apiSecret, meetingNumber, role) {
             meetingNumber: meetingNumber,
             password: passWord,
             userName: userName
+        }).catch(e => {
+            history.push('/Lives')
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 5000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                  toast.addEventListener('mouseenter', Swal.stopTimer)
+                  toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+              })
+              
+              return Toast.fire({
+                icon: 'error',
+                title: e.reason
+              })
         })
 
-        // console.log(client.leaveMeeting((e) => {
-        //     console.log(e)
-        // }))
+        return () => client.leaveMeeting()
 
-    }, [])
+    }, [apiKey, signature, meetingNumber, passWord, userName, history, pathname])
 
     return (
         <div id='meetingSDKElement'></div>

@@ -2,3 +2,11 @@ div#meetingSDKElement {
     top: 200px !important;
     right: 600px !important;
 }
+
+@media (max-width: 820px) {
+
+    div#meetingSDKElement {
+        top: 200px !important;
+        right: 50px !important;
+    }
+  }

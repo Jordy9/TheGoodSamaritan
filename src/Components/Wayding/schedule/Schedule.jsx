@@ -10,8 +10,8 @@ export const Schedule = () => {
                     <img src={imagen7} style = {{width: '100%', height: '100%'}} className = 'rounded' alt = 'imagen' />
                 </div>
             </div>
-            <div className = 'shadow p-4 my-4 bg-dark rounded-lg flex-column'>
-                <table class="table table-dark table-borderless table-responsive">
+            <div className = 'shadow p-4 my-4 bg-dark rounded-lg flex-column table-responsive'>
+                <table class="table table-dark table-borderless">
                     <thead>
                         <tr>
                             <th><h5>Lunes: Oración Congregacional</h5></th>

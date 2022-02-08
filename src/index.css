@@ -111,3 +111,10 @@ code {
   .modal-open .modal {
     transition: all 0.5s linear;
   }
+
+  @media (max-width: 768px) {
+
+    #tituloNav {
+      display: none;
+    }
+  }

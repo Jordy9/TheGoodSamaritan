@@ -20,7 +20,7 @@ export const PrayLives = () => {
                         <div className="row">
                             <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                                 <span style={{fontSize: '20px'}} className='d-flex justify-content-center'>{zoom?.date}</span>
-                                <h1>{zoom?.title}</h1>
+                                <h1 className='text-center'>{zoom?.title}</h1>
                                 <button onClick={handledImage} className = 'btn btn-outline-primary my-4 form-control' style={{fontSize: '20px'}}>Unirme al zoom <i className="bi bi-camera-video"></i></button>
                             </div>
                         </div>
