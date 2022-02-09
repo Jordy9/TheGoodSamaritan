@@ -105,7 +105,7 @@ export const Capsule = () => {
                   Capsules?.map(Capsule => {
                     return (
                       <div key={Capsule._id} className = 'col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12'>
-                          <img src={Capsule.image} onClick={() => handledSet(Capsule)} className="d-block w-100 rounded imgag" alt="..." style={{height: '355px'}} />
+                          <img src={Capsule.image} onClick={() => handledSet(Capsule)} className="d-block w-100 rounded imgag img-fluid" alt="..." style={{height: '355px'}} />
                           <h5 className='text-center'>{Capsule.title}</h5>
                       </div>
                     )

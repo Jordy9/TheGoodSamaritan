@@ -16,7 +16,7 @@ export const CarrouselEvents = () => {
                             <Carousel.Item key = {evento.id}>
                                 <img
                                     style={{height: '650px'}}
-                                    className="d-block w-100 rounded"
+                                    className="d-block w-100 rounded img-fluid"
                                     src = {evento.image}
                                     alt="First slide"
                                 />

@@ -6,7 +6,7 @@ export const ImageMain = () => {
         <>
             <div className="row">
                 <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                    <img src={imagen7} style = {{width: '100%', height: '100%'}} className = 'rounded' alt = 'imagen' />
+                    <img src={imagen7} style = {{width: '100%', height: '100%'}} className = 'rounded img-fluid' alt = 'imagen' />
                 </div>
             </div>
         </>

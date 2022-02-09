@@ -32,7 +32,7 @@ export const ModalSketch = () => {
                                     <div id="carouselExampleSlidesOnly" className="carousel slide" data-bs-ride="carousel">
                                         <div className="carousel-inner">
                                             <div className="carousel-item active">
-                                                <img src={activeBosquejo.image} className="d-block w-100 rounded" alt="..." />
+                                                <img src={activeBosquejo.image} className="d-block w-100 rounded img-fluid" alt="..." />
                                             </div>
                                         </div>
                                     </div>
