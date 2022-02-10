@@ -8,6 +8,7 @@ import { mainReducer } from '../reducers/mainReducer';
 import { miniSerieReducer } from '../reducers/miniSerieReducer';
 import { notificacionReducer } from '../reducers/notificacionReducer';
 import { petitionReducer } from '../reducers/petitionReducer';
+import { searchReducer } from '../reducers/searchReducer';
 import { sketchReducer } from '../reducers/sketchReducer';
 import { socketReducer } from '../reducers/socketReducer';
 import { usersReducer } from '../reducers/users';
@@ -30,7 +31,8 @@ const reducers = combineReducers({
     yt: youtubeReducer,
     sk: socketReducer,
     cht: chatReducer,
-    nt: notificacionReducer
+    nt: notificacionReducer,
+    bd: searchReducer
 });
 
 export const store =  createStore(

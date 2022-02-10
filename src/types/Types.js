@@ -1,5 +1,7 @@
 export const Types = {
 
+    bdActivefilter: '[BD] active filter',
+    // 
     ntDeleteNotification: '[NT] delete notification',
     ntNotificacionesCargadas: '[NT] notificaciones cargadas',
     ntCargarNotificaciones: '[NT] cargar notificaciones',

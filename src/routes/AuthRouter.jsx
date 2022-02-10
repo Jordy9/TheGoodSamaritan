@@ -16,6 +16,7 @@ import { startUpdateUserDate } from '../action/user';
 import { useEffect } from 'react';
 import { YoutubeVideo } from '../Components/youtubeVideo/YoutubeVideo';
 import { ChatPage } from '../Components/chat/ChatPage';
+import { Search } from '../Components/search/Search';
 
 export const AuthRouter = () => {
 
@@ -55,6 +56,7 @@ export const AuthRouter = () => {
                     <Route path = '/YoutubeVideos' component = {YoutubeVideo} />
                     <Route path = '/Petitions' component = {Petitions} />
                     <Route path = '/Chat' component = {ChatPage} />
+                    <Route path = '/Search' component = {Search} />
                     <Route path = '/Profile' component = {Profile} />
 
                     <Redirect to = '/Dashboard' />
