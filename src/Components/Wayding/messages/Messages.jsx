@@ -2,7 +2,7 @@ import React from 'react'
 import './Messages.css'
 import ReactPlayer from 'react-player'
 
-const Telebendicion = '//ss5.domint.net:2180/tbt_str/telebendicion/playlist.m3u8'
+const Telebendicion = 'http://ss5.domint.net:2180/tbt_str/telebendicion/playlist.m3u8'
 
 export const Messages = () => {
 
@@ -14,7 +14,8 @@ export const Messages = () => {
                         <div className = 'my-5'>
                             <div className="row my-5">
                                 <div className="shadow bg-dark p-4 col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 d-flex justify-content-center align-items-center">
-                                    <ReactPlayer width = '100vw' height = '100vh' url={Telebendicion} controls playing loop />
+                                    {/* <ReactPlayer width = '100vw' height = '100vh' url={Telebendicion} controls playing loop /> */}
+                                    <iframe title='lol' allow-same-origin src="https://www.youtube.com/embed/cWDJoK8zw58" />;
                                 </div>
                             </div>
                         </div>
