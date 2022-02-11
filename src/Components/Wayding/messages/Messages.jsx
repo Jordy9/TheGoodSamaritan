@@ -2,7 +2,7 @@ import React from 'react'
 import './Messages.css'
 import ReactPlayer from 'react-player'
 
-const Telebendicion = 'http://ss5.domint.net:2180/tbt_str/telebendicion/playlist.m3u8'
+const Telebendicion = '//ss5.domint.net:2180/tbt_str/telebendicion/playlist.m3u8'
 
 export const Messages = () => {
 
