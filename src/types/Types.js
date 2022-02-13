@@ -1,5 +1,7 @@
 export const Types = {
 
+    vsgetVerse: '[VS] get verse',
+    // 
     bdActivefilter: '[BD] active filter',
     // 
     ntDeleteNotification: '[NT] delete notification',

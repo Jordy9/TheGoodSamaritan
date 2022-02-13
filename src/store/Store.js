@@ -12,6 +12,7 @@ import { searchReducer } from '../reducers/searchReducer';
 import { sketchReducer } from '../reducers/sketchReducer';
 import { socketReducer } from '../reducers/socketReducer';
 import { usersReducer } from '../reducers/users';
+import { verseReducer } from '../reducers/verseReducer';
 import { youtubeReducer } from '../reducers/youtubeReducer';
 import { zoomReducer } from '../reducers/zoomReducer';
 
@@ -32,7 +33,8 @@ const reducers = combineReducers({
     sk: socketReducer,
     cht: chatReducer,
     nt: notificacionReducer,
-    bd: searchReducer
+    bd: searchReducer,
+    vs: verseReducer
 });
 
 export const store =  createStore(

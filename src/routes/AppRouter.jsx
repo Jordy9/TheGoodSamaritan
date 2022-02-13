@@ -44,6 +44,7 @@ import 'moment/locale/es'
 import { cargarNotificaciones } from '../action/notifications';
 import { VerseOfTheDay } from '../Components/verseOfTheDay/VerseOfTheDay';
 import { useState } from 'react';
+import { startGetVerseofTheDay } from '../action/verseofTheDay';
 
 moment.locale('es');
 
@@ -73,6 +74,7 @@ export const AppRouter = () => {
         dispatch(setActiveUser())
         dispatch(startGetYoutube())
         dispatch(cargarNotificaciones())
+        dispatch(startGetVerseofTheDay())
     }, [dispatch])
 
     useEffect(() => {
@@ -103,15 +105,6 @@ export const AppRouter = () => {
             dispatch(isTyping(typing))
         })
     }, [socket, dispatch])
-
-    useEffect(() => {
-        if (moment().hour() === 0) {
-            localStorage.setItem('VersOfTheDayReNew', false)
-        }
-
-        setClose(localStorage.getItem('VersOfTheDayReNew'))
-    }, [])
-    
     
     if (checking) {
         return <Spinner />
@@ -121,9 +114,7 @@ export const AppRouter = () => {
         <Router>
             <ScrollToTop />
             <NavbHomeScreen />
-            <div hidden = {close}>
-                <VerseOfTheDay />
-            </div>
+            <VerseOfTheDay />
             <div>
 
                 <Switch>

@@ -1,61 +1,36 @@
+import moment from 'moment'
 import React, { useEffect } from 'react'
 import { useState } from 'react'
-import { Antiguotestamento } from '../../Antiguotestamento'
-import { Libros } from '../../Libros'
-import { Nuevotestamento } from '../../Nuevotestamento'
+import { useSelector } from 'react-redux'
 
 export const VerseOfTheDay = () => {
 
+  const {verse} = useSelector(state => state.vs)
+
   const closeVerseOfTheDay = () => {
     localStorage.setItem('VerseOfTheDay', true)
+    localStorage.setItem('VerseOfTheDayDateInit', new Date().getTime())
     setclose(true)
   }
 
   const [close, setclose] = useState(false)
 
-  const [versiculoDelDia, setversiculoDelDia] = useState()
+  useEffect(() => {
+    setclose(localStorage.getItem('VerseOfTheDay'))
+  }, [])
 
-  const [numeroLibro, setnumeroLibro] = useState()
+  useEffect(() => {
+    const hour = localStorage.getItem('VerseOfTheDayDateInit')
 
-  const [numeroCapitulo, setnumeroCapitulo] = useState()
-
-  const [numeroVersiculo, setnumeroVersiculo] = useState()
-
-    useEffect(() => {
-
-      const libros = [...Antiguotestamento(), ...Nuevotestamento()]
-
-      const numerolibro = Math.floor(Math.random() * libros?.length)
-
-      const numerocap = Math.floor(Math.random() * libros[numerolibro].length)
-
-      console.log('total', libros[numerolibro].length)
-      console.log('aleatorio', numerocap)
-      
-      setnumeroCapitulo(numerocap)
-
-      const numerover = libros[numerolibro][numerocap]
-
-      const numeroversiculo = Math.floor(Math.random() * numerover.length)
-
-      console.log(numeroversiculo)
-      
-      setnumeroVersiculo(numeroversiculo)
-      
-      const LibroActual = Libros()[numerolibro]
-
-      setnumeroLibro(LibroActual)
-      
-      setTimeout(() => {
-        setversiculoDelDia(libros[numerolibro][numerocap][numeroversiculo])
-      }, 1500);
-
-      setclose(localStorage.getItem('VerseOfTheDay'))
-
-    }, [])
+    if (moment(Number(hour)).fromNow() === 'hace 1 día') {
+      setclose(false)
+      console.log('lol')
+    }
+    
+  }, [verse])
     
   return (
-    <div hidden = {close} className='container'>
+    <div hidden = {close} className='container' style={{marginTop: (localStorage.getItem('token') && '70px')}}>
       <div className = 'shadow align-items-center p-4 my-2 bg-dark rounded-lg flex-column'>
         <div className="row">
           <div className="d-flex justify-content-end">
@@ -67,13 +42,13 @@ export const VerseOfTheDay = () => {
               </div>
             <blockquote className='blockquote d-flex justify-content-center'>
               {
-                versiculoDelDia
+                verse?.cita
               }
             </blockquote>
           </div>
         </div>
         <div className="d-flex justify-content-end">
-          <span>{numeroLibro} {Number(numeroCapitulo) + 1}:{Number(numeroVersiculo) + 1} RVR1960</span>
+          <span>{verse?.LibroActual} {Number(verse?.numerocap) + 1}:{Number(verse?.numeroversiculo) + 1} RVR1960</span>
         </div>
       </div>
     </div>
