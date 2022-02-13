@@ -42,6 +42,8 @@ import { PrivateRoute } from './PrivateRoute';
 import { PublicRoute } from './PublicRoute';
 import 'moment/locale/es'
 import { cargarNotificaciones } from '../action/notifications';
+import { VerseOfTheDay } from '../Components/verseOfTheDay/VerseOfTheDay';
+import { useState } from 'react';
 
 moment.locale('es');
 
@@ -49,6 +51,8 @@ export const AppRouter = () => {
 
     const dispatch = useDispatch()
     const {checking, uid} = useSelector(state => state.auth)
+
+    const [close, setClose] = useState(false)
 
     const {socket, online, conectarSocket, desconectarSocket} = useSocket('https://good-samaritan-backend.herokuapp.com')
 
@@ -99,6 +103,15 @@ export const AppRouter = () => {
             dispatch(isTyping(typing))
         })
     }, [socket, dispatch])
+
+    useEffect(() => {
+        if (moment().hour() === 0) {
+            localStorage.setItem('VersOfTheDayReNew', false)
+        }
+
+        setClose(localStorage.getItem('VersOfTheDayReNew'))
+    }, [])
+    
     
     if (checking) {
         return <Spinner />
@@ -108,6 +121,9 @@ export const AppRouter = () => {
         <Router>
             <ScrollToTop />
             <NavbHomeScreen />
+            <div hidden = {close}>
+                <VerseOfTheDay />
+            </div>
             <div>
 
                 <Switch>
