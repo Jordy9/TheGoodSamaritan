@@ -55,15 +55,15 @@ function generateSignature(apiKey, apiSecret, meetingNumber, role) {
             customize: {
                 meetingInfo: ['topic', 'host', 'mn', 'pwd', 'telPwd', 'invite', 'participant', 'dc', 'enctype'],
                 toolbar: {
-                buttons: [
-                    {
-                    text: 'Custom Button',
-                    className: 'CustomButton',
-                    onClick: () => {
-                        console.log('custom button')
-                    }
-                    }
-                ]
+                // buttons: [
+                //     {
+                //     text: 'Custom Button',
+                //     className: 'CustomButton',
+                //     onClick: () => {
+                //         console.log('custom button')
+                //     }
+                //     }
+                // ]
                 }
             }
         });
