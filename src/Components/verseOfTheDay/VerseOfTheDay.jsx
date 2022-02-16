@@ -6,7 +6,7 @@ export const VerseOfTheDay = () => {
   const {verse} = useSelector(state => state.vs)
     
   return (
-    <div hidden = {(verse.length === 0)} className='container'>
+    <div hidden = {(verse?.length === 0)} className='container'>
       <div className = 'shadow align-items-center p-4 my-2 bg-dark rounded-lg flex-column'>
         <div className="row">
           <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">

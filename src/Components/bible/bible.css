@@ -1,0 +1,9 @@
+.activeBook {
+    background-color: gray !important;
+    border-radius: 10px;
+}
+
+li:hover {
+    background-color: gray !important;
+    border-radius: 10px;
+}

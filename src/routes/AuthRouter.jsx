@@ -17,6 +17,7 @@ import { useEffect } from 'react';
 import { YoutubeVideo } from '../Components/youtubeVideo/YoutubeVideo';
 import { ChatPage } from '../Components/chat/ChatPage';
 import { Search } from '../Components/search/Search';
+import { Bible } from '../Components/bible/bible';
 
 export const AuthRouter = () => {
 
@@ -58,6 +59,7 @@ export const AuthRouter = () => {
                     <Route path = '/Chat' component = {ChatPage} />
                     <Route path = '/Search' component = {Search} />
                     <Route path = '/Profile' component = {Profile} />
+                    <Route path = '/bible' component = {Bible} />
 
                     <Redirect to = '/Dashboard' />
                 </Switch>
