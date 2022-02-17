@@ -15,6 +15,13 @@ export const scrollToBottomAnimated = (id) => {
     })
 }
 
+export const scrollToTopAnimated = (id) => {
+    animateScroll.scrollToTop({
+        containerId: id,
+        duration: 500
+    })
+}
+
 export const timeMonth = (date) => {
     const todayMonth = moment(date)
 

@@ -1,5 +1,5 @@
-import React from 'react'
 import genesis from './procesados/genesis'
+import numeros from './procesados/numeros'
 import exodo from './procesados/exodo'
 import levitico from './procesados/levitico'
 import deuteronomio from './procesados/deuteronomio'
@@ -41,7 +41,7 @@ import malaquias from './procesados/malaquias'
 export const Antiguotestamento = () => {
     const Antiguotestamento = []
 
-    Antiguotestamento.push(genesis, exodo, levitico, deuteronomio, josue, jueces, rut, samuel1, samuel2, reyes1, reyes2, cronicas1, cronicas2, esdras, nehemias,
+    Antiguotestamento.push(genesis, exodo, levitico, numeros, deuteronomio, josue, jueces, rut, samuel1, samuel2, reyes1, reyes2, cronicas1, cronicas2, esdras, nehemias,
         ester, job, salmos, proverbios, eclesiastes, cantares, isaias, jeremias, lamentaciones, ezequiel, daniel, oseas, joel, amos, abdias,
         jonas, miqueas, nahum, habacuc, sofonias, hageo, zacarias, malaquias)
     return Antiguotestamento

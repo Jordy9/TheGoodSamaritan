@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Nav, Navbar } from 'react-bootstrap'
 import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
 import { BookClear, getBook } from '../../action/verseofTheDay'
 import { Antiguotestamento } from '../../Antiguotestamento'
+import { scrollToTopAnimated } from '../../helper/ScrollToBottom'
 import { Libros } from '../../Libros'
 import { Nuevotestamento } from '../../Nuevotestamento'
 import { VerseOfTheDay } from '../verseOfTheDay/VerseOfTheDay'
@@ -36,6 +37,10 @@ export const Bible = () => {
             setVersiculo(librosBiblia[Capitulo][0])
         }
     }, [first, Capitulo])
+
+    useEffect(() => {
+        scrollToTopAnimated('verse')
+    }, [versiculo])
     
 
     const Versiculo = (e) => {
@@ -71,7 +76,7 @@ export const Bible = () => {
     }
     
   return (
-    <div style={{marginTop: '70px'}}>
+    <div style={{marginTop: '80px'}}>
         <div className = 'shadow p-3 mt-2 bg-dark rounded-lg text-white'>
             <i onClick={arrowBack} hidden = {(!ocultar)} className="bi bi-arrow-left" style={{margin: 0, cursor: 'pointer'}}></i>
             <div className="text-center">
@@ -89,7 +94,7 @@ export const Bible = () => {
             </div>
             <Navbar hidden = {(!libroActual)} style={{overflowX: 'auto'}} className = 'col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 navbar-nav' expand="lg" bg = 'dark' variant="dark">
             
-                <Nav className="flex-row ml-md-auto d-md-flex">
+                <Nav className="flex-row mx-md-auto d-md-flex">
                     {
                         first?.map((capitulo, index) => {
                             return (
@@ -119,7 +124,7 @@ export const Bible = () => {
                     </ul>
                 </div>
 
-                <div hidden = {!ocultar && width <= 820} className='col-xs-12 col-sm-12 col-md-10 col-lg-10 col-xl-10' style={{overflowY: 'auto', height: '450px'}}>
+                <div id='verse' hidden = {!ocultar && width <= 820} className='col-xs-12 col-sm-12 col-md-10 col-lg-10 col-xl-10' style={{overflowY: 'auto', height: '450px'}}>
                     {
                         (libroActual)
                             ?
