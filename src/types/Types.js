@@ -1,6 +1,8 @@
 export const Types = {
 
     vsgetVerse: '[VS] get verse',
+    vsBook: '[VS] get book',
+    vsBookClear: 'VS clear book',
     // 
     bdActivefilter: '[BD] active filter',
     // 

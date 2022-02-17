@@ -7,3 +7,17 @@ li:hover {
     background-color: gray !important;
     border-radius: 10px;
 }
+
+#title-only-movil {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    #titulo-verisuculodeldia {
+        display: none;
+    }
+
+    #title-only-movil {
+        display: block;
+    }
+}

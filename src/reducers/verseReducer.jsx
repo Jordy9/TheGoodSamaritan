@@ -1,7 +1,8 @@
 import { Types } from '../types/Types';
 
 const initialState = {
-    verse: null
+    verse: null,
+    book: null
 }
 
 
@@ -11,6 +12,18 @@ export const verseReducer = (state = initialState, action) => {
             return {
                 ...state,
                 verse: action.payload
+            }
+
+        case Types.vsBook:
+            return {
+                ...state,
+                book: action.payload
+            }
+
+        case Types.vsBookClear:
+            return {
+                ...state,
+                book: null
             }
     
         default:

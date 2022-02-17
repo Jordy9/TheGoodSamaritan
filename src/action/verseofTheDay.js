@@ -18,3 +18,12 @@ const getVerseofTheDay = (verse) => ({
     type: Types.vsgetVerse,
     payload: verse
 })
+
+export const getBook = (book) => ({
+    type: Types.vsBook,
+    payload: book
+})
+
+export const BookClear = () => ({
+    type: Types.vsBookClear,
+})
