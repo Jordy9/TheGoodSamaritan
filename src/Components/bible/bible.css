@@ -12,6 +12,8 @@ li:hover {
     display: none;
 }
 
+.navbar-nav { white-space: nowrap; }
+
 @media (max-width: 768px) {
     #titulo-verisuculodeldia {
         display: none;

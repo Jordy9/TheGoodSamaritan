@@ -87,23 +87,20 @@ export const Bible = () => {
                     <h3>Santa Bíblia Reina Valera 1960</h3>
                 }
             </div>
-            <Navbar hidden = {(!libroActual)} style={{overflowX: 'auto'}} className = 'col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12' expand="lg" bg = 'dark' variant="dark">
-                <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                <Navbar.Collapse id="basic-navbar-nav">
+            <Navbar hidden = {(!libroActual)} style={{overflowX: 'auto'}} className = 'col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 navbar-nav' expand="lg" bg = 'dark' variant="dark">
             
-                    <Nav className="mx-auto">
-                        {
-                            first?.map((capitulo, index) => {
-                                return (
-                                    <button style={{border: 'none', borderBottom: '1px solid white'}} onClick={() => Versiculo(index)} className='mx-1 btn btn-outline-primary' key={capitulo}>
-                                        Capítulo {index + 1}
-                                    </button>
-                                )
-                            })
-                        }
-                    </Nav>
+                <Nav className="flex-row ml-md-auto d-md-flex">
+                    {
+                        first?.map((capitulo, index) => {
+                            return (
+                                <button style={{border: 'none', borderBottom: '1px solid white'}} onClick={() => Versiculo(index)} className='mx-1 btn btn-outline-primary' key={capitulo}>
+                                    Capítulo {index + 1}
+                                </button>
+                            )
+                        })
+                    }
+                </Nav>
 
-                </Navbar.Collapse>
             </Navbar>
             <div className="row mt-3">
                 <div hidden = {(ocultar)} className="col-xs-0 col-sm-0 col-md-2 col-lg-2 col-xl-2 flex-column" style={{overflowY: 'auto', height: '450px'}}>
