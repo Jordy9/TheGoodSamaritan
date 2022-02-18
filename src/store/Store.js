@@ -6,6 +6,7 @@ import { eventReducer } from '../reducers/eventReducer';
 import { galleryReducer } from '../reducers/galleryReducer';
 import { mainReducer } from '../reducers/mainReducer';
 import { miniSerieReducer } from '../reducers/miniSerieReducer';
+import { noteReducer } from '../reducers/noteReducer';
 import { notificacionReducer } from '../reducers/notificacionReducer';
 import { petitionReducer } from '../reducers/petitionReducer';
 import { searchReducer } from '../reducers/searchReducer';
@@ -34,7 +35,8 @@ const reducers = combineReducers({
     cht: chatReducer,
     nt: notificacionReducer,
     bd: searchReducer,
-    vs: verseReducer
+    vs: verseReducer,
+    nts: noteReducer
 });
 
 export const store =  createStore(

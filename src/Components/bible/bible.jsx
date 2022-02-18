@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Nav, Navbar } from 'react-bootstrap'
 import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
@@ -7,8 +7,9 @@ import { Antiguotestamento } from '../../Antiguotestamento'
 import { scrollToTopAnimated } from '../../helper/ScrollToBottom'
 import { Libros } from '../../Libros'
 import { Nuevotestamento } from '../../Nuevotestamento'
+import { Note } from '../note/Note'
 import { VerseOfTheDay } from '../verseOfTheDay/VerseOfTheDay'
-import './bible.css'
+import './Bible.css'
 
 const librosBiblia = [...Antiguotestamento(), ...Nuevotestamento()]
 
@@ -74,9 +75,17 @@ export const Bible = () => {
     const arrowBack = () => {
         dispatch(BookClear())
     }
+
+    useEffect(() => {    
+      return () => {
+        dispatch(BookClear())
+      }
+    }, [dispatch])
+    
     
   return (
-    <div style={{marginTop: '80px'}}>
+    <div style={{marginTop: (libroActual) ? '80px' : '120px'}}>
+        <i data-bs-toggle="modal" data-bs-target="#exampleModalNota" className="fab bi bi-journal-bookmark-fill"></i>
         <div className = 'shadow p-3 mt-2 bg-dark rounded-lg text-white'>
             <i onClick={arrowBack} hidden = {(!ocultar)} className="bi bi-arrow-left" style={{margin: 0, cursor: 'pointer'}}></i>
             <div className="text-center">
@@ -144,6 +153,7 @@ export const Bible = () => {
                 </div>
             </div>
         </div>
+        <Note />
     </div>
   )
 }

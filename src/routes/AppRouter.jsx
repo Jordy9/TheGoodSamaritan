@@ -43,6 +43,7 @@ import { PublicRoute } from './PublicRoute';
 import 'moment/locale/es'
 import { cargarNotificaciones } from '../action/notifications';
 import { startGetVerseofTheDay } from '../action/verseofTheDay';
+import { startGetNotes } from '../action/notas';
 
 moment.locale('es');
 
@@ -71,6 +72,7 @@ export const AppRouter = () => {
         dispatch(startGetYoutube())
         dispatch(cargarNotificaciones())
         dispatch(startGetVerseofTheDay())
+        dispatch(startGetNotes())
     }, [dispatch])
 
     useEffect(() => {

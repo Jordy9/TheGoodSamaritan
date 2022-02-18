@@ -17,7 +17,7 @@ import { useEffect } from 'react';
 import { YoutubeVideo } from '../Components/youtubeVideo/YoutubeVideo';
 import { ChatPage } from '../Components/chat/ChatPage';
 import { Search } from '../Components/search/Search';
-import { Bible } from '../Components/bible/bible';
+import { Bible } from '../Components/bible/Bible';
 
 export const AuthRouter = () => {
 

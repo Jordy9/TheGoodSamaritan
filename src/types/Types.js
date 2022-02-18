@@ -1,5 +1,13 @@
 export const Types = {
 
+    ntsGetNota: '[NTS] get nota',
+    ntsCrearNota: '[NTS] crear nota',
+    ntsUpdateNota: '[NTS] update nota',
+    ntsDeleteNota: '[NTS] delete nota',
+    ntsSetDeleteNota: '[NTS] set delete nota',
+    ntsSetNota: '[NTS] set nota',
+    ntsClearSetNota: '[NTS] clear set nota',
+    // 
     vsgetVerse: '[VS] get verse',
     vsBook: '[VS] get book',
     vsBookClear: 'VS clear book',
