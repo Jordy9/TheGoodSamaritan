@@ -17,7 +17,7 @@ import { useEffect } from 'react';
 import { YoutubeVideo } from '../Components/youtubeVideo/YoutubeVideo';
 import { ChatPage } from '../Components/chat/ChatPage';
 import { Search } from '../Components/search/Search';
-import { Bible } from '../Components/bible/Bible';
+// import { Bible } from '../Components/bible/Bible';
 
 export const AuthRouter = () => {
 
@@ -58,7 +58,7 @@ export const AuthRouter = () => {
                     <Route path = '/Petitions' component = {Petitions} />
                     <Route path = '/Chat' component = {ChatPage} />
                     <Route path = '/Search' component = {Search} />
-                    <Route path = '/Bible' component = {Bible} />
+                    {/* <Route path = '/Bible' component = {Bible} /> */}
                     <Route path = '/Profile' component = {Profile} />
 
                     <Redirect to = '/Dashboard' />
