@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Nav, Navbar } from 'react-bootstrap'
 import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
+import { startGetNotes } from '../../action/notas'
 import { BookClear, getBook } from '../../action/verseofTheDay'
 import { Antiguotestamento } from '../../Antiguotestamento'
 import { scrollToTopAnimated } from '../../helper/ScrollToBottom'
@@ -81,6 +82,11 @@ export const Bible = () => {
         dispatch(BookClear())
       }
     }, [dispatch])
+
+    useEffect(() => {
+        dispatch(startGetNotes())
+    }, [dispatch])
+    
     
     
   return (
