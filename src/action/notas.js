@@ -30,6 +30,7 @@ export const startCreateNote = (title, descripcion) => {
         if (body.ok) {
 
             dispatch(createNota(body.nota))
+            dispatch(startGetNotes())
             const Toast = Swal.mixin({
                 toast: true,
                 position: 'top-end',
@@ -102,7 +103,7 @@ export const startUpdateNota = (title, descripcion) => {
                 title: 'Nota actualizada correctamente'
               })
         } else {
-            Swal.fire('Error', body.errors, 'error')
+            Swal.fire('Error', body.msg, 'error')
         }
 
     }
@@ -115,11 +116,16 @@ const updateNota = (nota) => ({
 
 export const startDeleteNota = () => {
     return async(dispatch, getState) => {
+      
         const {activeDeleteNote} = getState().nts
+
+        console.log(activeDeleteNote)
 
         const resp = await fetchConToken(`notas/${activeDeleteNote._id}`, activeDeleteNote, 'DELETE')
 
-        if(resp.ok) {
+        const body = await resp.json()
+
+        if(body.ok) {
             dispatch(deleteNota(activeDeleteNote))
             const Toast = Swal.mixin({
                 toast: true,
@@ -152,7 +158,7 @@ export const startDeleteNota = () => {
           
           return Toast.fire({
             icon: 'error',
-            title: resp.msg
+            title: body.msg
           })
         }
     }

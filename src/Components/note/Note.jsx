@@ -1,8 +1,8 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useFormik } from 'formik'
 import { useDispatch } from 'react-redux'
 import * as Yup from 'yup'
-import { clearSetNota, setDeleteNota, setNota, startCreateNote, startUpdateNota } from '../../action/notas'
+import { clearSetNota, setDeleteNota, setNota, startCreateNote, startDeleteNota, startGetNotes, startUpdateNota } from '../../action/notas'
 import { useSelector } from 'react-redux'
 import Swal from 'sweetalert2'
 
@@ -11,6 +11,7 @@ export const Note = () => {
     const dispatch = useDispatch()
 
     const {notes, activeNote} = useSelector(state => state.nts)
+    const {uid} = useSelector(state => state.auth)
 
     const handledEdit = (nota) => {
         dispatch(setNota(nota))
@@ -27,6 +28,7 @@ export const Note = () => {
           }).then((result) => {
             if (result.isConfirmed) {
                 dispatch(setDeleteNota(nota))
+                dispatch(startDeleteNota())
             }
           })
     }
@@ -59,6 +61,10 @@ export const Note = () => {
                         .required('Requerido')
         })
     })
+
+    useEffect(() => {
+        dispatch(startGetNotes())
+    }, [dispatch])
 
   return (
     <>
@@ -102,7 +108,7 @@ export const Note = () => {
                                         <div className="row">
                                             <div className="col-12 form-group">
                                                 {
-                                                    notes?.map(notes => {
+                                                    notes?.filter(notes => notes.user.id === uid).map(notes => {
                                                         return (
                                                             <div key={notes._id}>
                                                                 <div className='shadow text-center p-4 flex-column'>{notes?.title}</div>

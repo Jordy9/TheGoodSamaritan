@@ -52,7 +52,7 @@ export const noteReducer = (state = initialState, action) => {
             return {
                 ...state,
                 notes: state.notes.filter( 
-                    e => (e._id !== state.activeNote._id)
+                    e => (e._id !== state.activeDeleteNote._id)
                 ),
             }
     
