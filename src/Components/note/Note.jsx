@@ -78,7 +78,7 @@ export const Note = () => {
                                         <div className="row">
                                             <div className="col-12 form-group">
                                                 <label>Título</label>
-                                                <input type="text" {...getFieldProps('title')} placeholder = 'Juan' className = 'form-control bg-transparent text-white' />
+                                                <input type="text" {...getFieldProps('title')} placeholder = 'Dios es bueno' className = 'form-control bg-transparent text-white' />
                                                 {touched.name && errors.name && <span style={{color: 'red'}}>{errors.name}</span>}
                                             </div>
                                         </div>
@@ -107,11 +107,11 @@ export const Note = () => {
                                                             <div key={notes._id}>
                                                                 <div className='shadow text-center p-4 flex-column'>{notes?.title}</div>
                                                                 <div className='row'>
-                                                                    <div className="col-6">
+                                                                    <div className="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
                                                                         <button type='button' onClick={() => handledEdit(notes)} className='btn btn-outline-primary form-control my-3'>Ver/Editar</button>
                                                                     </div>
 
-                                                                    <div className="col-6">
+                                                                    <div className="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
                                                                         <button type='button' onClick={() => handledDelete(notes)} className='btn btn-outline-danger form-control my-3'>Eliminar</button>
                                                                     </div>
                                                                 </div>
