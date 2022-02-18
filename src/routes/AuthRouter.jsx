@@ -58,8 +58,8 @@ export const AuthRouter = () => {
                     <Route path = '/Petitions' component = {Petitions} />
                     <Route path = '/Chat' component = {ChatPage} />
                     <Route path = '/Search' component = {Search} />
-                    <Route path = '/Profile' component = {Profile} />
                     <Route path = '/Bible' component = {Bible} />
+                    <Route path = '/Profile' component = {Profile} />
 
                     <Redirect to = '/Dashboard' />
                 </Switch>
