@@ -59,7 +59,7 @@ export const AuthRouter = () => {
                     <Route path = '/Chat' component = {ChatPage} />
                     <Route path = '/Search' component = {Search} />
                     <Route path = '/Profile' component = {Profile} />
-                    <Route path = '/bible' component = {Bible} />
+                    <Route path = '/Bible' component = {Bible} />
 
                     <Redirect to = '/Dashboard' />
                 </Switch>
