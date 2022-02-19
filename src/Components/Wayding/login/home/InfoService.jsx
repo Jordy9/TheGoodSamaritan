@@ -17,7 +17,7 @@ export const InfoService = () => {
                         <h4 className = 'text-center'>Nuestro horario de servicio</h4>
                     </NavLink>
 
-                    <NavLink className="col-xs-2 col-sm-6 col-md-6 col-lg-3 col-xl-3 p-4 hom"  to = '/Messages' style = {{textDecoration: 'none', color: '#FFFFFF'}}>
+                    <NavLink className="col-xs-2 col-sm-6 col-md-6 col-lg-3 col-xl-3 p-4 hom"  to = '/Teleblessing' style = {{textDecoration: 'none', color: '#FFFFFF'}}>
                         <i className="bi bi-cast d-flex justify-content-center" style = {{fontSize: '32px'}}></i>
                         <h4 className = 'text-center'>Transmisión en vivo de nuestro canal</h4>
                     </NavLink>

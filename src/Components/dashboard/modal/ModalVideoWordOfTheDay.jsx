@@ -1,4 +1,5 @@
 import React from 'react'
+import ReactPlayer from 'react-player'
 import { useSelector } from 'react-redux'
 
 export const ModalVideoWordOfTheDay = () => {
@@ -15,13 +16,13 @@ export const ModalVideoWordOfTheDay = () => {
                     <h1 className='text-center'>{activeVideo?.title}</h1>
 
                     <div className="modal-body">
-                        <div className = 'shadow d-flex justify-content-center align-items-center p-4 my-2 bg-dark rounded-lg flex-column'>
+                        <div className = 'shadow d-flex justify-content-center align-items-center p-4 bg-dark rounded-lg flex-column'>
                             <div className="row">
                                 <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 form-group">
                                     <div id="carouselExampleSlidesOnly" className="carousel slide" data-bs-ride="carousel">
                                         <div className="carousel-inner">
                                             <div className="carousel-item active">
-                                                <video controls autoPlay src={activeVideo?.image} className="d-block w-100 rounded img-fluid" alt="..." ></video>
+                                                <ReactPlayer width = '100%' height = '100%' controls playing loop url={activeVideo?.image} className="d-block w-100 rounded img-fluid" alt="..." />
                                             </div>
                                         </div>
                                     </div>
