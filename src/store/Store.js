@@ -14,6 +14,7 @@ import { sketchReducer } from '../reducers/sketchReducer';
 import { socketReducer } from '../reducers/socketReducer';
 import { usersReducer } from '../reducers/users';
 import { verseReducer } from '../reducers/verseReducer';
+import { VideoWordOfTheDayReducer } from '../reducers/VideoWordOfTheDayReducer';
 import { youtubeReducer } from '../reducers/youtubeReducer';
 import { zoomReducer } from '../reducers/zoomReducer';
 
@@ -36,7 +37,8 @@ const reducers = combineReducers({
     nt: notificacionReducer,
     bd: searchReducer,
     vs: verseReducer,
-    nts: noteReducer
+    nts: noteReducer,
+    vwd: VideoWordOfTheDayReducer
 });
 
 export const store =  createStore(

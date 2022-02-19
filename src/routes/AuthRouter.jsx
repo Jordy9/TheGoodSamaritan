@@ -33,7 +33,7 @@ export const AuthRouter = () => {
         if(activeUser?.biliever || activeUser?.discipleship || activeUser?.tracking) {
 
             if (!StateNow) {
-                if (moment(user?.createdAt, "YYYYMMDD").fromNow() > 'hace 18 días') {
+                if (moment(user?.createdAt, "YYYYMMDD").fromNow() > 'hace 2 meses') {
                     setTimeout(() => {
                         dispatch(startUpdateUserDate())
                         localStorage.setItem('State', true)

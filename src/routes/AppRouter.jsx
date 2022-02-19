@@ -44,6 +44,7 @@ import 'moment/locale/es'
 import { cargarNotificaciones } from '../action/notifications';
 import { startGetVerseofTheDay } from '../action/verseofTheDay';
 import { startGetNotes } from '../action/notas';
+import { startGetVideoWordOfTheDay } from '../action/VideoWordOfTheDay';
 
 moment.locale('es');
 
@@ -73,6 +74,7 @@ export const AppRouter = () => {
         dispatch(cargarNotificaciones())
         dispatch(startGetVerseofTheDay())
         dispatch(startGetNotes())
+        dispatch(startGetVideoWordOfTheDay())
     }, [dispatch])
 
     useEffect(() => {

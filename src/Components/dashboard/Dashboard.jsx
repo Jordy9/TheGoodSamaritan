@@ -8,12 +8,15 @@ import { ModalMiniSerie } from './modal/ModalMiniSerie'
 import { CarouselCapsule } from './carousel/CarouselCapsule'
 import { ModalCapsule } from './modal/ModalCapsule'
 import { VerseOfTheDay } from '../verseOfTheDay/VerseOfTheDay'
+import { VideoWordOfTheDay } from './videoVerseOfTheDay/VideoWordOfTheDay'
+import { ModalVideoWordOfTheDay } from './modal/ModalVideoWordOfTheDay'
 
 export const Dashboard = () => {
     return (
         <>
             <h1 style = {{marginTop: '70px'}}>Inicio</h1>
             <VerseOfTheDay />
+            <VideoWordOfTheDay />
             <Carousel />
             <CarouselCapsule />
             <CarrouselEvents />
@@ -21,6 +24,7 @@ export const Dashboard = () => {
             <ModalSketch />
             <ModalMiniSerie />
             <ModalCapsule />
+            <ModalVideoWordOfTheDay />
         </>
     )
 }
