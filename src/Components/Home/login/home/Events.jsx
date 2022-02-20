@@ -2,7 +2,6 @@ import React from 'react'
 import { Carousel } from 'react-bootstrap'
 import { useSelector } from 'react-redux'
 import moment from 'moment'
-import ReactPlayer from 'react-player'
 
 export const Events = () => {
     const {Eventos} = useSelector(state => state.ev)
@@ -10,7 +9,7 @@ export const Events = () => {
         <div className = 'container'>
             <div className="row">
                 <div className="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 d-flex justify-content-center align-items-center">
-                    <h1>Dios esta haciendo su obra en cada evento hecho</h1>
+                    <h1 className='text-center'>Dios esta haciendo su obra en cada evento hecho</h1>
                 </div>
 
                 <div className="col-xs-12 col-sm-12 col-md-6 col-lg-8 col-xl-8">
@@ -20,18 +19,12 @@ export const Events = () => {
                                 Eventos?.map(evento => {
                                     return (
                                             <Carousel.Item key = {evento.id}>
-                                                {
-                                                    (evento.image.includes('video'))
-                                                        ?
-                                                        <ReactPlayer style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}} width = '155.5%' height = '100%' url={evento.image} playing loop />
-                                                        :
-                                                    <img
-                                                        style={{height: '698px', width: '810px'}}
-                                                        // className="d-block w-100"
-                                                        src={evento.image}
-                                                        alt="First slide"
-                                                    />
-                                                }
+                                                <img
+                                                    style={{height: '698px', width: '810px'}}
+                                                    className="rounded"
+                                                    src={evento.image}
+                                                    alt="First slide"
+                                                />
                                                 <Carousel.Caption>
                                                     <h3>{evento.title}</h3>
                                                     <p>{(evento.date) ? moment(evento?.date).format('MMMM Do YYYY, h:mm a') : ''}</p>
