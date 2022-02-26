@@ -2,9 +2,45 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import parse from 'html-react-parser'
 import moment from 'moment'
+import Slider from 'react-slick'
 
 export const ModalMiniSerie = () => {
     const {activeSerie} = useSelector(state => state.mi)
+
+    var settings = {
+        dots: true,
+        infinite: false,
+        speed: 500,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        initialSlide: 0,
+        responsive: [
+          {
+            breakpoint: 1024,
+            settings: {
+              slidesToShow: 1,
+              slidesToScroll: 1,
+              infinite: true,
+              dots: true
+            }
+          },
+          {
+            breakpoint: 600,
+            settings: {
+              slidesToShow: 1,
+              slidesToScroll: 1,
+              initialSlide: 1
+            }
+          },
+          {
+            breakpoint: 480,
+            settings: {
+              slidesToShow: 1,
+              slidesToScroll: 1
+            }
+          }
+        ]
+      };
 
     return (
 
@@ -18,25 +54,21 @@ export const ModalMiniSerie = () => {
                     <h1 className='text-center'>{activeSerie.title}</h1>
 
                     <div className="modal-body">
-                        <div className = 'shadow d-flex justify-content-center align-items-center p-4 my-2 bg-dark rounded-lg flex-column'>
-                            <div className="row">
-                                <div className="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                        <div className="row">
+                            <div className="bg-dark shadow p-5 col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                                <Slider {...settings}>
                                     {
                                         (activeSerie)
                                             &&
-                                            parse(activeSerie.descripcion)
+                                        activeSerie.descripcion?.map((descripcion, index) => {
+                                            return (
+                                                <div key={descripcion + index} className="p-4">
+                                                    {parse(descripcion)}
+                                                </div>
+                                            )
+                                        })
                                     }
-                                </div>
-
-                                <div className="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 form-group">
-                                    <div id="carouselExampleSlidesOnly" className="carousel slide" data-bs-ride="carousel">
-                                        <div className="carousel-inner">
-                                            <div className="carousel-item active">
-                                                <img src={activeSerie.image} className="d-block w-100 rounded img-fluid" alt="..." />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                </Slider>
                             </div>
                         </div>  
                     </div>

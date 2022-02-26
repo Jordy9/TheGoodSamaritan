@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import './Petitions.css'
 import Slider from "react-slick";
 import { useDispatch, useSelector } from 'react-redux'
@@ -8,10 +8,29 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup'
 import { PetitionModalUser } from '../modal/ModalPetitionUser';
 import Login from '../../../heroes/peticiones.jpg'
+import moment from 'moment';
+import Swal from 'sweetalert2';
 
 export const PetitionsPublic = () => {
 
     const {Peticiones, PeticionesUser, MyPetitions} = useSelector(state => state.pt)
+
+    const [peticionesfiltradas, setpeticionesfiltradas] = useState()
+    
+    useEffect(() => {
+        let peticionesfiltradas
+
+        const peticionesfiltro = []
+
+        MyPetitions?.map(petitions => peticionesfiltro?.push(petitions.createdAt))
+
+        peticionesfiltradas = peticionesfiltro?.filter(peticiones => moment(peticiones, 'YYYY-MM-DD[T]HH:mm:ss').fromNow() < 'hace un día')
+
+        setpeticionesfiltradas(peticionesfiltradas)
+
+    }, [MyPetitions, PeticionesUser])
+    
+    console.log(peticionesfiltradas)
 
     const dispatch = useDispatch()
 
@@ -28,12 +47,32 @@ export const PetitionsPublic = () => {
         },
         enableReinitialize: true,
         onSubmit: ({name, title, descripcion}) => {
-            dispatch(startCreatePetitionUser(name, title, descripcion))
-            resetForm({
-                name: '', 
-                title: '', 
-                descripcion: ''
-            })
+            if (peticionesfiltradas?.length > 9) {
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 5000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                      toast.addEventListener('mouseenter', Swal.stopTimer)
+                      toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                  })
+                  
+                  return Toast.fire({
+                    icon: 'error',
+                    title: 'Solo se permiten 10 peticiones por usuario durante el día'
+                  })
+            } else {
+                dispatch(startCreatePetitionUser(name, title, descripcion))
+                resetForm({
+                    name: '', 
+                    title: '', 
+                    descripcion: ''
+                })
+            }
+            
         },
         validationSchema: Yup.object({
             title: Yup.string()

@@ -15,7 +15,7 @@ export const startGetPetitionesUser = () => {
         if(body.ok) {
           const MPetitions = PeticionesUser?.filter(p => p.user?.id === uid)
           dispatch(PetitionesUser(body.peticionesUser))
-          dispatch(MyPetitions(MPetitions))
+          await dispatch(MyPetitions(MPetitions))
         }
     }
 }
@@ -60,7 +60,7 @@ export const startCreatePetition = (name, number, descripcion) => {
 
         if (body.ok) {
 
-            dispatch(createPetition(body))
+            dispatch(createPetition(body.peticion))
             const Toast = Swal.mixin({
                 toast: true,
                 position: 'top-end',
@@ -114,7 +114,7 @@ export const startCreatePetitionUser = (name, title, descripcion) => {
 
         if (body.ok) {
 
-            dispatch(createPetition(body))
+            dispatch(createPetition(body.peticion))
             const Toast = Swal.mixin({
                 toast: true,
                 position: 'top-end',
@@ -217,8 +217,9 @@ export const startDeletePetition = () => {
         const {activePetitionsUser} = getState().pt
 
         const resp = await fetchConToken(`peticionesUser/${activePetitionsUser._id}`, activePetitionsUser, 'DELETE')
+        const body = await resp.json()
 
-        if(resp.ok) {
+        if(body.ok) {
             dispatch(deletePetition(activePetitionsUser))
             const Toast = Swal.mixin({
                 toast: true,
@@ -251,7 +252,7 @@ export const startDeletePetition = () => {
           
           return Toast.fire({
             icon: 'error',
-            title: resp.msg
+            title: body.msg
           })
         }
     }

@@ -22,7 +22,7 @@ export const ModalVideoWordOfTheDay = () => {
                                     <div id="carouselExampleSlidesOnly" className="carousel slide" data-bs-ride="carousel">
                                         <div className="carousel-inner">
                                             <div className="carousel-item active">
-                                                <ReactPlayer width = '100%' height = '100%' controls playing loop url={activeVideo?.image} className="d-block w-100 rounded img-fluid" alt="..." />
+                                                <ReactPlayer width = '100%' height = '100%' controls playing url={activeVideo?.image} className="d-block w-100 rounded img-fluid" alt="..." />
                                             </div>
                                         </div>
                                     </div>

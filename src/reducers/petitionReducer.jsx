@@ -17,7 +17,6 @@ export const petitionReducer = (state = initialState, action) => {
             }
 
         case Types.ptgetMyPetitions:
-            console.log(action.payload)
             return {
                 ...state,
                 MyPetitions: action.payload

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { useMemo } from 'react'
 import { Nav, Navbar } from 'react-bootstrap'
 import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
@@ -18,6 +19,8 @@ export const Bible = () => {
     const dispatch = useDispatch()
 
     const libros = Libros()
+
+    const [title, setTitle] = useState('')
 
     const {book: libroActual} = useSelector(state => state.vs)
 
@@ -80,13 +83,45 @@ export const Bible = () => {
       return () => {
         dispatch(BookClear())
       }
-    }, [dispatch])    
-    
+    }, [dispatch])   
+
+    let filtroDeBusqueda
+
+    if (librosBiblia) {
+        filtroDeBusqueda = [...librosBiblia]
+    }
+
+    // const [vor, setvor] = useState([])
+
+    let arreglo = useMemo(() => [], []);
+
+    useEffect(() => {
+        if (title.trim().length > 2) {
+            for (let index = 0; index < filtroDeBusqueda.length; index++) {
+                const element = filtroDeBusqueda[index] 
+                
+                for (let index2 = 0; index2 < element.length; index2++) { 
+        
+                    (title !== '')
+                            &&
+                        filtroDeBusqueda[index][index2]?.filter((filtroDeBusqueda) => filtroDeBusqueda.toLocaleLowerCase().includes(title.toLowerCase())).map(filtro => {
+                            return arreglo.push([filtro, index, index2, filtroDeBusqueda[index][index2].indexOf(filtro)])
+                        })
+                    
+                }
+            }
+        }
+    }, [filtroDeBusqueda, title, arreglo])
+        
   return (
     <div style={{marginTop: (libroActual) ? '80px' : '120px'}}>
         <i data-bs-toggle="modal" data-bs-target="#exampleModalNota" className="fab bi bi-journal-bookmark-fill"></i>
         <div className = 'shadow p-3 mt-2 bg-dark rounded-lg text-white'>
             <i onClick={arrowBack} hidden = {(!ocultar)} className="bi bi-arrow-left" style={{margin: 0, cursor: 'pointer'}}></i>
+            <div className="input-group">
+                <input placeholder='Buscar por título' type="search" value={title} onChange={({target}) => setTitle(target.value)} className="form-control bg-transparent text-white" />
+            </div>
+
             <div className="text-center">
                 {
                     (libroActual !== null)
@@ -133,7 +168,29 @@ export const Bible = () => {
                 </div>
 
                 <div id='verse' hidden = {!ocultar && width <= 820} className='col-xs-12 col-sm-12 col-md-10 col-lg-10 col-xl-10' style={{overflowY: 'auto', height: '450px'}}>
+
                     {
+                        (title.trim().length > 2)
+                            ?
+                        arreglo?.map( (arreglo, index) => {
+                            return (
+                                <div key={arreglo + index} className = 'shadow align-items-center p-4 my-2 bg-dark rounded-lg flex-column'>
+                                    <div className="row">
+                                        <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                                            <blockquote className='blockquote d-flex justify-content-center'>
+                                            {
+                                                arreglo[0]
+                                            }
+                                            </blockquote>
+                                        </div>
+                                    </div>
+                                    <div className="d-flex justify-content-end">
+                                        <span>{libros[arreglo[1]]} {arreglo[2] + 1}:{arreglo[3] + 1} RVR1960</span>
+                                    </div>
+                                </div>
+                            )
+                        })
+                            :
                         (libroActual)
                             ?
                         versiculo?.map((versiculo, index) => {
@@ -149,6 +206,7 @@ export const Bible = () => {
                             <VerseOfTheDay />
                         </div>
                     }
+
                 </div>
             </div>
         </div>
