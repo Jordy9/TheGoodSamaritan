@@ -13,7 +13,9 @@ export const Types = {
     // 
     vsgetVerse: '[VS] get verse',
     vsBook: '[VS] get book',
-    vsBookClear: 'VS clear book',
+    vsBookClear: '[VS] clear book',
+    vsSearchBibleTrue: '[VS] search bible true',
+    vsSearchBibleFalse: '[VS] search bible false',
     // 
     bdActivefilter: '[BD] active filter',
     // 

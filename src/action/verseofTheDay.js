@@ -27,3 +27,11 @@ export const getBook = (book) => ({
 export const BookClear = () => ({
     type: Types.vsBookClear,
 })
+
+export const searchBible = () => ({
+    type: Types.vsSearchBibleTrue
+})
+
+export const searchBibleFalse = () => ({
+    type: Types.vsSearchBibleFalse
+})
