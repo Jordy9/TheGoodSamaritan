@@ -53,7 +53,7 @@ export const AuthRouter = () => {
         {(activeUser?.biliever || activeUser?.discipleship || activeUser?.tracking) && <ModalBileve />}
                 <Switch>
                     <Route path = '/Dashboard' component = {Dashboard} />
-                    <Route path = '/Lives' component = {Lives} />
+                    <Route path = '/Zoom' component = {Lives} />
                     <Route path = '/YoutubeVideos' component = {YoutubeVideo} />
                     <Route path = '/Petitions' component = {Petitions} />
                     <Route path = '/Chat' component = {ChatPage} />
