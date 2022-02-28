@@ -7,7 +7,6 @@ import { Antiguotestamento } from '../../Antiguotestamento'
 import { scrollToTopAnimated } from '../../helper/ScrollToBottom'
 import { Libros } from '../../Libros'
 import { Nuevotestamento } from '../../Nuevotestamento'
-import { Note } from '../note/Note'
 import { VerseOfTheDay } from '../verseOfTheDay/VerseOfTheDay'
 import './Bible.css'
 
@@ -164,7 +163,6 @@ export const BibleComponent = () => {
 
             </div>
         </div>
-        <Note />
     </>
   )
 }

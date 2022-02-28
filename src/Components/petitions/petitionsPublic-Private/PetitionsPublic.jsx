@@ -24,13 +24,11 @@ export const PetitionsPublic = () => {
 
         MyPetitions?.map(petitions => peticionesfiltro?.push(petitions.createdAt))
 
-        peticionesfiltradas = peticionesfiltro?.filter(peticiones => moment(peticiones, 'YYYY-MM-DD[T]HH:mm:ss').fromNow() < 'hace un día')
+        peticionesfiltradas = peticionesfiltro?.filter(peticiones => moment(peticiones, 'YYYY-MM-DD[T]HH:mm:ss').fromNow() < "hace 1 día")
 
         setpeticionesfiltradas(peticionesfiltradas)
 
     }, [MyPetitions, PeticionesUser])
-    
-    console.log(peticionesfiltradas)
 
     const dispatch = useDispatch()
 

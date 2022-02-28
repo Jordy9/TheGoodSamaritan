@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux'
 import { SearchComponent } from './SearchComponent'
 import './Bible.css'
 import { BibleComponent } from './BibleComponent'
+import { Note } from '../note/Note'
 
 export const Bible = () => {
 
@@ -20,6 +21,7 @@ export const Bible = () => {
                 <SearchComponent />
             }
         </div>
+        <Note />
     </div>
   )
 }

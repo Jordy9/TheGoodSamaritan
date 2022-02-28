@@ -35,7 +35,7 @@ export const Search = () => {
             </div>
         </div>
 
-        <div className='row d-flex justify-content-center'>
+        <div className='row d-flex justify-content-center my-3'>
             {
                 (title !== '')
                     ?
