@@ -8,3 +8,16 @@ h4.Navb-tittle {
     top: 0;
     width:100%;
 }
+
+.dropdown-toggle::after {
+    display:none !important;
+}
+
+#input-group-dropdown-1 {
+    border-radius: 50px;
+}
+
+.dropdown-menu {
+    background-color: #212529 !important;
+    width: auto;
+}

@@ -53,7 +53,7 @@ export const AppRouter = () => {
     const dispatch = useDispatch()
     const {checking, uid} = useSelector(state => state.auth)
 
-    const {socket, online, conectarSocket, desconectarSocket} = useSocket('https://good-samaritan-backend.herokuapp.com')
+    const {socket, online, conectarSocket, desconectarSocket} = useSocket('http://localhost:4000')
 
     const token = localStorage.getItem('tokenn')
 
@@ -101,7 +101,6 @@ export const AppRouter = () => {
 
     useEffect(() => {
         socket?.on('escribiendo', (typing) => {
-            console.log(typing);
             dispatch(isTyping(typing))
         })
     }, [socket, dispatch])

@@ -1,4 +1,4 @@
-import { Container, Nav, Navbar } from 'react-bootstrap'
+import { Container, Dropdown, DropdownButton, Nav, Navbar } from 'react-bootstrap'
 import { NavLink } from 'react-router-dom'
 import './Navb.css'
 import { useDispatch } from 'react-redux'
@@ -6,6 +6,7 @@ import { setActiveUser, startLogout } from '../../action/user'
 import { useSelector } from 'react-redux'
 import logo from '../../heroes/logo.png'
 import { useEffect, useState } from 'react'
+import moment from 'moment'
 
 export const Navb = () => {
 
@@ -15,9 +16,24 @@ export const Navb = () => {
 
     const {notificaciones} = useSelector(state => state.nt)
 
+    const {socket} = useSelector(state => state.sk)
+
     const logout = () => {
         dispatch(startLogout())
     }
+
+    const [notificationCountChange, setNotificationCountChange] = useState(activeUser?.notificationsCount)
+    const [activeUserChange, setActiveUserChange] = useState(activeUser)
+
+    useEffect(() => {
+        socket?.on('notifications-user', (users) => {
+
+            const user = users?.find(user => user.id === uid)
+
+            setNotificationCountChange(true)
+            setActiveUserChange(user)
+        })
+    }, [socket, dispatch, uid])
 
     const [changeColor, setChangeColor] = useState(false);
 
@@ -29,6 +45,10 @@ export const Navb = () => {
         }
     }, [notificaciones, uid]);
 
+    const onClick = () => {
+        socket?.emit('Delete-Notifications-count', uid)
+        setNotificationCountChange(false)
+    }
     return (
         <>
             <Navbar fixed = 'top' className = 'col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12' expand="lg" bg = 'dark' variant="dark">
@@ -53,6 +73,39 @@ export const Navb = () => {
                         </Nav>
 
                         <Nav>
+
+                            <DropdownButton
+                                className='mr-2 d-flex align-items-center'
+                                title = {
+                                    <i onClick={onClick} style={{fontSize: '20px', cursor: 'pointer', margin: 0}} className="bi bi-bell d-flex align-items-center">
+                                        <span style={{margin: 0}} className={`${(notificationCountChange === true) && 'p-1 bg-danger border border-light rounded-circle'}`}></span>
+                                    </i>}
+                                align={'end'}
+                                variant="dark"
+                                id="input-group-dropdown-1"
+                                >
+                                    <div style={{overflowY: 'scroll', height: '400px'}}>
+                                        {
+                                            activeUserChange?.notifications?.map((notifications, index) => {
+                                                return (
+                                                    <Dropdown.Item className='shadow my-2 bg-dark p-3 flex-column' key={notifications+ index} style={{width: 'auto', height: 'auto'}}>
+                                                        <h6 className='text-white text-center'>{notifications.subtitle}</h6>
+                                                        <div className="row">
+                                                            <div className="col-8">
+                                                                <h4 className='text-white'>{notifications.title}</h4>
+                                                            </div>
+                                                            <div className="col-4 d-flex justify-content-end">
+                                                                <img className='img-fluid' style={{width: '50px', height: 'auto'}} src={notifications.image} alt="" />    
+                                                            </div>
+                                                        </div>
+                                                        <span style={{fontSize: '14px'}} className='text-white'>{moment(notifications.createdAt).fromNow()}</span>
+                                                    </Dropdown.Item>
+                                                )
+                                            })
+                                        }
+                                    </div>
+                            </DropdownButton>
+                            
                             <NavLink onClick={() => dispatch(setActiveUser())} to = '/Profile'>{(activeUser?.urlImage) ? <img src={activeUser?.urlImage} className='img-fluid rounded-circle mt-2' style = {{width: '32px', height: '32px', cursor: 'pointer'}} alt='' /> : <i className="bi bi-person-circle" style = {{fontSize: '32px', cursor: 'pointer', color: 'white'}}></i>}</NavLink>
                             <NavLink to = '/Home' onClick={logout} className = 'nav-link mt-1'>Cerrar sesión</NavLink>
                         </Nav>
