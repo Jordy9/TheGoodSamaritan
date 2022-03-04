@@ -38,9 +38,9 @@ export const NotificationResponsive = () => {
                                                 <div className="col-8">
                                                     <h5 className='text-white'>
                                                         {
-                                                        (notifications.title.length > 7)
+                                                        (notifications.title.length > 15)
                                                             ?
-                                                            notifications.title.slice(0, 10) + '...'
+                                                            notifications.title.slice(0, 20) + '...'
                                                             :
                                                         notifications.title
                                                         }
@@ -57,7 +57,7 @@ export const NotificationResponsive = () => {
                                                     {
                                                         (notifications.title.trim().length > 7)
                                                             ?
-                                                            notifications.title.slice(0, 10) + '...'
+                                                            notifications.title.slice(0, 20) + '...'
                                                             :
                                                         notifications.title
                                                     }
