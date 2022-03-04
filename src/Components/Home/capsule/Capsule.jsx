@@ -22,7 +22,6 @@ export const Capsule = () => {
   }
 
     var settings = {
-        dots: true,
         infinite: false,
         speed: 500,
         slidesToShow: 4,
@@ -35,7 +34,6 @@ export const Capsule = () => {
               slidesToShow: 3,
               slidesToScroll: 3,
               infinite: true,
-              dots: true
             }
           },
           {

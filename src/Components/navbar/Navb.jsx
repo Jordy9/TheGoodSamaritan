@@ -7,7 +7,6 @@ import { useSelector } from 'react-redux'
 import logo from '../../heroes/logo.png'
 import { useEffect, useState } from 'react'
 import moment from 'moment'
-import h2p from 'html2plaintext'
 
 export const Navb = () => {
 
@@ -74,7 +73,6 @@ export const Navb = () => {
                         </Nav>
 
                         <Nav>
-
                             <DropdownButton
                                 className='mr-2 d-flex align-items-center'
                                 title = {
@@ -101,7 +99,7 @@ export const Navb = () => {
                                                                             {
                                                                             (notifications.title.length > 7)
                                                                                 ?
-                                                                                notifications.title.slice(0, 40) + '...'
+                                                                                notifications.title.slice(0, 10) + '...'
                                                                                 :
                                                                             notifications.title
                                                                             }
@@ -118,7 +116,7 @@ export const Navb = () => {
                                                                         {
                                                                             (notifications.title.trim().length > 7)
                                                                                 ?
-                                                                                notifications.title.slice(0, 40) + '...'
+                                                                                notifications.title.slice(0, 10) + '...'
                                                                                 :
                                                                             notifications.title
                                                                         }

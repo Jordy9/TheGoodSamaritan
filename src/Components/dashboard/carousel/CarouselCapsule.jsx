@@ -15,7 +15,6 @@ export const CarouselCapsule = () => {
   }
 
     var settings = {
-        dots: true,
         infinite: false,
         speed: 500,
         slidesToShow: 4,
@@ -27,8 +26,6 @@ export const CarouselCapsule = () => {
             settings: {
               slidesToShow: 3,
               slidesToScroll: 3,
-              infinite: true,
-              dots: true
             }
           },
           {
