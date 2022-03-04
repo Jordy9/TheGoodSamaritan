@@ -7,6 +7,7 @@ import { useSelector } from 'react-redux'
 import logo from '../../heroes/logo.png'
 import { useEffect, useState } from 'react'
 import moment from 'moment'
+import { useLocation, useHistory } from 'react-router'
 
 export const Navb = () => {
 
@@ -49,6 +50,27 @@ export const Navb = () => {
         socket?.emit('Delete-Notifications-count', uid)
         setNotificationCountChange(false)
     }
+
+    const {pathname} = useLocation()
+
+    const history = useHistory()
+
+    const [width, setWidth] = useState(window.innerWidth);
+
+    const changeWidth = () => {
+        setWidth(window.innerWidth)
+    }
+
+    useEffect(() => {
+        window.addEventListener('resize', changeWidth)
+        if (pathname === '/NotificationResponsive' && width > 991) {
+            history.push('Dashboard')
+        }
+        return () => window.removeEventListener('resize', changeWidth)
+        
+    }, [pathname, width, history]);
+    
+
     return (
         <>
             <Navbar fixed = 'top' className = 'col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12' expand="lg" bg = 'dark' variant="dark">
@@ -70,6 +92,18 @@ export const Navb = () => {
                             <NavLink to = '/Chat' className = 'nav-link'>Chat <i className="bi bi-chat-text-fill" style={{color: (changeColor) && 'red'}}></i></NavLink>
                             <NavLink to = '/Bible' className = 'nav-link'>Biblia</NavLink>
                             <NavLink to = '/Search' className = 'nav-link'>Buscador <i className="bi bi-search"></i></NavLink>
+                        </Nav>
+
+                        <Nav id="input-group-dropdown-responsive">
+                            <NavLink
+                                style={{textDecoration: 'none', color: 'white'}}
+                                to = '/NotificationResponsive'
+                                className='mr-2 d-flex align-items-center'
+                            >
+                                <i onClick={onClick} style={{fontSize: '20px', cursor: 'pointer', margin: 0}} className="bi bi-bell d-flex align-items-center">
+                                    <span style={{margin: 0}} className={`${(notificationCountChange === true) && 'p-1 bg-danger border border-light rounded-circle'}`}></span>
+                                </i>
+                            </NavLink>
                         </Nav>
 
                         <Nav>

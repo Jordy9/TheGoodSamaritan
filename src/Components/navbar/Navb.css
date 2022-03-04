@@ -21,3 +21,18 @@ h4.Navb-tittle {
     background-color: #212529 !important;
     width: auto;
 }
+
+#input-group-dropdown-responsive {
+    display: none;
+}
+
+@media (max-width: 992px) {
+
+    #input-group-dropdown-1 {
+      display: none;
+    }
+
+    #input-group-dropdown-responsive {
+      display: block;
+    }
+  }

@@ -68,7 +68,7 @@ function generateSignature(apiKey, apiSecret, meetingNumber, role) {
             }
         });
 
-        if (pathname !== '/Lives') {
+        if (pathname !== '/Zoom') {
             client.leaveMeeting()
         }
         
@@ -79,7 +79,7 @@ function generateSignature(apiKey, apiSecret, meetingNumber, role) {
             password: passWord,
             userName: userName
         }).catch(e => {
-            history.push('/Lives')
+            history.push('/Zoom')
             const Toast = Swal.mixin({
                 toast: true,
                 position: 'top-end',

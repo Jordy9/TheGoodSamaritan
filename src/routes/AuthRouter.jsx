@@ -18,6 +18,7 @@ import { YoutubeVideo } from '../Components/youtubeVideo/YoutubeVideo';
 import { ChatPage } from '../Components/chat/ChatPage';
 import { Search } from '../Components/search/Search';
 import { Bible } from '../Components/bible/Bible';
+import { NotificationResponsive } from '../Components/notificationResponsive/NotificationResponsive';
 
 export const AuthRouter = () => {
 
@@ -59,6 +60,7 @@ export const AuthRouter = () => {
                     <Route path = '/Chat' component = {ChatPage} />
                     <Route path = '/Search' component = {Search} />
                     <Route path = '/Bible' component = {Bible} />
+                    <Route path = '/NotificationResponsive' component = {NotificationResponsive} />
                     <Route path = '/Profile' component = {Profile} />
 
                     <Redirect to = '/Dashboard' />
