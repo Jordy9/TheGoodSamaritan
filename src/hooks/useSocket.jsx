@@ -1,9 +1,17 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import io from 'socket.io-client';
+import { startGetCapsules } from '../action/capsule';
 import { UsuariosCargados } from '../action/chat';
+import { startGetEventos } from '../action/event';
+import { startGetMiniSeries } from '../action/miniSerie';
 import { BorrarNotificaciones, NotificacionesCargadas } from '../action/notifications';
-import { ZoomAnuncio, startGetZoom } from '../action/zoom';
+import { startGetPetitions } from '../action/petition';
+import { startGetBosquejos } from '../action/sketch';
+import { NotificationPublicAdmin } from '../action/user';
+import { startGetVideoWordOfTheDay } from '../action/VideoWordOfTheDay';
+import { startGetYoutube } from '../action/youtubeImage';
+import { startGetZoom } from '../action/zoom';
 
 
 export const useSocket = ( serverPath ) => {
@@ -61,9 +69,27 @@ export const useSocket = ( serverPath ) => {
     }, [ socket, dispatch])
 
     useEffect(() => {
-        socket?.on('reunion-anunciada', (zoom) => {
-            dispatch(startGetZoom())
-            dispatch(ZoomAnuncio(zoom))
+        socket?.on('notifications-Show', (notification) => {
+
+            if (notification?.subtitle === 'Transmitiendo reunión de Zoom') {
+                dispatch(startGetZoom())
+            } else if (notification?.subtitle === 'Nueva MiniSerie agregada') {
+                dispatch(startGetMiniSeries())
+            } else if (notification?.subtitle === 'Nuevo Bosquejo agregado') {
+                dispatch(startGetBosquejos())
+            } else if (notification?.subtitle === 'Nueva Cápsula agregada') {
+                dispatch(startGetCapsules())
+            } else if (notification?.subtitle === 'Nueva Peticion agregada') {
+                dispatch(startGetPetitions())
+            } else if (notification?.subtitle === 'Nuevo Evento agregado') {
+                dispatch(startGetEventos())
+            } else if (notification?.subtitle === 'Nuevo video de youtube agregado') {
+                dispatch(startGetYoutube())
+            } else if (notification?.subtitle === 'Nueva Palabra del Día agregada') {
+                dispatch(startGetVideoWordOfTheDay())
+            }
+
+            dispatch(NotificationPublicAdmin(notification))
         })
     }, [ socket, dispatch])
     

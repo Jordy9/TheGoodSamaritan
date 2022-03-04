@@ -7,6 +7,7 @@ import { useSelector } from 'react-redux'
 import logo from '../../heroes/logo.png'
 import { useEffect, useState } from 'react'
 import moment from 'moment'
+import h2p from 'html2plaintext'
 
 export const Navb = () => {
 
@@ -91,12 +92,39 @@ export const Navb = () => {
                                                     <Dropdown.Item className='shadow my-2 bg-dark p-3 flex-column' key={notifications+ index} style={{width: 'auto', height: 'auto'}}>
                                                         <h6 className='text-white text-center'>{notifications.subtitle}</h6>
                                                         <div className="row">
-                                                            <div className="col-8">
-                                                                <h4 className='text-white'>{notifications.title}</h4>
-                                                            </div>
-                                                            <div className="col-4 d-flex justify-content-end">
-                                                                <img className='img-fluid' style={{width: '50px', height: 'auto'}} src={notifications.image} alt="" />    
-                                                            </div>
+                                                            {
+                                                                (notifications.image)
+                                                                    ?
+                                                                <>
+                                                                    <div className="col-8">
+                                                                        <h5 className='text-white'>
+                                                                            {
+                                                                            (notifications.title.length > 7)
+                                                                                ?
+                                                                                notifications.title.slice(0, 40) + '...'
+                                                                                :
+                                                                            notifications.title
+                                                                            }
+                                                                        </h5>
+                                                                    </div>
+                                                                
+                                                                    <div className="col-4 d-flex justify-content-end">
+                                                                        <img className='img-fluid' style={{width: '50px', height: 'auto'}} src={notifications.image} alt="" />    
+                                                                    </div>
+                                                                </>
+                                                                :
+                                                                <div className="col-12">
+                                                                    <h4 className='text-white'>
+                                                                        {
+                                                                            (notifications.title.trim().length > 7)
+                                                                                ?
+                                                                                notifications.title.slice(0, 40) + '...'
+                                                                                :
+                                                                            notifications.title
+                                                                        }
+                                                                    </h4>
+                                                                </div>
+                                                            }
                                                         </div>
                                                         <span style={{fontSize: '14px'}} className='text-white'>{moment(notifications.createdAt).fromNow()}</span>
                                                     </Dropdown.Item>

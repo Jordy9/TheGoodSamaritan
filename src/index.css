@@ -107,6 +107,9 @@ code {
     transition: all 0.5s linear;
   }
 
+  #swal2-html-container {
+    overflow: hidden;
+  }
 
   .modal-open .modal {
     transition: all 0.5s linear;

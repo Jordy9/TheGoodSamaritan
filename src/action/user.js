@@ -561,3 +561,27 @@ const forgot = (token) => ({
     type: Types.authForgotPassword,
     payload: token
 })
+
+export const NotificationPublicAdmin = (notification) => {
+    return () => {
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'bottom-end',
+            showConfirmButton: false,
+            timer: 5000,
+            showCloseButton: true,
+            background: '#292b2c',
+            width: 380
+        })
+    
+        return Toast.fire({
+            color: 'white',
+            html: `
+                <div class = 'row'>
+                    <div class = 'col-9' style="display:flex;align-items: center"><h6>${notification?.subtitle}</h6></div>
+                    <div class = 'col-3'><img style = 'height: auto; width: 50px' src = ${notification?.image} class = 'img-fluid' /></div>
+                </div>
+            `
+        })
+    }
+}

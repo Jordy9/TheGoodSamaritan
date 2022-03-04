@@ -17,24 +17,3 @@ const Zooms = (zoom) => ({
     type: Types.zmgetZooms,
     payload: zoom
 })
-
-export const ZoomAnuncio = (zoom) => {
-    return () => {
-        const Toast = Swal.mixin({
-            toast: true,
-            position: 'top-end',
-            showConfirmButton: false,
-            timer: 5000,
-            showCloseButton: true,
-            background: '#292b2c',
-        })
-    
-        return Toast.fire({
-            color: 'white',
-            imageHeight: '200px',
-            imageWidth: '250px',
-            imageUrl: `${zoom?.image}`,
-            title: `${zoom?.title}`
-        })
-    }
-}

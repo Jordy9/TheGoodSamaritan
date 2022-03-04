@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react'
+import React, { useMemo, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { searchBibleFalse } from '../../action/verseofTheDay'
 import { Antiguotestamento } from '../../Antiguotestamento'
@@ -23,8 +23,12 @@ export const SearchComponent = () => {
 
     let arreglo = useMemo(() => [], []);
 
-    useEffect(() => {
-        if (title.trim().length > 2) {
+    const [arregloChange, setArregloChange] = useState()
+
+    const onClickButton = () => {
+        setTitle('')
+        arreglo.splice(0, arreglo.length)
+        setArregloChange()
             for (let index = 0; index < filtroDeBusqueda.length; index++) {
                 const element = filtroDeBusqueda[index] 
                 
@@ -32,14 +36,14 @@ export const SearchComponent = () => {
         
                     (title !== '')
                             &&
-                        filtroDeBusqueda[index][index2]?.filter((filtroDeBusqueda) => filtroDeBusqueda.toLocaleLowerCase().includes(title.toLowerCase())).map(filtro => {
+                        filtroDeBusqueda[index][index2]?.filter((filtroDeBusqueda) => filtroDeBusqueda.toLocaleLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,"").includes(title.toLowerCase())).map(filtro => {
                             return arreglo.push([filtro, index, index2, filtroDeBusqueda[index][index2].indexOf(filtro)])
                         })
                     
                 }
             }
-        }
-    }, [filtroDeBusqueda, title, arreglo])
+        setArregloChange(arreglo)
+    }
 
     const arrowBackSearch = () => {
         dispatch(searchBibleFalse())
@@ -68,6 +72,7 @@ export const SearchComponent = () => {
                     <i hidden = {(libroActual === null) && true} onClick={arrowBackSearchFilter} className="bi bi-arrow-left" style={{margin: 0, cursor: 'pointer'}}></i>
                 </div>
                 <input hidden = {(libroActual !== null) && true} placeholder='Buscar por título' type="search" value={title} onChange={({target}) => setTitle(target.value)} className="form-control bg-transparent text-white" />
+                <button hidden = {(libroActual !== null) && true} className='btn btn-secondary ml-1' style={{borderRadius: '50px'}} onClick={onClickButton}>buscar</button>
             </div>
 
             {
@@ -94,26 +99,32 @@ export const SearchComponent = () => {
                     </div>
                 </div>
                     :
-                (title)
-                    &&
-                arreglo?.map( (arreglo, index) => {
-                    return (
-                        <div style={{cursor: 'pointer'}} onClick = {() => Versiculo(arreglo[2], libros[arreglo[1]], arreglo[1])} key={arreglo + index} className = 'shadow align-items-center p-4 my-2 bg-dark rounded-lg flex-column'>
-                            <div className="row">
-                                <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                                    <blockquote className='blockquote d-flex justify-content-center'>
-                                    {
-                                        arreglo[0]
-                                    }
-                                    </blockquote>
+                <>
+
+                    <h5 className='text-center text-light'>{arregloChange?.length} resultados</h5>
+
+                    {
+                        arregloChange?.map( (arreglo, index) => {
+                            console.log(arreglo)
+                            return (
+                                <div style={{cursor: 'pointer'}} onClick = {() => Versiculo(arreglo[2], libros[arreglo[1]], arreglo[1])} key={arreglo + index} className = 'shadow align-items-center p-4 my-2 bg-dark rounded-lg flex-column'>
+                                    <div className="row">
+                                        <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                                            <blockquote className='blockquote d-flex justify-content-center'>
+                                            {
+                                                arreglo[0]
+                                            }
+                                            </blockquote>
+                                        </div>
+                                    </div>
+                                    <div className="d-flex justify-content-end">
+                                        <span>{libros[arreglo[1]]} {arreglo[2] + 1}:{arreglo[3] + 1} RVR1960</span>
+                                    </div>
                                 </div>
-                            </div>
-                            <div className="d-flex justify-content-end">
-                                <span>{libros[arreglo[1]]} {arreglo[2] + 1}:{arreglo[3] + 1} RVR1960</span>
-                            </div>
-                        </div>
-                    )
-                })
+                            )
+                        })
+                    }
+                </>
             }
         </div>
     </div>
