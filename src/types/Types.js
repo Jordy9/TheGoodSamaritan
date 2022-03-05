@@ -1,7 +1,9 @@
 export const Types = {
 
-    vwdgetVideoWordOfTheDay: '[VWD get VideoWordOfTheDay]',
-    vwdsetVideoWordOfTheDay: '[VWD set VideoWordOfTheDay]',
+    vwdgetVideoWordOfTheDay: '[VWD] get VideoWordOfTheDay',
+    vwdsetVideoWordOfTheDay: '[VWD] set VideoWordOfTheDay',
+    vwdModalOpen: '[VWD] modal open',
+    vwdModalClose: '[VWD] modal close',
     // 
     ntsGetNota: '[NTS] get nota',
     ntsCrearNota: '[NTS] crear nota',

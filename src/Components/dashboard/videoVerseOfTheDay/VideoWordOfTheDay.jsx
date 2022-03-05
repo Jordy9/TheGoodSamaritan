@@ -1,9 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 import ReactPlayer from 'react-player';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import Slider from 'react-slick';
-import { setVideoWordOfTheDay } from '../../../action/VideoWordOfTheDay';
+import { ModalOpenVideo, setVideoWordOfTheDay } from '../../../action/VideoWordOfTheDay';
 
 export const VideoWordOfTheDay = () => {
 
@@ -13,6 +13,7 @@ export const VideoWordOfTheDay = () => {
 
   const handledSet = (video) => {
     dispatch(setVideoWordOfTheDay(video))
+    dispatch(ModalOpenVideo(true))
   }
 
     var settings = {
@@ -56,7 +57,7 @@ export const VideoWordOfTheDay = () => {
                   videos?.map( videos => {
                     return (
                       <div key={videos._id} className="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 imgag">
-                        <ReactPlayer onClick={() => handledSet(videos)} style={{cursor: 'pointer'}} width = '100%' height = '100%' url={videos.image} data-bs-toggle="modal" data-bs-target="#exampleModalVideoWordOfTheDay" />
+                        <ReactPlayer onClick={() => handledSet(videos)} style={{cursor: 'pointer'}} width = '100%' height = '100%' url={videos.image} />
                         <h5 className='text-center'>{videos.title}</h5>
                     </div>
                     )

@@ -115,6 +115,10 @@ code {
     transition: all 0.5s linear;
   }
 
+  #modal-header-video {
+    border: none;
+  }
+
   @media (max-width: 768px) {
 
     #tituloNav {

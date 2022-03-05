@@ -16,7 +16,18 @@ const VideoWordOfTheDay = (video) => ({
     type: Types.vwdgetVideoWordOfTheDay,
     payload: video
 })
+
 export const setVideoWordOfTheDay = (video) => ({
     type: Types.vwdsetVideoWordOfTheDay,
     payload: video
+})
+
+export const ModalOpenVideo = (state) => ({
+    type: Types.vwdModalOpen,
+    payload: state
+})
+
+export const ModalCloseVideo = (state) => ({
+    type: Types.vwdModalClose,
+    payload: state
 })

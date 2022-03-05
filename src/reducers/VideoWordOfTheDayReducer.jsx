@@ -3,6 +3,7 @@ import { Types } from "../types/Types";
 const initialState = {
     videos: [],
     activeVideo: null,
+    modalOpen: false
 }
 
 export const VideoWordOfTheDayReducer = (state = initialState, action) => {
@@ -17,6 +18,18 @@ export const VideoWordOfTheDayReducer = (state = initialState, action) => {
             return {
                 ...state,
                 activeVideo: action.payload
+            }
+
+        case Types.vwdModalOpen:
+            return {
+                ...state,
+                modalOpen: action.payload
+            }
+
+        case Types.vwdModalClose:
+            return {
+                ...state,
+                modalOpen: action.payload
             }
     
         default:
