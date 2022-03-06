@@ -21,6 +21,9 @@ export const Navb = () => {
 
     const logout = () => {
         dispatch(startLogout())
+        localStorage.removeItem('noBeleaver')
+        localStorage.removeItem('State')
+        localStorage.removeItem('Show')
     }
 
     const [notificationCountChange, setNotificationCountChange] = useState(activeUser?.notificationsCount)

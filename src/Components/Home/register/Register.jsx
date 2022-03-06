@@ -7,7 +7,6 @@ import * as Yup from 'yup'
 import { startRegister } from '../../../action/user'
 import './FormProfile.css'
 
-
 export const Register = () => {
 
     const newDate = moment().format('yyyy-MM-DDTHH:mm')
@@ -28,12 +27,13 @@ export const Register = () => {
             biliever: false,
             discipleship: false,
             tracking: false,
+            noBeleaver: false,
             password: '',
             confirmPassword: ''
         },
         enableReinitialize: true,
-        onSubmit: ({name, lastName, age, date, email, address, country, city, number, biliever, discipleship, tracking, password}) => {
-            dispatch(startRegister(name, lastName, age, date, email, address, country, city, number, biliever, discipleship, tracking, password))
+        onSubmit: ({name, lastName, age, date, email, address, country, city, number, biliever, discipleship, tracking, noBeleaver, password}) => {
+            dispatch(startRegister(name, lastName, age, date, email, address, country, city, number, biliever, discipleship, tracking, noBeleaver, password))
             resetForm({
                 name: '', 
                 lastName: '', 
@@ -47,6 +47,7 @@ export const Register = () => {
                 biliever: false,
                 discipleship: false,
                 tracking: false,
+                noBeleaver: false,
                 password: '',
                 confirmPassword: ''
             })
@@ -174,17 +175,24 @@ export const Register = () => {
                                         </div>
 
                                         <div className="col form-check">
-                                            <input {...getFieldProps('discipleship')} type="checkbox" className="form-check-input" id="exampleCheck1" />
+                                            <input {...getFieldProps('discipleship')} type="checkbox" className="form-check-input" id="exampleCheck2" />
                                             <label className="form-check-label">¿Desea hacer discipulados?</label>
                                         </div>
 
                                         <div className="col form-check">
-                                            <input {...getFieldProps('tracking')} type="checkbox" className="form-check-input" id="exampleCheck1" />
+                                            <input {...getFieldProps('tracking')} type="checkbox" className="form-check-input" id="exampleCheck3" />
                                             <label className="form-check-label">¿Desea seguimiento para crecer en el Señor?</label>
                                         </div>
                                     </div>
 
                                     <div className="row">
+                                        <div className="col form-check">
+                                            <input {...getFieldProps('noBeleaver')} type="checkbox" className="form-check-input" id="exampleCheck4" />
+                                            <label className="form-check-label">¿Aún no le has dado tu vida a Cristo?</label>
+                                        </div>
+                                    </div>
+
+                                    <div className="row mt-3">
                                         <div className="col form-group">
                                             <label>Contrasena</label>
                                             <input type="text" {...getFieldProps('password')} placeholder = '********' className = 'form-control bg-transparent text-white' />

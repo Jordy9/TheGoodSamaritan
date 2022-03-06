@@ -74,7 +74,7 @@ export const ModalBileve = () => {
                 onHide={() => setShow(false)}
                 aria-labelledby="example-modal-sizes-title-lg"
             >
-                <Modal.Header closeButton>
+                <Modal.Header id='modal-header-video' closeButton>
                 </Modal.Header>
                 <Modal.Body> 
                 <div className="row">

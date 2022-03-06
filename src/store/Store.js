@@ -6,6 +6,7 @@ import { eventReducer } from '../reducers/eventReducer';
 import { galleryReducer } from '../reducers/galleryReducer';
 import { mainReducer } from '../reducers/mainReducer';
 import { miniSerieReducer } from '../reducers/miniSerieReducer';
+import { noBeleaverReducer } from '../reducers/noBeleaverReducer';
 import { noteReducer } from '../reducers/noteReducer';
 import { notificacionReducer } from '../reducers/notificacionReducer';
 import { petitionReducer } from '../reducers/petitionReducer';
@@ -38,7 +39,8 @@ const reducers = combineReducers({
     bd: searchReducer,
     vs: verseReducer,
     nts: noteReducer,
-    vwd: VideoWordOfTheDayReducer
+    vwd: VideoWordOfTheDayReducer,
+    nb: noBeleaverReducer
 });
 
 export const store =  createStore(

@@ -1,5 +1,7 @@
 export const Types = {
 
+    nbGetVideo: '[NB] get video',
+    // 
     vwdgetVideoWordOfTheDay: '[VWD] get VideoWordOfTheDay',
     vwdsetVideoWordOfTheDay: '[VWD] set VideoWordOfTheDay',
     vwdModalOpen: '[VWD] modal open',
@@ -90,6 +92,7 @@ export const Types = {
     authStartTokenRenew: '[Auth] start token renew ',
     authLogout: '[Auth] logout ',
     authSetUser: '[Auth set user',
+    authSetUserRegister: '[Auth set user register',
     authForgotPassword: '[Auth forgot password',
     authImageUser: '[Auth image user',
     authDeleteUser: '[Auth] delete user'

@@ -12,29 +12,31 @@ import { Profile } from '../Components/profile/Profile';
 import {ModalBileve} from '../Components/modalBeleave/ModalBileve'
 import moment from 'moment';
 import { useDispatch, useSelector } from 'react-redux';
-import { startUpdateUserDate } from '../action/user';
+import { startUpdateUserDate, startUpdateUserNoBeleaver } from '../action/user';
 import { useEffect } from 'react';
 import { YoutubeVideo } from '../Components/youtubeVideo/YoutubeVideo';
 import { ChatPage } from '../Components/chat/ChatPage';
 import { Search } from '../Components/search/Search';
 import { Bible } from '../Components/bible/Bible';
 import { NotificationResponsive } from '../Components/notificationResponsive/NotificationResponsive';
+import { ModalNoBeleave } from '../Components/modalBeleave/ModalNoBeleave';
 
 export const AuthRouter = () => {
 
     const dispatch = useDispatch()
 
-    const {uid, users, activeUser} = useSelector(state => state.auth)
-    const user = users?.find(user => user.id === uid)
-
+    const {activeUser} = useSelector(state => state.auth)
+    
     const StateNow = localStorage.getItem('State')
+
+    const nb = localStorage.getItem('noBeleaver')
 
     useEffect(() => {
 
         if(activeUser?.biliever || activeUser?.discipleship || activeUser?.tracking) {
 
             if (!StateNow) {
-                if (moment(user?.createdAt, "YYYYMMDD").fromNow() > 'hace 2 meses') {
+                if (moment(activeUser?.createdAt, 'YYYY-MM-DD[T]HH:mm:ss').fromNow() > 'hace 2 meses') {
                     setTimeout(() => {
                         dispatch(startUpdateUserDate())
                         localStorage.setItem('State', true)
@@ -44,14 +46,22 @@ export const AuthRouter = () => {
             
         }
 
-    }, [dispatch, user?.createdAt, StateNow, activeUser?.biliever, activeUser?.discipleship, activeUser?.tracking])
+    }, [dispatch, activeUser?.createdAt, StateNow, activeUser?.biliever, activeUser?.discipleship, activeUser?.tracking])
+
+    useEffect(() => {
+      if (activeUser?.noBeleaver === true && !nb === false) {
+        dispatch(startUpdateUserNoBeleaver())
+      }
+    }, [dispatch, activeUser?.noBeleaver, nb])
+    
 
     return (
         <>
         <Navb />
         <Container>
             <div className = 'my-5'>
-        {(activeUser?.biliever || activeUser?.discipleship || activeUser?.tracking) && <ModalBileve />}
+                {(activeUser?.noBeleaver) && <ModalNoBeleave />}
+                {(activeUser?.biliever || activeUser?.discipleship || activeUser?.tracking) && <ModalBileve />}
                 <Switch>
                     <Route path = '/Dashboard' component = {Dashboard} />
                     <Route path = '/Zoom' component = {Lives} />

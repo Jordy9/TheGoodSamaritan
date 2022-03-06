@@ -44,6 +44,12 @@ export const usersReducer = (state = initialState, action) => {
                 activeUser: action.payload
             }
 
+        case Types.authSetUserRegister:
+            return {
+                ...state,
+                activeUser: action.payload
+            }
+
         case Types.authForgotPassword:
             return {
                 ...state,

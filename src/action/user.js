@@ -4,7 +4,6 @@ import Swal from 'sweetalert2'
 import axios from 'axios'
 import moment from "moment";
 
-
 export const startLogin = (email, password) => {
     return async(dispatch) => {
 
@@ -20,8 +19,6 @@ export const startLogin = (email, password) => {
 
         const resp = await fetchSinToken('users', {email, password}, 'POST');
         const body = await resp.json();
-
-        console.log(body)
         
         if(body.ok) {
             localStorage.setItem('token', body.token)
@@ -70,23 +67,29 @@ export const startLogin = (email, password) => {
 }
 
 
-export const startRegister = (name, lastName, age, date, email, address, country, city, number, biliever, discipleship, tracking, password) => {
-    return async(dispatch, getState) => {
-        const resp = await fetchConToken('users/newUser', {name, lastName, age, date, email, address, country, city, number, biliever, discipleship, tracking, password}, 'POST');
+export const startRegister = (name, lastName, age, date, email, address, country, city, number, biliever, discipleship, tracking, noBeleaver, password) => {
+    return async(dispatch) => {
+        const resp = await fetchConToken('users/newUser', {name, lastName, age, date, email, address, country, city, number, biliever, discipleship, tracking, noBeleaver, password}, 'POST');
         const body = await resp.json();
 
-        const {uid, users} = body
-        const user = users?.find(user => user.id === uid)
-
         if(body.ok) {
-            localStorage.setItem('token', body.token)
-            localStorage.setItem('token-init-date', new Date().getTime());
-            dispatch(login({
-                uid: body.uid,
-                name: body.name
-            }))
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 5000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                  toast.addEventListener('mouseenter', Swal.stopTimer)
+                  toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+              })
+              
+              return Toast.fire({
+                icon: 'success',
+                title: 'Usuario creado correctamente'
+              })
 
-            await dispatch(setActiveUser(user))
         } else {
             const Toast = Swal.mixin({
                 toast: true,
@@ -151,6 +154,30 @@ export const startUpdateUserDate = () => {
 
         if(body.ok) {
             dispatch(updateUser(body.users))
+            dispatch(setActiveUser(body.users))
+        }
+    }
+}
+
+export const startUpdateUserNoBeleaver = () => {
+    return async(dispatch, getState) => {
+        const {activeUser} = getState().auth
+
+        const {name, lastName, age, date, email, address, country, city, number, biliever, discipleship, tracking, password} = activeUser
+
+        const noBeleaver = false
+
+        console.log('first')
+
+        const resp = await fetchConToken(`users/update/${activeUser.id}`, {name, lastName, age, date, email, address, country, city, number, biliever, discipleship, tracking, password, noBeleaver}, 'PUT')
+        const body = await resp.json()
+
+        console.log(body.users)
+
+        if(body.ok) {
+            dispatch(updateUser(body.users))
+
+            console.log(body.users)
             dispatch(setActiveUser(body.users))
             
         }
@@ -446,6 +473,11 @@ export const setActiveUser = () => {
 
 const activeUser = (user) => ({
     type: Types.authSetUser,
+    payload: user
+})
+
+const activeUserRegister = (user) => ({
+    type: Types.authSetUserRegister,
     payload: user
 })
 
