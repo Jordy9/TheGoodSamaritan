@@ -36,12 +36,6 @@ export const LoginScreen = () => {
 
         },
         validationSchema: Yup.object({
-            email: Yup.string()
-                        .email('La dirección de email no es válida')
-                        .required('Requerido'),
-            password: Yup.string()
-                        .min(6, 'Debe de tener 6 caracteres o más')
-                        .required('Requerido')
         })
     })
 
