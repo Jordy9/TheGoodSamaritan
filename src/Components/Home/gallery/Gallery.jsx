@@ -17,24 +17,26 @@ export const Galleryy = () => {
 
     return (
         <>
-            <div className="container shadow bg-dark p-3 my-5">
-              {
-                (img)
-                  &&
-                <>
-
-                <SimpleReactLightbox>
-                  <SRLWrapper options={options}>
-                    {img.map(image => {
-                      return (
-                        <img src={image.image} className='img-fluid' style={{width: '25%', height: '300px', cursor: 'pointer'}} alt="" />
-                      )
-                    })}
-
-                  </SRLWrapper>
-                </SimpleReactLightbox>
-                </>
-              }
+            <div className="container p-3 my-5">
+                  {
+                    (img)
+                      &&
+                    <>
+                    <SimpleReactLightbox>
+                      <SRLWrapper options={options}>
+                        <div className="row">
+                          {img.map(image => {
+                            return (
+                                <div className="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
+                                  <img src={image.image} className='img-fluid my-2 rounded' style={{height: '300px', cursor: 'pointer'}} alt="" />
+                                </div>
+                            )
+                          })}
+                      </div>
+                      </SRLWrapper>
+                    </SimpleReactLightbox>
+                    </>
+                  } 
             </div>
         </>
     )
