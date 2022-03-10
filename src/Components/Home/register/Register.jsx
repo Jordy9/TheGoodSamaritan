@@ -1,17 +1,20 @@
 import { useFormik } from 'formik'
 import moment from 'moment'
-import React from 'react'
+import React, { useMemo } from 'react'
 import { useDispatch } from 'react-redux'
 import MaskedInput from 'react-text-mask'
 import * as Yup from 'yup'
 import { startRegister } from '../../../action/user'
 import './FormProfile.css'
+import countryList from 'react-select-country-list'
 
 export const Register = () => {
 
     const newDate = moment().format('yyyy-MM-DDTHH:mm')
 
     const dispatch = useDispatch()
+
+    const options = useMemo(() => countryList().getData(), [])
 
     const {handleSubmit, resetForm, getFieldProps, touched, errors} = useFormik({
         initialValues: {
@@ -149,7 +152,16 @@ export const Register = () => {
                                     <div className="row">
                                         <div className="col form-group">
                                             <label>País</label>
-                                            <input type="text" {...getFieldProps('country')} placeholder = 'República Dominicana' className = 'form-control bg-transparent text-white' />
+                                            <select {...getFieldProps('country')} id='select-rol' className="form-select form-control bg-transparent text-white">
+                                                <option selected>Seleccione una opción</option>
+                                                {
+                                                    options.map(option => {
+                                                        return (
+                                                            <option key={option.value} value = {[option.value, option.label]}>{option.label}</option>
+                                                        )
+                                                    })
+                                                }
+                                            </select>
                                             {touched.country && errors.country && <span style={{color: 'red'}}>{errors.country}</span>}
                                         </div>
 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useMemo, useState } from 'react'
 import { ProfileImg } from './ProfileImg'
 import MaskedInput from 'react-text-mask'
 import './FormProfile.css'
@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import * as Yup from 'yup'
 import moment from 'moment'
 import { startUpdateUser } from '../../../action/user'
-
+import countryList from 'react-select-country-list'
 
 export const FormProfile = () => {
 
@@ -17,6 +17,8 @@ export const FormProfile = () => {
 
     const {activeUser} = useSelector(state => state.auth)
     const [imag, setimag] = useState()
+
+    const options = useMemo(() => countryList().getData(), [])
 
     const {handleSubmit, getFieldProps, touched, errors, setFieldValue} = useFormik({
         initialValues: {
@@ -135,7 +137,16 @@ export const FormProfile = () => {
                                     <div className="row">
                                         <div className="col form-group">
                                             <label>País</label>
-                                            <input type="text" {...getFieldProps('country')} placeholder = 'República Dominicana' className = 'form-control bg-transparent text-white' />
+                                            <select {...getFieldProps('country')} id='select-rol' className="form-select form-control bg-transparent text-white">
+                                                <option selected>Seleccione una opción</option>
+                                                {
+                                                    options.map(option => {
+                                                        return (
+                                                            <option key={option.value} value = {[option.value, option.label]}>{option.label}</option>
+                                                        )
+                                                    })
+                                                }
+                                            </select>
                                             {touched.country && errors.country && <span style={{color: 'red'}}>{errors.country}</span>}
                                         </div>
 
