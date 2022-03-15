@@ -95,5 +95,7 @@ export const Types = {
     authSetUserRegister: '[Auth set user register',
     authForgotPassword: '[Auth forgot password',
     authImageUser: '[Auth image user',
-    authDeleteUser: '[Auth] delete user'
+    authDeleteUser: '[Auth] delete user',
+    authUpload: '[Auth] upload auth',
+    authUploadFinish: '[Auth] upload finish auth'
 }

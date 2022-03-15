@@ -203,19 +203,7 @@ export const startUpdateUser = (name, lastName, age, date, email, address, count
                     const res = await axios.post(`${process.env.REACT_APP_API_URL}/image/upload`, formData, {
                         headers: {'x-token': token},
                         onUploadProgress: (e) =>
-                            {const Porcentage = Math.round( (e.loaded * 100) / e.total )
-                            
-                            const Toast = Swal.mixin({
-                            toast: true,
-                            position: 'top-end',
-                            showConfirmButton: false,
-                            // loaderHtml: `${Porcentage}`,
-                        })
-
-                        return Toast.fire({
-                            title: 'Subiendo imagen',
-                            html: `<div class="progress"><div class="progress-bar" role="progressbar" style="width: ${Porcentage}%;" aria-valuemin="0" aria-valuemax="100">${Porcentage}%</div> </div>`
-                        })}
+                            {dispatch(upload(Math.round( (e.loaded * 100) / e.total )))}
                     })
     
                     if (res.data.ok) {
@@ -224,12 +212,11 @@ export const startUpdateUser = (name, lastName, age, date, email, address, count
                     
                         const resp = await fetchConToken(`users/update/${activeUser.id}`, {name, lastName, age, date, email, address, country, city, number, biliever, discipleship, tracking, password, urlImage, idImage}, 'PUT')
                         const body = await resp.json()
-    
-                        console.log(body.users)
-    
+        
                         if(body.ok) {
                             dispatch(updateUser(body.users))
                             dispatch(setActiveUser(body.users))
+                            dispatch(UploadFish())
                             const Toast = Swal.mixin({
                                 toast: true,
                                 position: 'top-end',
@@ -305,19 +292,7 @@ export const startUpdateUser = (name, lastName, age, date, email, address, count
                 const res = await axios.post(`${process.env.REACT_APP_API_URL}/image/upload`, formData, {
                     headers: {'x-token': token},
                     onUploadProgress: (e) =>
-                        {const Porcentage = Math.round( (e.loaded * 100) / e.total )
-                        
-                        const Toast = Swal.mixin({
-                        toast: true,
-                        position: 'top-end',
-                        showConfirmButton: false,
-                        // loaderHtml: `${Porcentage}`,
-                      })
-
-                      return Toast.fire({
-                        title: 'Subiendo imagen',
-                        html: `<div class="progress"><div class="progress-bar" role="progressbar" style="width: ${Porcentage}%;" aria-valuemin="0" aria-valuemax="100">${Porcentage}%</div> </div>`
-                      })}
+                        {dispatch(upload(Math.round( (e.loaded * 100) / e.total )))}
                 })
     
                 if (res.data.ok) {
@@ -332,6 +307,7 @@ export const startUpdateUser = (name, lastName, age, date, email, address, count
                     if(body.ok) {
                         dispatch(updateUser(body.users))
                         dispatch(setActiveUser(body.users))
+                        dispatch(UploadFish())
                         const Toast = Swal.mixin({
                             toast: true,
                             position: 'top-end',
@@ -435,6 +411,15 @@ export const startUpdateUser = (name, lastName, age, date, email, address, count
         }
     }
 }
+
+const UploadFish = () => ({
+    type: Types.authUploadFinish
+  })
+  
+const upload = (progress) => ({
+    type: Types.authUpload,
+    payload: progress
+})
 
 const updateUser = (user) => ({
     type: Types.authStartUpdateUser,

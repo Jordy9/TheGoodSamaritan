@@ -4,7 +4,8 @@ const initialState = {
     checking: true,
     users: [],
     activeUser: '',
-    forgotPassword: ''
+    forgotPassword: '',
+    Porcentage: 0
 }
 
 export const usersReducer = (state = initialState, action) => {
@@ -65,6 +66,18 @@ export const usersReducer = (state = initialState, action) => {
         case Types.authLogout:
             return {
                 checking: false,
+            }
+
+        case Types.authUpload:
+            return {
+                ...state,
+                Porcentage: action.payload
+            }
+
+        case Types.authUploadFinish:
+            return {
+                ...state,
+                Porcentage: 0
             }
     
         default:

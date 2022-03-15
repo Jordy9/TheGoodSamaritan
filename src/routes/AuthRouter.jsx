@@ -20,12 +20,13 @@ import { Search } from '../Components/search/Search';
 import { Bible } from '../Components/bible/Bible';
 import { NotificationResponsive } from '../Components/notificationResponsive/NotificationResponsive';
 import { ModalNoBeleave } from '../Components/modalBeleave/ModalNoBeleave';
+import { startGetPetitionesUser } from '../action/petition';
 
 export const AuthRouter = () => {
 
     const dispatch = useDispatch()
 
-    const {activeUser} = useSelector(state => state.auth)
+    const {activeUser, uid} = useSelector(state => state.auth)
     
     const StateNow = localStorage.getItem('State')
 
@@ -53,7 +54,10 @@ export const AuthRouter = () => {
         dispatch(startUpdateUserNoBeleaver())
       }
     }, [dispatch, activeUser?.noBeleaver, nb])
-    
+
+    useEffect(() => {
+      dispatch(startGetPetitionesUser())
+    }, [uid])
 
     return (
         <>

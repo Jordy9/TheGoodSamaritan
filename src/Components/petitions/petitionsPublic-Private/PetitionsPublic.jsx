@@ -32,6 +32,8 @@ export const PetitionsPublic = () => {
 
     const dispatch = useDispatch()
 
+    console.log(peticionesfiltradas)
+
     useEffect(() => {
         dispatch(startGetPetitions())
         dispatch(startGetPetitionesUser())
@@ -91,7 +93,7 @@ export const PetitionsPublic = () => {
     }  
 
     var settings = {
-        dots: true,
+        dots: false,
         infinite: false,
         speed: 500,
         slidesToShow: 4,
@@ -103,8 +105,6 @@ export const PetitionsPublic = () => {
             settings: {
               slidesToShow: 3,
               slidesToScroll: 3,
-              infinite: true,
-              dots: true
             }
           },
           {

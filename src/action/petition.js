@@ -114,6 +114,8 @@ export const startCreatePetitionUser = (name, title, descripcion) => {
 
         if (body.ok) {
 
+          dispatch(createPetition(body.peticion))
+
             const Toast = Swal.mixin({
                 toast: true,
                 position: 'top-end',
