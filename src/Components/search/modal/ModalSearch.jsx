@@ -47,7 +47,7 @@ export const ModalSearch = () => {
                     <div id='description-Serie' className="modal-body">
                         <div className = 'shadow d-flex justify-content-center align-items-center p-4 my-2 bg-dark rounded-lg flex-column'>
                             <div className="row">
-                                <div className={(Array.isArray(activeSearch?.descripcion)) ? 'col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12' : 'col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6'}>
+                                <div className={(Array.isArray(activeSearch?.descripcion)) ? 'col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12' : 'col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12'}>
                                     {
                                         (Array.isArray(activeSearch?.descripcion))
                                             ?
@@ -66,22 +66,24 @@ export const ModalSearch = () => {
                                             :
                                         (activeSearch)
                                             &&
-                                        parse(activeSearch?.descripcion)
+                                        <div className="carousel-item active" style={{width: '100%', height: '350px'}}>
+                                            <img src={activeSearch.image} style = {{height: '100%', width: '100%'}} className="d-block w-100 rounded img-fluid" alt="..." />
+                                        </div>
                                     }
                                 </div>
 
-                                <div className="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 form-group">
-                                    <div id="carouselExampleSlidesOnly" className="carousel slide" data-bs-ride="carousel">
-                                        <div className="carousel-inner">
-                                            <div className="carousel-item active">
-                                                {
-                                                    (Array.isArray(activeSearch?.descripcion) === false)
-                                                        &&
-                                                    <img src={activeSearch?.image} className="d-block w-100 rounded img-fluid" alt="..." />
-                                                }
-                                            </div>
-                                        </div>
-                                    </div>
+                                <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-3">
+                                    {
+                                        (Array.isArray(activeSearch?.descripcion) === false)
+                                            &&
+                                        <>
+                                            {
+                                                (activeSearch)
+                                                    &&
+                                                parse(activeSearch?.descripcion)
+                                            }
+                                        </>
+                                    }
                                 </div>
                             </div>
                         </div>  

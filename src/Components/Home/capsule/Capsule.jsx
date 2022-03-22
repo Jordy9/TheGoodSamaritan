@@ -66,7 +66,27 @@ export const Capsule = () => {
                     }
                 </h1>
                 <div className="row">
-                    <div className="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                    <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 form-group">
+                        <div id="carouselExampleSlidesOnly" className="carousel slide" data-bs-ride="carousel">
+                            <div className="carousel-inner">
+                                <div className="carousel-item active">
+                                    {
+                                      (activeCapsule)
+                                        ?
+                                      <div className="carousel-item active" style={{width: '100%', height: '400px'}}>
+                                        <img src={activeCapsule?.image} className="d-block w-100 rounded" alt="..." />
+                                      </div>
+                                        :
+                                      <div className="carousel-item active" style={{width: '100%', height: '400px'}}>
+                                        <img src={Capsulestart?.image} style = {{height: '100%', width: '100%'}} className="d-block w-100 rounded" alt="..." />  
+                                      </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                         {
                           (activeCapsule)
                             ?
@@ -75,22 +95,6 @@ export const Capsule = () => {
                           parse(Capsulestart?.descripcion || '')
 
                         }
-                    </div>
-
-                    <div className="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 form-group">
-                        <div id="carouselExampleSlidesOnly" className="carousel slide" data-bs-ride="carousel">
-                            <div className="carousel-inner">
-                                <div className="carousel-item active">
-                                    {
-                                      (activeCapsule)
-                                        ?
-                                      <img src={activeCapsule?.image} className="d-block w-100 rounded" alt="..." />
-                                        :
-                                      <img src={Capsulestart?.image} className="d-block w-100 rounded" alt="..." />  
-                                    }
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>

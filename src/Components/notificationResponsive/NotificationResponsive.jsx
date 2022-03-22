@@ -55,10 +55,6 @@ export const NotificationResponsive = () => {
                                             <div className="col-12">
                                                 <h4 className='text-white'>
                                                     {
-                                                        (notifications.title.trim().length > 7)
-                                                            ?
-                                                            notifications.title.slice(0, 20) + '...'
-                                                            :
                                                         notifications.title
                                                     }
                                                 </h4>

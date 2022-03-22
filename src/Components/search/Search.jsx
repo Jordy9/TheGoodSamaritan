@@ -48,7 +48,7 @@ export const Search = () => {
                     )
                 })
                     :
-                <h3 className="text-center alert alert-info my-2">Por favor Escriba el título de lo que desea buscar</h3>
+                <h3 className="text-center alert alert-primary my-2">Por favor Escriba el título de lo que desea buscar</h3>
             }
         </div>
         <ModalSearch />

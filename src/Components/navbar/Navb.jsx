@@ -134,9 +134,9 @@ export const Navb = () => {
                                                                     <div className="col-8">
                                                                         <h5 className='text-white'>
                                                                             {
-                                                                            (notifications.title.length > 7)
+                                                                            (notifications.title.length > 15)
                                                                                 ?
-                                                                                notifications.title.slice(0, 10) + '...'
+                                                                                notifications.title.slice(0, 15) + '...'
                                                                                 :
                                                                             notifications.title
                                                                             }
@@ -151,10 +151,6 @@ export const Navb = () => {
                                                                 <div className="col-12">
                                                                     <h4 className='text-white'>
                                                                         {
-                                                                            (notifications.title.trim().length > 7)
-                                                                                ?
-                                                                                notifications.title.slice(0, 10) + '...'
-                                                                                :
                                                                             notifications.title
                                                                         }
                                                                     </h4>
