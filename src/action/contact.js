@@ -1,5 +1,5 @@
 import moment from "moment";
-import { fetchConToken } from "../helper/fetch";
+import { fetchSinToken } from "../helper/fetch";
 import Swal from 'sweetalert2'
 
 export const startCreateContact = (name, email, descripcion) => {
@@ -7,8 +7,14 @@ export const startCreateContact = (name, email, descripcion) => {
 
         const date = moment()
 
-        const resp = await fetchConToken('contact', {name, email, descripcion, date}, 'POST');
+        const resp = await fetchSinToken('contact', {name, email, descripcion, date}, 'POST');
         const body = await resp.json()
+
+        const subtitle = 'Nuevo contacto agregado de: '
+
+        const title = name
+
+        await fetchSinToken('notificacionAdmin', {title, subtitle}, 'POST');
 
         if (body.ok) {
 

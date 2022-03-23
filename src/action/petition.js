@@ -53,14 +53,15 @@ export const startCreatePetition = (name, number, descripcion) => {
         const date = moment()
         const title = 'Usuario sin cuenta'
 
-        console.log(name, number, descripcion)
-
-        const resp = await fetchConToken('peticionSinCuenta', {title, name, number, date, descripcion}, 'POST');
+        const resp = await fetchSinToken('peticionSinCuenta', {title, name, number, date, descripcion}, 'POST');
         const body = await resp.json()
+
+        const subtitle = 'Nueva petición de oración agregada de un: '
+
+        await fetchSinToken('notificacionAdmin', {title, subtitle}, 'POST');
 
         if (body.ok) {
 
-            dispatch(createPetition(body.peticion))
             const Toast = Swal.mixin({
                 toast: true,
                 position: 'top-end',
@@ -103,6 +104,7 @@ export const startCreatePetition = (name, number, descripcion) => {
 export const startCreatePetitionUser = (name, title, descripcion) => {
     return async(dispatch, getState) => {
         const {uid, users} = getState().auth
+        const {socket} = getState().sk
 
         const numberuser = users?.find(user => user.id === uid)
 
@@ -115,6 +117,14 @@ export const startCreatePetitionUser = (name, title, descripcion) => {
         if (body.ok) {
 
           dispatch(createPetition(body.peticion))
+
+          const subtitle = 'Nueva petición de oración de usuario agregada'
+
+          const title = name
+
+          const payload = {title, subtitle}
+
+          socket?.emit('notifications-user-to-admin', payload)
 
             const Toast = Swal.mixin({
                 toast: true,
