@@ -55,7 +55,7 @@ export const ModalPray = () => {
                                         <div className="row">
                                             <div className="col-6 form-group">
                                                 <label>Nombre</label>
-                                                <input type="text" {...getFieldProps('name')} placeholder = 'Juan' className = 'form-control bg-transparent text-white' />
+                                                <input autoComplete='off' type="text" {...getFieldProps('name')} placeholder = 'Juan' className = 'form-control bg-transparent text-white' />
                                                 {touched.name && errors.name && <span style={{color: 'red'}}>{errors.name}</span>}
                                             </div>
 
@@ -63,6 +63,7 @@ export const ModalPray = () => {
                                                 <label>Número de telefono</label>
                                                 <MaskedInput
                                                     {...getFieldProps('number')}
+                                                    autoComplete = 'off'
                                                     className = 'form-control bg-transparent text-white'
                                                     placeholder = '(809)-222-3333)'
                                                     mask={['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]}

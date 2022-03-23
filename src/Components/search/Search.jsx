@@ -39,7 +39,7 @@ export const Search = () => {
             {
                 (title !== '')
                     ?
-                filtroDeBusqueda?.filter(filtroDeBusqueda => (title !== '') && (filtroDeBusqueda.title.toLowerCase().includes(title.toLowerCase())) && filtroDeBusqueda).map(filtro => {
+                filtroDeBusqueda?.filter(filtroDeBusqueda => (title !== '') && (filtroDeBusqueda.title.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,"").includes(title.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,""))) && filtroDeBusqueda).map(filtro => {
                     return (
                         <div key={filtro._id} className = 'col-xs-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 imgag my-3 mx-3 shadow p-4 bg-dark rounded-lg flex-column text-white'>
                             <img style={{cursor: 'pointer'}} src={filtro.image} alt="" className='img-fluid' onClick={() => handledSet(filtro)} data-bs-toggle="modal" data-bs-target="#exampleModalSearch" />

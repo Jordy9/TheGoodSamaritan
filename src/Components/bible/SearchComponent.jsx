@@ -101,7 +101,7 @@ export const SearchComponent = () => {
                     :
                 <>
 
-                    <h5 className='text-center text-light'>{arregloChange?.length} resultados</h5>
+                    <h5 className='text-center text-light'>Resultados: {arregloChange?.length}</h5>
 
                     {
                         arregloChange?.map( (arreglo, index) => {

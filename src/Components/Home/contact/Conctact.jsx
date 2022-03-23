@@ -53,13 +53,13 @@ export const Conctact = () => {
                                         <div className="row">
                                             <div className="col form-group">
                                                 <label>Nombre</label>
-                                                <input type="text" {...getFieldProps('name')} placeholder = 'Juan' className = 'form-control bg-transparent text-white' />
+                                                <input type="text" autoComplete='off' {...getFieldProps('name')} placeholder = 'Juan' className = 'form-control bg-transparent text-white' />
                                                 {touched.name && errors.name && <span style={{color: 'red'}}>{errors.name}</span>}
                                             </div>
 
                                             <div className="col form-group">
                                                 <label>Correo electrónico</label>
-                                                <input type="text" {...getFieldProps('email')} placeholder='Juan@gmail.com' className='form-control bg-transparent text-white'/>
+                                                <input type="text" autoComplete='off' {...getFieldProps('email')} placeholder='Juan@gmail.com' className='form-control bg-transparent text-white'/>
                                                 {touched.email && errors.email && <span style={{color: 'red'}}>{errors.email}</span>}
                                             </div>
                                         </div>

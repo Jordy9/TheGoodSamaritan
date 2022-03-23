@@ -192,7 +192,7 @@ export const PetitionsPublic = () => {
                 </div>
 
                 <div className = 'row my-5'>
-                    <h1 className='my-5'>Listado de peticiones de Usuarios</h1>
+                    <h1 className='my-5'>Listado de peticiones de usuarios</h1>
                     <Slider {...settings}>
                         {
                             PeticionesUser?.map(peticion => {

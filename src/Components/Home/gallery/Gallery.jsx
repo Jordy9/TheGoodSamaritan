@@ -32,7 +32,7 @@ export const Galleryy = () => {
                                 </div>
                             )
                           })}
-                      </div>
+                        </div>
                       </SRLWrapper>
                     </SimpleReactLightbox>
                     </>

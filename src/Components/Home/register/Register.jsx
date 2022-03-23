@@ -175,6 +175,7 @@ export const Register = () => {
                                             <label >Número de teléfono</label>
                                             <MaskedInput
                                                 {...getFieldProps('number')}
+                                                autoComplete = 'off'
                                                 className = 'form-control bg-transparent text-white'
                                                 placeholder = '(809)-222-3333)'
                                                 mask={['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]}
@@ -211,14 +212,14 @@ export const Register = () => {
                                     <div className="row mt-3">
                                         <div className="col form-group">
                                             <label>Contrasena</label>
-                                            <input type="text" {...getFieldProps('password')} placeholder = '********' className = 'form-control bg-transparent text-white' />
+                                            <input type="password" autoComplete='off' {...getFieldProps('password')} placeholder = '********' className = 'form-control bg-transparent text-white' />
                                             {touched.password && errors.password && <span style={{color: 'red'}}>{errors.password}</span>}
                                         </div>
 
 
                                         <div className="col form-group">
                                             <label>Confirmar Contrasena</label>
-                                            <input type="text" {...getFieldProps('confirmPassword')} placeholder = '********' className = 'form-control bg-transparent text-white' />
+                                            <input type="password" autoComplete='off' {...getFieldProps('confirmPassword')} placeholder = '********' className = 'form-control bg-transparent text-white' />
                                             {touched.confirmPassword && errors.confirmPassword && <span style={{color: 'red'}}>{errors.confirmPassword}</span>}
                                         </div>
                                     </div>

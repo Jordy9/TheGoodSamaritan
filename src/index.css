@@ -131,6 +131,10 @@ code {
     color: black;
   }
 
+  .tox .tox-statusbar {
+    display: none !important;
+  }
+
   @media (max-width: 768px) {
 
     #tituloNav {

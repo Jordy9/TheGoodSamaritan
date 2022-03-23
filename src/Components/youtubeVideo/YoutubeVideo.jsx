@@ -1,7 +1,6 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import ReactPlayer from 'react-player';
-import { useDispatch } from 'react-redux';
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux';
 import Slider from 'react-slick';
 import { SetActiveYoutube } from '../../action/youtubeImage';
 import outube from '../../heroes/Youtube.png'
@@ -10,6 +9,8 @@ import outube from '../../heroes/Youtube.png'
 export const YoutubeVideo = () => {
 
   const dispatch = useDispatch()
+
+  const [title, setTitle] = useState('')
 
   const {Youtube} = useSelector(state => state.yt)
   const {activeYoutube} = useSelector(state => state.yt)
@@ -24,7 +25,6 @@ export const YoutubeVideo = () => {
   }
 
     var settings = {
-        dots: true,
         infinite: false,
         speed: 500,
         slidesToShow: 4,
@@ -36,8 +36,7 @@ export const YoutubeVideo = () => {
             settings: {
               slidesToShow: 3,
               slidesToScroll: 3,
-              infinite: true,
-              dots: true
+              infinite: false
             }
           },
           {
@@ -74,9 +73,20 @@ export const YoutubeVideo = () => {
                                 }
                               </div>
                           </div>
+
+                          <h1 style={{marginTop: '70px'}}>Buscador</h1>
+                          <div className="row">
+                              <div className="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                                  <div className="input-group">
+                                      <input placeholder='Buscar por título' type="search" value={title} onChange={({target}) => setTitle(target.value)} className="form-control bg-transparent text-white" />
+                                  </div>
+                              </div>
+                          </div>
+
                           <Slider {...settings}>
                               {
-                                  Youtube?.map(youtube => {
+                                Youtube?.filter(Youtube => (title === '') ? Youtube : (Youtube?.title.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,"").includes(title.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,""))) && Youtube
+                                ).map(youtube => {
                                       return (
                                           <div className = 'col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 my-5'>
                                               <div style={{cursor: 'pointer'}} onClick={() => handledSet(youtube)}><img src={outube} className='img-fluid rounded imgag' alt=''/></div>
