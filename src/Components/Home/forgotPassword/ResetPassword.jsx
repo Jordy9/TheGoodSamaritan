@@ -55,7 +55,7 @@ export const ResetPassword = () => {
                                         <div className="col form-group text-center">
                                             <label>Contraseña</label>
                                             <input autoComplete='off' type="password" {...getFieldProps('password')} placeholder = '********' className = 'form-control bg-transparent text-white' />
-                                            {touched.email && errors.email && <span style={{color: 'red'}}>{errors.email}</span>}
+                                            {touched.password && errors.password && <span style={{color: 'red'}}>{errors.password}</span>}
                                         </div>
 
                                     </div>
@@ -65,7 +65,7 @@ export const ResetPassword = () => {
                                         <div className="col form-group text-center">
                                             <label>Confirmar contraseña</label>
                                             <input autoComplete='off' type="password" {...getFieldProps('confirmPassword')} placeholder = '********' className = 'form-control bg-transparent text-white' />
-                                            {touched.email && errors.email && <span style={{color: 'red'}}>{errors.email}</span>}
+                                            {touched.confirmPassword && errors.confirmPassword && <span style={{color: 'red'}}>{errors.confirmPassword}</span>}
                                         </div>
 
                                     </div>
