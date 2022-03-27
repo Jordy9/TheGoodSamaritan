@@ -21,12 +21,19 @@ import { Bible } from '../Components/bible/Bible';
 import { NotificationResponsive } from '../Components/notificationResponsive/NotificationResponsive';
 import { ModalNoBeleave } from '../Components/modalBeleave/ModalNoBeleave';
 import { startGetPetitionesUser } from '../action/petition';
+import { NotificationPost } from '../Components/notificationPost/NotificationPost';
+import { useHistory } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 export const AuthRouter = () => {
 
     const dispatch = useDispatch()
 
-    const {activeUser, uid} = useSelector(state => state.auth)
+    const history = useHistory()
+
+    const {pathname} = useLocation()
+
+    const {activeUser, uid, notificationPost} = useSelector(state => state.auth)
     
     const StateNow = localStorage.getItem('State')
 
@@ -59,6 +66,12 @@ export const AuthRouter = () => {
       dispatch(startGetPetitionesUser())
     }, [uid])
 
+    useEffect(() => {
+        if (pathname === '/NotificationPost' && notificationPost === '') {
+          history.goBack()
+        }
+      }, [notificationPost])
+
     return (
         <>
         <Navb />
@@ -75,6 +88,7 @@ export const AuthRouter = () => {
                     <Route path = '/Search' component = {Search} />
                     <Route path = '/Bible' component = {Bible} />
                     <Route path = '/NotificationResponsive' component = {NotificationResponsive} />
+                    <Route path = '/NotificationPost' component = {NotificationPost} />
                     <Route path = '/Profile' component = {Profile} />
 
                     <Redirect to = '/Dashboard' />

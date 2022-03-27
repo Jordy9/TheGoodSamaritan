@@ -71,6 +71,8 @@ export const useSocket = ( serverPath ) => {
     useEffect(() => {
         socket?.on('notifications-Show', (notification) => {
 
+            console.log(notification)
+
             if (notification?.subtitle === 'Transmitiendo reunión de Zoom') {
                 dispatch(startGetZoom())
             } else if (notification?.subtitle === 'Nueva MiniSerie agregada') {

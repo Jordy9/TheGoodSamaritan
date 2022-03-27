@@ -2,7 +2,7 @@ import { Container, Dropdown, DropdownButton, Nav, Navbar } from 'react-bootstra
 import { NavLink } from 'react-router-dom'
 import './Navb.css'
 import { useDispatch } from 'react-redux'
-import { setActiveUser, startLogout } from '../../action/user'
+import { setActiveUser, setNotificationsPost, startLogout } from '../../action/user'
 import { useSelector } from 'react-redux'
 import logo from '../../heroes/logo.png'
 import { useEffect, useState } from 'react'
@@ -72,8 +72,12 @@ export const Navb = () => {
         return () => window.removeEventListener('resize', changeWidth)
         
     }, [pathname, width, history]);
-    
 
+    const setNotify = (noti) => {
+        dispatch(setNotificationsPost(noti))
+        history.push(`/NotificationPost`)
+    }
+    
     return (
         <>
             <Navbar fixed = 'top' className = 'col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12' expand="lg" bg = 'dark' variant="dark">
@@ -124,7 +128,7 @@ export const Navb = () => {
                                         {
                                             activeUserChange?.notifications?.map((notifications, index) => {
                                                 return (
-                                                    <Dropdown.Item className='shadow my-2 bg-dark p-3 flex-column' key={notifications+ index} style={{width: 'auto', height: 'auto'}}>
+                                                    <Dropdown.Item onClick={() => setNotify(notifications)} className='shadow my-2 bg-dark p-3 flex-column' key={notifications+ index} style={{width: 'auto', height: 'auto'}}>
                                                         <h6 className='text-white text-center'>{notifications.subtitle}</h6>
                                                         <div className="row">
                                                             {

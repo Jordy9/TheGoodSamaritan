@@ -5,7 +5,8 @@ const initialState = {
     users: [],
     activeUser: '',
     forgotPassword: '',
-    Porcentage: 0
+    Porcentage: 0,
+    notificationPost: ''
 }
 
 export const usersReducer = (state = initialState, action) => {
@@ -78,6 +79,12 @@ export const usersReducer = (state = initialState, action) => {
             return {
                 ...state,
                 Porcentage: 0
+            }
+
+        case Types.authsetNotificationPost:
+            return {
+                ...state,
+                notificationPost: action.payload
             }
     
         default:

@@ -97,5 +97,6 @@ export const Types = {
     authImageUser: '[Auth image user',
     authDeleteUser: '[Auth] delete user',
     authUpload: '[Auth] upload auth',
-    authUploadFinish: '[Auth] upload finish auth'
+    authUploadFinish: '[Auth] upload finish auth',
+    authsetNotificationPost: '[Auth] set notifications post',
 }

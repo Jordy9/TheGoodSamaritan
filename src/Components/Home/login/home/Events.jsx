@@ -18,7 +18,7 @@ export const Events = () => {
                             {
                                 Eventos?.map(evento => {
                                     return (
-                                            <Carousel.Item key = {evento.id}>
+                                            <Carousel.Item key = {evento._id}>
                                                 <img
                                                     style={{height: '698px', width: '810px'}}
                                                     className="rounded"

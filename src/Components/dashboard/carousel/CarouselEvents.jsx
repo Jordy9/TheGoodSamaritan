@@ -13,7 +13,7 @@ export const CarrouselEvents = () => {
             {
                 Eventos?.map(evento => {
                     return (
-                        <Carousel.Item key = {evento.id}>
+                        <Carousel.Item key = {evento._id}>
                             <img
                                 style={{height: '650px'}}
                                 className="d-block w-100 rounded img-fluid"
