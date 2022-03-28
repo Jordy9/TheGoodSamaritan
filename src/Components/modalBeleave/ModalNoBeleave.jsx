@@ -40,7 +40,7 @@ export const ModalNoBeleave = () => {
         <Modal
             contentClassName='bg-dark'
             centered
-            size="xl"
+            size="lg"
             show={Show}
             onHide={() => onHideModal()}
             aria-labelledby="example-modal-sizes-title-lg"

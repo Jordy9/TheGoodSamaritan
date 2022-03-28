@@ -18,7 +18,7 @@ export const ModalVideoWordOfTheDay = () => {
         <Modal
             contentClassName='bg-dark'
             centered
-            size="xl"
+            size="lg"
             show={modalOpen}
             onHide={() => dispHide()}
             aria-labelledby="example-modal-sizes-title-lg"
