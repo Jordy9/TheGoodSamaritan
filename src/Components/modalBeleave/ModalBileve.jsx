@@ -1,15 +1,14 @@
 import React, { useEffect } from 'react'
 import { useState } from 'react'
 import { Modal } from 'react-bootstrap'
+import { useSelector } from 'react-redux'
 import Slider from 'react-slick'
-import { ContentBiliever } from './ContentBiliever'
-import { Discipleship } from './Discipleship'
-import { Tracking } from './Tracking'
 
 export const ModalBileve = () => {
 
+  const {Beleaver} = useSelector(state => state.bl)
+
     var settings = {
-        dots: true,
         infinite: false,
         speed: 500,
         slidesToShow: 1,
@@ -21,16 +20,15 @@ export const ModalBileve = () => {
             settings: {
               slidesToShow: 1,
               slidesToScroll: 1,
-              infinite: true,
-              dots: true
+              infinite: false
             }
           },
           {
             breakpoint: 600,
             settings: {
-              slidesToShow: 2,
-              slidesToScroll: 2,
-              initialSlide: 2
+              slidesToShow: 1,
+              slidesToScroll: 1,
+              initialSlide: 1
             }
           },
           {
@@ -45,24 +43,31 @@ export const ModalBileve = () => {
 
     const ShowNow = localStorage.getItem('Show')
 
-    const [Show, setShow] = useState(!ShowNow)
+    const [Show, setShow] = useState()
+
+    const onHideModal = () => {
+      if (!ShowNow) {
+        setShow(false)
+        localStorage.setItem('Show', true)
+      }
+    }
+
+    const ShowModal = () => {
+      setShow(true)
+    }
 
     useEffect(() => {
+      const timer = setTimeout(() => {
         if (!ShowNow) {
-            setTimeout(() => {
-                // setShow(true)
-            }, 1500);
-            if (Show === false) {
-                localStorage.setItem('Show', false)
-            } else {
-                setTimeout(() => {
-                    localStorage.setItem('Show', false)
-                }, 1000 * 500);}
+          ShowModal()
         }
-        if (Show === false) {
-            setShow(false)
-        }
-    }, [Show, ShowNow])
+      }, 3000);
+
+      return () => {
+        clearTimeout(timer);
+      }
+    }, [])
+    
 
     return (
         <div className='col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12'>
@@ -71,23 +76,24 @@ export const ModalBileve = () => {
                 centered
                 size="xl"
                 show={Show}
-                onHide={() => setShow(false)}
+                onHide={() => onHideModal()}
                 aria-labelledby="example-modal-sizes-title-lg"
             >
                 <Modal.Header id='modal-header-video' closeButton>
                 </Modal.Header>
                 <Modal.Body> 
-                <div className="row">
+                  <div className="row">
                     <Slider {...settings}>
-                      <div>
-                        <ContentBiliever />
-                      </div>
-                      <div>
-                        <Discipleship />
-                      </div>
-                      <div>
-                        <Tracking />
-                      </div>
+                      {
+                        Beleaver?.map(beleaver => {
+                          return (
+                            <div key={beleaver._id}>
+                              <h1 className='text-center'>{beleaver.title}</h1>
+                              <img src = {beleaver.image} alt="" className='img-fluid rounded' />
+                            </div>
+                          )
+                        })
+                      }
                     </Slider>
                   </div>
                 </Modal.Body>

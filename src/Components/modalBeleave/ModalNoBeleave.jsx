@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { Modal } from 'react-bootstrap'
 import ReactPlayer from 'react-player'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 
 export const ModalNoBeleave = () => {
-
-    const dispatch = useDispatch()
 
     const {Video} = useSelector(state => state.nb)
 
@@ -13,24 +11,30 @@ export const ModalNoBeleave = () => {
     
     const ShowNow = localStorage.getItem('noBeleaver')
 
-    const [Show, setShow] = useState(!ShowNow)
+    const [Show, setShow] = useState()
 
-    useEffect(() => {
+    const onHideModal = () => {
         if (!ShowNow) {
-            setTimeout(() => {
-                // setShow(true)
-            }, 1500);
-            if (Show === false) {
-                localStorage.setItem('noBeleaver', false)
-            } else {
-                setTimeout(() => {
-                    localStorage.setItem('noBeleaver', false)
-                }, 1000 * 500);}
+          setShow(false)
+          localStorage.setItem('noBeleaver', true)
         }
-        if (Show === false) {
-            setShow(false)
+      }
+
+    const ShowModal = () => {
+        setShow(true)
+      }
+  
+      useEffect(() => {
+        const timer = setTimeout(() => {
+          if (!ShowNow) {
+            ShowModal()
+          }
+        }, 3000);
+  
+        return () => {
+          clearTimeout(timer);
         }
-    }, [Show, ShowNow, dispatch])
+      }, [])
 
   return (
         <Modal
@@ -38,12 +42,13 @@ export const ModalNoBeleave = () => {
             centered
             size="xl"
             show={Show}
-            onHide={() => setShow(false)}
+            onHide={() => onHideModal()}
             aria-labelledby="example-modal-sizes-title-lg"
         >
         <Modal.Header id='modal-header-video' closeButton>
         </Modal.Header>
         <Modal.Body> 
+            <h1 className='text-center'>{video.title}</h1>
             <ReactPlayer controls style={{cursor: 'pointer'}} width = '100%' height = '100%' url={video?.image} />
         </Modal.Body>
         </Modal>

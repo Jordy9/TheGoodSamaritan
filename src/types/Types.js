@@ -1,5 +1,7 @@
 export const Types = {
 
+    blgetBeleaver: '[BL] get beleaver',
+    // 
     nbGetVideo: '[NB] get video',
     // 
     vwdgetVideoWordOfTheDay: '[VWD] get VideoWordOfTheDay',
