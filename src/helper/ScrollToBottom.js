@@ -22,6 +22,13 @@ export const scrollToTopAnimated = (id) => {
     })
 }
 
+export const scrollToTopAnimatedPost = (id) => {
+    animateScroll.scrollToTop({
+        containerId: id,
+        duration: 0
+    })
+}
+
 export const timeMonth = (date) => {
     const todayMonth = moment(date)
 

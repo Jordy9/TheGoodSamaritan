@@ -68,7 +68,7 @@ export const AuthRouter = () => {
 
     useEffect(() => {
         if (pathname === '/NotificationPost' && notificationPost === '') {
-          history.goBack()
+          history.push('/Dashboard')
         }
       }, [notificationPost])
 
