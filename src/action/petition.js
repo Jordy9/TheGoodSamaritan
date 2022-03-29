@@ -57,10 +57,12 @@ export const startCreatePetition = (name, number, descripcion) => {
         const body = await resp.json()
 
         const subtitle = 'Nueva petición de oración agregada de un: '
-
-        await fetchSinToken('notificacionAdmin', {title, subtitle}, 'POST');
-
+        
         if (body.ok) {
+          
+          const content = body.peticion
+
+          await fetchSinToken('notificacionAdmin', {title, subtitle, content}, 'POST');
 
             const Toast = Swal.mixin({
                 toast: true,
@@ -122,7 +124,9 @@ export const startCreatePetitionUser = (name, title, descripcion) => {
 
           const title = name
 
-          const payload = {title, subtitle}
+          const content = body.peticion
+
+          const payload = {title, subtitle, content}
 
           socket?.emit('notifications-user-to-admin', payload)
 

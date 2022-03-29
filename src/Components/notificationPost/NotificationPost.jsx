@@ -16,7 +16,7 @@ export const NotificationPost = () => {
 
     useEffect(() => {
       if (notificationPost === '') {
-        history.push('Dashboard')
+        history.push('/Dashboard')
       }
     }, [notificationPost])
     

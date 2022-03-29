@@ -64,13 +64,13 @@ export const AuthRouter = () => {
 
     useEffect(() => {
       dispatch(startGetPetitionesUser())
-    }, [uid])
+    }, [uid, dispatch])
 
     useEffect(() => {
         if (pathname === '/NotificationPost' && notificationPost === '') {
           history.push('/Dashboard')
         }
-      }, [notificationPost])
+      }, [notificationPost, history, pathname])
 
     return (
         <>
@@ -88,7 +88,7 @@ export const AuthRouter = () => {
                     <Route path = '/Search' component = {Search} />
                     <Route path = '/Bible' component = {Bible} />
                     <Route path = '/NotificationResponsive' component = {NotificationResponsive} />
-                    <Route path = '/NotificationPost' component = {NotificationPost} />
+                    <Route path = '/NotificationPost/:id' component = {NotificationPost} />
                     <Route path = '/Profile' component = {Profile} />
 
                     <Redirect to = '/Dashboard' />

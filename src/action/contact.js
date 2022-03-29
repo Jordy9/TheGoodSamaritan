@@ -13,10 +13,12 @@ export const startCreateContact = (name, email, descripcion) => {
         const subtitle = 'Nuevo contacto agregado de: '
 
         const title = name
-
-        await fetchSinToken('notificacionAdmin', {title, subtitle}, 'POST');
-
+        
         if (body.ok) {
+
+          const content = body.contactoguardado
+          
+          await fetchSinToken('notificacionAdmin', {title, subtitle, content}, 'POST');
 
             const Toast = Swal.mixin({
                 toast: true,
