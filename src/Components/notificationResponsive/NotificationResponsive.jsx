@@ -26,7 +26,7 @@ export const NotificationResponsive = () => {
 
     const setNotify = (noti) => {
         dispatch(setNotificationsPost(noti))
-        history.push(`/NotificationPost`)
+        history.push(`/NotificationPost/${noti._id}`)
     }
 
   return (
