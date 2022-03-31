@@ -44,11 +44,13 @@ export const AuthRouter = () => {
         if(activeUser?.biliever || activeUser?.discipleship || activeUser?.tracking) {
 
             if (!StateNow) {
-                if (moment(activeUser?.createdAt, 'YYYY-MM-DD[T]HH:mm:ss').fromNow() > 'hace 2 meses') {
-                    setTimeout(() => {
-                        dispatch(startUpdateUserDate())
-                        localStorage.setItem('State', true)
-                    }, 1000 * 10);
+                if (moment(activeUser?.createdAt, 'YYYY-MM-DD[T]HH:mm:ss').fromNow() !== 'Fecha inválida') {
+                    if (moment(activeUser?.createdAt, 'YYYY-MM-DD[T]HH:mm:ss').fromNow() > 'hace 60 días') {
+                        setTimeout(() => {
+                            dispatch(startUpdateUserDate())
+                            localStorage.setItem('State', true)
+                        }, 1000 * 10);
+                    }
                 }
             }
             

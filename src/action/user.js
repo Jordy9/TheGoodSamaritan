@@ -141,21 +141,11 @@ export const startUpdateUserDate = () => {
     return async(dispatch, getState) => {
         const {activeUser} = getState().auth
 
-        const {name, lastName, age, date, email, address, country, city, number, password, urlImage} = activeUser
-
         const biliever = false
         const discipleship = false
         const tracking = false
 
-        const resp = await fetchConToken(`users/update/${activeUser.id}`, {name, lastName, age, date, email, address, country, city, number, biliever, discipleship, tracking, password, urlImage}, 'PUT')
-        const body = await resp.json()
-
-        console.log(body.users)
-
-        if(body.ok) {
-            dispatch(updateUser(body.users))
-            dispatch(setActiveUser(body.users))
-        }
+        await fetchConToken(`users/update/${activeUser.id}`, {...activeUser, biliever, discipleship, tracking}, 'PUT')
     }
 }
 
