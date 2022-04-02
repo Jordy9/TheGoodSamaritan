@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import Swal from 'sweetalert2'
 import { setDeleteNota, setNota, startDeleteNota, startGetNotes } from '../../action/notas'
 import h2p from 'html2plaintext'
+import moment from 'moment'
 
 export const ListNotes = ({setShow}) => {
 
@@ -52,6 +53,7 @@ export const ListNotes = ({setShow}) => {
                 <thead>
                     <tr>
                     <th>Título</th>
+                    <th>Fecha</th>
                     <th>Descripción</th>
                     <th>Acción</th>
                     </tr>
@@ -62,6 +64,7 @@ export const ListNotes = ({setShow}) => {
                             return (
                                 <tr key={notes._id}>
                                     <th>{notes?.title}</th>
+                                    <th>{moment(notes?.createdAt).format('MMMM Do YYYY, h:mm a')}</th>
                                     <td>
                                         {
                                         (h2p(notes?.descripcion).length > 9)

@@ -97,7 +97,7 @@ export const PetitionModalUser = () => {
                                             </div>
                                             
                                             <div className="col">
-                                                <button type='button' onClick={handledDelete} className = 'btn btn-outline-danger form-control my-3'>Eliminar</button>
+                                                <button type='button' onClick={handledDelete} className = 'btn btn-outline-danger form-control my-3' data-bs-dismiss="modal">Eliminar</button>
                                             </div>
                                         </div>
                                     </form>
