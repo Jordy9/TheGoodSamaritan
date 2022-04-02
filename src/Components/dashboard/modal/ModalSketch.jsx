@@ -14,7 +14,7 @@ export const ModalSketch = () => {
                     <div className="modal-header" style = {{border: 'none'}}>
                         <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <span className='text-right mr-4'>{moment(activeBosquejo?.date).format('MMMM Do YYYY, h:mm a')}</span>
+                    <span className='text-right mr-4'>{moment(activeBosquejo?.createdAt).format('MMMM Do YYYY, h:mm a')}</span>
                     <h1 className='text-center'>{activeBosquejo.title}</h1>
 
                     <div className="modal-body">

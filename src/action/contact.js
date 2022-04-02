@@ -5,9 +5,7 @@ import Swal from 'sweetalert2'
 export const startCreateContact = (name, email, descripcion) => {
     return async(dispatch) => {
 
-        const date = moment()
-
-        const resp = await fetchSinToken('contact', {name, email, descripcion, date}, 'POST');
+        const resp = await fetchSinToken('contact', {name, email, descripcion}, 'POST');
         const body = await resp.json()
 
         const subtitle = 'Nuevo contacto agregado de: '

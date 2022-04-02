@@ -20,10 +20,6 @@ export const CarrouselEvents = () => {
                                 src = {evento.image}
                                 alt="First slide"
                             />
-                            <Carousel.Caption>
-                                <h3 className = 'overlay'>{evento?.title}</h3>
-                                <p className = 'overlay'>{(evento.date) ? moment(evento?.date).format('MMMM Do YYYY, h:mm a') : ''}</p>
-                            </Carousel.Caption>
                         </Carousel.Item>
                     )
                 })

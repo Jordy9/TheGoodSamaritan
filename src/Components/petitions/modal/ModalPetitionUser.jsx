@@ -3,12 +3,9 @@ import { useDispatch, useSelector } from 'react-redux'
 import { startDeletePetition, startUpdatePetition } from '../../../action/petition'
 import { useFormik } from 'formik';
 import * as Yup from 'yup'
-import moment from 'moment';
 import Swal from 'sweetalert2';
 
 export const PetitionModalUser = () => {
-
-    const newDate = moment().format('yyyy-MM-DDTHH:mm')
 
     const {activePetitionsUser} = useSelector(state => state.pt)
 
@@ -81,7 +78,7 @@ export const PetitionModalUser = () => {
                                                 <div className="form-group">
                                                     <label>Propósito</label>
                                                     <input type="text" className = 'form-control bg-transparent text-white' {...getFieldProps('title')} />
-                                                    {touched.date && errors.date && <span style={{color: 'red'}}>{errors.date}</span>}
+                                                    {touched.title && errors.title && <span style={{color: 'red'}}>{errors.title}</span>}
                                                 </div>
                                             </div>
                                         </div>

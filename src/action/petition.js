@@ -50,10 +50,9 @@ const Petitions = (peticiones) => ({
 export const startCreatePetition = (name, number, descripcion) => {
     return async(dispatch) => {
 
-        const date = moment()
         const title = 'Usuario sin cuenta'
 
-        const resp = await fetchSinToken('peticionSinCuenta', {title, name, number, date, descripcion}, 'POST');
+        const resp = await fetchSinToken('peticionSinCuenta', {title, name, number, descripcion}, 'POST');
         const body = await resp.json()
 
         const subtitle = 'Nueva petición de oración agregada de un: '
@@ -112,8 +111,7 @@ export const startCreatePetitionUser = (name, title, descripcion) => {
 
         const number = numberuser?.number
 
-        const date = moment()
-        const resp = await fetchConToken('peticionesUser', {title, name, number, date, descripcion}, 'POST');
+        const resp = await fetchConToken('peticionesUser', {title, name, number, descripcion}, 'POST');
         const body = await resp.json()
 
         if (body.ok) {
@@ -190,9 +188,9 @@ export const startUpdatePetition = (name, title, descripcion) => {
 
         const {activePetitionsUser} = getState().pt
 
-        const {date, number} = activePetitionsUser
+        const {number} = activePetitionsUser
   
-        const resp = await fetchConToken(`peticionesUser/${activePetitionsUser._id}`, {name, title, descripcion, date, number}, 'PUT');
+        const resp = await fetchConToken(`peticionesUser/${activePetitionsUser._id}`, {name, title, descripcion, number}, 'PUT');
         const body = await resp.json()
 
         if (body.ok) {

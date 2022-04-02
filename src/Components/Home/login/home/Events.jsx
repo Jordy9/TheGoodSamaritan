@@ -25,10 +25,6 @@ export const Events = () => {
                                                     src={evento.image}
                                                     alt="First slide"
                                                 />
-                                                <Carousel.Caption>
-                                                    <h3>{evento.title}</h3>
-                                                    <p>{(evento.date) ? moment(evento?.date).format('MMMM Do YYYY, h:mm a') : ''}</p>
-                                                </Carousel.Caption>
                                             </Carousel.Item>
                                     )
                                 })
