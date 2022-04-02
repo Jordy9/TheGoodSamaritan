@@ -13,7 +13,6 @@ export const ProfileRandom = () => {
     var settings = {
         dots: true,
         infinite: false,
-        lazyLoad: true,
         speed: 500,
         slidesToShow: 4,
         slidesToScroll: 4,

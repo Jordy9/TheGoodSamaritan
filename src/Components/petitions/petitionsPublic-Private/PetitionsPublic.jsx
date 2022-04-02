@@ -95,7 +95,6 @@ export const PetitionsPublic = () => {
     var settings = {
         dots: false,
         infinite: false,
-        lazyLoad: true,
         speed: 500,
         slidesToShow: 4,
         slidesToScroll: 4,

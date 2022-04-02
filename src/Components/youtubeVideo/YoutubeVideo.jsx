@@ -26,7 +26,6 @@ export const YoutubeVideo = () => {
 
     var settings = {
         infinite: false,
-        lazyLoad: true,
         speed: 500,
         slidesToShow: 4,
         slidesToScroll: 4,
