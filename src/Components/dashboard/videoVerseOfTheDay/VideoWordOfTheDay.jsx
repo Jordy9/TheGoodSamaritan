@@ -22,6 +22,7 @@ export const VideoWordOfTheDay = () => {
         slidesToShow: 4,
         slidesToScroll: 4,
         initialSlide: 0,
+        lazyLoad: true,
         responsive: [
           {
             breakpoint: 1024,

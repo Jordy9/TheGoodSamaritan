@@ -8,7 +8,6 @@ export const Galleryy = () => {
 
     const {Gallery: img} = useSelector(state => state.ga)
 
-
     const options = {
       buttons: {
         showDownloadButton: false
