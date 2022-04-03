@@ -45,7 +45,7 @@ export const AuthRouter = () => {
 
             if (!StateNow) {
                 if (moment(activeUser?.createdAt, 'YYYY-MM-DD[T]HH:mm:ss').fromNow() !== 'Fecha inválida') {
-                    if (moment(activeUser?.createdAt, 'YYYY-MM-DD[T]HH:mm:ss').fromNow() > 'hace 60 días') {
+                    if (moment(activeUser?.createdAt, 'YYYY-MM-DD[T]HH:mm:ss').fromNow() > 'hace un mes') {
                         setTimeout(() => {
                             dispatch(startUpdateUserDate())
                             localStorage.setItem('State', true)
