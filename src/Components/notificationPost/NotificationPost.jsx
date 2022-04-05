@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux'
-import { useHistory } from 'react-router-dom'
+import { useHistory, Redirect } from 'react-router-dom'
 import moment from 'moment'
 import { PostMiniSerie } from './PostMiniSerie'
 import { PostyoutubeVideo } from './PostyoutubeVideo'
@@ -60,6 +60,12 @@ export const NotificationPost = () => {
                 (notificationPost.subtitle === 'Nuevo video de youtube agregado')
                   &&
                 <PostyoutubeVideo notificationPost = {notificationPost?.content} />
+              }
+
+              {
+                (notificationPost.subtitle === 'Transmitiendo reunión de Zoom')
+                  &&
+                <Redirect to = '/Zoom' />
               }
             </div> 
         </div>

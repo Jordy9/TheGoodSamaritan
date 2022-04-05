@@ -85,6 +85,8 @@ export const ModalBileve = () => {
                   <div className="row">
                     <Slider {...settings}>
                       {
+                        (Beleaver)
+                          &&
                         Beleaver?.map(beleaver => {
                           return (
                             <div key={beleaver._id}>
