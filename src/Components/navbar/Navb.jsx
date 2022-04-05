@@ -82,8 +82,12 @@ export const Navb = () => {
     }, [pathname, width, history]);
 
     const setNotify = (noti) => {
-        dispatch(setNotificationsPost(noti))
-        history.push(`/NotificationPost/${noti._id}`)
+        if (noti?.subtitle !== 'Transmitiendo reunión de Zoom') {
+            dispatch(setNotificationsPost(noti))
+            history.push(`/NotificationPost/${noti._id}`)
+        } else {
+            history.push('/Zoom')
+        }
     }
     
     return (
