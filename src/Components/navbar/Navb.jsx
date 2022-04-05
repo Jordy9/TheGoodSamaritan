@@ -5,13 +5,11 @@ import { useDispatch } from 'react-redux'
 import { setActiveUser, setNotificationsPost, startLogout } from '../../action/user'
 import { useSelector } from 'react-redux'
 import logo from '../../heroes/logo.png'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import moment from 'moment'
 import { useLocation, useHistory } from 'react-router'
 
 export const Navb = () => {
-
-    const isMounted = useRef(true)
 
     const dispatch = useDispatch()
 
@@ -32,9 +30,11 @@ export const Navb = () => {
     const [activeUserChange, setActiveUserChange] = useState(activeUser)
 
     useEffect(() => {
+
+        let isMountede = true
         socket?.on('notifications-user', (users) => {
 
-            if (isMounted.current) {
+            if (isMountede) {
                 const user = users?.find(user => user.id === uid)
 
                 setNotificationCountChange(true)
@@ -43,7 +43,7 @@ export const Navb = () => {
         })
 
         return () => {
-            isMounted.current = false
+            isMountede = false
         }
     }, [socket, dispatch, uid])
 
