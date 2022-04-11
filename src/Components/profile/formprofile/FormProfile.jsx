@@ -8,6 +8,7 @@ import * as Yup from 'yup'
 import moment from 'moment'
 import { startUpdateUser } from '../../../action/user'
 import countryList from 'react-select-country-list'
+import Swal from 'sweetalert2'
 
 export const FormProfile = () => {
 
@@ -40,7 +41,27 @@ export const FormProfile = () => {
         },
         enableReinitialize: true,
         onSubmit: ({name, lastName, age, date, email, address, country, city, number, biliever, discipleship, tracking, password, image}) => {
-            dispatch(startUpdateUser(name, lastName, age, date, email, address, country, city, number, biliever, discipleship, tracking, password, image))
+
+            if (image?.type?.includes('image') === false) {
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 5000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                      toast.addEventListener('mouseenter', Swal.stopTimer)
+                      toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                  })
+                  
+                  return Toast.fire({
+                    icon: 'error',
+                    title: 'Imagen con formato incorrecto'
+                  })
+            } else {
+                dispatch(startUpdateUser(name, lastName, age, date, email, address, country, city, number, biliever, discipleship, tracking, password, image))
+            }
         },
         validationSchema: Yup.object({
             name: Yup.string()
@@ -172,7 +193,7 @@ export const FormProfile = () => {
                                         <div className="col from-group">
                                             <label>Imagen</label>
                                             <button type='button' className='btn btn-outline-primary form-control my-3' onClick={handledImage}>Seleccionar foto de perfil</button>
-                                            <input id='fileSelector' hidden = {true} type="file" className='form-control bg-transparent text-white' name='image' onChange={(e) => {
+                                            <input accept="image/*" id='fileSelector' hidden = {true} type="file" className='form-control bg-transparent text-white' name='image' onChange={(e) => {
                                                 setFieldValue('image', e.currentTarget.files[0], (e.currentTarget.files[0]) ? setimag(URL.createObjectURL(e.currentTarget.files[0]) || '') : setimag())
                                             }} />
                                         </div>

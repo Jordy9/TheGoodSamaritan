@@ -25,7 +25,10 @@ export const SearchComponent = () => {
 
     const [arregloChange, setArregloChange] = useState()
 
+    const [titleSecondary, setTitleSecondary] = useState()
+
     const onClickButton = () => {
+        setTitleSecondary(title)
         setTitle('')
         arreglo.splice(0, arreglo.length)
         setArregloChange()
@@ -71,7 +74,7 @@ export const SearchComponent = () => {
 
                     <i hidden = {(libroActual === null) && true} onClick={arrowBackSearchFilter} className="bi bi-arrow-left" style={{margin: 0, cursor: 'pointer'}}></i>
                 </div>
-                <input hidden = {(libroActual !== null) && true} placeholder='Buscar por título' type="search" value={title} onChange={({target}) => setTitle(target.value)} className="form-control bg-transparent text-white" />
+                <input hidden = {(libroActual !== null) && true} placeholder='Buscador' type="search" value={title} onChange={({target}) => setTitle(target.value)} className="form-control bg-transparent text-white" />
                 <button hidden = {(libroActual !== null) && true} className='btn btn-secondary ml-1' style={{borderRadius: '50px'}} onClick={onClickButton}>buscar</button>
             </div>
 
@@ -101,11 +104,11 @@ export const SearchComponent = () => {
                     :
                 <>
 
+                    <h5 className='text-left text-light'>{titleSecondary}</h5>
                     <h5 className='text-center text-light'>Resultados: {arregloChange?.length}</h5>
 
                     {
                         arregloChange?.map( (arreglo, index) => {
-                            console.log(arreglo)
                             return (
                                 <div style={{cursor: 'pointer'}} onClick = {() => Versiculo(arreglo[2], libros[arreglo[1]], arreglo[1])} key={arreglo + index} className = 'shadow align-items-center p-4 my-2 bg-dark rounded-lg flex-column'>
                                     <div className="row">

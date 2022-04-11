@@ -8,6 +8,14 @@ li:hover {
     border-radius: 10px;
 }
 
+button:active{
+    color:grey;
+}
+
+button:focus{
+    color:grey;
+}
+
 #title-only-movil {
     display: none;
 }
