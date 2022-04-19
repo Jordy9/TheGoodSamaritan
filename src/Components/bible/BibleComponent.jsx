@@ -116,7 +116,7 @@ export const BibleComponent = () => {
                 {
                     first?.map((capitulo, index) => {
                         return (
-                            <button style={{border: 'none', borderBottom: '1px solid white'}} onClick={() => Versiculo(index)} className='mx-1 btn btn-outline-primary' key={capitulo}>
+                            <button style={{border: 'none', borderBottom: '1px solid white'}} onClick={() => Versiculo(index)} className={`mx-1 btn btn-outline-primary ${versiculo === capitulo && 'btn-outline-secondary'}`} key={capitulo}>
                                 Capítulo {index + 1}
                             </button>
                         )
