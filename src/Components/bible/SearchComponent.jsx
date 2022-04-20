@@ -77,7 +77,7 @@ export const SearchComponent = () => {
 
     useEffect(() => {
         scrollToTopAnimatedPost()
-    }, [currentPage])
+    }, [currentPage, versiculo])
 
   return (
     <div className="row">
