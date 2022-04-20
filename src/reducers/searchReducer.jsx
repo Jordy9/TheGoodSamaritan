@@ -2,7 +2,8 @@ import { Types } from "../types/Types";
 
 const initialState = {
     activeSearch: null,
-    activePage: 0
+    activePage: 0,
+    Show: false
 }
 
 export const searchReducer = (state = initialState, action) => {
@@ -20,6 +21,18 @@ export const searchReducer = (state = initialState, action) => {
         case Types.bdClearActivePaginate:
             return {
                 activePage: 0
+            }
+
+        case Types.bdSetShow:
+            return {
+                ...state,
+                Show: true
+            }
+
+        case Types.bdSetHide:
+            return {
+                ...state,
+                Show: false
             }
     
         default:

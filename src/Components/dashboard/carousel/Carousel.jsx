@@ -2,7 +2,7 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux';
 import Slider from 'react-slick'
-import { setSeries } from '../../../action/miniSerie';
+import { setSeries, setShow } from '../../../action/miniSerie';
 
 export const Carousel = () => {
 
@@ -13,6 +13,7 @@ export const Carousel = () => {
 
   const handledSet = (miniSeries) => {
     dispatch(setSeries(miniSeries))
+    dispatch(setShow())
   }
 
     var settings = {
@@ -56,7 +57,7 @@ export const Carousel = () => {
                     miniSeries?.map(Serie => {
                       return (
                         <div key={Serie._id} className = 'col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12'>
-                          <img src={Serie.image} onClick={() => handledSet(Serie)} data-bs-toggle="modal" data-bs-target="#exampleModal3" className="d-block w-100 rounded imgag img-fluid" style={{height: '355px'}} alt="..." />
+                          <img src={Serie.image} onClick={() => handledSet(Serie)} className="d-block w-100 rounded imgag img-fluid" style={{height: '355px'}} alt="..." />
                           <h5 className='text-center'>{Serie.title}</h5>
                         </div>
                       )

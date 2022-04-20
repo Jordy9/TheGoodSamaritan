@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux'
-import { activeSearch } from '../../action/search'
+import { activeSearch, setShow } from '../../action/search'
 import { ModalSearch } from './modal/ModalSearch'
 
 export const Search = () => {
@@ -22,6 +22,7 @@ export const Search = () => {
     
     const handledSet = (filtro) => {
         dispatch(activeSearch(filtro))
+        dispatch(setShow())
       }
 
   return (
@@ -41,8 +42,8 @@ export const Search = () => {
                     ?
                 filtroDeBusqueda?.filter(filtroDeBusqueda => (title !== '') && (filtroDeBusqueda.title.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,"").includes(title.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,""))) && filtroDeBusqueda).map(filtro => {
                     return (
-                        <div key={filtro._id} className = 'col-xs-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 imgag my-3 mx-3 shadow p-4 bg-dark rounded-lg flex-column text-white'>
-                            <img style={{cursor: 'pointer'}} src={filtro.image} alt="" className='img-fluid' onClick={() => handledSet(filtro)} data-bs-toggle="modal" data-bs-target="#exampleModalSearch" />
+                        <div key={filtro._id} onClick={() => handledSet(filtro)} className = 'col-xs-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 imgag my-3 mx-3 shadow p-4 bg-dark rounded-lg flex-column text-white'>
+                            <img style={{cursor: 'pointer'}} src={filtro.image} alt="" className='img-fluid' />
                             <h5 className='text-center'>{filtro.title}</h5>
                         </div>
                     )

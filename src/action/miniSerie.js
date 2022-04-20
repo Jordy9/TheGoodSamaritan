@@ -16,7 +16,16 @@ const miniSeries = (series) => ({
     type: Types.migetSeries,
     payload: series
 })
+
 export const setSeries = (series) => ({
     type: Types.miSetSerie,
     payload: series
+})
+
+export const setShow = () => ({
+    type: Types.miSetSerieShow
+})
+
+export const setHide = () => ({
+    type: Types.miSetSerieHide
 })

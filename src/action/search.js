@@ -13,3 +13,11 @@ export const ActivePaginate = (number) => ({
 export const clearActivePaginate = () => ({
     type: Types.bdClearActivePaginate
 })
+
+export const setShow = () => ({
+    type: Types.bdSetShow
+})
+
+export const setHide = () => ({
+    type: Types.bdSetHide
+})

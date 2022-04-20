@@ -26,6 +26,8 @@ export const Types = {
     bdActivefilter: '[BD] active filter',
     bdActivePaginate: '[BD] active paginate',
     bdClearActivePaginate: '[BD] clear active paginate',
+    bdSetShow: '[BD] set show',
+    bdSetHide: '[BD] set hide',
     // 
     ntDeleteNotification: '[NT] delete notification',
     ntNotificacionesCargadas: '[NT] notificaciones cargadas',
@@ -81,6 +83,8 @@ export const Types = {
     //
     migetSeries: '[Mi] get series',
     miSetSerie: '[Mi] set serie',
+    miSetSerieShow: '[Mi] set serie show',
+    miSetSerieHide: '[Mi] set serie hide',
     //
     sktgetBosquejos: '[SKT] get bosquejos',
     sktSetBosquejo: '[SKT] set bosquejo',
