@@ -74,7 +74,7 @@ export const Capsule = () => {
                                       (activeCapsule)
                                         ?
                                       <div className="carousel-item active" style={{width: '100%', height: '400px'}}>
-                                        <img src={activeCapsule?.image} className="d-block w-100 rounded" alt="..." />
+                                        <img src={activeCapsule?.image} style = {{height: '100%', width: '100%'}} className="d-block w-100 rounded" alt="..." />
                                       </div>
                                         :
                                       <div className="carousel-item active" style={{width: '100%', height: '400px'}}>
