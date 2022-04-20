@@ -1,7 +1,8 @@
 import { Types } from "../types/Types";
 
 const initialState = {
-    activeSearch: null
+    activeSearch: null,
+    activePage: 0
 }
 
 export const searchReducer = (state = initialState, action) => {
@@ -9,6 +10,16 @@ export const searchReducer = (state = initialState, action) => {
         case Types.bdActivefilter:
             return {
                 activeSearch: action.payload
+            }
+
+        case Types.bdActivePaginate:
+            return {
+                activePage: action.payload
+            }
+
+        case Types.bdClearActivePaginate:
+            return {
+                activePage: 0
             }
     
         default:

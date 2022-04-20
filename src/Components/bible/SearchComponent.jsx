@@ -1,9 +1,12 @@
-import React, { useMemo, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import { useDispatch } from 'react-redux'
+import { clearActivePaginate } from '../../action/search'
 import { searchBibleFalse } from '../../action/verseofTheDay'
 import { Antiguotestamento } from '../../Antiguotestamento'
+import { scrollToTopAnimatedPost } from '../../helper/ScrollToBottom'
 import { Libros } from '../../Libros'
 import { Nuevotestamento } from '../../Nuevotestamento'
+import { Paginate } from './paginate/Paginate'
 
 const librosBiblia = [...Antiguotestamento(), ...Nuevotestamento()]
 
@@ -28,6 +31,7 @@ export const SearchComponent = () => {
     const [titleSecondary, setTitleSecondary] = useState()
 
     const onClickButton = () => {
+        dispatch(clearActivePaginate())
         setTitleSecondary(title)
         setTitle('')
         arreglo.splice(0, arreglo.length)
@@ -65,6 +69,16 @@ export const SearchComponent = () => {
         setVersiculo(null)
     }
 
+    const [currentPage, setCurrentPage] = useState(0)
+
+    const paginateVerse = () => {
+        return arregloChange?.slice(currentPage, currentPage + 10)
+    }
+
+    useEffect(() => {
+        scrollToTopAnimatedPost()
+    }, [currentPage])
+
   return (
     <div className="row">
         <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
@@ -75,7 +89,7 @@ export const SearchComponent = () => {
                     <i hidden = {(libroActual === null) && true} onClick={arrowBackSearchFilter} className="bi bi-arrow-left" style={{margin: 0, cursor: 'pointer'}}></i>
                 </div>
                 <input hidden = {(libroActual !== null) && true} placeholder='Buscador' type="search" value={title} onChange={({target}) => setTitle(target.value)} className="form-control bg-transparent text-white" />
-                <button hidden = {(libroActual !== null) && true} className='btn btn-secondary ml-1' style={{borderRadius: '50px'}} onClick={onClickButton}>buscar</button>
+                <button disabled = {(title === '')} hidden = {(libroActual !== null) && true} className='btn btn-secondary ml-1' style={{borderRadius: '50px'}} onClick={onClickButton}>buscar</button>
             </div>
 
             {
@@ -108,7 +122,7 @@ export const SearchComponent = () => {
                     <h5 className='text-center text-light'>Resultados: {arregloChange?.length}</h5>
 
                     {
-                        arregloChange?.map( (arreglo, index) => {
+                        paginateVerse()?.map( (arreglo, index) => {
                             return (
                                 <div style={{cursor: 'pointer'}} onClick = {() => Versiculo(arreglo[2], libros[arreglo[1]], arreglo[1])} key={arreglo + index} className = 'shadow align-items-center p-4 my-2 bg-dark rounded-lg flex-column'>
                                     <div className="row">
@@ -126,6 +140,12 @@ export const SearchComponent = () => {
                                 </div>
                             )
                         })
+                    }
+
+                    {
+                        (arregloChange?.length > 0)
+                            &&
+                        <Paginate total = {arregloChange} setCurrentPage = {setCurrentPage} />
                     }
                 </>
             }

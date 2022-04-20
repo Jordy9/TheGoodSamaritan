@@ -24,6 +24,8 @@ export const Types = {
     vsSearchBibleFalse: '[VS] search bible false',
     // 
     bdActivefilter: '[BD] active filter',
+    bdActivePaginate: '[BD] active paginate',
+    bdClearActivePaginate: '[BD] clear active paginate',
     // 
     ntDeleteNotification: '[NT] delete notification',
     ntNotificacionesCargadas: '[NT] notificaciones cargadas',
