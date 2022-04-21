@@ -18,7 +18,7 @@ export const NotificationPost = () => {
       if (notificationPost === '') {
         history.push('/Dashboard')
       }
-    }, [notificationPost])
+    }, [notificationPost, history])
     
   return (
     <div className="modal-body" style={{marginTop: '70px'}}>
