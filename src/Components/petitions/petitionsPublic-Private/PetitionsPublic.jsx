@@ -32,8 +32,6 @@ export const PetitionsPublic = () => {
 
     const dispatch = useDispatch()
 
-    console.log(peticionesfiltradas)
-
     useEffect(() => {
         dispatch(startGetPetitions())
         dispatch(startGetPetitionesUser())

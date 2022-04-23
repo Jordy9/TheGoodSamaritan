@@ -32,8 +32,6 @@ export const ModalSearch = () => {
       }
     }
 
-    console.log(first)
-
     const prev = () => {
       if (first > 0) {
         setfirst(first - 1)

@@ -42,9 +42,8 @@ export const BorrarNotificaciones = () => {
         if (uid && chatActivo) {
             const resp = await fetchConToken('notificacion', {uid, chatActivo}, 'DELETE')
 
-            const body = await resp.json()
+            await resp.json()
 
-            console.log(body)
         }
 
     }

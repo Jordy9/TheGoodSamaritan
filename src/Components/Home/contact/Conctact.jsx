@@ -92,7 +92,7 @@ export const Conctact = () => {
                                 <i onClick = {redirect} className="bi bi-geo-alt" style = {{fontSize: '32px', cursor: 'pointer'}}></i>
                             </div>
 
-                            <div className="col-9">
+                            <div onClick = {redirect} style = {{cursor: 'pointer'}} className="col-9">
                                 <p>Republica dominicana, Padre Fantino, Bonao 42000</p>
                             </div>
                         </div>

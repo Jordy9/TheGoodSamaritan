@@ -119,8 +119,6 @@ export const startDeleteNota = () => {
       
         const {activeDeleteNote} = getState().nts
 
-        console.log(activeDeleteNote)
-
         const resp = await fetchConToken(`notas/${activeDeleteNote._id}`, activeDeleteNote, 'DELETE')
 
         const body = await resp.json()

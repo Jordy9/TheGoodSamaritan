@@ -213,7 +213,6 @@ export const startUpdatePetition = (name, title, descripcion) => {
                 title: 'Petición actualizada correctamente'
               })
         } else {
-            console.log(body.errors)
             Swal.fire('Error', body.errors, 'error')
         }
 

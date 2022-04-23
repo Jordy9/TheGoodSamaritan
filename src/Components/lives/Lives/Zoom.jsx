@@ -40,7 +40,6 @@ function generateSignature(apiKey, apiSecret, meetingNumber, role) {
     let signature = ""
     generateSignature(apiKey, apiSecret, meetingNumber, 0).then((res) => {
         signature = res
-        console.log(signature)
     })
 
     useEffect(() => {

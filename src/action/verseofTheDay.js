@@ -6,8 +6,6 @@ export const startGetVerseofTheDay = () => {
         const resp = await fetchSinToken('versiculoDelDia')
         const body = await resp.json()
 
-        console.log(body)
-
         if(body.ok) {
             dispatch(getVerseofTheDay(...body.versiculo))
         }

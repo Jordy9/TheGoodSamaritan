@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { Modal } from 'react-bootstrap'
 import { useSelector } from 'react-redux'
 import Slider from 'react-slick'
+import parse from 'html-react-parser'
 
 export const ModalBileve = () => {
 
@@ -91,6 +92,11 @@ export const ModalBileve = () => {
                           return (
                             <div key={beleaver._id}>
                               <h1 className='text-center'>{beleaver.title}</h1>
+                              <div className='text-center'>
+                                {
+                                  parse(beleaver.descripcion)
+                                }
+                              </div>
                               <img src = {beleaver.image} alt="" className='img-fluid rounded' />
                             </div>
                           )

@@ -157,19 +157,13 @@ export const startUpdateUserNoBeleaver = () => {
 
         const noBeleaver = false
 
-        console.log('first')
-
         const resp = await fetchConToken(`users/update/${activeUser.id}`, {name, lastName, age, date, email, address, country, city, number, biliever, discipleship, tracking, password, noBeleaver}, 'PUT')
         const body = await resp.json()
-
-        console.log(body.users)
 
         if(body.ok) {
             dispatch(updateUser(body.users))
 
-            console.log(body.users)
             dispatch(setActiveUser(body.users))
-            
         }
     }
 }
@@ -292,8 +286,6 @@ export const startUpdateUser = (name, lastName, age, date, email, address, count
                     const resp = await fetchConToken(`users/update/${activeUser.id}`, {name, lastName, age, date, email, address, country, city, number, biliever, discipleship, tracking, password, urlImage, idImage}, 'PUT')
                     const body = await resp.json()
 
-                    console.log(body.users)
-
                     if(body.ok) {
                         dispatch(updateUser(body.users))
                         dispatch(setActiveUser(body.users))
@@ -358,8 +350,6 @@ export const startUpdateUser = (name, lastName, age, date, email, address, count
             const idImage = activeUser.idImage
             const resp = await fetchConToken(`users/update/${activeUser.id}`, {name, lastName, age, date, email, address, country, city, number, biliever, discipleship, tracking, password, urlImage, idImage}, 'PUT')
             const body = await resp.json()
-
-            console.log(body.users)
 
             if(body.ok) {
                 dispatch(updateUser(body.users))

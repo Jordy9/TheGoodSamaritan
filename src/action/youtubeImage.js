@@ -6,8 +6,6 @@ export const startGetYoutube = () => {
         const resp = await fetchSinToken('youtube')
         const body = await resp.json()
 
-        console.log(body)
-
         if(body.ok) {
             dispatch(Youtube(body.youtube))
             dispatch(YoutubeStart(body.youtube[0]))
