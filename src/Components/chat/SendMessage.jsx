@@ -64,7 +64,7 @@ export const SendMessage = () => {
     return (
         <form onSubmit={handleSubmit}>
             <div className="row">
-                <div className="col-xs-6 col-sm-6 col-md-6 col-lg-10 col-xl-10">
+                <div className="col-xs-6 col-sm-8 col-md-6 col-lg-10 col-xl-10">
                     <input type="text" autoComplete='off' className="form-control bg-transparent text-white" placeholder="Mensaje..." {...getFieldProps('message')} />
                 </div>
 
