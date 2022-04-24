@@ -122,6 +122,7 @@ export const PetitionsPublic = () => {
           }
         ]
       };
+
     return (
         <div className="container my-5"> 
             <div className="row">
@@ -158,7 +159,11 @@ export const PetitionsPublic = () => {
                     </div>
                 </div>
                     <div className="row my-5">
-                        <h1 className='my-2'>Mis peticiones</h1>
+                        {
+                            (MyPetitions?.length > 0)
+                                &&
+                            <h1 className='my-2'>Mis peticiones</h1>
+                        }
                         <Slider {...settings}>
                             {
                                 MyPetitions?.map(peticion => {
@@ -174,7 +179,11 @@ export const PetitionsPublic = () => {
                     </div>
 
                 <div className = 'row my-5'>
-                    <h1 className='my-5'>Listado de peticiones de pastores</h1>
+                    {
+                        (Peticiones?.length > 0)
+                            &&
+                        <h1 className='my-5'>Listado de peticiones de pastores</h1>
+                    }
                     <Slider {...settings}>
                         {
                             Peticiones?.map(peticion => {
@@ -190,7 +199,11 @@ export const PetitionsPublic = () => {
                 </div>
 
                 <div className = 'row my-5'>
-                    <h1 className='my-5'>Listado de peticiones de usuarios</h1>
+                    {
+                        (PeticionesUser?.length > 0)
+                            &&
+                        <h1 className='my-5'>Listado de peticiones de usuarios</h1>
+                    }
                     <Slider {...settings}>
                         {
                             PeticionesUser?.map(peticion => {

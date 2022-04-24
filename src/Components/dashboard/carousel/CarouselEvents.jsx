@@ -1,14 +1,17 @@
 import React from 'react'
 import { Carousel } from 'react-bootstrap'
 import {useSelector} from 'react-redux'
-import moment from 'moment'
 
 export const CarrouselEvents = () => {
 
     const {Eventos} = useSelector(state => state.ev)
     return (
         <>
-        <h1>Eventos</h1>
+        {
+            (Eventos?.length > 0)
+                &&
+            <h1>Eventos</h1>
+        }
         <Carousel fade = {true} touch = {true}>
             {
                 Eventos?.map(evento => {

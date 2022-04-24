@@ -1,12 +1,13 @@
 import { useFormik } from 'formik'
 import moment from 'moment'
-import React, { useMemo } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import MaskedInput from 'react-text-mask'
 import * as Yup from 'yup'
 import { startRegister } from '../../../action/user'
 import './FormProfile.css'
 import countryList from 'react-select-country-list'
+import { useHistory } from 'react-router-dom'
 
 export const Register = () => {
 
@@ -15,6 +16,17 @@ export const Register = () => {
     const dispatch = useDispatch()
 
     const options = useMemo(() => countryList().getData(), [])
+
+    const [first, setfirst] = useState(false)
+
+    const history = useHistory()
+
+    useEffect(() => {
+        if (first) {
+            history.push('/Login')
+        }
+    }, [first, history])
+    
 
     const {handleSubmit, resetForm, getFieldProps, touched, errors} = useFormik({
         initialValues: {
@@ -36,7 +48,7 @@ export const Register = () => {
         },
         enableReinitialize: true,
         onSubmit: ({name, lastName, age, date, email, address, country, city, number, biliever, discipleship, tracking, noBeleaver, password}) => {
-            dispatch(startRegister(name, lastName, age, date, email, address, country, city, number, biliever, discipleship, tracking, noBeleaver, password))
+            dispatch(startRegister(name, lastName, age, date, email, address, country, city, number, biliever, discipleship, tracking, noBeleaver, password, setfirst))
             resetForm({
                 name: '', 
                 lastName: '', 

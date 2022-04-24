@@ -12,7 +12,7 @@ import { Profile } from '../Components/profile/Profile';
 import {ModalBileve} from '../Components/modalBeleave/ModalBileve'
 import moment from 'moment';
 import { useDispatch, useSelector } from 'react-redux';
-import { startUpdateUserDate, startUpdateUserNoBeleaver } from '../action/user';
+import { startUpdateUserDate, startUpdateUserNoBeleaver, updateDayNumber } from '../action/user';
 import { useEffect } from 'react';
 import { YoutubeVideo } from '../Components/youtubeVideo/YoutubeVideo';
 import { ChatPage } from '../Components/chat/ChatPage';
@@ -24,6 +24,7 @@ import { startGetPetitionesUser } from '../action/petition';
 import { NotificationPost } from '../Components/notificationPost/NotificationPost';
 import { useHistory } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
+import { ModalBilieveReset } from '../Components/modalBeleave/ModalBilieveReset';
 
 export const AuthRouter = () => {
 
@@ -34,29 +35,36 @@ export const AuthRouter = () => {
     const {pathname} = useLocation()
 
     const {activeUser, uid, notificationPost} = useSelector(state => state.auth)
+    const {Beleaver} = useSelector(state => state.bl)
     
     const StateNow = localStorage.getItem('State')
 
     const nb = localStorage.getItem('noBeleaver')
+
+    const fechainicio = moment(activeUser?.createdAt, 'YYYY-MM-DD[T]HH:mm:ss')
+    const fechafin = moment(activeUser?.sesionDate)
+
+    const nuevoCreyente = fechafin.diff(fechainicio, 'days')
 
     useEffect(() => {
 
         if(activeUser?.biliever || activeUser?.discipleship || activeUser?.tracking) {
 
             if (!StateNow) {
-                if (moment(activeUser?.createdAt, 'YYYY-MM-DD[T]HH:mm:ss').fromNow() !== 'Fecha inválida') {
-                    if (moment(activeUser?.createdAt, 'YYYY-MM-DD[T]HH:mm:ss').fromNow() > 'hace un mes') {
-                        setTimeout(() => {
-                            dispatch(startUpdateUserDate())
-                            localStorage.setItem('State', true)
-                        }, 1000 * 10);
-                    }
+                if (moment().format('YYYY-MM-DD') !== moment(activeUser?.sesionDate).format('YYYY-MM-DD')) {
+                    dispatch(updateDayNumber())
+                }
+                if (nuevoCreyente >= 90) {
+                    setTimeout(() => {
+                        dispatch(startUpdateUserDate())
+                        localStorage.setItem('State', true)
+                    }, 1000 * 10);
                 }
             }
             
         }
 
-    }, [dispatch, activeUser?.createdAt, StateNow, activeUser?.biliever, activeUser?.discipleship, activeUser?.tracking])
+    }, [dispatch, activeUser?.createdAt, StateNow, activeUser?.biliever, activeUser?.discipleship, activeUser?.tracking, activeUser?.sesionDate, nuevoCreyente])
 
     useEffect(() => {
       if (activeUser?.noBeleaver === true && !nb === false) {
@@ -80,7 +88,12 @@ export const AuthRouter = () => {
         <Container>
             <div className = 'my-5'>
                 {(activeUser?.noBeleaver) && <ModalNoBeleave />}
-                {(activeUser?.biliever || activeUser?.discipleship || activeUser?.tracking) && <ModalBileve />}
+                {
+                    (activeUser?.dayNumber > Beleaver?.length && activeUser?.noDayNumber === true)
+                        &&
+                    <ModalBilieveReset />
+                }
+                {(activeUser?.dayNumber <= Beleaver?.length) && (activeUser?.biliever || activeUser?.discipleship || activeUser?.tracking) && <ModalBileve activeUser = {activeUser?.dayNumber} />}
                 <Switch>
                     <Route path = '/Dashboard' component = {Dashboard} />
                     <Route path = '/Zoom' component = {Lives} />

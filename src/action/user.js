@@ -67,12 +67,13 @@ export const startLogin = (email, password) => {
 }
 
 
-export const startRegister = (name, lastName, age, date, email, address, country, city, number, biliever, discipleship, tracking, noBeleaver, password) => {
+export const startRegister = (name, lastName, age, date, email, address, country, city, number, biliever, discipleship, tracking, noBeleaver, password, setfirst) => {
     return async(dispatch) => {
         const resp = await fetchConToken('users/newUser', {name, lastName, age, date, email, address, country, city, number, biliever, discipleship, tracking, noBeleaver, password}, 'POST');
         const body = await resp.json();
 
         if(body.ok) {
+            setfirst(true)
             const Toast = Swal.mixin({
                 toast: true,
                 position: 'top-end',
@@ -641,3 +642,29 @@ export const setNotificationsPost = (notification) => ({
     type: Types.authsetNotificationPost,
     payload: notification
 })
+
+export const updateDayNumber = () => {
+    return (dispatch, getState) => {
+        const {socket} = getState().sk
+        const {uid} = getState().auth
+
+        const fecha = moment()
+
+        if (uid) {
+            socket?.emit('day-number', uid, fecha)
+        }
+    }
+}
+
+export const updateNoModalReset = (condition) => {
+    return (dispatch, getState) => {
+        const {socket} = getState().sk
+        const {uid} = getState().auth
+
+        if (condition === 'YES') {
+            socket?.emit('modal-reset', uid)
+        } else {
+            socket?.emit('modal-noreset', uid)
+        }
+    }
+}

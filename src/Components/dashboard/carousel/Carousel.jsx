@@ -51,7 +51,11 @@ export const Carousel = () => {
     return (
         <>
             <div className = 'row my-5'>
+              {
+                (miniSeries?.length > 0)
+                  &&
                 <h1>Mini Series</h1>
+              }
                 <Slider {...settings}>
                   {
                     miniSeries?.map(Serie => {

@@ -50,7 +50,11 @@ export const VideoWordOfTheDay = () => {
 
   return (
     <div className='my-5'>
+      {
+        (videos?.length > 0)
+          &&
         <h1>Palabra Del Día</h1>
+      }
         <div className="row">
             <Slider {...settings}>  
                 {

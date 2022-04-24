@@ -48,7 +48,11 @@ export const CarouselCapsule = () => {
     return (
         <>
             <div className = 'row my-5'>
+              {
+                (Capsules?.length > 0)
+                  &&
                 <h1>Cápsulas</h1>
+              }
                 <Slider {...settings}>
                   {
                     Capsules?.map(Capsule => {

@@ -49,7 +49,11 @@ export const CarouselSketch = () => {
     return (
         <>
             <div className = 'row my-5'>
+              {
+                (Bosquejos?.length > 0)
+                  &&
                 <h1>Bosquejos</h1>
+              }
                 <Slider {...settings}>
                   {
                     Bosquejos?.map(bosquejo => {

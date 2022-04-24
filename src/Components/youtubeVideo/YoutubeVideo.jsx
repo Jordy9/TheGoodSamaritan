@@ -74,14 +74,20 @@ export const YoutubeVideo = () => {
                               </div>
                           </div>
 
-                          <h1 style={{marginTop: '70px'}}>Buscador</h1>
-                          <div className="row">
-                              <div className="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
-                                  <div className="input-group">
-                                      <input placeholder='Buscar por título' type="search" value={title} onChange={({target}) => setTitle(target.value)} className="form-control bg-transparent text-white" />
+                          {
+                            (Youtube?.length > 0)
+                              &&
+                            <>
+                              <h1 style={{marginTop: '70px'}}>Buscador</h1>
+                              <div className="row">
+                                  <div className="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                                      <div className="input-group">
+                                          <input placeholder='Buscar por título' type="search" value={title} onChange={({target}) => setTitle(target.value)} className="form-control bg-transparent text-white" />
+                                      </div>
                                   </div>
                               </div>
-                          </div>
+                            </>
+                          }
 
                           <Slider {...settings}>
                               {
