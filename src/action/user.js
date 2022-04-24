@@ -663,7 +663,9 @@ export const updateNoModalReset = (condition) => {
 
         if (condition === 'YES') {
             socket?.emit('modal-reset', uid)
-        } else {
+        }
+
+        if (condition === 'NO') {
             socket?.emit('modal-noreset', uid)
         }
     }

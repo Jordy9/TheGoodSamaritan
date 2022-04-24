@@ -46,9 +46,17 @@ export const ModalBilieveReset = () => {
       };
 
     useEffect(() => {
-        setTimeout(() => {
+      let isMounted = true;
+        const timer = setTimeout(() => {
+          if (isMounted) {
             setfirst(true)
+          }
         }, 3000);
+
+        return () => {
+          clearTimeout(timer);
+          isMounted = false;
+        }
     }, [])
 
     const onHideModal = () => {
