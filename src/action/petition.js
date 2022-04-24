@@ -1,7 +1,6 @@
 import { fetchConToken, fetchSinToken } from "../helper/fetch"
 import { Types } from "../types/Types"
 import Swal from 'sweetalert2'
-import moment from "moment"
 
 export const startGetPetitionesUser = () => {
     return async(dispatch, getState) => {

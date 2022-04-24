@@ -89,7 +89,9 @@ export const AuthRouter = () => {
             <div className = 'my-5'>
                 {(activeUser?.noBeleaver) && <ModalNoBeleave />}
                 {
-                    (activeUser?.dayNumber > Beleaver?.length && activeUser?.noDayNumber === true)
+                    (!activeUser?.biliever || !activeUser?.discipleship || !activeUser?.tracking)
+                        &&
+                    (activeUser?.dayNumber <= Beleaver?.length && activeUser?.noDayNumber === true)
                         &&
                     <ModalBilieveReset />
                 }

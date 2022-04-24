@@ -1,5 +1,4 @@
-import React, { useEffect } from 'react'
-import { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Modal } from 'react-bootstrap'
 import { useSelector } from 'react-redux'
 import Slider from 'react-slick'
@@ -47,7 +46,7 @@ export const ModalBileve = ({activeUser}) => {
 
     const ShowNow = localStorage.getItem('Show')
 
-    const [Show, setShow] = useState()
+    const [Show, setShow] = useState(false)
 
     const onHideModal = () => {
       if (!ShowNow) {
@@ -61,21 +60,35 @@ export const ModalBileve = ({activeUser}) => {
     }
 
     useEffect(() => {
+      let isMounted = true;
       const timer = setTimeout(() => {
-        if (!ShowNow) {
-          ShowModal()
+        if (isMounted) {
+          if (!ShowNow) {
+            ShowModal()
+          }
         }
       }, 3000);
 
       return () => {
         clearTimeout(timer);
+        isMounted = false;
       }
-    }, [])
+    }, [ShowNow])
 
     useEffect(() => {
-      socket?.on('day-changed', (user) => {
-        setDay(user.dayNumber)
-      })
+      let isMounted = true;
+      const timer = setTimeout(() => {
+        if (isMounted) {
+          socket?.on('day-changed', (user) => {
+            setDay(user?.dayNumber)
+          })
+        }   
+      }, 100);
+
+      return () => {
+        clearTimeout(timer);
+        isMounted = false;
+      } 
     }, [socket])
 
     return (
