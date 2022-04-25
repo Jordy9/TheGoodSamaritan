@@ -68,6 +68,10 @@ code {
     border: none;
   }
 
+  .shadowImage {
+    box-shadow: 2px 8px 4px 2px rgba(0,0,0,0.39);
+  }
+
   #select-rol {
     border: none;
     border-bottom: 1px solid;

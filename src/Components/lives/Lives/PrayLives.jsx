@@ -28,7 +28,7 @@ export const PrayLives = () => {
 
                     <div className="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 form-group">
                         <div id="carouselExampleSlidesOnly" className="carousel slide" data-bs-ride="carousel">
-                            <div className="carousel-inner">
+                            <div className="carousel-inner shadowImage" style={{borderRadius: '100px'}}>
                                 <div className="carousel-item active">
                                     <img src={zoom?.image} className="d-block w-100 image-round" alt="..." />
                                 </div>

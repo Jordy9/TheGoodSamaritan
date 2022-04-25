@@ -60,10 +60,12 @@ export const VideoWordOfTheDay = () => {
                 {
                   videos?.map( videos => {
                     return (
-                      <div key={videos._id} className="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 imgag">
-                        <ReactPlayer onClick={() => handledSet(videos)} style={{cursor: 'pointer'}} width = '100%' height = '100%' url={videos.image} />
+                      <div key={videos._id} className="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                        <div className='imgag shadowImage' style={{boxShadow: '2px 8px 4px 2px rgba(0,0,0,0.39)', borderRadius: '10px'}}>
+                          <ReactPlayer onClick={() => handledSet(videos)} style={{cursor: 'pointer'}} width = '100%' height = '100%' url={videos.image} />
+                        </div>
                         <h5 className='text-center'>{videos.title}</h5>
-                    </div>
+                      </div>
                     )
                   })
                 }

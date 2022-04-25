@@ -9,7 +9,7 @@ export const Carrousel = () => {
     const {Mains} = useSelector(state => state.ma)
     return (
         <div className='mb-5'>
-            <Carousel fade = {true} touch = {true}>
+            <Carousel fade = {true} touch = {true} className = 'shadowImage image-round'>
                 {
                     Mains?.map(main => {
                         return (

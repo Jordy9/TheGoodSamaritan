@@ -239,7 +239,7 @@ export const startDeletePetition = () => {
 
         if(body.ok) {
             dispatch(deletePetition(activePetitionsUser))
-            socket?.('notifications-user-to-admin-delete', activePetitionsUser._id)
+            socket?.emit('notifications-user-to-admin-delete', activePetitionsUser._id)
             const Toast = Swal.mixin({
                 toast: true,
                 position: 'top-end',

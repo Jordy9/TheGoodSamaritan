@@ -12,7 +12,7 @@ export const CarrouselEvents = () => {
                 &&
             <h1>Eventos</h1>
         }
-        <Carousel fade = {true} touch = {true}>
+        <Carousel fade = {true} touch = {true} className = 'shadowImage' style={{borderRadius: '100px'}}>
             {
                 Eventos?.map(evento => {
                     return (

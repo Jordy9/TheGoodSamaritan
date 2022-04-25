@@ -14,7 +14,7 @@ export const Events = () => {
 
                 <div className="col-xs-12 col-sm-12 col-md-6 col-lg-8 col-xl-8">
                     <div className = 'shadow d-flex justify-content-center align-items-center p-4 bg-dark rounded-lg flex-column'>
-                        <Carousel fade = {true} controls = {false}>
+                        <Carousel fade = {true} controls = {false} className = 'shadowImage image-round'>
                             {
                                 Eventos?.map(evento => {
                                     return (
