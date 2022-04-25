@@ -30,7 +30,7 @@ export const PrayLives = () => {
                         <div id="carouselExampleSlidesOnly" className="carousel slide" data-bs-ride="carousel">
                             <div className="carousel-inner">
                                 <div className="carousel-item active">
-                                    <img src={zoom?.image} className="d-block w-100 rounded" alt="..." />
+                                    <img src={zoom?.image} className="d-block w-100 image-round" alt="..." />
                                 </div>
                             </div>
                         </div>

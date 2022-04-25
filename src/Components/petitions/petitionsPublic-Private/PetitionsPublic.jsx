@@ -7,13 +7,17 @@ import { ModalPetition } from '../modal/ModalPetition';
 import { useFormik } from 'formik';
 import * as Yup from 'yup'
 import { PetitionModalUser } from '../modal/ModalPetitionUser';
-import Login from '../../../heroes/peticiones.jpg'
+import perfil1 from '../../../heroes/User.png'
 import moment from 'moment';
 import Swal from 'sweetalert2';
 
 export const PetitionsPublic = () => {
 
     const {Peticiones, PeticionesUser, MyPetitions} = useSelector(state => state.pt)
+
+    const {usuarios} = useSelector(state => state.cht)
+
+    const {activeUser, users} = useSelector(state => state.auth)
 
     const [peticionesfiltradas, setpeticionesfiltradas] = useState()
     
@@ -169,7 +173,7 @@ export const PetitionsPublic = () => {
                                 MyPetitions?.map(peticion => {
                                     return (
                                         <div className = 'col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12'>
-                                            <div key={peticion._id} style={{cursor: 'pointer'}} data-bs-toggle="modal" data-bs-target="#exampleModal10" onClick={() => hanldedSetPetitionUser(peticion)}><img src={Login} className='img-fluid rounded imgag' alt=''/></div>
+                                            <div key={peticion._id} style={{cursor: 'pointer'}} data-bs-toggle="modal" data-bs-target="#exampleModal10" onClick={() => hanldedSetPetitionUser(peticion)}><img src={(activeUser?.urlImage) ? activeUser?.urlImage : perfil1} style = {{width: '300px', height: '300px'}} className='img-fluid image-round imgag' alt=''/></div>
                                             <h4 className='text-center'>{peticion.title}</h4>
                                         </div>
                                     )
@@ -187,9 +191,10 @@ export const PetitionsPublic = () => {
                     <Slider {...settings}>
                         {
                             Peticiones?.map(peticion => {
+                                const imageFiltered = usuarios?.filter(user => user.id === peticion.user.id)
                                 return (
                                     <div className = 'col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12'>
-                                        <div data-bs-toggle="modal" data-bs-target="#exampleModal7" style={{cursor: 'pointer'}} onClick={() => hanldedSetPetition(peticion)}><img src={Login} className='img-fluid rounded imgag' alt=''/></div>
+                                        <div data-bs-toggle="modal" data-bs-target="#exampleModal7" style={{cursor: 'pointer'}} onClick={() => hanldedSetPetition(peticion)}><img src={(imageFiltered[0]?.urlImage) ? imageFiltered[0]?.urlImage : perfil1} style = {{width: '300px', height: '300px'}} className='img-fluid image-round imgag' alt=''/></div>
                                         <h4 className='text-center'>{peticion.title}</h4>
                                     </div>
                                 )
@@ -207,9 +212,10 @@ export const PetitionsPublic = () => {
                     <Slider {...settings}>
                         {
                             PeticionesUser?.map(peticion => {
+                                const imageFiltered = users?.filter(user => user.id === peticion.user.id)
                                 return (
                                     <div className = 'col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12'>
-                                        <div data-bs-toggle="modal" data-bs-target="#exampleModal7" style={{cursor: 'pointer'}} onClick={() => hanldedSetPetition(peticion)}><img src={Login} className='img-fluid rounded imgag' alt=''/></div>
+                                        <div data-bs-toggle="modal" data-bs-target="#exampleModal7" style={{cursor: 'pointer'}} onClick={() => hanldedSetPetition(peticion)}><img src={(imageFiltered[0]?.urlImage) ? imageFiltered[0]?.urlImage : perfil1} style = {{width: '300px', height: '300px'}} className='img-fluid image-round imgag' alt=''/></div>
                                         <h4 className='text-center'>{peticion.title}</h4>
                                     </div>
                                 )

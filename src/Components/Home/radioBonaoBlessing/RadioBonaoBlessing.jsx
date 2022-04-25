@@ -10,7 +10,7 @@ export const RadioBonaoBlessing = () => {
             <div className="row">
                 <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 d-flex justify-content-center align-items-center flex-column mt-5">
                     <div className="shadow bg-dark p-3 mb-3">
-                        <img src={RadioBonaoBendi} className='img-fluid rounded' style={{height: '250px', width: '100vw'}} alt="" />
+                        <img src={RadioBonaoBendi} className='img-fluid image-round' style={{height: '250px', width: '100vw'}} alt="" />
                     </div>
                 </div>
             </div>

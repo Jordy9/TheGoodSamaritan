@@ -160,7 +160,7 @@ export const Navb = () => {
                                                                     </div>
                                                                 
                                                                     <div className="col-4 d-flex justify-content-end">
-                                                                        <img className='img-fluid' style={{width: '50px', height: 'auto'}} src={notifications.image} alt="" />    
+                                                                        <img className='img-fluid' style={{width: '50px', height: 'auto', borderRadius: '18px'}} src={notifications.image} alt="" />    
                                                                     </div>
                                                                 </>
                                                                 :

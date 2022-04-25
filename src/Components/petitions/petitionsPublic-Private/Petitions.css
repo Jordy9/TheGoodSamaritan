@@ -7,3 +7,7 @@
 .imgag:hover {
   transform: scale(1.15);
 }
+
+.image-round {
+  border-radius: 100px;
+}

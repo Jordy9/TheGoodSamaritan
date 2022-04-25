@@ -27,7 +27,7 @@ export const Galleryy = () => {
                           {img.map(image => {
                             return (
                                 <div className="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
-                                  <img src={image.image} className='img-fluid my-2 rounded imgag' style={{height: '300px', cursor: 'pointer'}} alt="" />
+                                  <img src={image.image} className='img-fluid my-2 image-round imgag' style={{height: '300px', cursor: 'pointer'}} alt="" />
                                 </div>
                             )
                           })}

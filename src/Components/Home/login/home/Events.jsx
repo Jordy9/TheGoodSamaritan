@@ -21,7 +21,7 @@ export const Events = () => {
                                             <Carousel.Item key = {evento._id}>
                                                 <img
                                                     style={{height: '698px', width: '810px'}}
-                                                    className="rounded"
+                                                    className="image-round"
                                                     src={evento.image}
                                                     alt="First slide"
                                                 />
