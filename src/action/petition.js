@@ -187,6 +187,8 @@ export const startUpdatePetition = (name, title, descripcion) => {
 
         const {activePetitionsUser} = getState().pt
 
+        const {socket} = getState().sk
+
         const {number} = activePetitionsUser
   
         const resp = await fetchConToken(`peticionesUser/${activePetitionsUser._id}`, {name, title, descripcion, number}, 'PUT');
@@ -195,6 +197,9 @@ export const startUpdatePetition = (name, title, descripcion) => {
         if (body.ok) {
 
             dispatch(updatePetition(body.peticion))
+
+            socket?.emit('notifications-user-to-admin-update', body.peticion)
+            
             const Toast = Swal.mixin({
                 toast: true,
                 position: 'top-end',
@@ -227,11 +232,14 @@ export const startDeletePetition = () => {
     return async(dispatch, getState) => {
         const {activePetitionsUser} = getState().pt
 
+        const {socket} = getState().sk
+
         const resp = await fetchConToken(`peticionesUser/${activePetitionsUser._id}`, activePetitionsUser, 'DELETE')
         const body = await resp.json()
 
         if(body.ok) {
             dispatch(deletePetition(activePetitionsUser))
+            socket?.('notifications-user-to-admin-delete', activePetitionsUser._id)
             const Toast = Swal.mixin({
                 toast: true,
                 position: 'top-end',
