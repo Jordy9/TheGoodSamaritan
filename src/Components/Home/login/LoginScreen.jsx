@@ -32,7 +32,7 @@ export const LoginScreen = () => {
             localStorage.setItem('email', email)
             :
             localStorage.removeItem('email')
-            dispatch(startLogin(email, password))
+            dispatch(startLogin(email.toLowerCase(), password))
 
         },
         validationSchema: Yup.object({
