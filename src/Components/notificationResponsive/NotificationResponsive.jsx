@@ -61,7 +61,7 @@ export const NotificationResponsive = () => {
                                                 </div>
                                             
                                                 <div className="col-4 d-flex justify-content-end">
-                                                    <img className='img-fluid' style={{width: '50px', height: '50px'}} src={notifications.image} alt="" />    
+                                                    <img className='img-fluid' style={{width: '50px', height: '50px', borderRadius: '18px'}} src={notifications.image} alt="" />    
                                                 </div>
                                             </>
                                             :

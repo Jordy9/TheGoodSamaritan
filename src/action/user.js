@@ -630,7 +630,7 @@ export const NotificationPublicAdmin = (notification) => {
                 color: 'white',
                 html: `
                     <div class = 'row'>
-                        <div class = 'col-12' style="display:flex;align-items: center"><h6>${notification?.subtitle}</h6></div>
+                        <div class = 'col-12' style="display:flex;align-items: center; border-radius: 18px"><h6>${notification?.subtitle}</h6></div>
                     </div>
                 `
             })

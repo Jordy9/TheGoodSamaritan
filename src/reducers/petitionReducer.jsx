@@ -31,11 +31,6 @@ export const petitionReducer = (state = initialState, action) => {
         case Types.ptCreatePetition:
             return {
                 ...state,
-                PeticionesUser: [
-                    ...state.PeticionesUser,
-                    action.payload
-                ],
-
                 MyPetitions: [
                     ...state.MyPetitions,
                     action.payload

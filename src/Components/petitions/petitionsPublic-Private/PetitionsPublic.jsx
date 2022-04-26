@@ -127,6 +127,8 @@ export const PetitionsPublic = () => {
         ]
       };
 
+      const petitionsCount = PeticionesUser?.filter(p => p.user.id !== activeUser?.id)
+
     return (
         <div className="container my-5"> 
             <div className="row">
@@ -201,13 +203,13 @@ export const PetitionsPublic = () => {
 
                 <div className = 'row my-5'>
                     {
-                        (PeticionesUser?.length > 0)
+                        (petitionsCount?.length > 0)
                             &&
                         <h1 className='my-5'>Listado de peticiones de usuarios</h1>
                     }
                     <Slider {...settings}>
                         {
-                            PeticionesUser?.map(peticion => {
+                            PeticionesUser?.filter(p => p.user.id !== activeUser?.id).map(peticion => {
                                 const imageFiltered = users?.filter(user => user.id === peticion.user.id)
                                 return (
                                     <div className = 'col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12'>
