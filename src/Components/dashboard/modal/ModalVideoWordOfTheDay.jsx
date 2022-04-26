@@ -27,11 +27,7 @@ export const ModalVideoWordOfTheDay = () => {
             </Modal.Header>
                 <Modal.Title className='text-center'>{activeVideo?.title}</Modal.Title>
             <Modal.Body> 
-                <div className="row">
-                    <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                        <ReactPlayer className = 'wrapper-player' stopOnUnmount = {true} width = '100%' height = '100%' controls playing url={activeVideo?.image} alt="..." />
-                    </div>
-                </div>
+                <ReactPlayer stopOnUnmount = {true} width = '100%' height = '100%' controls playing url={activeVideo?.image} alt="..." />
             </Modal.Body>
         </Modal>
     )
