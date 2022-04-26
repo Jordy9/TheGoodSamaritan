@@ -95,7 +95,11 @@ export const AuthRouter = () => {
                         &&
                     <ModalBilieveReset />
                 }
-                {(activeUser?.dayNumber <= Beleaver?.length) && (activeUser?.biliever || activeUser?.discipleship || activeUser?.tracking) && <ModalBileve activeUser = {activeUser?.dayNumber} />}
+                {(activeUser?.dayNumber <= Beleaver?.length) 
+                    && 
+                (activeUser?.biliever || activeUser?.discipleship || activeUser?.tracking) 
+                    && 
+                <ModalBileve activeUser = {activeUser?.dayNumber} />}
                 <Switch>
                     <Route path = '/Dashboard' component = {Dashboard} />
                     <Route path = '/Zoom' component = {Lives} />

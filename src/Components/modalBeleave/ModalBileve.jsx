@@ -106,13 +106,13 @@ export const ModalBileve = ({activeUser}) => {
                 <Modal.Body> 
                   <div className="row">
                   <>
-                      <h1 className='text-center'>{Beleaver[day]?.title}</h1>
+                      <h1 className='text-center'>{Beleaver[day - 1]?.title}</h1>
                       <div className='text-center'>
                         {
-                          parse(Beleaver[day]?.descripcion)
+                          parse(Beleaver[day - 1]?.descripcion)
                         }
                       </div>
-                      <img src = {Beleaver[day]?.image} alt="" className='img-fluid rounded' />
+                      <img src = {Beleaver[day - 1]?.image} alt="" className='img-fluid rounded' />
                     </>
                     {/* <Slider {...settings}>
                       {
