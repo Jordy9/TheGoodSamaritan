@@ -6,7 +6,8 @@ import MaskedInput from 'react-text-mask'
 import * as Yup from 'yup'
 import { startRegister } from '../../../action/user'
 import './FormProfile.css'
-import countryList from 'react-select-country-list'
+import PaisBD from '../../../PaisBD'
+import ProvinciaBD from '../../../ProvinciaBD'
 import { useHistory } from 'react-router-dom'
 
 export const Register = () => {
@@ -15,7 +16,9 @@ export const Register = () => {
 
     const dispatch = useDispatch()
 
-    const options = useMemo(() => countryList().getData(), [])
+    const options = useMemo(() => PaisBD, [])
+
+    const options2 = useMemo(() => ProvinciaBD, [])
 
     const [first, setfirst] = useState(false)
 
@@ -108,6 +111,8 @@ export const Register = () => {
         })
     })
 
+    const countryFilter = getFieldProps('country')?.value?.split(',')
+
     return (
         <>
             <div className="row">
@@ -169,7 +174,7 @@ export const Register = () => {
                                                 {
                                                     options.map(option => {
                                                         return (
-                                                            <option key={option.value} value = {[option.value, option.label]}>{option.label}</option>
+                                                            <option key={option[1]} value = {[option[2], option[1], option[0]]}>{option[1]}</option>
                                                         )
                                                     })
                                                 }
@@ -178,8 +183,19 @@ export const Register = () => {
                                         </div>
 
                                         <div className="col form-group">
-                                            <label>Ciudad</label>
-                                            <input type="text" {...getFieldProps('city')} placeholder = 'Bonao' className = 'form-control bg-transparent text-white' />
+                                            <label>Provincia</label>
+                                            <select {...getFieldProps('city')} id='select-rol' className="form-select form-control bg-transparent text-white">
+                                                <option selected>Seleccione una opción</option>
+                                                {
+                                                    (countryFilter && options2)
+                                                        &&
+                                                    options2?.filter(op => op[1] === countryFilter[2])?.map(option => {
+                                                        return (
+                                                            <option key={option} value = {[option[2]]}>{option[2]}</option>
+                                                        )
+                                                    })
+                                                }
+                                            </select>
                                             {touched.city && errors.city && <span style={{color: 'red'}}>{errors.city}</span>}
                                         </div>
 
