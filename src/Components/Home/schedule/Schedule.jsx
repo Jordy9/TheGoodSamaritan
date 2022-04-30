@@ -31,13 +31,8 @@ export const Schedule = () => {
                 </table>
             </div>
 
-            <div className="row">
-                <div className = 'shadow d-flex justify-content-center align-items-center p-4 my-5 bg-dark image-round flex-column'>
-
-                    <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                        <img src={Miercoles} style = {{objectFit: 'cover', height: '100%', width: '100%'}} className="image-round" alt="..." />
-                    </div>
-                </div>
+            <div className = 'shadow d-flex justify-content-center align-items-center p-4 my-5 bg-dark image-round flex-column'>
+                <img src={Miercoles} style = {{objectFit: 'cover', height: '100%', width: '100%'}} className="image-round" alt="..." />
             </div>
         </div>
     )
