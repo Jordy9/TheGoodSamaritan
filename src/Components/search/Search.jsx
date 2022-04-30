@@ -42,8 +42,8 @@ export const Search = () => {
                     ?
                 filtroDeBusqueda?.filter(filtroDeBusqueda => (title !== '') && (filtroDeBusqueda.title.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,"").includes(title.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,""))) && filtroDeBusqueda).map(filtro => {
                     return (
-                        <div key={filtro._id} onClick={() => handledSet(filtro)} className = 'col-xs-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 imgag my-3 mx-3 shadow p-4 bg-dark rounded-lg flex-column text-white d-flex justify-content-center align-items-center'>
-                            <img style={{cursor: 'pointer', width: '300px', height: '300px'}} src={filtro.image} alt="" className='img-fluid image-round shadowImage' />
+                        <div key={filtro._id} onClick={() => handledSet(filtro)} className = 'col-xs-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 imgag my-3 mx-3 shadow p-4 bg-dark image-round flex-column text-white d-flex justify-content-center align-items-center'>
+                            <img style={{objectFit: 'cover', cursor: 'pointer', width: '100%', height: '300px'}} src={filtro.image} alt="" className='img-fluid image-round shadowImage' />
                             <h5 className='text-center'>{filtro.title}</h5>
                         </div>
                     )

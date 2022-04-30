@@ -7,14 +7,14 @@ export const ProfileImg = ({imag}) => {
     const {activeUser, Porcentage} = useSelector(state => state.auth)
     return (
         <>
-            <div className = 'shadow d-flex justify-content-center align-items-center p-4 my-2 bg-dark rounded-lg flex-column'>
+            <div className = 'shadow d-flex justify-content-center align-items-center p-4 my-2 bg-dark image-round flex-column'>
                 <div className="person-img">
                     {
                         (activeUser?.urlImage)
                         ?
-                        <img src = {imag || activeUser?.urlImage} className="img-fluid rounded-circle" alt="..." style = {{height: '350px', width: '300px'}} />
+                        <img src = {imag || activeUser?.urlImage} className="img-fluid" alt="..." style = {{objectFit: 'cover', borderRadius: '50%', height: '300px', width: '100%'}} />
                         :
-                        <img src = {imag || perfil1} className="img-fluid rounded-circle" alt="..." style = {{height: '350px', width: '300px'}} />
+                        <img src = {imag || perfil1} className="img-fluid" alt="..." style = {{objectFit: 'cover', borderRadius: '50%', height: '300px', width: '100%'}} />
                     }
 
                     {

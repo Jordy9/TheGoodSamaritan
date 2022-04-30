@@ -118,7 +118,7 @@ export const Register = () => {
             <div className="row">
                 <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 d-flex justify-content-center align-items-center mt-5">
                     <div style = {{border: 'none'}}>
-                        <div className = 'shadow p-2 mt-2 bg-dark rounded-lg flex-column text-white'>
+                        <div className = 'shadow p-2 mt-2 bg-dark image-round flex-column text-white'>
                             <h5 className="text-white text-center mt-2">Formulario de Registro</h5>
                             <div className="card-body">
                                 <form onSubmit={handleSubmit} className = 'needs-validation'>

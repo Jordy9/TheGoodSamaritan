@@ -22,7 +22,7 @@ export const NotificationPost = () => {
     
   return (
     <div className="modal-body" style={{marginTop: '70px'}}>
-        <div className="shadow bg-dark p-3 rounded">
+        <div className="shadow bg-dark p-3 image-round">
           <span className='d-flex justify-content-end mr-4'>{(moment(notificationPost?.content?.createdAt).format('MMMM Do YYYY, h:mm a') !== 'Fecha inválida') && moment(notificationPost?.content?.createdAt).format('MMMM Do YYYY, h:mm a')}</span>
           <h1 className='text-center'>{notificationPost?.content?.title}</h1>
             <div className='col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12'>

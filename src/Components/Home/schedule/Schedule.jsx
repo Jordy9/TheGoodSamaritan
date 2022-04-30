@@ -10,7 +10,7 @@ export const Schedule = () => {
                     <img src={imagen7} style = {{width: '100%', height: '100%'}} className = 'image-round shadowImage' alt = 'imagen' />
                 </div>
             </div>
-            <div className = 'shadow p-4 my-4 bg-dark rounded-lg flex-column table-responsive'>
+            <div className = 'shadow p-4 my-4 bg-dark image-round flex-column table-responsive'>
                 <table class="table table-dark table-borderless">
                     <thead>
                         <tr>
@@ -31,7 +31,7 @@ export const Schedule = () => {
                 </table>
             </div>
 
-            <div className = 'shadow d-flex justify-content-center align-items-center p-4 my-5 bg-dark rounded-lg flex-column'>
+            <div className = 'shadow d-flex justify-content-center align-items-center p-4 my-5 bg-dark image-round flex-column'>
                 <div className="row">
 
                     <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 form-group">

@@ -26,7 +26,7 @@ export const PostMiniSerie = ({notificationPost}) => {
 
   return (
       <div className="row">
-          <div className="bg-dark shadow p-5">
+          <div className="bg-dark shadow image-round p-5">
               <div className="p-2">
                   {
                       (notificationPost)

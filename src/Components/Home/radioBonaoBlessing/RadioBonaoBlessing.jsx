@@ -7,16 +7,16 @@ export const RadioBonaoBlessing = () => {
 
     return (
         <div className='container'>
-            <div className="row">
+            {/* <div className="row">
                 <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 d-flex justify-content-center align-items-center flex-column mt-5">
                     <div className="shadow bg-dark p-3 mb-3">
-                        <img src={RadioBonaoBendi} className='img-fluid image-round' style={{height: '250px', width: '100vw'}} alt="" />
+                        <img src={RadioBonaoBendi} className='img-fluid image-round' style={{objectFit: 'cover', height: '100%', width: '100%'}} alt="" />
                     </div>
                 </div>
-            </div>
+            </div> */}
 
             <div className="row">
-                <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 d-flex justify-content-center align-items-center">
+                <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 d-flex justify-content-center align-items-center mt-5">
                     <audio controls autoPlay src={RadioBonaoBendicion}></audio>
                 </div>
             </div>
@@ -29,8 +29,8 @@ export const RadioBonaoBlessing = () => {
 
             <div className="row">
                 <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 d-flex justify-content-center align-items-center">
-                    <div className="shadow bg-dark p-3 mb-3">
-                        <iframe title='RadioBonaoBendicion' src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fradiobonaobendicio&tabs=timeline&width=340&height=500&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId" width="340" height="500" style={{border: 'none', overflow: 'hidden'}} scrolling="no" frameborder="0" allowFullScreen = {true} allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+                    <div className="shadow bg-dark p-3 mb-3 image-round">
+                        <iframe title='RadioBonaoBendicion' src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fradiobonaobendicio&tabs=timeline&width=340&height=500&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId" width="340" height="500" style={{border: 'none', overflow: 'hidden'}} className = 'image-round' scrolling="no" frameborder="0" allowFullScreen = {true} allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
                     </div>
                 </div>
             </div>

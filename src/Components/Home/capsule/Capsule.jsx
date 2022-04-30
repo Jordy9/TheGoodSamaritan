@@ -55,7 +55,7 @@ export const Capsule = () => {
       };
     return (
         <div className="container my-5"> 
-            <div className = 'shadow d-flex justify-content-center align-items-center p-4 my-2 bg-dark rounded-lg flex-column'>
+            <div className = 'shadow d-flex justify-content-center align-items-center p-4 my-2 bg-dark image-round flex-column'>
                 <h1>{
                         (activeCapsule)
                             ?
@@ -73,12 +73,12 @@ export const Capsule = () => {
                                     {
                                       (activeCapsule)
                                         ?
-                                      <div className="carousel-item active" style={{width: '100%', height: '400px'}}>
-                                        <img src={activeCapsule?.image} style = {{height: '100%', width: '100%'}} className="d-block w-100 image-round" alt="..." />
+                                      <div className="carousel-item active">
+                                        <img src={activeCapsule?.image} style = {{objectFit: 'cover', height: '100%', width: '100%'}} className="image-round" alt="..." />
                                       </div>
                                         :
-                                      <div className="carousel-item active" style={{width: '100%', height: '400px'}}>
-                                        <img src={Capsulestart?.image} style = {{height: '100%', width: '100%'}} className="d-block w-100 image-round" alt="..." />  
+                                      <div className="carousel-item active">
+                                        <img src={Capsulestart?.image} style = {{objectFit: 'cover', height: '100%', width: '100%'}} className="image-round" alt="..." />  
                                       </div>
                                     }
                                 </div>
@@ -107,7 +107,7 @@ export const Capsule = () => {
                   Capsules?.map(Capsule => {
                     return (
                       <div key={Capsule._id} className = 'col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12'>
-                          <img src={Capsule.image} onClick={() => handledSet(Capsule)} className="d-block w-100 shadowImage image-round imgag img-fluid" alt="..." style={{height: '355px'}} />
+                          <img src={Capsule.image} onClick={() => handledSet(Capsule)} className="shadowImage image-round imgag img-fluid" alt="..." style={{objectFit: 'cover', height: '355px', width: '100%'}} />
                           <h5 className='text-center'>{Capsule.title}</h5>
                       </div>
                     )

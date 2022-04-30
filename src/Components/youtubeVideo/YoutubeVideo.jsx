@@ -63,7 +63,7 @@ export const YoutubeVideo = () => {
                   <div className="col">
                       <div className = 'my-5'>
                           <div className="row my-5">
-                              <div className="shadow bg-dark p-4 col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 d-flex justify-content-center align-items-center">
+                              <div className="shadow image-round bg-dark p-4 col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 d-flex justify-content-center align-items-center">
                                 {
                                   (activeYoutube)
                                   ?
@@ -95,7 +95,7 @@ export const YoutubeVideo = () => {
                                 ).map(youtube => {
                                       return (
                                           <div className = 'col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 my-5'>
-                                              <div style={{cursor: 'pointer'}} onClick={() => handledSet(youtube)}><img src={outube} style = {{width: '300px', height: '300px'}} className='img-fluid image-round imgag shadowImage' alt=''/></div>
+                                              <div style={{cursor: 'pointer'}} onClick={() => handledSet(youtube)}><img src={outube} style = {{objectFit: 'cover', width: '100%', height: '180px'}} className='img-fluid image-round imgag shadowImage' alt=''/></div>
                                               <h5 className='text-center'>{youtube.title}</h5>
                                           </div>
                                       )

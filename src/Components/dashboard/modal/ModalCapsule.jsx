@@ -18,13 +18,13 @@ export const ModalCapsule = () => {
                     <h1 className='text-center'>{activeCapsule.title}</h1>
 
                     <div className="modal-body">
-                        <div className = 'shadow d-flex justify-content-center align-items-center p-4 my-2 bg-dark rounded-lg flex-column'>
+                        <div className = 'shadow d-flex justify-content-center align-items-center p-4 my-2 bg-dark image-round flex-column'>
                             <div className="row">
                                 <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 form-group">
                                     <div id="carouselExampleSlidesOnly" className="carousel slide" data-bs-ride="carousel">
                                         <div className="carousel-inner">
-                                            <div className="carousel-item active" style={{width: '100%', height: '350px'}}>
-                                                <img src={activeCapsule.image} style = {{height: '100%', width: '100%'}} className="d-block w-100 image-round img-fluid" alt="..." />
+                                            <div className="carousel-item active">
+                                                <img src={activeCapsule.image} style = {{objectFit: 'cover', height: '100%', width: '100%'}} className="image-round img-fluid" alt="..." />
                                             </div>
                                         </div>
                                     </div>

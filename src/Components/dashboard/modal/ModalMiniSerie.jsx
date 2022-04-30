@@ -59,7 +59,7 @@ export const ModalMiniSerie = () => {
             <Modal.Body id='descripcion-serie'>                         
               <div className="modal-body">
                   <div className="row">
-                      <div className="bg-dark shadow p-5 col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                      <div className="bg-dark image-round shadow p-5 col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                         <div className="p-2">
                             {
                               (activeSerie)

@@ -48,9 +48,9 @@ export const ProfileRandom = () => {
         <div className="bg-dark">
             <div className = 'container'>
                 <Slider {...settings}>
-                    <div className = 'shadow d-flex justify-content-center align-items-center p-4 my-2 bg-dark rounded-lg flex-column'>
+                    <div className = 'shadow d-flex justify-content-center align-items-center p-4 my-2 bg-dark image-round flex-column'>
                         <div className="person-img">
-                            <img src = {perfil1} className="img-fluid rounded-circle" alt="..." style = {{height: '350px', width: '300px'}} />
+                            <img src = {perfil1} className="img-fluid rounded-circle" alt="..." style = {{objectFit: 'cover', height: '350px', width: '100%'}} />
                         </div>
 
                         <div className="person-name my-3">
@@ -63,9 +63,9 @@ export const ProfileRandom = () => {
 
                     </div>  
 
-                    <div className = 'shadow d-flex justify-content-center align-items-center p-4 my-2 bg-dark rounded-lg flex-column'>
+                    <div className = 'shadow d-flex justify-content-center align-items-center p-4 my-2 bg-dark image-round flex-column'>
                         <div className="person-img">
-                            <img src = {perfil2} className="img-fluid rounded-circle" alt="..." style = {{height: '350px', width: '300px'}} />
+                            <img src = {perfil2} className="img-fluid rounded-circle" alt="..." style = {{objectFit: 'cover', height: '350px', width: '100%'}} />
                         </div>
 
                         <div className="person-name my-3">
@@ -78,9 +78,9 @@ export const ProfileRandom = () => {
 
                     </div>  
 
-                    <div className = 'shadow d-flex justify-content-center align-items-center p-4 my-2 bg-dark rounded-lg flex-column'>
+                    <div className = 'shadow d-flex justify-content-center align-items-center p-4 my-2 bg-dark image-round flex-column'>
                         <div className="person-img">
-                            <img src = {perfil3} className="img-fluid rounded-circle" alt="..." style = {{height: '350px', width: '300px'}} />
+                            <img src = {perfil3} className="img-fluid rounded-circle" alt="..." style = {{objectFit: 'cover', height: '350px', width: '100%'}} />
                         </div>
 
                         <div className="person-name my-3">
@@ -93,9 +93,9 @@ export const ProfileRandom = () => {
 
                     </div>  
 
-                    <div className = 'shadow d-flex justify-content-center align-items-center p-4 my-2 bg-dark rounded-lg flex-column'>
+                    <div className = 'shadow d-flex justify-content-center align-items-center p-4 my-2 bg-dark image-round flex-column'>
                         <div className="person-img">
-                            <img src = {perfil4} className="img-fluid rounded-circle" alt="..." style = {{height: '350px', width: '300px', margin: 0}} />
+                            <img src = {perfil4} className="img-fluid rounded-circle" alt="..." style = {{height: '350px', width: '100%', margin: 0}} />
                         </div>
 
                         <div className="person-name my-3">
@@ -108,9 +108,9 @@ export const ProfileRandom = () => {
 
                     </div>  
 
-                    <div className = 'shadow d-flex justify-content-center align-items-center p-4 my-2 bg-dark rounded-lg flex-column'>
+                    <div className = 'shadow d-flex justify-content-center align-items-center p-4 my-2 bg-dark image-round flex-column'>
                         <div className="person-img">
-                            <img src = {perfil5} className="img-fluid rounded-circle" alt="..." style = {{height: '350px', width: '300px'}} />
+                            <img src = {perfil5} className="img-fluid rounded-circle" alt="..." style = {{objectFit: 'cover', height: '350px', width: '100%'}} />
                         </div>
 
                         <div className="person-name my-3">
@@ -123,9 +123,9 @@ export const ProfileRandom = () => {
 
                     </div>  
 
-                    <div className = 'shadow d-flex justify-content-center align-items-center p-4 my-2 bg-dark rounded-lg flex-column'>
+                    <div className = 'shadow d-flex justify-content-center align-items-center p-4 my-2 bg-dark image-round flex-column'>
                         <div className="person-img">
-                            <img src = {perfil6} className="img-fluid rounded-circle" alt="..." style = {{height: '350px', width: '300px'}} />
+                            <img src = {perfil6} className="img-fluid rounded-circle" alt="..." style = {{objectFit: 'cover', height: '350px', width: '100%'}} />
                         </div>
 
                         <div className="person-name my-3">
@@ -138,9 +138,9 @@ export const ProfileRandom = () => {
 
                     </div>  
 
-                    <div className = 'shadow d-flex justify-content-center align-items-center p-4 my-2 bg-dark rounded-lg flex-column'>
+                    <div className = 'shadow d-flex justify-content-center align-items-center p-4 my-2 bg-dark image-round flex-column'>
                         <div className="person-img">
-                            <img src = {perfil7} className="img-fluid rounded-circle" alt="..." style = {{height: '350px', width: '300px'}} />
+                            <img src = {perfil7} className="img-fluid rounded-circle" alt="..." style = {{objectFit: 'cover', height: '350px', width: '100%'}} />
                         </div>
 
                         <div className="person-name my-3">

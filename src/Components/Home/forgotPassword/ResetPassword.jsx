@@ -46,7 +46,7 @@ export const ResetPassword = () => {
             <div className="container">
                 <div className="row">
                     <div className="col-12 my-5 d-flex justify-content-center">
-                        <div className = 'shadow p-2 bg-dark rounded-lg flex-column text-white' style = {{width: '400px', height: 'auto'}}>
+                        <div className = 'shadow p-2 bg-dark image-round flex-column text-white' style = {{width: '400px', height: 'auto'}}>
                             <h4 className = 'text-center my-2'><img src={logo} className='img-fluid' style={{width: 'auto', height: '100px'}} alt="" /></h4>
                             <div className="container card-body">
                                 <form onSubmit={handleSubmit}>

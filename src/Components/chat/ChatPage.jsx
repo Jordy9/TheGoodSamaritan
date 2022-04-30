@@ -45,7 +45,7 @@ export const ChatPage = () => {
 
     return (
         <div style={{marginTop: '18vh'}}>
-            <div className="shadow p-2 bg-dark rounded-lg flex-column">
+            <div className="shadow p-2 bg-dark image-round flex-column">
                 <div className="row">
                     <div hidden = {first} className="col-xs-5 col-sm-12 col-md-4 col-lg-4 col-xl-4 ">
                         <div className="inbox_msg">

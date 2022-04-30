@@ -41,7 +41,7 @@ export const NotificationResponsive = () => {
                     {
                         activeUserChange?.notifications?.map((notifications, index) => {
                             return (
-                                <div className='shadow my-2 bg-dark p-3 flex-column' onClick={() => setNotify(notifications)} style={{cursor: 'pointer'}} key={notifications+ index}>
+                                <div className='shadow image-round my-2 bg-dark p-3 flex-column' onClick={() => setNotify(notifications)} style={{cursor: 'pointer'}} key={notifications+ index}>
                                     <h6 className='text-white text-center'>{notifications.subtitle}</h6>
                                     <div className="row">
                                         {

@@ -140,7 +140,7 @@ export const Navb = () => {
                                         {
                                             activeUserChange?.notifications?.map((notifications, index) => {
                                                 return (
-                                                    <Dropdown.Item onClick={() => setNotify(notifications)} className='shadow my-2 bg-dark p-3 flex-column' key={notifications+ index} style={{width: 'auto', height: 'auto'}}>
+                                                    <Dropdown.Item onClick={() => setNotify(notifications)} className='shadow my-2 bg-dark p-3 flex-column image-round' key={notifications+ index} style={{width: 'auto', height: 'auto'}}>
                                                         <h6 className='text-white text-center'>{notifications.subtitle}</h6>
                                                         <div className="row">
                                                             {
@@ -160,7 +160,7 @@ export const Navb = () => {
                                                                     </div>
                                                                 
                                                                     <div className="col-4 d-flex justify-content-end">
-                                                                        <img className='img-fluid' style={{width: '50px', height: 'auto', borderRadius: '18px'}} src={notifications.image} alt="" />    
+                                                                        <img className='img-fluid' style={{objectFit: 'cover', width: '50px', height: 'auto', borderRadius: '18px'}} src={notifications.image} alt="" />    
                                                                     </div>
                                                                 </>
                                                                 :
@@ -181,7 +181,7 @@ export const Navb = () => {
                                     </div>
                             </DropdownButton>
                             
-                            <NavLink onClick={() => dispatch(setActiveUser())} to = '/Profile'>{(activeUser?.urlImage) ? <img src={activeUser?.urlImage} className='img-fluid rounded-circle mt-2' style = {{width: '32px', height: '32px', cursor: 'pointer'}} alt='' /> : <i className="bi bi-person-circle" style = {{fontSize: '32px', cursor: 'pointer', color: 'white'}}></i>}</NavLink>
+                            <NavLink onClick={() => dispatch(setActiveUser())} to = '/Profile'>{(activeUser?.urlImage) ? <img src={activeUser?.urlImage} className='img-fluid rounded-circle mt-2' style = {{objectFit: 'cover', width: '32px', height: '32px', cursor: 'pointer'}} alt='' /> : <i className="bi bi-person-circle" style = {{fontSize: '32px', cursor: 'pointer', color: 'white'}}></i>}</NavLink>
                             <NavLink to = '/Home' onClick={logout} className = 'nav-link mt-1'>Cerrar sesión</NavLink>
                         </Nav>
 

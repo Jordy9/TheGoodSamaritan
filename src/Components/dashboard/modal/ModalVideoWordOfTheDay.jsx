@@ -26,7 +26,7 @@ export const ModalVideoWordOfTheDay = () => {
             <Modal.Header id='modal-header-video' closeButton>
             </Modal.Header>
                 <Modal.Title className='text-center'>{activeVideo?.title}</Modal.Title>
-            <Modal.Body> 
+            <Modal.Body style={{height: '470px'}}> 
                 <ReactPlayer stopOnUnmount = {true} width = '100%' height = '100%' controls playing url={activeVideo?.image} alt="..." />
             </Modal.Body>
         </Modal>

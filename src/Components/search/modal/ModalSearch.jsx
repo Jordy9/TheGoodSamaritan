@@ -70,7 +70,7 @@ export const ModalSearch = () => {
 
                         <Modal.Body id='description-Serie'>                         
                             <div className="modal-body">
-                                <div className = 'shadow d-flex justify-content-center align-items-center p-4 my-2 bg-dark rounded-lg flex-column'>
+                                <div className = 'shadow d-flex justify-content-center align-items-center p-4 my-2 bg-dark image-round flex-column'>
                                     <div className="row">
                                         <div className={(Array.isArray(activeSearch?.descripcion)) ? 'col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12' : 'col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12'}>
                                             {
@@ -91,8 +91,8 @@ export const ModalSearch = () => {
                                                     :
                                                 (activeSearch)
                                                     &&
-                                                <div className="carousel-item active" style={{width: '100%', height: '350px'}}>
-                                                    <img src={activeSearch.image} style = {{height: '100%', width: '100%'}} className="d-block w-100 image-round img-fluid" alt="..." />
+                                                <div className="carousel-item active">
+                                                    <img src={activeSearch.image} style = {{objectFit: 'cover', height: '100%', width: '100%'}} className="image-round img-fluid" alt="..." />
                                                 </div>
                                             }
                                         </div>

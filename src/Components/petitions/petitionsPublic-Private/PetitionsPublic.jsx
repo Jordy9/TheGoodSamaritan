@@ -170,9 +170,9 @@ export const PetitionsPublic = () => {
                             {
                                 MyPetitions?.map(peticion => {
                                     return (
-                                        <div className = 'col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12'>
-                                            <div key={peticion._id} style={{cursor: 'pointer'}} data-bs-toggle="modal" data-bs-target="#exampleModal10" onClick={() => hanldedSetPetitionUser(peticion)}><img src={(activeUser?.urlImage) ? activeUser?.urlImage : perfil1} style = {{width: '300px', height: '300px'}} className='img-fluid image-round imgag shadowImage' alt=''/></div>
-                                            <h4 className='text-center'>{peticion.title}</h4>
+                                        <div key={peticion._id} className = 'col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12'>
+                                            <img data-bs-toggle="modal" data-bs-target="#exampleModal10" onClick={() => hanldedSetPetitionUser(peticion)} src={(activeUser?.urlImage) ? activeUser?.urlImage : perfil1} style={{objectFit: 'cover', height: '355px', width: '100%'}} className='img-fluid image-round imgag shadowImage' alt=''/>
+                                            <h5 className='text-center'>{peticion.title}</h5>
                                         </div>
                                     )
                                 })
@@ -192,8 +192,8 @@ export const PetitionsPublic = () => {
                                 const imageFiltered = usuarios?.filter(user => user.id === peticion.user.id)
                                 return (
                                     <div className = 'col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12'>
-                                        <div data-bs-toggle="modal" data-bs-target="#exampleModal7" style={{cursor: 'pointer'}} onClick={() => hanldedSetPetition(peticion)}><img src={(imageFiltered[0]?.urlImage) ? imageFiltered[0]?.urlImage : perfil1} style = {{width: '300px', height: '300px'}} className='img-fluid image-round imgag shadowImage' alt=''/></div>
-                                        <h4 className='text-center'>{peticion.title}</h4>
+                                        <img data-bs-toggle="modal" data-bs-target="#exampleModal7" onClick={() => hanldedSetPetition(peticion)} src={(imageFiltered[0]?.urlImage) ? imageFiltered[0]?.urlImage : perfil1} style = {{objectFit: 'cover', width: '100%', height: '355px'}} className='img-fluid image-round imgag shadowImage' alt=''/>
+                                        <h5 className='text-center'>{peticion.title}</h5>
                                     </div>
                                 )
                             })
@@ -213,7 +213,7 @@ export const PetitionsPublic = () => {
                                 const imageFiltered = users?.filter(user => user.id === peticion.user.id)
                                 return (
                                     <div className = 'col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12'>
-                                        <div data-bs-toggle="modal" data-bs-target="#exampleModal7" style={{cursor: 'pointer'}} onClick={() => hanldedSetPetition(peticion)}><img src={(imageFiltered[0]?.urlImage) ? imageFiltered[0]?.urlImage : perfil1} style = {{width: '300px', height: '300px'}} className='img-fluid image-round imgag shadowImage' alt=''/></div>
+                                        <img data-bs-toggle="modal" data-bs-target="#exampleModal7" onClick={() => hanldedSetPetition(peticion)} src={(imageFiltered[0]?.urlImage) ? imageFiltered[0]?.urlImage : perfil1} style = {{objectFit: 'cover', width: '100%', height: '355px'}} className='img-fluid image-round imgag shadowImage' alt=''/>
                                         <h4 className='text-center'>{peticion.title}</h4>
                                     </div>
                                 )

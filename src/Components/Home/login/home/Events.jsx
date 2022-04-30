@@ -1,7 +1,6 @@
 import React from 'react'
 import { Carousel } from 'react-bootstrap'
 import { useSelector } from 'react-redux'
-import moment from 'moment'
 
 export const Events = () => {
     const {Eventos} = useSelector(state => state.ev)
@@ -13,14 +12,14 @@ export const Events = () => {
                 </div>
 
                 <div className="col-xs-12 col-sm-12 col-md-6 col-lg-8 col-xl-8">
-                    <div className = 'shadow d-flex justify-content-center align-items-center p-4 bg-dark rounded-lg flex-column'>
+                    <div className = 'shadow d-flex justify-content-center align-items-center p-4 bg-dark image-round flex-column'>
                         <Carousel fade = {true} controls = {false} className = 'shadowImage image-round'>
                             {
                                 Eventos?.map(evento => {
                                     return (
                                             <Carousel.Item key = {evento._id}>
                                                 <img
-                                                    style={{height: '698px', width: '810px'}}
+                                                    style={{objectFit: 'cover', height: '100%', width: '100%'}}
                                                     className="image-round"
                                                     src={evento.image}
                                                     alt="First slide"

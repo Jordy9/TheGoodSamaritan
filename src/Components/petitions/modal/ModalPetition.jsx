@@ -2,9 +2,18 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import parse from 'html-react-parser'
 import moment from 'moment'
+import perfil1 from '../../../heroes/User.png'
 
 export const ModalPetition = () => {
     const {activePetitions} = useSelector(state => state.pt)
+
+    const {users} = useSelector(state => state.auth)
+
+    const {usuarios} = useSelector(state => state.cht)
+
+    const petitionsCount = usuarios?.filter(user => user.id === activePetitions?.user?.id)
+
+    const petitionsCountUsers = users?.filter(user => user.id === activePetitions?.user?.id)
 
     return (
 
@@ -15,10 +24,17 @@ export const ModalPetition = () => {
                         <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <span className='text-right mr-4'>{moment(activePetitions?.createdAt).format('MMMM Do YYYY, h:mm a')}</span>
+                    {
+                        (petitionsCount?.length > 0)
+                        ?
+                    <img src={(petitionsCount[0]?.urlImage) ? petitionsCount[0]?.urlImage : perfil1} style = {{objectFit: 'cover', width: '100px', height: '100px', borderRadius: '50%'}} className='img-fluid image-round imgag shadowImage mx-2' alt=''/>
+                        :
+                    <img src={(petitionsCountUsers[0]?.urlImage) ? petitionsCountUsers[0]?.urlImage : perfil1} style = {{objectFit: 'cover', width: '100px', height: '100px', borderRadius: '50%'}} className='img-fluid image-round imgag shadowImage mx-2' alt=''/>
+                    }
                     <h1 className='text-center'>{activePetitions?.title}</h1>
 
                     <div className="modal-body">
-                        <div className = 'shadow p-4 my-2 bg-dark rounded-lg flex-column'>
+                        <div className = 'shadow p-4 my-2 bg-dark image-round flex-column'>
                             <div className="row">
                                 <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12" style={{fontSize: '25px'}}>
                                     {

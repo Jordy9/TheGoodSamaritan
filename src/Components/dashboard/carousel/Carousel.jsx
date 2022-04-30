@@ -54,14 +54,14 @@ export const Carousel = () => {
               {
                 (miniSeries?.length > 0)
                   &&
-                <h1>Mini Series</h1>
+                <h1>Mini Series Devocionales</h1>
               }
                 <Slider {...settings}>
                   {
                     miniSeries?.map(Serie => {
                       return (
                         <div key={Serie._id} className = 'col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12'>
-                          <img src={Serie.image} onClick={() => handledSet(Serie)} className="d-block w-100 image-round imgag img-fluid shadowImage" style={{height: '355px'}} alt="..." />
+                          <img src={Serie.image} onClick={() => handledSet(Serie)} className="image-round imgag img-fluid shadowImage" style={{objectFit: 'cover', width: '100%', height: '355px'}} alt="..." />
                           <h5 className='text-center'>{Serie.title}</h5>
                         </div>
                       )

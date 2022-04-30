@@ -15,8 +15,8 @@ export const Carrousel = () => {
                         return (
                         <Carousel.Item key = {main._id}>
                             <img
-                                style={{height: '700px'}}
-                                className="d-block w-100 img-fluid image-round"
+                                style={{objectFit: 'cover', height: '100%', width: '100%'}}
+                                className="img-fluid image-round"
                                 src = {main.image}
                                 alt="First slide"
                                 />

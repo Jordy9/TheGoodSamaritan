@@ -12,7 +12,7 @@ export const Bible = () => {
   return (
     <div style={{marginTop: (libroActual) ? '80px' : '120px'}}>
         <i data-bs-toggle="modal" data-bs-target="#exampleModalNota" className="fab bi bi-journal-bookmark-fill"></i>
-        <div className = 'shadow p-3 mt-2 bg-dark rounded-lg text-white'>
+        <div className = 'shadow p-3 mt-2 bg-dark image-round text-white'>
             {
                 (!search)
                     ?

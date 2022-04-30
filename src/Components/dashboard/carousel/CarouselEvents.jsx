@@ -12,14 +12,14 @@ export const CarrouselEvents = () => {
                 &&
             <h1>Eventos</h1>
         }
-        <Carousel fade = {true} touch = {true} className = 'shadowImage' style={{borderRadius: '100px'}}>
+        <Carousel fade = {true} touch = {true} className = 'shadowImage' style={{borderRadius: '40px'}}>
             {
                 Eventos?.map(evento => {
                     return (
                         <Carousel.Item key = {evento._id}>
                             <img
-                                style={{height: '698px', width: '100%'}}
-                                className="image-round img-fluid d-block w-100"
+                                style={{objectFit: 'cover', height: '100%', width: '100%'}}
+                                className="image-round img-fluid"
                                 src = {evento.image}
                                 alt="First slide"
                             />

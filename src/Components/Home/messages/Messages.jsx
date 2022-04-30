@@ -12,7 +12,7 @@ export const Messages = () => {
                 <div className="row">
                     <div className="col">
                         <div className = 'my-5'>
-                            <div className="shadow bg-dark p-4 d-flex justify-content-center align-items-center">
+                            <div className="shadow image-round bg-dark p-4 d-flex justify-content-center align-items-center">
                                 <ReactPlayer width = '100%' height = '100%' url={Telebendicion} controls playing loop />
                             </div>
                         </div>

@@ -52,14 +52,14 @@ export const CarouselSketch = () => {
               {
                 (Bosquejos?.length > 0)
                   &&
-                <h1>Bosquejos</h1>
+                <h1>Bosquejos Devocionales</h1>
               }
                 <Slider {...settings}>
                   {
                     Bosquejos?.map(bosquejo => {
                       return (
                         <div key={bosquejo._id} className = 'col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12'>
-                            <img src={bosquejo.image} onClick={() => handledSet(bosquejo)} data-bs-toggle="modal" data-bs-target="#exampleModal2" className="d-block w-100 image-round imgag img-fluid shadowImage" alt="..." style={{height: '355px'}} />
+                            <img src={bosquejo.image} onClick={() => handledSet(bosquejo)} data-bs-toggle="modal" data-bs-target="#exampleModal2" className="image-round imgag img-fluid shadowImage" alt="..." style={{objectFit: 'cover', height: '355px', width: '100%'}} />
                             <h5 className='text-center'>{bosquejo.title}</h5>
                         </div>
                       )
