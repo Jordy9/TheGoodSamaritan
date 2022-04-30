@@ -56,7 +56,7 @@ export const Capsule = () => {
     return (
         <div className="container my-5"> 
             <div className = 'shadow d-flex justify-content-center align-items-center p-4 my-2 bg-dark image-round flex-column'>
-                <h1>{
+                <h1 className='text-center'>{
                         (activeCapsule)
                             ?
                         activeCapsule?.title

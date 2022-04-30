@@ -24,13 +24,23 @@ export const ModalPetition = () => {
                         <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <span className='text-right mr-4'>{moment(activePetitions?.createdAt).format('MMMM Do YYYY, h:mm a')}</span>
-                    {
-                        (petitionsCount?.length > 0)
-                        ?
-                    <img src={(petitionsCount[0]?.urlImage) ? petitionsCount[0]?.urlImage : perfil1} style = {{objectFit: 'cover', width: '100px', height: '100px', borderRadius: '50%'}} className='img-fluid image-round imgag shadowImage mx-2' alt=''/>
-                        :
-                    <img src={(petitionsCountUsers[0]?.urlImage) ? petitionsCountUsers[0]?.urlImage : perfil1} style = {{objectFit: 'cover', width: '100px', height: '100px', borderRadius: '50%'}} className='img-fluid image-round imgag shadowImage mx-2' alt=''/>
-                    }
+
+                    <div className='d-flex flex-row align-items-center'>
+                        {
+                            (petitionsCount?.length > 0)
+                            ?
+                        <>
+                            <img src={(petitionsCount[0]?.urlImage) ? petitionsCount[0]?.urlImage : perfil1} style = {{objectFit: 'cover', width: '100px', height: '100px', borderRadius: '50%'}} className='img-fluid image-round imgag shadowImage mx-2' alt=''/>
+                            <h4 className='text-center'>{activePetitions?.user?.name}</h4>
+                        </>
+                            :
+                        <>
+                            <img src={(petitionsCountUsers[0]?.urlImage) ? petitionsCountUsers[0]?.urlImage : perfil1} style = {{objectFit: 'cover', width: '100px', height: '100px', borderRadius: '50%'}} className='img-fluid image-round imgag shadowImage mx-2' alt=''/>
+                            <h4 className='text-center'>{activePetitions?.user?.name}</h4>
+                        </>
+                        }
+                    </div>
+
                     <h1 className='text-center'>{activePetitions?.title}</h1>
 
                     <div className="modal-body">
