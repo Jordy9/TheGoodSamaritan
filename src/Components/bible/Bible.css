@@ -8,6 +8,10 @@ li:hover {
     border-radius: 10px;
 }
 
+.hoverSearch:hover {
+    background-color: gray !important;
+}
+
 button:active{
     color:grey;
 }

@@ -124,7 +124,7 @@ export const SearchComponent = () => {
                     {
                         paginateVerse()?.map( (arreglo, index) => {
                             return (
-                                <div style={{cursor: 'pointer'}} onClick = {() => Versiculo(arreglo[2], libros[arreglo[1]], arreglo[1])} key={arreglo + index} className = 'shadow align-items-center p-4 my-2 bg-dark image-round flex-column'>
+                                <div style={{cursor: 'pointer'}} onClick = {() => Versiculo(arreglo[2], libros[arreglo[1]], arreglo[1])} key={arreglo + index} className = 'shadow align-items-center p-4 my-2 bg-dark image-round flex-column hoverSearch'>
                                     <div className="row">
                                         <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                                             <blockquote className='blockquote d-flex justify-content-center'>
