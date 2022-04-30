@@ -91,6 +91,8 @@ export const ModalBileve = ({activeUser}) => {
       } 
     }, [socket])
 
+    console.log(day)
+
     return (
         <div className='col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12'>
             <Modal
@@ -105,7 +107,10 @@ export const ModalBileve = ({activeUser}) => {
                 </Modal.Header>
                 <Modal.Body> 
                   <div className="row">
-                  <>
+                    {
+                      (day > 0)
+                      ?
+                      <>
                       <h1 className='text-center'>{Beleaver[day - 1]?.title}</h1>
                       <div className='text-center'>
                         {
@@ -114,6 +119,17 @@ export const ModalBileve = ({activeUser}) => {
                       </div>
                       <img src = {Beleaver[day - 1]?.image} alt="" className='img-fluid rounded' />
                     </>
+                    :
+                      <>
+                      <h1 className='text-center'>{Beleaver[day]?.title}</h1>
+                      <div className='text-center'>
+                        {
+                          parse(Beleaver[day]?.descripcion)
+                        }
+                      </div>
+                      <img src = {Beleaver[day]?.image} alt="" className='img-fluid rounded' />
+                    </>
+                    }
                     {/* <Slider {...settings}>
                       {
                         (Beleaver)
