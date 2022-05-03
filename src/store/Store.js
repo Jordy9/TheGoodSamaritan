@@ -5,6 +5,7 @@ import { capsuleReducer } from '../reducers/capsuleReducer';
 import { chatReducer } from '../reducers/chatReducer';
 import { eventReducer } from '../reducers/eventReducer';
 import { galleryReducer } from '../reducers/galleryReducer';
+import { ImageVideoReducer } from '../reducers/imageVideo';
 import { mainReducer } from '../reducers/mainReducer';
 import { miniSerieReducer } from '../reducers/miniSerieReducer';
 import { noBeleaverReducer } from '../reducers/noBeleaverReducer';
@@ -42,7 +43,8 @@ const reducers = combineReducers({
     nts: noteReducer,
     vwd: VideoWordOfTheDayReducer,
     nb: noBeleaverReducer,
-    bl: beleaverReducer
+    bl: beleaverReducer,
+    iv: ImageVideoReducer
 });
 
 export const store =  createStore(

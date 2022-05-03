@@ -10,7 +10,7 @@ import { ProfileRandom } from './ProfileRandom'
 export const Home = () => {
 
     return (
-        <div className = 'all'>
+        <>
             <ImageMain />
             <InfoService />
             <ModalPray />
@@ -18,6 +18,6 @@ export const Home = () => {
             <AboutUsLink />
             <Carrousel />
             <ProfileRandom />
-        </div>
+        </>
     )
 }

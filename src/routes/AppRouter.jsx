@@ -47,6 +47,7 @@ import { startGetNotes } from '../action/notas';
 import { startGetVideoWordOfTheDay } from '../action/VideoWordOfTheDay';
 import { startGetNoBeleaverVideo } from '../action/NoBeleaver';
 import { startGetBeleaver } from '../action/beleaver';
+import { startGetImageVideo } from '../action/imageVideo';
 
 moment.locale('es');
 
@@ -79,6 +80,7 @@ export const AppRouter = () => {
         dispatch(startGetVideoWordOfTheDay())
         dispatch(startGetNoBeleaverVideo())
         dispatch(startGetBeleaver())
+        dispatch(startGetImageVideo())
     }, [dispatch])
 
     useEffect(() => {
