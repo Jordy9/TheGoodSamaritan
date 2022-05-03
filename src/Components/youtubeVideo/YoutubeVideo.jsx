@@ -67,9 +67,9 @@ export const YoutubeVideo = () => {
                                 {
                                   (activeYoutube)
                                   ?
-                                  <ReactPlayer width = '86.7vw' height = '100vh' url={activeYoutube?.urlImage} controls />
+                                  <iframe src = {activeYoutube?.urlImage} title="YouTube video player" style={{borderRadius: '40px', height: '100vh', width: '100%'}} frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; full-screen" allowfullscreen="allowfullscreen"></iframe>
                                   :
-                                  <ReactPlayer width = '86.7vw' height = '100vh' url={youtubeStart?.urlImage} controls />
+                                  <iframe src = {youtubeStart?.urlImage} title="YouTube video player" style={{borderRadius: '40px', height: '100vh', width: '100%'}} frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; full-screen" allowfullscreen="allowfullscreen"></iframe>
                                 }
                               </div>
                           </div>
