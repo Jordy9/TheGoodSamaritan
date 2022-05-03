@@ -28,7 +28,6 @@ export const FormProfile = () => {
         initialValues: {
             name: activeUser?.name, 
             lastName: activeUser?.lastName, 
-            age: activeUser?.age,
             date: activeUser?.date,
             email: activeUser?.email,
             address: activeUser?.address,
@@ -43,7 +42,7 @@ export const FormProfile = () => {
             image: '',
         },
         enableReinitialize: true,
-        onSubmit: ({name, lastName, age, date, email, address, country, city, number, biliever, discipleship, tracking, password, image}) => {
+        onSubmit: ({name, lastName, date, email, address, country, city, number, biliever, discipleship, tracking, password, image}) => {
 
             if (image?.type?.includes('image') === false) {
                 const Toast = Swal.mixin({
@@ -63,7 +62,7 @@ export const FormProfile = () => {
                     title: 'Imagen con formato incorrecto'
                   })
             } else {
-                dispatch(startUpdateUser(name, lastName, age, date, email, address, country, city, number, biliever, discipleship, tracking, password, image))
+                dispatch(startUpdateUser(name, lastName, date, email, address, country, city, number, biliever, discipleship, tracking, password, image))
             }
         },
         validationSchema: Yup.object({
@@ -74,8 +73,6 @@ export const FormProfile = () => {
             lastName: Yup.string()
                         .max(50, 'Debe de tener 50 caracteres o menos')
                         .min(3, 'Debe de tener 3 caracteres o más')
-                        .required('Requerido'),
-            age: Yup.string()
                         .required('Requerido'),
             date: Yup.string()
                         .required('Requerido'),
@@ -102,6 +99,11 @@ export const FormProfile = () => {
       }
 
     const countryFilter = getFieldProps('country')?.value?.split(',')
+
+    const fechainicio1 = moment(activeUser?.date, 'YYYY-MM-DD')
+    const fechafin2 = moment()
+
+    const age = fechafin2.diff(fechainicio1, 'years')
 
     return (
         <>
@@ -133,7 +135,7 @@ export const FormProfile = () => {
                                     <div className="row">
                                         <div className="col form-group">
                                             <label>Edad</label>
-                                            <input type="number" {...getFieldProps('age')} placeholder = '25' className = 'form-control bg-transparent text-white' />
+                                            <input type="text" readOnly value={age} className = 'form-control bg-transparent text-white' />
                                             {touched.age && errors.age && <span style={{color: 'red'}}>{errors.age}</span>}
                                         </div>
 

@@ -62,8 +62,8 @@ export const VideoWordOfTheDay = () => {
                   videos?.map( videos => {
                     return (
                       <div key={videos._id} className="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                        <div className='imgag shadowImage' style={{borderRadius: '22px', maxHeight: '190px'}}>
-                          <ReactPlayer onClick={() => handledSet(videos)} style={{cursor: 'pointer', objectFit: 'cover'}} width = '100%' height = '100%' url={videos.image} />
+                        <div className='imgag'>
+                          <video onClick={() => handledSet(videos)} src={videos?.image} className = 'image-round shadowImage' style={{width: '100%', height: '355px', objectFit: 'cover'}}></video>
                         </div>
                         <h5 className='text-center'>{videos.title}</h5>
                       </div>

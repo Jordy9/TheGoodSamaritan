@@ -67,9 +67,9 @@ export const startLogin = (email, password) => {
 }
 
 
-export const startRegister = (name, lastName, age, date, email, address, country, city, number, biliever, discipleship, tracking, noBeleaver, password, setfirst) => {
+export const startRegister = (name, lastName, date, email, address, country, city, number, biliever, discipleship, tracking, noBeleaver, password, setfirst) => {
     return async(dispatch) => {
-        const resp = await fetchConToken('users/newUser', {name, lastName, age, date, email, address, country, city, number, biliever, discipleship, tracking, noBeleaver, password}, 'POST');
+        const resp = await fetchConToken('users/newUser', {name, lastName, date, email, address, country, city, number, biliever, discipleship, tracking, noBeleaver, password}, 'POST');
         const body = await resp.json();
 
         if(body.ok) {
@@ -154,11 +154,11 @@ export const startUpdateUserNoBeleaver = () => {
     return async(dispatch, getState) => {
         const {activeUser} = getState().auth
 
-        const {name, lastName, age, date, email, address, country, city, number, biliever, discipleship, tracking, password} = activeUser
+        const {name, lastName, date, email, address, country, city, number, biliever, discipleship, tracking, password} = activeUser
 
         const noBeleaver = false
 
-        const resp = await fetchConToken(`users/update/${activeUser.id}`, {name, lastName, age, date, email, address, country, city, number, biliever, discipleship, tracking, password, noBeleaver}, 'PUT')
+        const resp = await fetchConToken(`users/update/${activeUser.id}`, {name, lastName, date, email, address, country, city, number, biliever, discipleship, tracking, password, noBeleaver}, 'PUT')
         const body = await resp.json()
 
         if(body.ok) {
@@ -169,7 +169,7 @@ export const startUpdateUserNoBeleaver = () => {
     }
 }
 
-export const startUpdateUser = (name, lastName, age, date, email, address, country, city, number, biliever, discipleship, tracking, password, file) => {
+export const startUpdateUser = (name, lastName, date, email, address, country, city, number, biliever, discipleship, tracking, password, file) => {
     return async(dispatch, getState) => {
         const {activeUser} = getState().auth
 
@@ -195,7 +195,7 @@ export const startUpdateUser = (name, lastName, age, date, email, address, count
                         const urlImage = res.data.image.url
                         const idImage = res.data.image.id
                     
-                        const resp = await fetchConToken(`users/update/${activeUser.id}`, {name, lastName, age, date, email, address, country, city, number, biliever, discipleship, tracking, password, urlImage, idImage}, 'PUT')
+                        const resp = await fetchConToken(`users/update/${activeUser.id}`, {name, lastName, date, email, address, country, city, number, biliever, discipleship, tracking, password, urlImage, idImage}, 'PUT')
                         const body = await resp.json()
         
                         if(body.ok) {
@@ -284,7 +284,7 @@ export const startUpdateUser = (name, lastName, age, date, email, address, count
                     const urlImage = res.data.image.url
                     const idImage = res.data.image.id
                 
-                    const resp = await fetchConToken(`users/update/${activeUser.id}`, {name, lastName, age, date, email, address, country, city, number, biliever, discipleship, tracking, password, urlImage, idImage}, 'PUT')
+                    const resp = await fetchConToken(`users/update/${activeUser.id}`, {name, lastName, date, email, address, country, city, number, biliever, discipleship, tracking, password, urlImage, idImage}, 'PUT')
                     const body = await resp.json()
 
                     if(body.ok) {
@@ -349,7 +349,7 @@ export const startUpdateUser = (name, lastName, age, date, email, address, count
         } else {
             const urlImage = activeUser.urlImage
             const idImage = activeUser.idImage
-            const resp = await fetchConToken(`users/update/${activeUser.id}`, {name, lastName, age, date, email, address, country, city, number, biliever, discipleship, tracking, password, urlImage, idImage}, 'PUT')
+            const resp = await fetchConToken(`users/update/${activeUser.id}`, {name, lastName, date, email, address, country, city, number, biliever, discipleship, tracking, password, urlImage, idImage}, 'PUT')
             const body = await resp.json()
 
             if(body.ok) {

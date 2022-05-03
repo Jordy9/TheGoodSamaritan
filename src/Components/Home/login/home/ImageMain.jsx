@@ -21,9 +21,9 @@ export const ImageMain = () => {
                   ?
                 <ReactPlayer style={{objectFit: 'cover'}} width = '100%' height = '67.4vh' url={imageVideo?.image} controls />
                   :
-                  <iframe src = {imageVideo?.url} title="YouTube video player" style={{borderRadius: '40px', height: '67.4vh', width: '100%'}} frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; full-screen" allowfullscreen="allowfullscreen"></iframe>                  
+                <iframe src = {imageVideo?.url} title="YouTube video player" style={{height: '67.4vh', width: '100%'}} frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; full-screen" allowfullscreen="allowfullscreen"></iframe>                  
                 :
-              <img src={imageVideo?.image} alt="" style={{objectFit: 'cover', height: '67.4vh', width: '100%'}} className="img-fluid image-round" />
+              <img src={imageVideo?.image} alt="" style={{objectFit: 'cover', height: '67.4vh', width: '100%'}} className="img-fluid" />
             }
           </div>
         </div>

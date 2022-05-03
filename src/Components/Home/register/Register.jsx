@@ -35,7 +35,6 @@ export const Register = () => {
         initialValues: {
             name: '', 
             lastName: '', 
-            age: '',
             date: '',
             email: '',
             address: '',
@@ -50,12 +49,11 @@ export const Register = () => {
             confirmPassword: ''
         },
         enableReinitialize: true,
-        onSubmit: ({name, lastName, age, date, email, address, country, city, number, biliever, discipleship, tracking, noBeleaver, password}) => {
-            dispatch(startRegister(name, lastName, age, date, email.toLowerCase(), address, country, city, number, biliever, discipleship, tracking, noBeleaver, password, setfirst))
+        onSubmit: ({name, lastName, date, email, address, country, city, number, biliever, discipleship, tracking, noBeleaver, password}) => {
+            dispatch(startRegister(name, lastName, date, email.toLowerCase(), address, country, city, number, biliever, discipleship, tracking, noBeleaver, password, setfirst))
             resetForm({
                 name: '', 
                 lastName: '', 
-                age: '',
                 date: '',
                 email: '',
                 address: '',
@@ -78,8 +76,6 @@ export const Register = () => {
             lastName: Yup.string()
                         .max(50, 'Debe de tener 50 caracteres o menos')
                         .min(3, 'Debe de tener 3 caracteres o más')
-                        .required('Requerido'),
-            age: Yup.string()
                         .required('Requerido'),
             date: Yup.string()
                         .required('Requerido'),
@@ -138,23 +134,15 @@ export const Register = () => {
                                     
                                     <div className="row">
                                         <div className="col form-group">
-                                            <label>Edad</label>
-                                            <input type="number" {...getFieldProps('age')} placeholder = '25' className = 'form-control bg-transparent text-white' />
-                                            {touched.age && errors.age && <span style={{color: 'red'}}>{errors.age}</span>}
+                                            <label>Correo Electrónico</label>
+                                            <input type="text" {...getFieldProps('email')} placeholder = 'Juan123@hotmail.com' className = 'form-control bg-transparent text-white ' />
+                                            {touched.email && errors.email && <span style={{color: 'red'}}>{errors.email}</span>}
                                         </div>
 
                                         <div className="col form-group">
                                             <label>Fecha de nacimiento</label>
                                             <input type="date" min={newDate} {...getFieldProps('date')} placeholder = '26/8/1996' className = 'form-control bg-transparent text-white ' />
                                             {touched.date && errors.date && <span style={{color: 'red'}}>{errors.date}</span>}
-                                        </div>
-                                    </div>
-
-                                    <div className="row">
-                                        <div className="col form-group">
-                                            <label>Correo Electrónico</label>
-                                            <input type="text" {...getFieldProps('email')} placeholder = 'Juan123@hotmail.com' className = 'form-control bg-transparent text-white ' />
-                                            {touched.email && errors.email && <span style={{color: 'red'}}>{errors.email}</span>}
                                         </div>
                                     </div>
 
@@ -216,24 +204,24 @@ export const Register = () => {
                                     <div className="row">
                                         <div className="col form-check">
                                             <input {...getFieldProps('biliever')} type="checkbox" className="form-check-input" id="exampleCheck1" />
-                                            <label className="form-check-label">¿Es nuevo creyente?</label>
+                                            <label className="form-check-label">¿Eres nuevo creyente?</label>
                                         </div>
 
                                         <div className="col form-check">
                                             <input {...getFieldProps('discipleship')} type="checkbox" className="form-check-input" id="exampleCheck2" />
-                                            <label className="form-check-label">¿Desea hacer discipulados?</label>
+                                            <label className="form-check-label">¿Deseas hacer discipulados?</label>
                                         </div>
 
                                         <div className="col form-check">
                                             <input {...getFieldProps('tracking')} type="checkbox" className="form-check-input" id="exampleCheck3" />
-                                            <label className="form-check-label">¿Desea seguimiento para crecer en el Señor?</label>
+                                            <label className="form-check-label">¿Deseas seguimiento para crecer en el Señor?</label>
                                         </div>
                                     </div>
 
                                     <div className="row">
                                         <div className="col form-check">
                                             <input {...getFieldProps('noBeleaver')} type="checkbox" className="form-check-input" id="exampleCheck4" />
-                                            <label className="form-check-label">¿Aún no le has dado tu vida a Cristo?</label>
+                                            <label className="form-check-label">¿Deseas darle tu vida al Señor?</label>
                                         </div>
                                     </div>
 

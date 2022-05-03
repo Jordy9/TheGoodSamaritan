@@ -1,6 +1,5 @@
 import React from 'react'
 import { Modal } from 'react-bootstrap'
-import ReactPlayer from 'react-player'
 import { useDispatch, useSelector } from 'react-redux'
 import { ModalCloseVideo } from '../../../action/VideoWordOfTheDay'
 
@@ -26,8 +25,8 @@ export const ModalVideoWordOfTheDay = () => {
             <Modal.Header id='modal-header-video' closeButton>
             </Modal.Header>
                 <Modal.Title className='text-center'>{activeVideo?.title}</Modal.Title>
-            <Modal.Body style={{height: '470px'}}> 
-                <ReactPlayer stopOnUnmount = {true} width = '100%' height = '100%' controls playing url={activeVideo?.image} alt="..." />
+            <Modal.Body> 
+                <video autoPlay src={activeVideo?.image} className = 'image-round' controls style={{width: '100%', height: '100%'}}></video>
             </Modal.Body>
         </Modal>
     )
