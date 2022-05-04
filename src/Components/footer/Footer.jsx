@@ -100,7 +100,7 @@ export const Footer = () => {
                     <div className="row align-items-center">
 
                         <div className="col text-center">
-                            <p>	Copyright ©2020 All rights reserved by:
+                            <p>	Copyright ©2022 All rights reserved by:
                                 <span style={{textDecoration: "none"}}>
                                     <strong> Centro Cristiano El Buen Samaritano</strong>
                                 </span></p>
