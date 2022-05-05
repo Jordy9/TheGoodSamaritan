@@ -14,6 +14,8 @@ export const CarouselCapsule = () => {
     dispatch(startSetCapsule(Capsule))
   }
 
+  console.log(Capsules)
+
     var settings = {
         infinite: false,
         speed: 500,
@@ -24,14 +26,14 @@ export const CarouselCapsule = () => {
           {
             breakpoint: 1024,
             settings: {
-              slidesToShow: 3,
-              slidesToScroll: 3,
+              slidesToShow: (Capsules?.length > 1) ? 2 : 1,
+              slidesToScroll: 2,
             }
           },
           {
             breakpoint: 600,
             settings: {
-              slidesToShow: 2,
+              slidesToShow: (Capsules?.length > 1) ? 2 : 1,
               slidesToScroll: 2,
               initialSlide: 2
             }
@@ -39,7 +41,9 @@ export const CarouselCapsule = () => {
           {
             breakpoint: 480,
             settings: {
-              slidesToShow: 1,
+              infinite: (Capsules?.length > 4) ? true : false,
+              centerMode: (Capsules?.length > 4) ? true : false,
+              slidesToShow: (Capsules?.length < 4 && Capsules?.length > 1) ? 1.2 : 1,
               slidesToScroll: 1
             }
           }

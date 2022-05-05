@@ -157,7 +157,7 @@ export const Register = () => {
                                     <div className="row">
                                         <div className="col form-group">
                                             <label>País</label>
-                                            <select {...getFieldProps('country')} id='select-rol' className="form-select form-control bg-transparent text-white">
+                                            <select {...getFieldProps('country')} id='select-country' className="form-select form-control bg-transparent text-white">
                                                 <option selected>Seleccione una opción</option>
                                                 {
                                                     options.map(option => {
@@ -172,7 +172,7 @@ export const Register = () => {
 
                                         <div className="col form-group">
                                             <label>Provincia</label>
-                                            <select {...getFieldProps('city')} id='select-rol' className="form-select form-control bg-transparent text-white">
+                                            <select {...getFieldProps('city')} id='select-province' className="form-select form-control bg-transparent text-white">
                                                 <option selected>Seleccione una opción</option>
                                                 {
                                                     (countryFilter && options2)

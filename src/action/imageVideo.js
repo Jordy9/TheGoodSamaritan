@@ -16,3 +16,8 @@ const ImageVideo = (imageVideo) => ({
     type: Types.ivgetImageVideo,
     payload: imageVideo
 })
+
+export const setActiveImage = (image) => ({
+    type: Types.ivsetImageVideo,
+    payload: image
+})

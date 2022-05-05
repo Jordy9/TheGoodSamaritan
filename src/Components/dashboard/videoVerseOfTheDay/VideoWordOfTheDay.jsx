@@ -1,5 +1,4 @@
 import React from 'react'
-import ReactPlayer from 'react-player';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import Slider from 'react-slick';
@@ -27,14 +26,14 @@ export const VideoWordOfTheDay = () => {
           {
             breakpoint: 1024,
             settings: {
-              slidesToShow: 3,
-              slidesToScroll: 3,
+              slidesToShow: (videos?.length > 1) ? 2 : 1,
+              slidesToScroll: 2,
             }
           },
           {
             breakpoint: 600,
             settings: {
-              slidesToShow: 2,
+              slidesToShow: (videos?.length > 1) ? 2 : 1,
               slidesToScroll: 2,
               initialSlide: 2
             }
@@ -42,7 +41,9 @@ export const VideoWordOfTheDay = () => {
           {
             breakpoint: 480,
             settings: {
-              slidesToShow: 1,
+              infinite: (videos?.length > 4) ? true : false,
+              centerMode: (videos?.length > 4) ? true : false,
+              slidesToShow: (videos?.length < 4 && videos?.length > 1) ? 1.2 : 1,
               slidesToScroll: 1
             }
           }

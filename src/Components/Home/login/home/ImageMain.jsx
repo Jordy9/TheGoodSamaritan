@@ -1,12 +1,20 @@
 import React from 'react'
 import ReactPlayer from 'react-player'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { setActiveImage } from '../../../../action/imageVideo'
+import { ModalImageShow } from './ModalImageShow'
 
 export const ImageMain = () => {
+
+    const dispatch = useDispatch()
 
     const {ImageVideo} = useSelector(state => state.iv)
 
     const imageVideo = ImageVideo[0]
+
+    const imageShow = (image) => {
+      dispatch(setActiveImage(image))
+    }
 
     return (
         <div className='row'>
@@ -23,9 +31,10 @@ export const ImageMain = () => {
                   :
                 <iframe src = {imageVideo?.url} title="YouTube video player" style={{height: '67.4vh', width: '100%'}} frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; full-screen" allowfullscreen="allowfullscreen"></iframe>                  
                 :
-              <img src={imageVideo?.image} alt="" style={{objectFit: 'cover', height: '67.4vh', width: '100%'}} className="img-fluid" />
+              <img onClick={() => imageShow(imageVideo?.image)} src={imageVideo?.image} alt="" style={{objectFit: 'cover', height: '67.4vh', width: '100%', cursor: 'pointer'}} className="img-fluid" data-bs-toggle="modal" data-bs-target="#exampleModalImageShow" />
             }
           </div>
+          <ModalImageShow />
         </div>
     )
 }

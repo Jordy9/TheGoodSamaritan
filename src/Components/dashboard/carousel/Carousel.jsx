@@ -26,14 +26,14 @@ export const Carousel = () => {
           {
             breakpoint: 1024,
             settings: {
-              slidesToShow: 3,
-              slidesToScroll: 3,
+              slidesToShow: (miniSeries?.length > 1) ? 2 : 1,
+              slidesToScroll: 2,
             }
           },
           {
             breakpoint: 600,
             settings: {
-              slidesToShow: 2,
+              slidesToShow: (miniSeries?.length > 1) ? 2 : 1,
               slidesToScroll: 2,
               initialSlide: 2
             }
@@ -41,7 +41,9 @@ export const Carousel = () => {
           {
             breakpoint: 480,
             settings: {
-              slidesToShow: 1,
+              infinite: (miniSeries?.length > 4) ? true : false,
+              centerMode: (miniSeries?.length > 4) ? true : false,
+              slidesToShow: (miniSeries?.length < 4 && miniSeries?.length > 1) ? 1.2 : 1,
               slidesToScroll: 1
             }
           }

@@ -1,7 +1,8 @@
 import { Types } from '../types/Types';
 
 const initialState = {
-    ImageVideo: []
+    ImageVideo: [],
+    activeImage: ''
 }
 
 export const ImageVideoReducer = (state = initialState, action) => {
@@ -10,6 +11,12 @@ export const ImageVideoReducer = (state = initialState, action) => {
             return {
                 ...state,
                 ImageVideo: action.payload
+            }
+
+        case Types.ivsetImageVideo:
+            return {
+                ...state,
+                activeImage: action.payload
             }
     
         default:

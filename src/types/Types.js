@@ -1,6 +1,7 @@
 export const Types = {
 
     ivgetImageVideo: '[IV] get imageVideo',
+    ivsetImageVideo: '[IV] set imageVideo',
     // 
     blgetBeleaver: '[BL] get beleaver',
     // 
