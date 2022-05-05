@@ -13,19 +13,14 @@ export const PetitionModalUser = () => {
 
     const {handleSubmit, getFieldProps, touched, errors} = useFormik({
         initialValues: {
-            name: activePetitionsUser?.name, 
             title: activePetitionsUser?.title, 
             descripcion: activePetitionsUser?.descripcion,
         },
         enableReinitialize: true,
-        onSubmit: ({name, title, descripcion}) => {
-            dispatch(startUpdatePetition(name, title, descripcion))
+        onSubmit: ({title, descripcion}) => {
+            dispatch(startUpdatePetition(title, descripcion))
         },
         validationSchema: Yup.object({
-            name: Yup.string()
-                        .max(50, 'Debe de tener 50 caracteres o menos')
-                        .min(3, 'Debe de tener 3 caracteres o más')
-                        .required('Requerido'),
             title: Yup.string()
                         .max(100, 'Debe de tener 100 caracteres o menos')
                         .min(3, 'Debe de tener 3 caracteres o más')
@@ -66,17 +61,10 @@ export const PetitionModalUser = () => {
                                 <div className="card-body">
                                     <form onSubmit = {handleSubmit}>
                                         <div className = 'row'>
-                                            <div className="col-6">
-                                                <div className="form-group">
-                                                    <label>Nombre</label>
-                                                    <input type="text" className = 'form-control bg-transparent text-white' {...getFieldProps('name')} />
-                                                    {touched.title && errors.title && <span style={{color: 'red'}}>{errors.title}</span>}
-                                                </div>
-                                            </div>
 
-                                            <div className="col-6">
+                                            <div className="col-12">
                                                 <div className="form-group">
-                                                    <label>Propósito</label>
+                                                    <label>Motivo de oración</label>
                                                     <input type="text" className = 'form-control bg-transparent text-white' {...getFieldProps('title')} />
                                                     {touched.title && errors.title && <span style={{color: 'red'}}>{errors.title}</span>}
                                                 </div>

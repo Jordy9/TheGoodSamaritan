@@ -182,14 +182,14 @@ export const setPetitionUser = (petition) => ({
 })
 
 
-export const startUpdatePetition = (name, title, descripcion) => {
+export const startUpdatePetition = (title, descripcion) => {
     return async(dispatch, getState) => {
 
         const {activePetitionsUser} = getState().pt
 
         const {socket} = getState().sk
 
-        const {number} = activePetitionsUser
+        const {number, name} = activePetitionsUser
   
         const resp = await fetchConToken(`peticionesUser/${activePetitionsUser._id}`, {name, title, descripcion, number}, 'PUT');
         const body = await resp.json()

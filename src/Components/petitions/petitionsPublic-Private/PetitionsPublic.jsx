@@ -69,7 +69,6 @@ export const PetitionsPublic = () => {
             } else {
                 dispatch(startCreatePetitionUser(name, title, descripcion))
                 resetForm({
-                    name: '', 
                     title: '', 
                     descripcion: ''
                 })
@@ -78,7 +77,8 @@ export const PetitionsPublic = () => {
         },
         validationSchema: Yup.object({
             title: Yup.string()
-                        .min(2, 'Debe de tener 2 caracteres o más')
+                        .min(3, 'Debe de tener 3 caracteres o más')
+                        .max(100, 'Debe de tener 100 caracteres o menos')
                         .required('Requerido'),
             descripcion: Yup.string()
                         .min(3, 'Debe de tener 3 caracteres o más')
@@ -105,23 +105,95 @@ export const PetitionsPublic = () => {
           {
             breakpoint: 1024,
             settings: {
-              slidesToShow: 3,
-              slidesToScroll: 3,
+                slidesToShow: (MyPetitions?.length > 1) ? 2 : 1,
+                slidesToScroll: 2,
             }
           },
           {
             breakpoint: 600,
             settings: {
-              slidesToShow: 2,
-              slidesToScroll: 2,
-              initialSlide: 2
+                slidesToShow: (MyPetitions?.length > 1) ? 2 : 1,
+                slidesToScroll: 2,
+                initialSlide: 2
             }
           },
           {
             breakpoint: 480,
             settings: {
-              slidesToShow: 1,
-              slidesToScroll: 1
+                infinite: (MyPetitions?.length > 4) ? true : false,
+                centerMode: (MyPetitions?.length > 4) ? true : false,
+                slidesToShow: (MyPetitions?.length < 4 && MyPetitions?.length > 1) ? 1.2 : 1,
+                slidesToScroll: 1
+            }
+          }
+        ]
+      };
+
+    var settings2 = {
+        dots: false,
+        infinite: false,
+        speed: 500,
+        slidesToShow: 4,
+        slidesToScroll: 4,
+        initialSlide: 0,
+        responsive: [
+          {
+            breakpoint: 1024,
+            settings: {
+                slidesToShow: (Peticiones?.length > 1) ? 2 : 1,
+                slidesToScroll: 2,
+            }
+          },
+          {
+            breakpoint: 600,
+            settings: {
+                slidesToShow: (Peticiones?.length > 1) ? 2 : 1,
+                slidesToScroll: 2,
+                initialSlide: 2
+            }
+          },
+          {
+            breakpoint: 480,
+            settings: {
+                infinite: (Peticiones?.length > 4) ? true : false,
+                centerMode: (Peticiones?.length > 4) ? true : false,
+                slidesToShow: (Peticiones?.length < 4 && Peticiones?.length > 1) ? 1.2 : 1,
+                slidesToScroll: 1
+            }
+          }
+        ]
+      };
+
+    var settings3 = {
+        dots: false,
+        infinite: false,
+        speed: 500,
+        slidesToShow: 4,
+        slidesToScroll: 4,
+        initialSlide: 0,
+        responsive: [
+          {
+            breakpoint: 1024,
+            settings: {
+                slidesToShow: (PeticionesUser?.length > 1) ? 2 : 1,
+                slidesToScroll: 2,
+            }
+          },
+          {
+            breakpoint: 600,
+            settings: {
+                slidesToShow: (PeticionesUser?.length > 1) ? 2 : 1,
+                slidesToScroll: 2,
+                initialSlide: 2
+            }
+          },
+          {
+            breakpoint: 480,
+            settings: {
+                infinite: (PeticionesUser?.length > 4) ? true : false,
+                centerMode: (PeticionesUser?.length > 4) ? true : false,
+                slidesToShow: (PeticionesUser?.length < 4 && PeticionesUser?.length > 1) ? 1.2 : 1,
+                slidesToScroll: 1
             }
           }
         ]
@@ -140,7 +212,7 @@ export const PetitionsPublic = () => {
                                         <div className="row">
 
                                             <div className="col form-group">
-                                                <label>Propósito</label>
+                                                <label>Motivo de oración</label>
                                                 <input type="text" {...getFieldProps('title')} placeholder = 'Oración por fortaleza' className = 'form-control bg-transparent text-white ' />
                                                 {touched.title && errors.title && <span style={{color: 'red'}}>{errors.title}</span>}
                                             </div>
@@ -186,14 +258,14 @@ export const PetitionsPublic = () => {
                             &&
                         <h1 className='my-5'>Listado de peticiones de pastores</h1>
                     }
-                    <Slider {...settings}>
+                    <Slider {...settings2}>
                         {
                             Peticiones?.map(peticion => {
                                 const imageFiltered = usuarios?.filter(user => user.id === peticion.user.id)
                                 return (
-                                    <div className = 'col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12'>
+                                    <div key={peticion._id} className = 'col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12'>
                                         <img data-bs-toggle="modal" data-bs-target="#exampleModal7" onClick={() => hanldedSetPetition(peticion)} src={(imageFiltered[0]?.urlImage) ? imageFiltered[0]?.urlImage : perfil1} style = {{objectFit: 'cover', width: '100%', height: '355px'}} className='img-fluid image-round imgag shadowImage' alt=''/>
-                                        <h5 className='text-center'>{peticion.title}</h5>
+                                        <h5 className='text-center d-flex'>{peticion.title}</h5>
                                     </div>
                                 )
                             })
@@ -207,12 +279,12 @@ export const PetitionsPublic = () => {
                             &&
                         <h1 className='my-5'>Listado de peticiones de usuarios</h1>
                     }
-                    <Slider {...settings}>
+                    <Slider {...settings3}>
                         {
                             PeticionesUser?.filter(p => p.user.id !== activeUser?.id).map(peticion => {
                                 const imageFiltered = users?.filter(user => user.id === peticion.user.id)
                                 return (
-                                    <div className = 'col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12'>
+                                    <div key={peticion._id} className = 'col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12'>
                                         <img data-bs-toggle="modal" data-bs-target="#exampleModal7" onClick={() => hanldedSetPetition(peticion)} src={(imageFiltered[0]?.urlImage) ? imageFiltered[0]?.urlImage : perfil1} style = {{objectFit: 'cover', width: '100%', height: '355px'}} className='img-fluid image-round imgag shadowImage' alt=''/>
                                         <h4 className='text-center'>{peticion.title}</h4>
                                     </div>

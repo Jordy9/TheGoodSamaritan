@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
 import { activeChat, cargarChat } from '../../action/chat'
 import { BorrarNotificaciones } from '../../action/notifications'
-import user from '../../heroes/user-profile.png'
+import perfil1 from '../../heroes/User.png'
 
 export const SidebarChatItem = ({usuarios, istyping}) => {
 
@@ -35,13 +35,13 @@ export const SidebarChatItem = ({usuarios, istyping}) => {
         <div className={`chat_list ${(usuarios.id === chatActivo) && 'active_chat'}`} onClick={onclick}>
             {/* active_chat */}
             <div className="chat_people">
-                <div className="chat_img">
+                <div className="chat_img" style={{width: '50px', height: '50px', borderRadius: '50%', overflow: 'hidden'}}>
                     {
                         (usuarios.urlImage)
                             ?
-                        <img src={usuarios.urlImage} alt="sunil" className='rounded-circle' />
+                        <img src={usuarios.urlImage} alt="sunil" style={{objectFit: 'cover'}} />
                             :
-                        <img src={user} alt="sunil" />
+                        <img src={perfil1} alt="sunil" />
                     }
                     <span hidden = {notify.length === 0} className="badge bg-danger">{notify.length}</span>
                 </div>

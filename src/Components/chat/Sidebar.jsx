@@ -13,7 +13,7 @@ export const Sidebar = () => {
         <div className="inbox_chat bg-dark">
 
             {
-                usuarios.filter(usuario => usuario.id !== uid).map( (usuarios) => (
+                usuarios.filter(usuario => usuario.id !== uid && usuario.role !== 'Pastor').map( (usuarios) => (
                     <SidebarChatItem key={ usuarios.id }
                     usuarios = {usuarios}
                     istyping = {istyping} />
