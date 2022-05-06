@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import ReactPlayer from 'react-player';
 import { useDispatch, useSelector } from 'react-redux';
 import Slider from 'react-slick';
 import { SetActiveYoutube } from '../../action/youtubeImage';
@@ -33,14 +34,15 @@ export const YoutubeVideo = () => {
           {
             breakpoint: 1024,
             settings: {
-              slidesToShow: (Youtube?.length > 1) ? 2 : 1,
-              slidesToScroll: 2,
+              slidesToShow: 3,
+              slidesToScroll: 3,
+              infinite: false
             }
           },
           {
             breakpoint: 600,
             settings: {
-              slidesToShow: (Youtube?.length > 1) ? 2 : 1,
+              slidesToShow: 2,
               slidesToScroll: 2,
               initialSlide: 2
             }
@@ -48,9 +50,7 @@ export const YoutubeVideo = () => {
           {
             breakpoint: 480,
             settings: {
-              infinite: (Youtube?.length >= 4) ? true : false,
-              centerMode: (Youtube?.length >= 4) ? true : false,
-              slidesToShow: (Youtube?.length <= 4 && Youtube?.length > 1) ? 1.2 : 1,
+              slidesToShow: 1,
               slidesToScroll: 1
             }
           }
