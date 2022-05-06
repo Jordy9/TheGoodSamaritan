@@ -2,7 +2,6 @@ input {
     border-top: none !important;
     border-left: none !important;
     border-right: none !important;
-
 }
 
 input:focus {
@@ -14,4 +13,15 @@ input:focus {
     background: none !important;
     color: gray;
     outline: 1px solid #6c757d;
+}
+
+select {
+    border-top: none !important;
+    border-left: none !important;
+    border-right: none !important;
+}
+
+select:focus {
+    outline: none !important;
+    box-shadow: none !important;
 }
