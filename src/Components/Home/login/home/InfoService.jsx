@@ -28,7 +28,7 @@ export const InfoService = () => {
 
                     <div className="col-xs-2 col-sm-6 col-md-6 col-lg-3 col-xl-3 p-4 hom" onClick={redirectToAmanecer}>
                         <i className="fa-solid fa-church d-flex justify-content-center" style = {{fontSize: '32px'}}></i>
-                        <h4 className = 'text-center'>Ministerio El Amanecer de la Esperanza, NY.</h4>
+                        <h4 className = 'text-center'>Ministerio El Amanecer de la Esperanza, NY</h4>
                     </div>
 
                     <div className="col-xs-2 col-sm-6 col-md-6 col-lg-3 col-xl-3 p-4 hom" onClick={redirectToAPR}>
