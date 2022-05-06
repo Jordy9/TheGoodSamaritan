@@ -47,9 +47,9 @@ export const Capsule = () => {
           {
             breakpoint: 480,
             settings: {
-              infinite: (Capsules?.length > 4) ? true : false,
-              centerMode: (Capsules?.length > 4) ? true : false,
-              slidesToShow: (Capsules?.length < 4 && Capsules?.length > 1) ? 1.2 : 1,
+              infinite: (Capsules?.length >= 4) ? true : false,
+              centerMode: (Capsules?.length >= 4) ? true : false,
+              slidesToShow: (Capsules?.length <= 4 && Capsules?.length > 1) ? 1.2 : 1,
               slidesToScroll: 1
             }
           }

@@ -41,9 +41,9 @@ export const VideoWordOfTheDay = () => {
           {
             breakpoint: 480,
             settings: {
-              infinite: (videos?.length > 4) ? true : false,
-              centerMode: (videos?.length > 4) ? true : false,
-              slidesToShow: (videos?.length < 4 && videos?.length > 1) ? 1.2 : 1,
+              infinite: (videos?.length >= 4) ? true : false,
+              centerMode: (videos?.length >= 4) ? true : false,
+              slidesToShow: (videos?.length <= 4 && videos?.length > 1) ? 1.2 : 1,
               slidesToScroll: 1
             }
           }

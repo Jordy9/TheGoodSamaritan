@@ -39,9 +39,9 @@ export const CarouselSketch = () => {
           {
             breakpoint: 480,
             settings: {
-              infinite: (Bosquejos?.length > 4) ? true : false,
-              centerMode: (Bosquejos?.length > 4) ? true : false,
-              slidesToShow: (Bosquejos?.length < 4 && Bosquejos?.length > 1) ? 1.2 : 1,
+              infinite: (Bosquejos?.length >= 4) ? true : false,
+              centerMode: (Bosquejos?.length >= 4) ? true : false,
+              slidesToShow: (Bosquejos?.length <= 4 && Bosquejos?.length > 1) ? 1.2 : 1,
               slidesToScroll: 1
             }
           }

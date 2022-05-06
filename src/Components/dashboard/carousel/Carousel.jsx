@@ -41,9 +41,9 @@ export const Carousel = () => {
           {
             breakpoint: 480,
             settings: {
-              infinite: (miniSeries?.length > 4) ? true : false,
-              centerMode: (miniSeries?.length > 4) ? true : false,
-              slidesToShow: (miniSeries?.length < 4 && miniSeries?.length > 1) ? 1.2 : 1,
+              infinite: (miniSeries?.length >= 4) ? true : false,
+              centerMode: (miniSeries?.length >= 4) ? true : false,
+              slidesToShow: (miniSeries?.length <= 4 && miniSeries?.length > 1) ? 1.2 : 1,
               slidesToScroll: 1
             }
           }
