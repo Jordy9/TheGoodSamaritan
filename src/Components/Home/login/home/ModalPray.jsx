@@ -47,41 +47,43 @@ export const ModalPray = () => {
                             <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                     <div className="modal-body">
-                        <div className="col-12">
-                            <div className="mb-3" style = {{border: 'none'}}>
-                                <h5 className="text-white text-center mt-2">Petición de oración</h5>
-                                <div className="card-body">
-                                    <form onSubmit={handleSubmit} className = 'needs-validation'>
-                                        <div className="row">
-                                            <div className="col-6 form-group">
-                                                <label>Nombre</label>
-                                                <input autoComplete='off' type="text" {...getFieldProps('name')} placeholder = 'Juan' className = 'form-control bg-transparent text-white' />
-                                                {touched.name && errors.name && <span style={{color: 'red'}}>{errors.name}</span>}
-                                            </div>
+                        <div className="row">
+                            <div className="col-12">
+                                <div className="mb-3" style = {{border: 'none'}}>
+                                    <h5 className="text-white text-center mt-2">Petición de oración</h5>
+                                    <div className="card-body">
+                                        <form onSubmit={handleSubmit} className = 'needs-validation'>
+                                            <div className="row">
+                                                <div className="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 form-group">
+                                                    <label>Nombre</label>
+                                                    <input autoComplete='off' type="text" {...getFieldProps('name')} placeholder = 'Juan' className = 'form-control bg-transparent text-white' />
+                                                    {touched.name && errors.name && <span style={{color: 'red'}}>{errors.name}</span>}
+                                                </div>
 
-                                            <div className="col-6 form-group">
-                                                <label>Número de telefono</label>
-                                                <MaskedInput
-                                                    {...getFieldProps('number')}
-                                                    autoComplete = 'off'
-                                                    className = 'form-control bg-transparent text-white'
-                                                    placeholder = '(809)-222-3333)'
-                                                    mask={['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]}
-                                                />
-                                                {touched.number && errors.number && <span style={{color: 'red'}}>{errors.number}</span>}
+                                                <div className="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 form-group">
+                                                    <label>Número de telefono</label>
+                                                    <MaskedInput
+                                                        {...getFieldProps('number')}
+                                                        autoComplete = 'off'
+                                                        className = 'form-control bg-transparent text-white'
+                                                        placeholder = '(809)-222-3333)'
+                                                        mask={['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]}
+                                                    />
+                                                    {touched.number && errors.number && <span style={{color: 'red'}}>{errors.number}</span>}
+                                                </div>
                                             </div>
-                                        </div>
-                                            
-                                        <div className="row">
-                                            <div className="col form-group">
-                                                <label>Descripción</label>
-                                                <textarea style = {{resize: 'none'}} type="text" rows = '5' {...getFieldProps('descripcion')} placeholder = 'Tu descripción aqui' className = 'form-control bg-transparent text-white' />
-                                                {touched.descripcion && errors.descripcion && <span style={{color: 'red'}}>{errors.descripcion}</span>}
+                                                
+                                            <div className="row">
+                                                <div className="col-12 form-group">
+                                                    <label>Descripción</label>
+                                                    <textarea style = {{resize: 'none'}} type="text" rows = '5' {...getFieldProps('descripcion')} placeholder = 'Tu descripción aqui' className = 'form-control bg-transparent text-white' />
+                                                    {touched.descripcion && errors.descripcion && <span style={{color: 'red'}}>{errors.descripcion}</span>}
+                                                </div>
                                             </div>
-                                        </div>
-                
-                                        <button type='submit' className = 'btn btn-outline-primary form-control'>Enviar</button>
-                                    </form>
+                    
+                                            <button type='submit' className = 'btn btn-outline-primary form-control'>Enviar</button>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
                         </div>
