@@ -14,8 +14,6 @@ export const CarouselCapsule = () => {
     dispatch(startSetCapsule(Capsule))
   }
 
-  console.log(Capsules)
-
     var settings = {
         infinite: false,
         speed: 500,
