@@ -6,7 +6,6 @@ import './NavbLogin.css'
 import { startGetUsers } from '../../../../action/user'
 import { useDispatch, useSelector } from 'react-redux'
 import logo from '../../../../heroes/logo.png'
-import { UseRedirectToHttps } from '../../../../hooks/UseRedirectToHttps'
 
 export const NavbHomeScreen = () => {
 
@@ -41,8 +40,6 @@ export const NavbHomeScreen = () => {
     }
 
    }, [locat, log, dispatch, uid])
-
-//    UseRedirectToHttps()
 
     return (
         <div hidden = {state}>
