@@ -49,7 +49,6 @@ import { startGetNoBeleaverVideo } from '../action/NoBeleaver';
 import { startGetBeleaver } from '../action/beleaver';
 import { startGetImageVideo } from '../action/imageVideo';
 import { MiniSerie } from '../Components/Home/miniSeries/MiniSerie';
-import sslRedirect from 'heroku-ssl-redirect';
 
 moment.locale('es');
 
@@ -61,8 +60,6 @@ export const AppRouter = () => {
     const {socket, online, conectarSocket, desconectarSocket} = useSocket('https://good-samaritan-backend.herokuapp.com')
 
     const token = localStorage.getItem('tokenn')
-
-    sslRedirect()
 
     useEffect(() => {
         dispatch(startAuthCheking());
