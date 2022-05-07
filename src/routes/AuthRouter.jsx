@@ -89,7 +89,7 @@ export const AuthRouter = () => {
             <div className = 'my-5'>
                 {(activeUser?.noBeleaver) && <ModalNoBeleave />}
                 {
-                    (!activeUser?.biliever || !activeUser?.discipleship || !activeUser?.tracking)
+                    (!activeUser?.tracking)
                         &&
                     (activeUser?.dayNumber <= Beleaver?.length && activeUser?.noDayNumber === true)
                         &&
@@ -97,7 +97,7 @@ export const AuthRouter = () => {
                 }
                 {(activeUser?.dayNumber <= Beleaver?.length) 
                     && 
-                (activeUser?.biliever || activeUser?.discipleship || activeUser?.tracking) 
+                (activeUser?.tracking) 
                     && 
                 <ModalBileve activeUser = {activeUser?.dayNumber} />}
                 <Switch>
