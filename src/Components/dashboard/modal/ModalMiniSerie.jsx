@@ -62,6 +62,12 @@ export const ModalMiniSerie = () => {
                       <div className="bg-dark image-round shadow p-5 col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                         <div className="p-2">
                             {
+                              (first === 0)
+                                &&
+                              <img src={activeSerie?.image} style = {{objectFit: 'cover', height: '100%', width: '100%'}} className="image-round img-fluid" alt="..." />
+                            }
+                            
+                            {
                               (activeSerie)
                                 &&
                                 parse(activeSerie?.descripcion[first])

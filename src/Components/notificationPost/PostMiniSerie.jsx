@@ -12,6 +12,13 @@ export const PostMiniSerie = ({notificationPost}) => {
       scrollToTopAnimatedPost('description-Serie-Post')
     }, [first])
 
+    useEffect(() => {
+    
+      return () => {
+        setfirst(0)
+      }
+    }, [])
+    
     const next = () => {
       if (countArray - 1 !== first) {
         setfirst(first + 1)
@@ -28,6 +35,12 @@ export const PostMiniSerie = ({notificationPost}) => {
       <div className="row">
           <div className="bg-dark shadow image-round p-5">
               <div className="p-2">
+                  {
+                    (first === 0)
+                      &&
+                    <img src={notificationPost?.image} style = {{objectFit: 'cover', height: '100%', width: '100%'}} className="image-round img-fluid" alt="..." />
+                  }
+                  
                   {
                       (notificationPost)
                       &&

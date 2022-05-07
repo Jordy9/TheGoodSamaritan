@@ -58,7 +58,7 @@ export const NavbHomeScreen = () => {
                             <NavLink to = '/Home' className = 'nav-link'>Inicio</NavLink>
                             <NavLink to = '/Teleblessing' className = 'nav-link'>Telebendición</NavLink>
                             <NavLink to = '/RadioBonaoBlessing' className = 'nav-link'>Radio Bonao Bendición</NavLink>
-                            <NavLink to = '/Capsule' className = 'nav-link'>Devocionales</NavLink>
+                            <NavLink to = '/Devotionals' className = 'nav-link'>Devocionales</NavLink>
                             <NavLink to = '/Schedule' className = 'nav-link'>Horarios</NavLink>
                             <NavLink to = '/Gallery' className = 'nav-link'>Galería</NavLink>
                             <NavLink to = '/Contact' className = 'nav-link'>Contacto</NavLink>

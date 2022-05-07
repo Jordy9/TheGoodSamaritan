@@ -88,6 +88,7 @@ export const Types = {
     miSetSerie: '[Mi] set serie',
     miSetSerieShow: '[Mi] set serie show',
     miSetSerieHide: '[Mi] set serie hide',
+    miSetSerieStart: '[Mi] set serie start',
     //
     sktgetBosquejos: '[SKT] get bosquejos',
     sktSetBosquejo: '[SKT] set bosquejo',

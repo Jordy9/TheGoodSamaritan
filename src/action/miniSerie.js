@@ -8,6 +8,7 @@ export const startGetMiniSeries = () => {
 
         if(body.ok) {
             dispatch(miniSeries(body.miniSeries))
+            dispatch(MiniSerieStart(body.miniSeries[0]))
         }
     }
 }
@@ -15,6 +16,11 @@ export const startGetMiniSeries = () => {
 const miniSeries = (series) => ({
     type: Types.migetSeries,
     payload: series
+})
+
+const MiniSerieStart = (serie) => ({
+    type: Types.miSetSerieStart,
+    payload: serie
 })
 
 export const setSeries = (series) => ({

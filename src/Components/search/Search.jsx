@@ -11,13 +11,13 @@ export const Search = () => {
     const [title, setTitle] = useState('')
 
     const {miniSeries} = useSelector(state => state.mi)
-    const {Capsules} = useSelector(state => state.ca)
+    // const {Capsules} = useSelector(state => state.ca)
     const {Bosquejos} = useSelector(state => state.skt)
 
     let filtroDeBusqueda
 
-    if (miniSeries && Capsules && Bosquejos) {
-        filtroDeBusqueda = [...miniSeries, ...Capsules, ...Bosquejos]
+    if (miniSeries && Bosquejos) {
+        filtroDeBusqueda = [...miniSeries, ...Bosquejos]
     }
     
     const handledSet = (filtro) => {

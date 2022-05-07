@@ -48,6 +48,7 @@ import { startGetVideoWordOfTheDay } from '../action/VideoWordOfTheDay';
 import { startGetNoBeleaverVideo } from '../action/NoBeleaver';
 import { startGetBeleaver } from '../action/beleaver';
 import { startGetImageVideo } from '../action/imageVideo';
+import { MiniSerie } from '../Components/Home/miniSeries/MiniSerie';
 
 moment.locale('es');
 
@@ -128,7 +129,7 @@ export const AppRouter = () => {
                     <Route exact path = '/Teleblessing' component = {Messages} />
                     <Route exact path = '/RadioBonaoBlessing' component = {RadioBonaoBlessing} />
                     <Route exact path = '/Contact' component = {Conctact} />
-                    <Route exact path = '/Capsule' component = {Capsule} />
+                    <Route exact path = '/Devotionals' component = {MiniSerie} />
                     <Route exact path = '/Schedule' component = {Schedule} />
                     <Route exact path = '/Gallery' component = {Galleryy} />
                     <Route exact path = '/ForgotPassword' component = {ForgotPassword} />
