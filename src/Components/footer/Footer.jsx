@@ -86,7 +86,7 @@ export const Footer = () => {
                                 <i className="fas fa-home mr-3"></i>República Dominicana, Bonao, Padre Fantino.
                             </p>
                             <p>
-                                <i className="fas fa-envelope mr-3"></i>centrocristiano777@gmai.com
+                                <i className="fas fa-envelope mr-3"></i>centrocristiano777@gmail.com
                             </p>
                             <p>
                                 <i className="fas fa-phone mr-3"></i>+1 (809)-296-1771
