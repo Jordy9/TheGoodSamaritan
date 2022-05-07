@@ -42,7 +42,7 @@ export const NavbHomeScreen = () => {
 
    }, [locat, log, dispatch, uid])
 
-   UseRedirectToHttps()
+//    UseRedirectToHttps()
 
     return (
         <div hidden = {state}>
