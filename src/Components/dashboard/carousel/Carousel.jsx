@@ -56,7 +56,7 @@ export const Carousel = () => {
               {
                 (miniSeries?.length > 0)
                   &&
-                <h1>Mini Series Devocionales</h1>
+                <h1>Miniseries Devocionales</h1>
               }
                 <Slider {...settings}>
                   {
