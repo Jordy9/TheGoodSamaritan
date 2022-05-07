@@ -23,7 +23,7 @@ import { startGetYoutube } from '../action/youtubeImage';
 import { startGetZoom } from '../action/zoom';
 import { Footer } from '../Components/footer/Footer';
 import { ScrollToTop } from '../Components/scrollToTop/ScrollToTop';
-import { Capsule } from '../Components/Home/capsule/Capsule';
+// import { Capsule } from '../Components/Home/capsule/Capsule';
 import { Conctact } from '../Components/Home/contact/Conctact';
 import { ForgotPassword } from '../Components/Home/forgotPassword/ForgotPassword';
 import { ResetPassword } from '../Components/Home/forgotPassword/ResetPassword';
@@ -49,6 +49,7 @@ import { startGetNoBeleaverVideo } from '../action/NoBeleaver';
 import { startGetBeleaver } from '../action/beleaver';
 import { startGetImageVideo } from '../action/imageVideo';
 import { MiniSerie } from '../Components/Home/miniSeries/MiniSerie';
+import sslRedirect from 'heroku-ssl-redirect';
 
 moment.locale('es');
 
@@ -60,6 +61,8 @@ export const AppRouter = () => {
     const {socket, online, conectarSocket, desconectarSocket} = useSocket('https://good-samaritan-backend.herokuapp.com')
 
     const token = localStorage.getItem('tokenn')
+
+    sslRedirect()
 
     useEffect(() => {
         dispatch(startAuthCheking());
