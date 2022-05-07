@@ -31,7 +31,7 @@ export const ModalPetition = () => {
                             ?
                         <>
                             <img src={(petitionsCount[0]?.urlImage) ? petitionsCount[0]?.urlImage : perfil1} style = {{objectFit: 'cover', width: '100px', height: '100px', borderRadius: '50%'}} className='img-fluid image-round imgag shadowImage mx-2' alt=''/>
-                            <h4 className='text-center'>{activePetitions?.user?.name}</h4>
+                            <h4 className='text-center'>Pr. {activePetitions?.user?.name} {petitionsCount[0]?.lastName}</h4>
                         </>
                             :
                         <>
