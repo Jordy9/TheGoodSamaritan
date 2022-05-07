@@ -85,7 +85,7 @@ export const Conctact = () => {
                             </div>
 
                             <div className="col-9">
-                                <p>Nuestro numero de telefono es: 809-296-1771</p>
+                                <p>Nuestro número de teléfono es: 809-296-1771</p>
                             </div>
 
                             <div className="col-3">
