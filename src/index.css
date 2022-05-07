@@ -88,9 +88,25 @@ code {
     display: none !important;
   }
 
+  #dateMobile {
+    display: none;
+  }
+
+  #dateDeskLap {
+    display: block;
+  }
+
   @media (max-width: 768px) {
 
     #tituloNav {
+      display: none;
+    }
+
+    #dateMobile {
+      display: block;
+    }
+
+    #dateDeskLap {
       display: none;
     }
   }

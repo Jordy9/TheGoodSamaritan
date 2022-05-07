@@ -6,6 +6,7 @@ import { useState } from 'react'
 import { scrollToTopAnimated } from '../../../helper/ScrollToBottom'
 import { Modal } from 'react-bootstrap'
 import { setHide } from '../../../action/miniSerie'
+import perfil1 from '../../../heroes/User.png'
 
 export const ModalMiniSerie = () => {
 
@@ -40,6 +41,10 @@ export const ModalMiniSerie = () => {
       setfirst(0)
     }
 
+    const {usuarios} = useSelector(state => state.cht)
+
+    const miniSerieCount = usuarios?.filter(user => user.id === activeSerie?.user)
+
     return (
 
       <>
@@ -54,17 +59,32 @@ export const ModalMiniSerie = () => {
           >
             <Modal.Header id='modal-header-video' closeButton>
             </Modal.Header>
-              <span className='text-right mr-4'>{moment(activeSerie?.createdAt).format('MMMM Do YYYY, h:mm a')}</span>
-              <h1 className='text-center'>{activeSerie.title}</h1>
+              <div className="row">
+                <div className="col-12">
+                  <div className="row">
+                    <div className="col-6 d-flex justify-content-start align-items-center">
+                      <img src={(miniSerieCount[0]?.urlImage) ? miniSerieCount[0]?.urlImage : perfil1} style = {{objectFit: 'cover', width: '50px', height: '50px', borderRadius: '50%'}} className='img-fluid image-round imgag shadowImage mx-2' alt=''/>
+                      <span className='text-center'>Pr. {miniSerieCount[0]?.name} {miniSerieCount[0]?.lastName}</span>
+                    </div>
+              
+                    <div className="col-6 d-flex justify-content-end align-items-center">
+                      <span id='dateMobile' className='text-right mr-4'>{moment(activeSerie?.createdAt).format('MMMM Do YYYY')}</span>
+                      <span id='dateDeskLap' className='text-right mr-4'>{moment(activeSerie?.createdAt).format('MMMM Do YYYY, h:mm a')}</span>
+                    </div>
+                  </div>
+                  <h1 className='text-center'>{activeSerie?.title}</h1>
+                </div>
+              </div>
+              
             <Modal.Body id='descripcion-serie'>                         
               <div className="modal-body">
                   <div className="row">
-                      <div className="bg-dark image-round shadow p-5 col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                        <div className="p-2">
+                      <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 form-group">
+                        <div>
                             {
                               (first === 0)
                                 &&
-                              <img src={activeSerie?.image} style = {{objectFit: 'cover', height: '100%', width: '100%'}} className="image-round img-fluid" alt="..." />
+                              <img src={activeSerie?.image} style = {{objectFit: 'cover', height: '100%', width: '100%'}} className="image-round img-fluid mb-3" alt="..." />
                             }
                             
                             {

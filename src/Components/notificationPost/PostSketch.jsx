@@ -8,7 +8,7 @@ export const PostSketch = ({notificationPost}) => {
           <div id="carouselExampleSlidesOnly" className="carousel slide" data-bs-ride="carousel">
               <div className="carousel-inner">
                   <div className="carousel-item active">
-                      <img src={notificationPost.image} style = {{objectFit: 'cover', height: '100%', width: '100%'}} className="image-round img-fluid" alt="..." />
+                      <img src={notificationPost.image} style = {{objectFit: 'cover', height: '100%', width: '100%'}} className="image-round img-fluid my-3" alt="..." />
                   </div>
               </div>
           </div>

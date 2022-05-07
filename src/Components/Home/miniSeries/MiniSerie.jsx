@@ -7,6 +7,7 @@ import parse from 'html-react-parser'
 import { scrollToTopAnimatedPost } from '../../../helper/ScrollToBottom';
 import { setSeries } from '../../../action/miniSerie';
 import { Spinner } from '../../spinner/Spinner';
+import moment from 'moment';
 
 export const MiniSerie = () => {
   const dispatch = useDispatch()
@@ -99,29 +100,31 @@ export const MiniSerie = () => {
       }
     return (
         <div className="container my-5"> 
-            <div className = 'shadow d-flex justify-content-center align-items-center p-4 my-2 bg-dark image-round flex-column'>
-                <h1 className='text-center'>{
-                        (activeSerie)
-                            ?
-                        activeSerie?.title
-                            :
-                        miniSerieStart?.title || ''
+            <div className = 'shadow d-flex p-2 my-2 bg-dark image-round flex-column'>
+            <span className='text-right mr-4 mb-2'>{moment(activeSerie?.createdAt).format('MMMM Do YYYY, h:mm a')}</span>
+                <h1 className='text-center'>
+                  {
+                    (activeSerie)
+                        ?
+                    activeSerie?.title
+                        :
+                    miniSerieStart?.title || ''
 
-                    }
+                  }
                 </h1>
                 <div className="row">
-                  <div className="bg-dark image-round shadow p-5 col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                    <div className="p-2">
+                  <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                    <div className="p-4">
                         {
                           (activeSerie)
                             ?
                           (first === 0)
                               &&
-                          <img src={activeSerie?.image} style = {{objectFit: 'cover', height: '100%', width: '100%'}} className="image-round img-fluid" alt="..." />
+                          <img src={activeSerie?.image} style = {{objectFit: 'cover', height: '100%', width: '100%'}} className="image-round img-fluid my-2" alt="..." />
                             :
                           (first2 === 0)
                               &&
-                          <img src={miniSerieStart?.image} style = {{objectFit: 'cover', height: '100%', width: '100%'}} className="image-round img-fluid" alt="..." />
+                          <img src={miniSerieStart?.image} style = {{objectFit: 'cover', height: '100%', width: '100%'}} className="image-round img-fluid my-2" alt="..." />
                         }
                         
                         {

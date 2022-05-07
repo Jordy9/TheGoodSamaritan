@@ -33,12 +33,12 @@ export const PostMiniSerie = ({notificationPost}) => {
 
   return (
       <div className="row">
-          <div className="bg-dark shadow image-round p-5">
-              <div className="p-2">
+          <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+              <div>
                   {
                     (first === 0)
                       &&
-                    <img src={notificationPost?.image} style = {{objectFit: 'cover', height: '100%', width: '100%'}} className="image-round img-fluid" alt="..." />
+                    <img src={notificationPost?.image} style = {{objectFit: 'cover', height: '100%', width: '100%'}} className="image-round img-fluid my-3" alt="..." />
                   }
                   
                   {

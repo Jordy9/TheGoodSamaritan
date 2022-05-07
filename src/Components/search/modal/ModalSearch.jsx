@@ -5,6 +5,7 @@ import moment from 'moment'
 import { scrollToTopAnimated } from '../../../helper/ScrollToBottom'
 import { setHide } from '../../../action/search'
 import { Modal } from 'react-bootstrap'
+import perfil1 from '../../../heroes/User.png'
 
 export const ModalSearch = () => {
 
@@ -43,6 +44,10 @@ export const ModalSearch = () => {
         setfirst(0)
       }
 
+      const {usuarios} = useSelector(state => state.cht)
+
+      const searchCount = usuarios?.filter(user => user.id === activeSearch?.user || user.id === activeSearch?.user?.id)
+
     return (
 
         <div className="modal fade" id="exampleModalSearch" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -51,8 +56,25 @@ export const ModalSearch = () => {
                     <div className="modal-header" style = {{border: 'none'}}>
                         <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <span className='text-right mr-4'>{moment(activeSearch?.createdAt).format('MMMM Do YYYY, h:mm a')}</span>
-                    <h1 className='text-center'>{activeSearch?.title}</h1>
+
+                    {/* <div className="row">
+                        <div className="col-12">
+                            <div className="row">
+                                <div className="col-6 d-flex justify-content-start align-items-center">
+                                    <img src={(searchCount[0]?.urlImage) ? searchCount[0]?.urlImage : perfil1} style = {{objectFit: 'cover', width: '50px', height: '50px', borderRadius: '50%'}} className='img-fluid image-round imgag shadowImage mx-2' alt=''/>
+                                    <span className='text-center'>Pr. {searchCount[0]?.name} {searchCount[0]?.lastName}</span>
+                                </div>
+                        
+                                <div className="col-6 d-flex justify-content-end align-items-center">
+                                    <span id='dateMobile' className='text-right mr-4'>{moment(activeSearch?.createdAt).format('MMMM Do YYYY')}</span>
+                                    <span id='dateDeskLap' className='text-right mr-4'>{moment(activeSearch?.createdAt).format('MMMM Do YYYY, h:mm a')}</span>
+                                </div>
+                            </div>
+                            <h1 className='text-center'>{activeSearch?.title}</h1>
+                        </div>
+                    </div> */}
+                    {/* <span className='text-right mr-4'>{moment(activeSearch?.createdAt).format('MMMM Do YYYY, h:mm a')}</span>
+                    <h1 className='text-center'>{activeSearch?.title}</h1> */}
 
                     <Modal
                         scrollable = {true}
@@ -65,53 +87,72 @@ export const ModalSearch = () => {
                     >
                         <Modal.Header id='modal-header-video' closeButton>
                         </Modal.Header>
-                            <span className='text-right mr-4'>{moment(activeSearch?.createdAt).format('MMMM Do YYYY, h:mm a')}</span>
-                            <h1 className='text-center'>{activeSearch?.title}</h1>
+                            <div className="row">
+                                <div className="col-12">
+                                    <div className="row">
+                                        <div className="col-6 d-flex justify-content-start align-items-center">
+                                            <img src={(searchCount[0]?.urlImage) ? searchCount[0]?.urlImage : perfil1} style = {{objectFit: 'cover', width: '50px', height: '50px', borderRadius: '50%'}} className='img-fluid image-round imgag shadowImage mx-2' alt=''/>
+                                            <span className='text-center'>Pr. {searchCount[0]?.name} {searchCount[0]?.lastName}</span>
+                                        </div>
+                                
+                                        <div className="col-6 d-flex justify-content-end align-items-center">
+                                            <span id='dateMobile' className='text-right mr-4'>{moment(activeSearch?.createdAt).format('MMMM Do YYYY')}</span>
+                                            <span id='dateDeskLap' className='text-right mr-4'>{moment(activeSearch?.createdAt).format('MMMM Do YYYY, h:mm a')}</span>
+                                        </div>
+                                    </div>
+                                    <h1 className='text-center'>{activeSearch?.title}</h1>
+                                </div>
+                            </div>
 
                         <Modal.Body id='description-Serie'>                         
                             <div className="modal-body">
-                                <div className = 'shadow d-flex justify-content-center align-items-center p-4 my-2 bg-dark image-round flex-column'>
-                                    <div className="row">
-                                        <div className={(Array.isArray(activeSearch?.descripcion)) ? 'col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12' : 'col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12'}>
-                                            {
-                                                (Array.isArray(activeSearch?.descripcion))
-                                                    ?
-                                                <>
-                                                    {parse(activeSearch?.descripcion[first])}
-                                                    <div className="row">
-                                                        <div className="col-6 justify-content-start">
-                                                            <button className='btn btn-outline-secondary' style={{borderRadius: '10px', color: 'white'}} hidden = {(first <= 0)} onClick = {prev}><i className="fa-solid fa-angle-left"></i> Anterior</button>
-                                                        </div>
-
-                                                        <div className="col-6 justify-content-end text-end">
-                                                            <button className='btn btn-outline-secondary' style={{borderRadius: '10px', color: 'white'}} hidden = {(countArray - 1 === first)} onClick = {next}>Siguiente <i className="fa-solid fa-angle-right"></i></button>
-                                                        </div>
+                                <div className="row">
+                                    {
+                                        (Array.isArray(activeSearch?.descripcion))
+                                            &&
+                                        (first === 0)
+                                            &&
+                                        <img src={activeSearch?.image} style = {{objectFit: 'cover', height: '100%', width: '100%'}} className="image-round img-fluid" alt="..." />
+                                    }
+                                    <div className={(Array.isArray(activeSearch?.descripcion)) ? 'col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 my-3' : 'col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 my-3'}>
+                                        {
+                                            (Array.isArray(activeSearch?.descripcion))
+                                                ?
+                                            <>
+                                                {parse(activeSearch?.descripcion[first])}
+                                                <div className="row">
+                                                    <div className="col-6 justify-content-start">
+                                                        <button className='btn btn-outline-secondary' style={{borderRadius: '10px', color: 'white'}} hidden = {(first <= 0)} onClick = {prev}><i className="fa-solid fa-angle-left"></i> Anterior</button>
                                                     </div>
-                                                </>
-                                                    :
-                                                (activeSearch)
-                                                    &&
-                                                <div className="carousel-item active">
-                                                    <img src={activeSearch.image} style = {{objectFit: 'cover', height: '100%', width: '100%'}} className="image-round img-fluid" alt="..." />
-                                                </div>
-                                            }
-                                        </div>
 
-                                        <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-3">
-                                            {
-                                                (Array.isArray(activeSearch?.descripcion) === false)
-                                                    &&
-                                                <>
-                                                    {
-                                                        (activeSearch)
-                                                            &&
-                                                        parse(activeSearch?.descripcion)
-                                                    }
-                                                </>
-                                            }
-                                        </div>
+                                                    <div className="col-6 justify-content-end text-end">
+                                                        <button className='btn btn-outline-secondary' style={{borderRadius: '10px', color: 'white'}} hidden = {(countArray - 1 === first)} onClick = {next}>Siguiente <i className="fa-solid fa-angle-right"></i></button>
+                                                    </div>
+                                                </div>
+                                            </>
+                                                :
+                                            (activeSearch)
+                                                &&
+                                            <div className="carousel-item active">
+                                                <img src={activeSearch.image} style = {{objectFit: 'cover', height: '100%', width: '100%'}} className="image-round img-fluid" alt="..." />
+                                            </div>
+                                        }
                                     </div>
-                                </div>  
+
+                                    <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-3">
+                                        {
+                                            (Array.isArray(activeSearch?.descripcion) === false)
+                                                &&
+                                            <>
+                                                {
+                                                    (activeSearch)
+                                                        &&
+                                                    parse(activeSearch?.descripcion)
+                                                }
+                                            </>
+                                        }
+                                    </div>
+                                </div>
                             </div>
                         </Modal.Body>
                     </Modal>
