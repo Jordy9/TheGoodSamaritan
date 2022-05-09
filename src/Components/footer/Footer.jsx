@@ -43,7 +43,7 @@ export const Footer = () => {
 
                         <div className="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
                             <h5 className="text-uppercase mb-4 font-weight-bold text-primary">Centro Cristiano El Buen Samaritano</h5>
-                            <p>Somos una gran familia, unida para amar y servir a Dios, comprometido con alcanzar el perdido y equiparlo hasta que tenga el carácter de Cristo.</p>
+                            <p>Somos una gran familia, unida para amar y servir a Dios, comprometidos con alcanzar el perdido y equiparlo hasta que tenga el carácter de Cristo.</p>
                             
                         </div>
 
