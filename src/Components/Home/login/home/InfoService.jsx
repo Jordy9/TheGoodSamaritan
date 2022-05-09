@@ -12,6 +12,10 @@ export const InfoService = () => {
         window.open('https://www.alospiesdelrey.org')
     }
 
+    const redirectToG = () => {
+        window.open('https://www.iglesiacristianagosen.com')
+    }
+
     return (
         <div className = 'bg-dark d-flex justify-content-center align-items-center my-5'>
             <div className="container">
@@ -21,10 +25,10 @@ export const InfoService = () => {
                         <h4 className = 'text-center'>¿Deseas oración?</h4>
                     </div>
 
-                    <NavLink className="col-xs-2 col-sm-6 col-md-6 col-lg-3 col-xl-3 p-4 hom"  to = '/Teleblessing' style = {{textDecoration: 'none', color: '#FFFFFF'}}>
-                        <i className="bi bi-cast d-flex justify-content-center" style = {{fontSize: '32px'}}></i>
-                        <h4 className = 'text-center'>Transmisión en vivo de nuestro canal</h4>
-                    </NavLink>
+                    <div className="col-xs-2 col-sm-6 col-md-6 col-lg-3 col-xl-3 p-4 hom" onClick={redirectToG}>
+                        <i className="fa-solid fa-cross d-flex justify-content-center" style = {{fontSize: '32px'}}></i>
+                        <h4 className = 'text-center'>Iglesia Cristiana Gosén</h4>
+                    </div>
 
                     <div className="col-xs-2 col-sm-6 col-md-6 col-lg-3 col-xl-3 p-4 hom" onClick={redirectToAmanecer}>
                         <i className="fa-solid fa-church d-flex justify-content-center" style = {{fontSize: '32px'}}></i>

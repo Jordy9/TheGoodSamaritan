@@ -49,11 +49,11 @@ export const AuthRouter = () => {
 
     useEffect(() => {
 
-        dispatch(updateDayNumber())
         if(activeUser?.biliever || activeUser?.discipleship || activeUser?.tracking) {
-
+            
             if (!StateNow) {
-                if (moment().format('YYYY-MM-DD') !== moment(activeUser?.sesionDate).format('YYYY-MM-DD')) {
+                if (moment().format('YYYY-MM-DD') !== moment(activeUser?.sesionDate).format('YYYY-MM-DD') && activeUser?.dayNumber + 1 < Beleaver?.length) {
+                    dispatch(updateDayNumber())
                 }
                 if (nuevoCreyente >= 90) {
                     setTimeout(() => {
@@ -65,7 +65,7 @@ export const AuthRouter = () => {
             
         }
 
-    }, [dispatch, activeUser?.createdAt, StateNow, activeUser?.biliever, activeUser?.discipleship, activeUser?.tracking, activeUser?.sesionDate, nuevoCreyente])
+    }, [dispatch, activeUser?.createdAt, StateNow, activeUser?.biliever, activeUser?.discipleship, activeUser?.tracking, activeUser?.sesionDate, nuevoCreyente, Beleaver?.length, activeUser?.dayNumber])
 
     useEffect(() => {
       if (activeUser?.noBeleaver === true && !nb === false) {
