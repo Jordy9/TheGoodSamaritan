@@ -1,5 +1,5 @@
 import React from 'react'
-import Miercoles from '../../../heroes/Horarios.jpg'
+import Miercoles from '../../../heroes/horarios.png'
 import imagen7 from '../../../heroes/Zoom2.jpg'
 
 export const Schedule = () => {
