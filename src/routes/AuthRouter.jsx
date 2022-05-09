@@ -25,7 +25,6 @@ import { NotificationPost } from '../Components/notificationPost/NotificationPos
 import { useHistory } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 import { ModalBilieveReset } from '../Components/modalBeleave/ModalBilieveReset';
-import { useNotice } from '../hooks/useNotice';
 
 export const AuthRouter = () => {
 
@@ -82,8 +81,6 @@ export const AuthRouter = () => {
           history.push('/Dashboard')
         }
       }, [notificationPost, history, pathname])
-
-      useNotice(activeUser?.discipleship)
 
     return (
         <>

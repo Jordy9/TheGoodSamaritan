@@ -49,13 +49,16 @@ import { startGetNoBeleaverVideo } from '../action/NoBeleaver';
 import { startGetBeleaver } from '../action/beleaver';
 import { startGetImageVideo } from '../action/imageVideo';
 import { MiniSerie } from '../Components/Home/miniSeries/MiniSerie';
+import { useNotice } from '../hooks/useNotice';
 
 moment.locale('es');
 
 export const AppRouter = () => {
 
     const dispatch = useDispatch()
-    const {checking, uid} = useSelector(state => state.auth)
+    const {checking, uid, activeUser} = useSelector(state => state.auth)
+
+    useNotice(activeUser?.discipleship)
 
     const {socket, online, conectarSocket, desconectarSocket} = useSocket('https://good-samaritan-backend.herokuapp.com')
 
