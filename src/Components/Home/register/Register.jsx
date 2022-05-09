@@ -209,7 +209,7 @@ export const Register = () => {
 
                                         <div className="col form-check">
                                             <input {...getFieldProps('discipleship')} type="checkbox" className="form-check-input" id="exampleCheck2" />
-                                            <label className="form-check-label">¿Deseas hacer discipulados?</label>
+                                            <label className="form-check-label">¡Tenemos Discipulado para ti!</label>
                                         </div>
 
                                         <div className="col form-check">
