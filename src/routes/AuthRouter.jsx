@@ -25,6 +25,7 @@ import { NotificationPost } from '../Components/notificationPost/NotificationPos
 import { useHistory } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 import { ModalBilieveReset } from '../Components/modalBeleave/ModalBilieveReset';
+import { useNotice } from '../hooks/useNotice';
 
 export const AuthRouter = () => {
 
@@ -48,11 +49,11 @@ export const AuthRouter = () => {
 
     useEffect(() => {
 
+        dispatch(updateDayNumber())
         if(activeUser?.biliever || activeUser?.discipleship || activeUser?.tracking) {
 
             if (!StateNow) {
                 if (moment().format('YYYY-MM-DD') !== moment(activeUser?.sesionDate).format('YYYY-MM-DD')) {
-                    dispatch(updateDayNumber())
                 }
                 if (nuevoCreyente >= 90) {
                     setTimeout(() => {
@@ -82,6 +83,8 @@ export const AuthRouter = () => {
         }
       }, [notificationPost, history, pathname])
 
+      useNotice(activeUser?.discipleship)
+
     return (
         <>
         <Navb />
@@ -95,7 +98,7 @@ export const AuthRouter = () => {
                         &&
                     <ModalBilieveReset />
                 }
-                {(activeUser?.dayNumber <= Beleaver?.length) 
+                {(activeUser?.dayNumber + 1 <= Beleaver?.length) 
                     && 
                 (activeUser?.tracking) 
                     && 

@@ -11,8 +11,6 @@ export const ModalSketch = () => {
 
     const bosquejoCount = usuarios?.filter(user => user.id === activeBosquejo?.user?.id)
 
-    console.log(bosquejoCount)
-
     return (
 
         <div className="modal fade" id="exampleModal2" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
