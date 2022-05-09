@@ -4,11 +4,13 @@ import { useSelector } from 'react-redux'
 import Slider from 'react-slick'
 import parse from 'html-react-parser'
 
-export const ModalBileve = ({activeUser}) => {
+export const ModalBileve = ({activeUser, confirmationUpdateDay}) => {
 
   const {Beleaver} = useSelector(state => state.bl)
 
-  const day = activeUser
+  const {socket} = useSelector(state => state.sk)
+
+  const [day, setDay] = useState(activeUser)
 
     var settings = {
         infinite: false,
@@ -73,6 +75,24 @@ export const ModalBileve = ({activeUser}) => {
         isMounted = false;
       }
     }, [ShowNow])
+
+    useEffect(() => {
+      let isMounted = true;
+      const timer = setTimeout(() => {
+          if (confirmationUpdateDay) {
+          if (isMounted) {
+            socket?.on('day-changed', (user) => {
+              setDay(user?.dayNumber)
+            })
+          }   
+        }
+      }, 100);
+
+      return () => {
+        clearTimeout(timer);
+        isMounted = false;
+      }
+    }, [socket, confirmationUpdateDay])
 
     return (
         <div className='col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12'>

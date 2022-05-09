@@ -69,7 +69,9 @@ export const startLogin = (email, password) => {
 
 export const startRegister = (name, lastName, date, email, address, country, city, number, biliever, discipleship, tracking, noBeleaver, password, setfirst) => {
     return async(dispatch) => {
-        const resp = await fetchConToken('users/newUser', {name, lastName, date, email, address, country, city, number, biliever, discipleship, tracking, noBeleaver, password}, 'POST');
+
+        const sesionDate = moment()
+        const resp = await fetchConToken('users/newUser', {name, lastName, date, email, address, country, city, number, biliever, discipleship, tracking, noBeleaver, password, sesionDate}, 'POST');
         const body = await resp.json();
 
         if(body.ok) {

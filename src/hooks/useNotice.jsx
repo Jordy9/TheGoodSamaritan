@@ -30,6 +30,29 @@ export const useNotice = (discipleship) => {
                       })
                 }, 10000);
             }
+
+            if (moment().day() === 1) {
+    
+                setTimeout(() => {
+                    localStorage.setItem('discipleship', true)
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 5000,
+                        timerProgressBar: true,
+                        didOpen: (toast) => {
+                          toast.addEventListener('mouseenter', Swal.stopTimer)
+                          toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
+                      })
+                      
+                      return Toast.fire({
+                        icon: 'info',
+                        title: 'Dios te bendiga, recuerda que mañana tenemos discipulado a las 8:00 PM'
+                      })
+                }, 10000);
+            }
     
             if (moment().day() === 5) {
     

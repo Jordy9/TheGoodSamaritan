@@ -52,7 +52,7 @@ export const AuthRouter = () => {
         if(activeUser?.biliever || activeUser?.discipleship || activeUser?.tracking) {
             
             if (!StateNow) {
-                if (moment().format('YYYY-MM-DD') !== moment(activeUser?.sesionDate).format('YYYY-MM-DD') && activeUser?.dayNumber + 1 < Beleaver?.length) {
+                if (moment().format('YYYY-MM-DD') !== moment(activeUser?.sesionDate).format('YYYY-MM-DD') && activeUser?.dayNumber + 1 < Beleaver?.length && moment(activeUser?.sesionDate).format('YYYY-MM-DD') !== moment(activeUser?.createdAt).format('YYYY-MM-DD')) {
                     dispatch(updateDayNumber())
                 }
                 if (nuevoCreyente >= 90) {
@@ -102,7 +102,7 @@ export const AuthRouter = () => {
                     && 
                 (activeUser?.tracking) 
                     && 
-                <ModalBileve activeUser = {activeUser?.dayNumber} />}
+                <ModalBileve activeUser = {activeUser?.dayNumber} confirmationUpdateDay = {moment().format('YYYY-MM-DD') !== moment(activeUser?.sesionDate).format('YYYY-MM-DD') && activeUser?.dayNumber + 1 < Beleaver?.length && moment(activeUser?.sesionDate).format('YYYY-MM-DD') !== moment(activeUser?.createdAt).format('YYYY-MM-DD')} />}
                 <Switch>
                     <Route path = '/Dashboard' component = {Dashboard} />
                     <Route path = '/Zoom' component = {Lives} />
