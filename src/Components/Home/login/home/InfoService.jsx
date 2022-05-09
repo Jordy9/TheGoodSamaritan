@@ -22,7 +22,7 @@ export const InfoService = () => {
                 <div className="row">
                     <div className="col-xs-2 col-sm-6 col-md-6 col-lg-3 col-xl-3 p-4 hom" data-bs-toggle="modal" data-bs-target="#exampleModal">
                         <i className="fas fa-pray d-flex justify-content-center" style = {{fontSize: '32px'}}></i>
-                        <h4 className = 'text-center'>¿Deseas oración?</h4>
+                        <h4 className = 'text-center'>¿Necesitas oración?</h4>
                     </div>
 
                     <div className="col-xs-2 col-sm-6 col-md-6 col-lg-3 col-xl-3 p-4 hom" onClick={redirectToG}>
