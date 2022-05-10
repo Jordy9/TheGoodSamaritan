@@ -20,7 +20,7 @@ export const SidebarChatItem = ({usuarios, istyping}) => {
 
         dispatch(cargarChat(usuarios.id))
 
-        if (notificaciones.length !== 0 && chatActivo) {
+        if (notificaciones.length !== 0) {
             dispatch(BorrarNotificaciones(uid, chatActivo))
         } else {
             return
@@ -29,15 +29,14 @@ export const SidebarChatItem = ({usuarios, istyping}) => {
 
     const lol = notificaciones.filter(not => not.from === usuarios.id)
 
-    const notify = lol?.filter(not => not.to === uid)
-
-    console.log(notify.length)
+    const notify = lol.filter(not => not.to === uid)
 
     return (
         <div className={`chat_list ${(usuarios.id === chatActivo) && 'active_chat'}`} onClick={onclick}>
             {/* active_chat */}
             <div className="chat_people">
-                <div className="chat_img" style={{width: '50px', height: '50px', borderRadius: '50%', overflow: 'hidden'}}>
+                <div className="chat_img">
+                    <div style={{width: '50px', height: '50px', borderRadius: '50%', overflow: 'hidden'}}>
                     {
                         (usuarios.urlImage)
                             ?
@@ -45,6 +44,7 @@ export const SidebarChatItem = ({usuarios, istyping}) => {
                             :
                         <img src={perfil1} alt="sunil" />
                     }
+                    </div>
                     <span hidden = {notify.length === 0} className="badge bg-danger">{notify.length}</span>
                 </div>
                 <div className="chat_ib">
