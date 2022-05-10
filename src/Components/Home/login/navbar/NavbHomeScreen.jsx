@@ -6,7 +6,7 @@ import './NavbLogin.css'
 import { startGetUsers } from '../../../../action/user'
 import { useDispatch, useSelector } from 'react-redux'
 import logo from '../../../../heroes/logo.png'
-import { Sidebar } from '../../sidebar/Sidebar'
+import { Sidebar } from '../sidebar/Sidebar'
 
 export const NavbHomeScreen = () => {
 

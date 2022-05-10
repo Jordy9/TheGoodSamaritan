@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import Offcanvas from 'react-bootstrap/Offcanvas'
 import { NavLink, useLocation } from 'react-router-dom';
 import './Sidebar.css'
-import logo from '../../../heroes/logo.png'
 
 export const Sidebar = () => {
 
@@ -36,9 +35,9 @@ export const Sidebar = () => {
                 </Offcanvas.Header>
                 <Offcanvas.Body>
 
-                    <div className='d-flex justify-content-center align-items-center'>
+                    {/* <div className='d-flex justify-content-center align-items-center'>
                         <img src={logo} className='img-fluid' style={{width: 'auto', height: '150px'}} alt="" />
-                    </div>
+                    </div> */}
 
                     <ul className="list-group list-group-flush text-center mt-3">
                         <NavLink onClick={handleClose} to = '/Home' className = 'list-group-item decoration-line list-focus' activeClassName = 'true'>Inicio</NavLink>
