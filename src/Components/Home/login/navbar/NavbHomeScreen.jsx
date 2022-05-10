@@ -65,7 +65,7 @@ export const NavbHomeScreen = () => {
                         </Nav>
 
                         <Nav>
-                            <NavLink to = '/Login' hidden = {Login} className = 'nav-link btn btn-primary'><i className="bi bi-door-open"></i> Login</NavLink>
+                            <NavLink to = '/Login' hidden = {Login} className = 'nav-link btn btn-primary'><i className="bi bi-door-open"></i> Iniciar sesión</NavLink>
                             <NavLink to = '/Register' hidden = {!Login} className = 'nav-link btn btn-primary'><i className="bi bi-door-open"></i> Registrate</NavLink>
                         </Nav>
 
