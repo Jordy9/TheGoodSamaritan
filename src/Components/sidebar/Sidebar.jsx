@@ -46,7 +46,7 @@ export const Sidebar = () => {
         <>
             <i id='logo-list' style = {{cursor: 'pointer', color: 'white', fontSize: '25px', marginLeft: '30px'}} onClick={handleShow} className="bi bi-list"></i>
 
-            <Offcanvas show={show} onHide={handleClose}>
+            <Offcanvas scroll show={show} onHide={handleClose}>
                 <Offcanvas.Header closeButton>
                 <Offcanvas.Title>{activeUser?.name} {activeUser?.lastName}</Offcanvas.Title>
                 </Offcanvas.Header>
