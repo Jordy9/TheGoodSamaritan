@@ -62,7 +62,7 @@ export const FormProfile = () => {
                     title: 'Imagen con formato incorrecto'
                   })
             } else {
-                dispatch(startUpdateUser(name, lastName, date, email, address, country, city, number, biliever, discipleship, tracking, password, image))
+                dispatch(startUpdateUser(name, lastName, date, email.toLowerCase(), address, country, city, number, biliever, discipleship, tracking, password, image))
             }
         },
         validationSchema: Yup.object({

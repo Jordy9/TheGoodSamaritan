@@ -16,7 +16,7 @@ export const ForgotPassword = () => {
         },
         enableReinitialize: true,
         onSubmit: ({email}) => {
-            dispatch(forgotPassword(email))
+            dispatch(forgotPassword(email.toLowerCase()))
             resetForm({
                 email: ''
             })
