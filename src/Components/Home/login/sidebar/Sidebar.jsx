@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import Offcanvas from 'react-bootstrap/Offcanvas'
 import { NavLink, useLocation } from 'react-router-dom';
 import './Sidebar.css'
-import logo from '../../../heroes/LOGO CCBS solo color.ico'
+import logo from '../../../heroes/logo.png'
 
 export const Sidebar = () => {
 
@@ -23,9 +23,9 @@ export const Sidebar = () => {
         }
 
     }, [pathname])
-
-    console.log(logo)
     
+
+
     return (
         <>
             <i id='logo-list' style = {{cursor: 'pointer', color: 'white', fontSize: '25px', marginLeft: '30px'}} onClick={handleShow} className="bi bi-list"></i>
