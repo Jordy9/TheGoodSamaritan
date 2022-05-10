@@ -56,6 +56,22 @@ export const YoutubeVideo = () => {
           }
         ]
       };
+
+      const [width, setWidth] = useState(window.innerWidth);
+      
+      console.log(width)
+
+      const changeWidth = () => {
+        setWidth(window.innerWidth)
+    }
+
+    useEffect(() => {
+      window.addEventListener('resize', changeWidth)
+
+      return () => window.removeEventListener('resize', changeWidth)
+      
+  }, [width]);
+
     return (
         <>
           <div className="container">
@@ -67,9 +83,9 @@ export const YoutubeVideo = () => {
                                 {
                                   (activeYoutube)
                                   ?
-                                  <iframe src = {activeYoutube?.urlImage} title="YouTube video player" style={{borderRadius: '40px', height: '100vh', width: '100%'}} frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; full-screen" allowfullscreen="allowfullscreen"></iframe>
+                                  <iframe src = {activeYoutube?.urlImage} title="YouTube video player" style={{borderRadius: '40px', height: (width <= 767) ? 'auto' :'100vh', width: '100%'}} frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; full-screen" allowfullscreen="allowfullscreen"></iframe>
                                   :
-                                  <iframe src = {youtubeStart?.urlImage} title="YouTube video player" style={{borderRadius: '40px', height: '100vh', width: '100%'}} frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; full-screen" allowfullscreen="allowfullscreen"></iframe>
+                                  <iframe src = {youtubeStart?.urlImage} title="YouTube video player" style={{borderRadius: '40px', height: (width <= 767) ? 'auto' :'100vh', width: '100%'}} frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; full-screen" allowfullscreen="allowfullscreen"></iframe>
                                 }
                               </div>
                           </div>
