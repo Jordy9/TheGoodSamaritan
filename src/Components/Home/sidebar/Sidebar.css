@@ -1,0 +1,34 @@
+.offcanvas{
+    max-width: 250px !important;
+    background-color: #212529 !important;
+}
+
+.decoration-line {
+    list-style: none;
+    background-color: #212529 !important;
+    color: white !important;
+}
+
+.list-group-item.active {
+    background-color: transparent !important;
+    border: transparent;
+    border-radius: 10px;
+}
+
+.list-focus:focus {
+    cursor: pointer;
+    background-color: gray !important;
+    border-radius: 10px;
+}
+
+.list-focus:hover {
+    background-color: gray !important;
+    border-radius: 10px;
+    color: black;
+}
+
+@media (max-width: 991px) {
+    #logo-list {
+        margin: 0 !important;
+    }
+}

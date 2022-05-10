@@ -8,6 +8,7 @@ import logo from '../../heroes/logo.png'
 import { useEffect, useState } from 'react'
 import moment from 'moment'
 import { useLocation, useHistory } from 'react-router'
+import { Sidebar } from '../sidebar/Sidebar'
 
 export const Navb = () => {
 
@@ -94,24 +95,33 @@ export const Navb = () => {
     return (
         <>
             <Navbar fixed = 'top' className = 'col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12' expand="lg" bg = 'dark' variant="dark">
-                <Container>
+                <Container fluid = {(width <= 991) ? true : false}>
+                    {
+                        (width <= 991)
+                            &&
+                        <Sidebar />
+                    }
                     <Navbar.Brand style = {{cursor: 'pointer', margin: 0, padding: 0}} >
                         <span className = 'Navb-tittle d-flex justify-content-end align-items-center'>
-                            <img src={logo} className='img-fluid' style={{width: 'auto', height: '40px'}} alt="" />
+                            <img src={logo} className='img-fluid' style={{width: 'auto', height: '40px', marginLeft: (width <= 991) && '20px'}} alt="" />
                             <NavLink id='tituloNav' style = {{textDecoration: 'none', color: 'white'}} to = '/Dashboard'>Centro Cristiano El Buen Samaritano</NavLink>
                         </span>
                     </Navbar.Brand>
-                    <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                    <Navbar.Collapse id="basic-navbar-nav">
                 
                         <Nav className="mx-auto">
-                            <NavLink to = '/Dashboard' className = 'nav-link'>Inicio</NavLink>
-                            <NavLink to = '/Zoom' className = 'nav-link'>Zoom</NavLink>
-                            <NavLink to = '/YoutubeVideos' className = 'nav-link'>Videos</NavLink>
-                            <NavLink to = '/Petitions' className = 'nav-link'>Peticiones de oración</NavLink>
-                            <NavLink to = '/Chat' className = 'nav-link'>Chat <i className="bi bi-chat-text-fill" style={{color: (changeColor) && 'red'}}></i></NavLink>
-                            <NavLink to = '/Bible' className = 'nav-link'>Biblia</NavLink>
-                            <NavLink to = '/Search' className = 'nav-link'>Buscador <i className="bi bi-search"></i></NavLink>
+                            {
+                                (width > 991)
+                                    &&
+                                <>
+                                    <NavLink to = '/Dashboard' className = 'nav-link'>Inicio</NavLink>
+                                    <NavLink to = '/Zoom' className = 'nav-link'>Zoom</NavLink>
+                                    <NavLink to = '/YoutubeVideos' className = 'nav-link'>Videos</NavLink>
+                                    <NavLink to = '/Petitions' className = 'nav-link'>Peticiones de oración</NavLink>
+                                    <NavLink to = '/Chat' className = 'nav-link'>Chat <i className="bi bi-chat-text-fill" style={{color: (changeColor) && 'red'}}></i></NavLink>
+                                    <NavLink to = '/Bible' className = 'nav-link'>Biblia</NavLink>
+                                    <NavLink to = '/Search' className = 'nav-link'>Buscador <i className="bi bi-search"></i></NavLink>
+                                </>
+                            }
                         </Nav>
 
                         <Nav id="input-group-dropdown-responsive">
@@ -182,11 +192,16 @@ export const Navb = () => {
                                     </div>
                             </DropdownButton>
                             
-                            <NavLink onClick={() => dispatch(setActiveUser())} to = '/Profile'>{(activeUser?.urlImage) ? <img src={activeUser?.urlImage} className='img-fluid rounded-circle mt-2' style = {{objectFit: 'cover', width: '32px', height: '32px', cursor: 'pointer'}} alt='' /> : <i className="bi bi-person-circle" style = {{fontSize: '32px', cursor: 'pointer', color: 'white'}}></i>}</NavLink>
-                            <NavLink to = '/Home' onClick={logout} className = 'nav-link mt-1'>Cerrar sesión</NavLink>
+                            {
+                                (width > 991)
+                                    &&
+                                <>
+                                    <NavLink onClick={() => dispatch(setActiveUser())} to = '/Profile'>{(activeUser?.urlImage) ? <img src={activeUser?.urlImage} className='img-fluid rounded-circle mt-2' style = {{objectFit: 'cover', width: '32px', height: '32px', cursor: 'pointer'}} alt='' /> : <i className="bi bi-person-circle" style = {{fontSize: '32px', cursor: 'pointer', color: 'white'}}></i>}</NavLink>
+                                    <NavLink to = '/Home' onClick={logout} className = 'nav-link mt-1'>Cerrar sesión</NavLink>
+                                </>
+                            }
                         </Nav>
 
-                    </Navbar.Collapse>
                 </Container>
             </Navbar>
         </>

@@ -20,7 +20,7 @@ export const SidebarChatItem = ({usuarios, istyping}) => {
 
         dispatch(cargarChat(usuarios.id))
 
-        if (notificaciones.length !== 0) {
+        if (notificaciones.length !== 0 && chatActivo) {
             dispatch(BorrarNotificaciones(uid, chatActivo))
         } else {
             return
@@ -29,7 +29,9 @@ export const SidebarChatItem = ({usuarios, istyping}) => {
 
     const lol = notificaciones.filter(not => not.from === usuarios.id)
 
-    const notify = lol.filter(not => not.to === uid)
+    const notify = lol?.filter(not => not.to === uid)
+
+    console.log(notify.length)
 
     return (
         <div className={`chat_list ${(usuarios.id === chatActivo) && 'active_chat'}`} onClick={onclick}>
