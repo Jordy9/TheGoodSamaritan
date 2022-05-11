@@ -2,7 +2,7 @@ import { Container, Dropdown, DropdownButton, Nav, Navbar } from 'react-bootstra
 import { NavLink } from 'react-router-dom'
 import './Navb.css'
 import { useDispatch } from 'react-redux'
-import { setActiveUser, setNotificationsPost, startLogout } from '../../action/user'
+import { setActiveUser, setNotificationsPost, startLogout, updateUserNotification } from '../../action/user'
 import { useSelector } from 'react-redux'
 import logo from '../../heroes/logo.png'
 import { useEffect, useState } from 'react'
@@ -31,6 +31,8 @@ export const Navb = () => {
     const [notificationCountChange, setNotificationCountChange] = useState(activeUser?.notificationsCount)
     const [activeUserChange, setActiveUserChange] = useState(activeUser)
 
+    console.log(activeUserChange)
+
     useEffect(() => {
 
         let isMountede = true
@@ -39,6 +41,7 @@ export const Navb = () => {
             if (isMountede) {
                 const user = users?.find(user => user.id === uid)
 
+                dispatch(updateUserNotification(user))
                 setNotificationCountChange(true)
                 setActiveUserChange(user)
             }

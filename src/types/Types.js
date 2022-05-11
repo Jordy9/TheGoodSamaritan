@@ -111,4 +111,5 @@ export const Types = {
     authUpload: '[Auth] upload auth',
     authUploadFinish: '[Auth] upload finish auth',
     authsetNotificationPost: '[Auth] set notifications post',
+    authStartUpdateUserNotification: '[Auth] update user notification'
 }

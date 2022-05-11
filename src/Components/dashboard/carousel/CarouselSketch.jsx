@@ -15,7 +15,9 @@ export const CarouselSketch = () => {
   }
 
     var settings = {
-        infinite: false,
+        infinite: (Bosquejos?.length >= 4) ? true : false,
+        autoplay: (Bosquejos?.length >= 4) ? true : false,
+        autoplaySpeed: 5000,
         speed: 500,
         slidesToShow: 4,
         slidesToScroll: 4,
@@ -26,6 +28,8 @@ export const CarouselSketch = () => {
             settings: {
               slidesToShow: (Bosquejos?.length > 1) ? 2 : 1,
               slidesToScroll: 2,
+              autoplay: true,
+              autoplaySpeed: 5000,
             }
           },
           {
@@ -33,7 +37,9 @@ export const CarouselSketch = () => {
             settings: {
               slidesToShow: (Bosquejos?.length > 1) ? 2 : 1,
               slidesToScroll: 2,
-              initialSlide: 2
+              initialSlide: 2,
+              autoplay: true,
+              autoplaySpeed: 5000,
             }
           },
           {
@@ -42,7 +48,9 @@ export const CarouselSketch = () => {
               infinite: (Bosquejos?.length >= 4) ? true : false,
               centerMode: (Bosquejos?.length >= 4) ? true : false,
               slidesToShow: (Bosquejos?.length <= 4 && Bosquejos?.length > 1) ? 1.2 : 1,
-              slidesToScroll: 1
+              slidesToScroll: 1,
+              autoplay: (Bosquejos?.length >= 4) ? true : false,
+              autoplaySpeed: 5000,
             }
           }
         ]

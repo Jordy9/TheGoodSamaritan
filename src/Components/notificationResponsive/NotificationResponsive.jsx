@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import moment from 'moment'
 import { useDispatch, useSelector } from 'react-redux'
-import { setNotificationsPost } from '../../action/user'
+import { setNotificationsPost, updateUserNotification } from '../../action/user'
 import { useHistory } from 'react-router-dom'
 
 export const NotificationResponsive = () => {
@@ -20,6 +20,7 @@ export const NotificationResponsive = () => {
 
             const user = users?.find(user => user.id === uid)
 
+            dispatch(updateUserNotification(user))
             setActiveUserChange(user)
         })
     }, [socket, dispatch, uid])
@@ -34,8 +35,9 @@ export const NotificationResponsive = () => {
     }
 
   return (
-    <div style={{marginTop: '70px'}} className='container'>
+    <div className='container'>
         <div className="row">
+            <h1>Notificaciones</h1>
             <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                 <div style={{overflowY: 'auto'}}>
                     {

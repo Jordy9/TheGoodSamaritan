@@ -17,7 +17,9 @@ export const Carousel = () => {
   }
 
     var settings = {
-        infinite: false,
+        infinite: (miniSeries?.length >= 4) ? true : false,
+        autoplay: (miniSeries?.length >= 4) ? true : false,
+        autoplaySpeed: 5000,
         speed: 500,
         slidesToShow: 4,
         slidesToScroll: 4,
@@ -28,6 +30,8 @@ export const Carousel = () => {
             settings: {
               slidesToShow: (miniSeries?.length > 1) ? 2 : 1,
               slidesToScroll: 2,
+              autoplay: true,
+              autoplaySpeed: 5000,
             }
           },
           {
@@ -35,7 +39,9 @@ export const Carousel = () => {
             settings: {
               slidesToShow: (miniSeries?.length > 1) ? 2 : 1,
               slidesToScroll: 2,
-              initialSlide: 2
+              initialSlide: 2,
+              autoplay: true,
+              autoplaySpeed: 5000,
             }
           },
           {
@@ -44,7 +50,9 @@ export const Carousel = () => {
               infinite: (miniSeries?.length >= 4) ? true : false,
               centerMode: (miniSeries?.length >= 4) ? true : false,
               slidesToShow: (miniSeries?.length <= 4 && miniSeries?.length > 1) ? 1.2 : 1,
-              slidesToScroll: 1
+              slidesToScroll: 1,
+              autoplay: (miniSeries?.length >= 4) ? true : false,
+              autoplaySpeed: 5000,
             }
           }
         ]

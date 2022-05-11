@@ -59,8 +59,6 @@ export const YoutubeVideo = () => {
 
       const [width, setWidth] = useState(window.innerWidth);
       
-      console.log(width)
-
       const changeWidth = () => {
         setWidth(window.innerWidth)
     }

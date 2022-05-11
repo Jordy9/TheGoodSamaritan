@@ -409,6 +409,11 @@ const updateUser = (user) => ({
     payload: user
 })
 
+export const updateUserNotification = (user) => ({
+    type: Types.authStartUpdateUserNotification,
+    payload: user
+})
+
 export const ActiverUser = (user) => ({
     type: Types.authSetUser,
     payload: user
