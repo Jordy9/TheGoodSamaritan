@@ -252,7 +252,7 @@ export const PetitionsPublic = () => {
                         </Slider>
                     </div>
 
-                <div className = 'row my-5'>
+                <div className = 'row'>
                     {
                         (Peticiones?.length > 0)
                             &&
@@ -273,7 +273,7 @@ export const PetitionsPublic = () => {
                     </Slider>
                 </div>
 
-                <div className = 'row my-5'>
+                <div className = 'row'>
                     {
                         (petitionsCount?.length > 0)
                             &&
