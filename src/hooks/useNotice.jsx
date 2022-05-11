@@ -8,7 +8,7 @@ export const useNotice = (discipleship) => {
     
     useEffect(() => {
       if (discipleship === true && !!isOpen === false) {
-          if (moment().day() === 2) {
+          if (moment().day() === 2 && moment().hour() < 20) {
   
               setTimeout(() => {
                   localStorage.setItem('discipleship', true)

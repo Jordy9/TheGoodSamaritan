@@ -4,7 +4,7 @@ import { PetitionsPublic } from './petitionsPublic-Private/PetitionsPublic'
 export const Petitions = () => {
     return (
         <>
-            <h1 style = {{marginTop: '70px'}}>Peticiones de oración</h1>
+            <h1>Peticiones de oración</h1>
             <PetitionsPublic />
    
         </>

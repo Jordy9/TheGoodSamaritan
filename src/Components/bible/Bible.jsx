@@ -7,10 +7,11 @@ import { Note } from '../note/Note'
 
 export const Bible = () => {
 
-    const {book: libroActual, search} = useSelector(state => state.vs)
+    const {search} = useSelector(state => state.vs)
 
   return (
-    <div style={{marginTop: (libroActual) ? '80px' : '120px'}}>
+    <div>
+        <h1>Biblia</h1>
         <i data-bs-toggle="modal" data-bs-target="#exampleModalNota" className="fab bi bi-journal-bookmark-fill"></i>
         <div className = 'shadow p-3 mt-2 bg-dark image-round text-white'>
             {

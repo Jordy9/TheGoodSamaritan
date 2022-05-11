@@ -86,7 +86,7 @@ export const AuthRouter = () => {
         <>
         <Navb />
         <Container>
-            <div className = 'my-5'>
+            <div className = 'my-3'>
                 {(activeUser?.noBeleaver) && <ModalNoBeleave />}
                 {
                     (!activeUser?.tracking)

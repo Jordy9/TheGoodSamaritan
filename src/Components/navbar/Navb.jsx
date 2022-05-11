@@ -96,11 +96,6 @@ export const Navb = () => {
         <>
             <Navbar className = 'col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12' expand="lg" bg = 'dark' variant="dark">
                 <Container fluid = {(width <= 991) ? true : false}>
-                    {
-                        (width <= 991)
-                            &&
-                        <Sidebar />
-                    }
                     <Navbar.Brand style = {{cursor: 'pointer', margin: 0, padding: 0}} >
                         <span className = 'Navb-tittle d-flex justify-content-end align-items-center'>
                             <img src={logo} className='img-fluid' style={{width: 'auto', height: '40px', marginLeft: (width <= 991) && '20px'}} alt="" />
@@ -191,6 +186,12 @@ export const Navb = () => {
                                         }
                                     </div>
                             </DropdownButton>
+
+                            {
+                                (width <= 991)
+                                    &&
+                                <Sidebar />
+                            }
                             
                             {
                                 (width > 991)

@@ -13,7 +13,7 @@ export const PrayLives = () => {
 
     return (
 
-      <div className="container my-5">
+      <div className="container">
             <div className = 'shadow d-flex justify-content-center align-items-center p-4 my-2 bg-dark image-round flex-column'>
                 <div className="row">
                     <div className="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 form-group d-flex justify-content-center align-items-center">

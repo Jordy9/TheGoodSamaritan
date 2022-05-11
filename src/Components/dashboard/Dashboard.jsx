@@ -14,7 +14,7 @@ import { ModalVideoWordOfTheDay } from './modal/ModalVideoWordOfTheDay'
 export const Dashboard = () => {
     return (
         <>
-            <h1 style = {{marginTop: '70px'}}>Inicio</h1>
+            <h1>Inicio</h1>
             <VerseOfTheDay />
             <VideoWordOfTheDay />
             <Carousel />

@@ -202,7 +202,7 @@ export const PetitionsPublic = () => {
       const petitionsCount = PeticionesUser?.filter(p => p.user.id !== activeUser?.id)
 
     return (
-        <div className="container my-5"> 
+        <div className="container"> 
             <div className="row">
                     <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                         <div className="mb-3" style = {{border: 'none'}}>

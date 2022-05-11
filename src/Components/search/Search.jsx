@@ -27,7 +27,7 @@ export const Search = () => {
 
   return (
       <>
-      <h1 style={{marginTop: '70px'}}>Buscador</h1>
+      <h1>Buscador</h1>
         <div className="row">
             <div className="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
                 <div className="input-group">

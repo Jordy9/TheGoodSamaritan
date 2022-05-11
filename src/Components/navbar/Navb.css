@@ -2,12 +2,12 @@ h4.Navb-tittle {
     color: white;
 }
 
-.floatt {
+/* .floatt {
     z-index: 1045;
     position: fixed;
     top: 0;
     width:100%;
-}
+} */
 
 .dropdown-toggle::after {
     display:none !important;

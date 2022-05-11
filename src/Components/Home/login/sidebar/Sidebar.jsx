@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import Offcanvas from 'react-bootstrap/Offcanvas'
 import { NavLink, useLocation } from 'react-router-dom';
 import './Sidebar.css'
+import logo from '../../../../heroes/logo.png'
+import { useSelector } from 'react-redux';
 
 export const Sidebar = () => {
 
@@ -12,6 +14,8 @@ export const Sidebar = () => {
 
     const [Login, setLogin] = useState(false)
 
+    const {uid} = useSelector(state => state.auth)
+
     const {pathname} = useLocation()
 
     useEffect(() => {
@@ -21,7 +25,11 @@ export const Sidebar = () => {
             setLogin(false)
         }
 
-    }, [pathname])
+        if (!uid) {
+            handleClose()
+        }
+
+    }, [pathname, uid])
     
 
 
@@ -29,7 +37,7 @@ export const Sidebar = () => {
         <>
             <i id='logo-list' style = {{cursor: 'pointer', color: 'white', fontSize: '25px', marginLeft: '30px'}} onClick={handleShow} className="bi bi-list"></i>
 
-            <Offcanvas scroll show={show} onHide={handleClose}>
+            <Offcanvas scroll placement='end' show={show} onHide={handleClose}>
                 <Offcanvas.Header closeButton>
                 <Offcanvas.Title>Dios te bendiga</Offcanvas.Title>
                 </Offcanvas.Header>
@@ -40,18 +48,18 @@ export const Sidebar = () => {
                     </div> */}
 
                     <ul className="list-group list-group-flush text-center mt-3">
-                        <NavLink onClick={handleClose} to = '/Home' className = 'list-group-item decoration-line list-focus' activeClassName = 'true'>Inicio</NavLink>
-                        <NavLink onClick={handleClose} to = '/Teleblessing' className = 'list-group-item decoration-line list-focus' activeClassName = 'true'>Telebendición</NavLink>
-                        <NavLink onClick={handleClose} to = '/RadioBonaoBlessing' className = 'list-group-item decoration-line list-focus' activeClassName = 'true'>Radio Bonao Bendición</NavLink>
-                        <NavLink onClick={handleClose} to = '/Devotionals' className = 'list-group-item decoration-line list-focus' activeClassName = 'true'>Devocionales</NavLink>
-                        <NavLink onClick={handleClose} to = '/Schedule' className = 'list-group-item decoration-line list-focus' activeClassName = 'true'>Horarios</NavLink>
-                        <NavLink onClick={handleClose} to = '/Gallery' className = 'list-group-item decoration-line list-focus' activeClassName = 'true'>Galería</NavLink>
-                        <NavLink onClick={handleClose} to = '/Contact' className = 'list-group-item decoration-line list-focus' activeClassName = 'true'>Contacto</NavLink>
+                        <NavLink to = '/Home' className = 'list-group-item decoration-line list-focus' activeClassName = 'true'>Inicio</NavLink>
+                        <NavLink to = '/Teleblessing' className = 'list-group-item decoration-line list-focus' activeClassName = 'true'>Telebendición</NavLink>
+                        <NavLink to = '/RadioBonaoBlessing' className = 'list-group-item decoration-line list-focus' activeClassName = 'true'>Radio Bonao Bendición</NavLink>
+                        <NavLink to = '/Devotionals' className = 'list-group-item decoration-line list-focus' activeClassName = 'true'>Devocionales</NavLink>
+                        <NavLink to = '/Schedule' className = 'list-group-item decoration-line list-focus' activeClassName = 'true'>Horarios</NavLink>
+                        <NavLink to = '/Gallery' className = 'list-group-item decoration-line list-focus' activeClassName = 'true'>Galería</NavLink>
+                        <NavLink to = '/Contact' className = 'list-group-item decoration-line list-focus' activeClassName = 'true'>Contacto</NavLink>
                     </ul>
 
                     <ul className="list-group list-group-flush mt-4 d-flex justify-content-center">
-                        <NavLink onClick={handleClose} to = '/Login' hidden = {Login} className = 'btn btn-primary'><i className="bi bi-door-open"></i> Iniciar sesión</NavLink>
-                        <NavLink onClick={handleClose} to = '/Register' hidden = {!Login} className = 'btn btn-primary'><i className="bi bi-door-open"></i> Registrate</NavLink>
+                        <NavLink to = '/Login' hidden = {Login} className = 'btn btn-primary'><i className="bi bi-door-open"></i> Iniciar sesión</NavLink>
+                        <NavLink to = '/Register' hidden = {!Login} className = 'btn btn-primary'><i className="bi bi-door-open"></i> Registrate</NavLink>
                     </ul>
 
                 </Offcanvas.Body>

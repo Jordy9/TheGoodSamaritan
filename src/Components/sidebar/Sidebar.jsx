@@ -31,8 +31,10 @@ export const Sidebar = () => {
     const {pathname} = useLocation()
 
     useEffect(() => {
-
-    }, [pathname])
+        if (uid) {
+            handleClose()
+        }
+    }, [pathname, uid])
 
     const logout = () => {
         dispatch(startLogout())
@@ -46,7 +48,7 @@ export const Sidebar = () => {
         <>
             <i id='logo-list' style = {{cursor: 'pointer', color: 'white', fontSize: '25px', marginLeft: '30px'}} onClick={handleShow} className="bi bi-list"></i>
 
-            <Offcanvas scroll show={show} onHide={handleClose}>
+            <Offcanvas scroll placement='end' show={show} onHide={handleClose}>
                 <Offcanvas.Header closeButton>
                 <Offcanvas.Title>{activeUser?.name} {activeUser?.lastName}</Offcanvas.Title>
                 </Offcanvas.Header>
@@ -57,13 +59,13 @@ export const Sidebar = () => {
                     </ul>
 
                     <ul className="list-group list-group-flush text-center">
-                        <NavLink onClick={handleClose} to = '/Dashboard' className = 'list-group-item decoration-line list-focus' activeClassName = 'true'>Inicio</NavLink>
-                        <NavLink onClick={handleClose} to = '/Zoom' className = 'list-group-item decoration-line list-focus' activeClassName = 'true'>Zoom</NavLink>
-                        <NavLink onClick={handleClose} to = '/YoutubeVideos' className = 'list-group-item decoration-line list-focus' activeClassName = 'true'>Videos</NavLink>
-                        <NavLink onClick={handleClose} to = '/Petitions' className = 'list-group-item decoration-line list-focus' activeClassName = 'true'>Peticiones de oración</NavLink>
-                        <NavLink onClick={handleClose} to = '/Chat' className = 'list-group-item decoration-line list-focus' activeClassName = 'true'>Chat <i className="bi bi-chat-text-fill" style={{color: (changeColor) && 'red'}}></i></NavLink>
-                        <NavLink onClick={handleClose} to = '/Bible' className = 'list-group-item decoration-line list-focus' activeClassName = 'true'>Biblia</NavLink>
-                        <NavLink onClick={handleClose} to = '/Search' className = 'list-group-item decoration-line list-focus' activeClassName = 'true'>Buscador <i className="bi bi-search"></i></NavLink>
+                        <NavLink to = '/Dashboard' className = 'list-group-item decoration-line list-focus' activeClassName = 'true'>Inicio</NavLink>
+                        <NavLink to = '/Zoom' className = 'list-group-item decoration-line list-focus' activeClassName = 'true'>Zoom</NavLink>
+                        <NavLink to = '/YoutubeVideos' className = 'list-group-item decoration-line list-focus' activeClassName = 'true'>Videos</NavLink>
+                        <NavLink to = '/Petitions' className = 'list-group-item decoration-line list-focus' activeClassName = 'true'>Peticiones de oración</NavLink>
+                        <NavLink to = '/Chat' className = 'list-group-item decoration-line list-focus' activeClassName = 'true'>Chat <i className="bi bi-chat-text-fill" style={{color: (changeColor) && 'red'}}></i></NavLink>
+                        <NavLink to = '/Bible' className = 'list-group-item decoration-line list-focus' activeClassName = 'true'>Biblia</NavLink>
+                        <NavLink to = '/Search' className = 'list-group-item decoration-line list-focus' activeClassName = 'true'>Buscador <i className="bi bi-search"></i></NavLink>
                     </ul>
 
                     <ul className='list-group list-group-flush mt-4'>

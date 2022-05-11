@@ -77,8 +77,9 @@ export const YoutubeVideo = () => {
           <div className="container">
               <div className="row">
                   <div className="col">
-                      <div className = 'my-5'>
-                          <div className="row my-5">
+                      <>
+                        <h1>Videos de youtube</h1>
+                          <div className="row">
                               <div className="shadow image-round bg-dark p-4 col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 d-flex justify-content-center align-items-center">
                                 {
                                   (activeYoutube)
@@ -118,7 +119,7 @@ export const YoutubeVideo = () => {
                                   })
                               }
                           </Slider>
-                      </div>
+                      </>
                   </div>
               </div>
           </div>
