@@ -35,9 +35,9 @@ export const Sidebar = () => {
 
     return (
         <>
-            <i id='logo-list' style = {{cursor: 'pointer', color: 'white', fontSize: '25px', marginLeft: '30px'}} onClick={handleShow} className="bi bi-list"></i>
+            <i id='logo-list' style = {{cursor: 'pointer', color: 'white', fontSize: '25px'}} onClick={handleShow} className="bi bi-list"></i>
 
-            <Offcanvas scroll placement='end' show={show} onHide={handleClose}>
+            <Offcanvas placement='end' show={show} onHide={handleClose}>
                 <Offcanvas.Header closeButton>
                 <Offcanvas.Title>Dios te bendiga</Offcanvas.Title>
                 </Offcanvas.Header>

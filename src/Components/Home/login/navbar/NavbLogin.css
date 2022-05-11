@@ -2,7 +2,6 @@ h4.Navb-tittle {
     color: white;
 }
 
-.floatt {
-    z-index: 1045;
-    position: fixed;
+#over {
+    overflow-x: hidden;
 }
