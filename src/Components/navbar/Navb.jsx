@@ -31,8 +31,6 @@ export const Navb = () => {
     const [notificationCountChange, setNotificationCountChange] = useState(activeUser?.notificationsCount)
     const [activeUserChange, setActiveUserChange] = useState(activeUser)
 
-    console.log(activeUserChange)
-
     useEffect(() => {
 
         let isMountede = true
@@ -62,10 +60,18 @@ export const Navb = () => {
         }
     }, [notificaciones, uid]);
 
+    const [notifyChange, setNotifyChange] = useState(notificationCountChange)
+
     const onClick = () => {
         socket?.emit('Delete-Notifications-count', uid)
         setNotificationCountChange(false)
+        setNotifyChange(false)
     }
+
+    useEffect(() => {
+        setNotificationCountChange(false)
+    }, [notifyChange])
+    
 
     const {pathname} = useLocation()
 
