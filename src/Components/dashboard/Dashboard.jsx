@@ -13,7 +13,7 @@ import { ModalVideoWordOfTheDay } from './modal/ModalVideoWordOfTheDay'
 
 export const Dashboard = () => {
     return (
-        <>
+        <div style={{width: '100%', overflow: 'hidden'}}>
             <h1>Inicio</h1>
             <VerseOfTheDay />
             <VideoWordOfTheDay />
@@ -25,6 +25,6 @@ export const Dashboard = () => {
             <ModalMiniSerie />
             {/* <ModalCapsule /> */}
             <ModalVideoWordOfTheDay />
-        </>
+        </div>
     )
 }

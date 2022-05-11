@@ -56,7 +56,7 @@ export const NavbHomeScreen = () => {
   }, [width]);
   
     return (
-            <Navbar id='over' hidden = {state} className = 'col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12' bg = 'dark' variant="dark">
+            <Navbar hidden = {state} className = 'col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12' bg = 'dark' variant="dark">
                 <Container>
                     <Navbar.Brand style = {{cursor: 'pointer', margin: 0, padding: 0}} >
                         <span className = 'Navb-tittle d-flex justify-content-end align-items-center'>
