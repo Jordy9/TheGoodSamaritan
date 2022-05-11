@@ -8,7 +8,7 @@ export const ProfileImg = ({imag}) => {
     return (
         <>
             <div className = 'shadow d-flex justify-content-center align-items-center p-4 my-2 bg-dark image-round flex-column'>
-                <div className="person-img" style={{width: '100%', height: '100%', borderRadius: '50%', overflow: 'hidden'}}>
+                <div className="person-img" style={{width: '300px', height: '300px', borderRadius: '50%', overflow: 'hidden'}}>
                     {
                         (activeUser?.urlImage)
                         ?
