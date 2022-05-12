@@ -98,6 +98,15 @@ export const MiniSerie = () => {
           <Spinner />
         )
       }
+
+      const fechainicio1 = moment(activeSerie?.updatedAt, 'YYYY-MM-DD')
+      const fechainicio2 = moment(miniSerieStart?.updatedAt, 'YYYY-MM-DD')
+      const fechafin2 = moment()
+
+      const NuevoCap = fechafin2.diff(fechainicio1, 'day')
+
+      const NuevoCap1 = fechafin2.diff(fechainicio2, 'day')
+
     return (
         <div className="container my-5"> 
             <div className = 'shadow d-flex p-2 my-2 bg-dark image-round flex-column'>
@@ -120,11 +129,29 @@ export const MiniSerie = () => {
                             ?
                           (first === 0)
                               &&
-                          <img src={activeSerie?.image} style = {{objectFit: 'cover', height: '100%', width: '100%'}} className="image-round img-fluid my-2" alt="..." />
+                          <>
+                            {
+                              (NuevoCap === 0)
+                                &&
+                              <div style={{borderBottomLeftRadius: '40px', borderTopLeftRadius: '40px', position: 'absolute', zIndex: 1045, backgroundColor: 'red', right: 0, boxShadow: '0 4px 0 0 rgba(0,0,0,0.39)'}}>
+                                <h4 className='p-2 my-1'>Nuevo capítulo</h4>
+                              </div>
+                            }
+                            <img src={activeSerie?.image} style = {{objectFit: 'cover', height: '100%', width: '100%'}} className="image-round img-fluid my-2" alt="..." />
+                          </>
                             :
                           (first2 === 0)
                               &&
-                          <img src={miniSerieStart?.image} style = {{objectFit: 'cover', height: '100%', width: '100%'}} className="image-round img-fluid my-2" alt="..." />
+                          <>
+                            {
+                              (NuevoCap1 === 0)
+                                &&
+                              <div style={{borderBottomLeftRadius: '40px', borderTopLeftRadius: '40px', position: 'absolute', zIndex: 1045, backgroundColor: 'red', right: 0, boxShadow: '0 4px 0 0 rgba(0,0,0,0.39)'}}>
+                                <h4 className='p-2 my-1'>Nuevo capítulo</h4>
+                              </div>
+                            }
+                            <img src={miniSerieStart?.image} style = {{objectFit: 'cover', height: '100%', width: '100%'}} className="image-round img-fluid my-2" alt="..." />
+                          </>
                         }
                         
                         {
@@ -172,9 +199,22 @@ export const MiniSerie = () => {
                   (miniSeries)
                     &&
                   miniSeries?.map(Serie => {
+                    const fechainicio1 = moment(Serie?.updatedAt, 'YYYY-MM-DD')
+                    const fechafin2 = moment()
+
+                    const NuevoCap = fechafin2.diff(fechainicio1, 'day')
                     return (
                       <div key={Serie._id} className = 'col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12'>
-                          <img src={Serie.image} onClick={() => handledSet(Serie)} className="shadowImage image-round imgag img-fluid" alt="..." style={{objectFit: 'cover', height: '355px', width: '100%'}} />
+                        <div className='imgag'>
+                          {
+                            (NuevoCap === 0)
+                              &&
+                            <div style={{borderBottomLeftRadius: '40px', borderTopLeftRadius: '40px', position: 'absolute', zIndex: 1045, backgroundColor: 'red', right: 0, boxShadow: '0 4px 0 0 rgba(0,0,0,0.39)'}}>
+                              <span className='p-2'>Nuevo capítulo</span>
+                            </div>
+                          }
+                          <img src={Serie.image} onClick={() => handledSet(Serie)} className="shadowImage image-round img-fluid" alt="..." style={{objectFit: 'cover', height: '355px', width: '100%'}} />
+                        </div>
                           <h5 className='text-center'>{Serie.title}</h5>
                       </div>
                     )

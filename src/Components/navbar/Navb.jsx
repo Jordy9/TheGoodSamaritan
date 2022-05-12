@@ -35,6 +35,7 @@ export const Navb = () => {
 
         let isMountede = true
         socket?.on('notifications-user', (users) => {
+            console.log(users)
 
             if (isMountede) {
                 const user = users?.find(user => user.id === uid)
