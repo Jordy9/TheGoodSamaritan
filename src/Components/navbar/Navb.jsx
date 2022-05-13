@@ -26,6 +26,7 @@ export const Navb = () => {
         localStorage.removeItem('State')
         localStorage.removeItem('Show')
         localStorage.removeItem('discipleship')
+        localStorage.removeItem('noticeChat')
     }
 
     const [notificationCountChange, setNotificationCountChange] = useState(activeUser?.notificationsCount)
