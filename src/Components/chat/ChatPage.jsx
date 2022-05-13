@@ -8,6 +8,7 @@ import { useSelector } from 'react-redux';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { clearChatAtive } from '../../action/chat';
+import { useNoticeChat } from '../../hooks/useNoticeChat';
 
 export const ChatPage = () => {
 
@@ -42,6 +43,8 @@ export const ChatPage = () => {
     const click = () => {
         dispatch(clearChatAtive())
     }
+
+    useNoticeChat()
 
     return (
         <div>
