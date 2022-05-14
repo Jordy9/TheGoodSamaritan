@@ -60,7 +60,7 @@ export const AppRouter = () => {
 
     useNotice(activeUser?.discipleship)
 
-    const {socket, online, conectarSocket, desconectarSocket} = useSocket('http://localhost:4000')
+    const {socket, online, conectarSocket, desconectarSocket} = useSocket('https://good-samaritan-backend.herokuapp.com')
 
     const token = localStorage.getItem('tokenn')
 
