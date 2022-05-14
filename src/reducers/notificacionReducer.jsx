@@ -1,7 +1,8 @@
 import { Types } from "../types/Types";
 
 const initialState = {
-    notificaciones: []
+    notificaciones: [],
+    newNotfification: null
 }
 
 export const notificacionReducer = (state = initialState, action) => {
@@ -15,7 +16,14 @@ export const notificacionReducer = (state = initialState, action) => {
         case Types.ntNotificacionesCargadas:
             return {
                 ...state,
-                notificaciones: [...action.payload]
+                notificaciones: [...action.payload],
+                newNotfification: action.payload[action.payload.length -1]
+            }
+
+        case Types.ntRemoveNewNotificaciones:
+            return {
+                ...state,
+                newNotfification: null
             }
 
         case Types.ntDeleteNotification:

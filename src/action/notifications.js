@@ -6,6 +6,10 @@ export const NotificacionesCargadas = (notificaciones) => ({
     payload: notificaciones
 })
 
+export const RemoveNewNotificacion = () => ({
+    type: Types.ntRemoveNewNotificaciones
+})
+
 export const deleteNotification = (notificaciones) => ({
     type: Types.ntDeleteNotification,
     payload: notificaciones

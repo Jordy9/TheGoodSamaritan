@@ -52,15 +52,15 @@ export const ChatPage = () => {
             <div className="shadow p-2 bg-dark image-round flex-column">
                 <div className="row">
                     <div hidden = {first} className="col-xs-5 col-sm-12 col-md-4 col-lg-4 col-xl-4 ">
-                        <div className="inbox_msg">
+                        <div className="inbox_msg" style={{borderBottomLeftRadius: '40px'}}>
 
                             <InboxPeople />
                             
                         </div>
                     </div>
 
-                    <div className="col-xs-7 col-sm-12 col-md-8 col-lg-8 col-xl-8">
-                        <i onClick={click} hidden = {(!first)} className="bi bi-arrow-left" style={{margin: 0, cursor: 'pointer'}}></i>
+                    <div className={`${(!first) ? 'col-xs-7 col-sm-12 col-md-8 col-lg-8 col-xl-8' : 'col-xs-7 col-sm-12 col-md-12 col-lg-8 col-xl-8'}`}>
+                        <i onClick={click} hidden = {(!first)} className="bi bi-arrow-left ml-2" style={{margin: 0, cursor: 'pointer'}}></i>
                         {
                             (chatActivo)
                                 ? 

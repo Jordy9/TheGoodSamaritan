@@ -19,7 +19,7 @@ export const IncomingMessage = ({msg}) => {
             </div>
             <div className="received_msg">
                 <div className="received_withd_msg">
-                    <p>{msg.message}</p>
+                    <p className='p-3 image-round'>{msg.message}</p>
                     <span className="time_date mb-3"> {timeMonth(msg.createdAt)}</span>
                 </div>
             </div>

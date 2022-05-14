@@ -35,6 +35,7 @@ export const Types = {
     ntDeleteNotification: '[NT] delete notification',
     ntNotificacionesCargadas: '[NT] notificaciones cargadas',
     ntCargarNotificaciones: '[NT] cargar notificaciones',
+    ntRemoveNewNotificaciones: '[NT] remove new notificaciones',
     // 
     chtTyping: '[CHT] typing',
     chtImageMessage: '[CHT] image message',

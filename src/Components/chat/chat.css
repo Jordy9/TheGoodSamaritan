@@ -61,7 +61,7 @@ img {
 }
 
 .inbox_chat {
-    height: 100vh;
+    height: 100%;
     /* overflow-y: scroll; */
 }
 
@@ -85,7 +85,7 @@ img {
 
 .received_withd_msg p {
     background: #ebebeb none repeat scroll 0 0;
-    border-radius: 50px;
+    /* border-radius: 50px; */
     color: #646464;
     font-size: 14px;
     margin: 0;
@@ -112,7 +112,7 @@ img {
 
 .sent_msg p {
     background: #0d6efd none repeat scroll 0 0;
-    border-radius: 50px;
+    /* border-radius: 50px; */
     font-size: 14px;
     margin: 0;
     color: #fff;

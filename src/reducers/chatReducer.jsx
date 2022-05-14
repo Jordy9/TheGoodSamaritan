@@ -6,7 +6,8 @@ const initialState = {
     image: '',
     usuarios: [],
     mensajes: [],
-    typing: []
+    typing: [],
+    id: null
 }
 
 export const chatReducer = (state = initialState, action) => {
@@ -22,6 +23,7 @@ export const chatReducer = (state = initialState, action) => {
             return {
                 ...state,
                 chatActivo: action.payload,
+                id: action.payload,
                 mensajes: []
             }
             

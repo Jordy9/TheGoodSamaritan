@@ -395,6 +395,65 @@ export const startUpdateUser = (name, lastName, date, email, address, country, c
     }
 }
 
+export const updatTracking = (biliever, discipleship, reset, tracking) => {
+    return async (dispatch, getState) => {
+
+        const {activeUser, uid} = getState().auth
+
+        const {socket} = getState().sk
+
+        if (reset) {
+            socket?.emit('modal-reset', uid)
+            return
+        }
+
+        const resp = await fetchConToken(`users/update/${activeUser.id}`, {...activeUser, biliever, discipleship, tracking}, 'PUT')
+        const body = await resp.json()
+
+        if(body.ok) {
+            dispatch(updateUser(body.users))
+            dispatch(setActiveUser(body.users))
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 5000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            })
+            
+            return Toast.fire({
+                icon: 'success',
+                title: 'Usuario actualizado correctamente'
+            })
+        } else {
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 5000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            })
+            
+            return Toast.fire({
+                icon: 'error',
+                title: `${body.msg}`
+            })
+        }
+
+        // if (newBeleaver === true || reset === true) {
+            
+        // }
+    }
+}
+
 const UploadFish = () => ({
     type: Types.authUploadFinish
   })

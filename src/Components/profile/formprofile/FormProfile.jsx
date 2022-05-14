@@ -10,6 +10,7 @@ import { startUpdateUser } from '../../../action/user'
 import Swal from 'sweetalert2'
 import PaisBD from '../../../PaisBD'
 import ProvinciaBD from '../../../ProvinciaBD'
+import { ModalProfile } from './ModalProfile'
 
 export const FormProfile = () => {
 
@@ -116,6 +117,9 @@ export const FormProfile = () => {
                     <div className="mb-3" style = {{border: 'none'}}>
                         <div className = 'shadow p-2 mt-2 bg-dark image-round flex-column text-white'>
                             <h5 className="text-white text-center mt-2">Información personal</h5>
+                            <div className='d-flex justify-content-end align-items-center mx-3'>
+                                <i data-bs-toggle="modal" data-bs-target="#exampleModalProfileSettings" style={{position: 'absolute', zIndex: 1045, fontSize: '25px', cursor: 'pointer'}} className="bi bi-gear"></i>
+                            </div>
                             <div className="card-body">
                                 <form onSubmit={handleSubmit} className = 'needs-validation'>
                                     <div className="row">
@@ -224,6 +228,7 @@ export const FormProfile = () => {
                     </div>
                 </div>
             </div>
+            <ModalProfile />
         </>
     )
 }

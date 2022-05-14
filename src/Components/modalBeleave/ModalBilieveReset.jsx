@@ -45,10 +45,12 @@ export const ModalBilieveReset = () => {
         ]
       };
 
+    const ShowNow = localStorage.getItem('resetBeleaver')
+
     useEffect(() => {
       let isMounted = true;
         const timer = setTimeout(() => {
-          if (isMounted) {
+          if (isMounted && !!ShowNow === false) {
             setfirst(true)
           }
         }, 3000);
@@ -57,21 +59,32 @@ export const ModalBilieveReset = () => {
           clearTimeout(timer);
           isMounted = false;
         }
-    }, [])
+    }, [ShowNow])
+
+    console.log(!!ShowNow)
 
     const onHideModal = () => {
-        setfirst(false)
+      setfirst(false)
     }
 
     const onClickNo = () => {
       dispatch(updateNoModalReset('NO'))
       setfirst(false)
+      localStorage.setItem('resetBeleaver', true)
     }
 
     const onClickYes = () => {
       dispatch(updateNoModalReset('YES'))
       setfirst(false)
+      localStorage.setItem('resetBeleaver', true)
     }
+
+    useEffect(() => {
+      if (first === false) {
+        setfirst(false)
+      }
+    }, [first])
+    
     
   return (
     <div className='col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12'>

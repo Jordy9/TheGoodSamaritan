@@ -25,6 +25,8 @@ import { NotificationPost } from '../Components/notificationPost/NotificationPos
 import { useHistory } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 import { ModalBilieveReset } from '../Components/modalBeleave/ModalBilieveReset';
+import { SoundMessage } from '../Components/soundMessage/SoundMessage';
+import { RemoveNewNotificacion } from '../action/notifications';
 
 export const AuthRouter = () => {
 
@@ -33,6 +35,10 @@ export const AuthRouter = () => {
     const history = useHistory()
 
     const {pathname} = useLocation()
+
+    const {newNotfification} = useSelector(state => state.nt)
+
+    const {id} = useSelector(state => state.cht)
 
     const {activeUser, uid, notificationPost} = useSelector(state => state.auth)
     const {Beleaver} = useSelector(state => state.bl)
@@ -81,6 +87,19 @@ export const AuthRouter = () => {
           history.push('/Dashboard')
         }
       }, [notificationPost, history, pathname])
+
+
+      useEffect(() => {
+
+        if (newNotfification?.from === id) {
+            return dispatch(RemoveNewNotificacion())
+        }
+
+        if (newNotfification) {
+            SoundMessage()
+            dispatch(RemoveNewNotificacion())
+        }
+    }, [newNotfification, dispatch, id])
 
     return (
         <>

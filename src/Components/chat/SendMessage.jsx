@@ -68,7 +68,7 @@ export const SendMessage = () => {
                     <input type="text" autoComplete='off' className="form-control bg-transparent text-white" placeholder="Mensaje..." {...getFieldProps('message')} />
                 </div>
 
-                <div className="col-xs-4 col-sm-4 col-md-4 col-lg-2 col-xl-2">
+                <div className="col-xs-6 col-sm-4 col-md-6 col-lg-2 col-xl-2">
                     <button type = 'submit' className="btn btn-primary btn-block mt-3">
                         enviar
                     </button>

@@ -55,7 +55,7 @@ export const Sidebar = () => {
                 <Offcanvas.Body>
 
                     <ul className="list-group list-group-flush mb-3">
-                        <NavLink className = 'd-flex justify-content-center align-items-center' onClick={() => dispatch(setActiveUser())} to = '/Profile'>{(activeUser?.urlImage) ? <img src={activeUser?.urlImage} className='img-fluid rounded-circle mt-2' style = {{objectFit: 'cover', width: '150px', height: '150px', cursor: 'pointer'}} alt='' /> : <i className="bi bi-person-circle" style = {{fontSize: '32px', cursor: 'pointer', color: 'white'}}></i>}</NavLink>
+                        <NavLink className = 'd-flex justify-content-center align-items-center' onClick={() => dispatch(setActiveUser())} to = '/Profile'>{(activeUser?.urlImage) ? <img src={activeUser?.urlImage} className='img-fluid rounded-circle mt-2' style = {{objectFit: 'cover', width: '150px', height: '150px', cursor: 'pointer'}} alt='' /> : <i className="bi bi-person-circle" style = {{fontSize: '150px', cursor: 'pointer', color: 'white'}}></i>}</NavLink>
                     </ul>
 
                     <ul className="list-group list-group-flush text-center">

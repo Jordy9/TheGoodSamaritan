@@ -12,6 +12,7 @@
     "bootstrap": "5.1.3",
     "crypto": "^1.0.1",
     "formik": "^2.2.9",
+    "howler": "^2.2.3",
     "html-react-parser": "^1.4.3",
     "html2plaintext": "^2.1.4",
     "lodash": "^4.17.20",
