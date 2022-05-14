@@ -35,7 +35,7 @@ export const SidebarChatItem = ({usuarios, istyping}) => {
         <div className={`chat_list ${(usuarios.id === chatActivo) && 'active_chat'}`} onClick={onclick}>
             {/* active_chat */}
             <div className="chat_people row">
-                <div className="chat_img col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                <div className="chat_img col-xs-2 col-sm-2 col-md-4 col-lg-3 col-xl-2">
                     <div style={{width: '50px', height: '50px', borderRadius: '50%', overflow: 'hidden'}}>
                     {
                         (usuarios.urlImage)
@@ -47,7 +47,7 @@ export const SidebarChatItem = ({usuarios, istyping}) => {
                     </div>
                     <span hidden = {notify.length === 0} className="badge bg-danger">{notify.length}</span>
                 </div>
-                <div className="chat_ib col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                <div className="chat_ib col-xs-10 col-sm-10 col-md-8 col-lg-9 col-xl-10">
                     <h5 className='text-white'>{usuarios.name} {usuarios.lastName}</h5>
                     {
                         (istyping[0] === usuarios && typing?.typing === false)
