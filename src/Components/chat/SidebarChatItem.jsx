@@ -32,38 +32,40 @@ export const SidebarChatItem = ({usuarios, istyping}) => {
     const notify = lol.filter(not => not.to === uid)
 
     return (
-        <div className={`chat_list ${(usuarios.id === chatActivo) && 'active_chat'}`} onClick={onclick}>
+        <div className={`chat_list row ${(usuarios.id === chatActivo) && 'active_chat'}`} onClick={onclick}>
             {/* active_chat */}
-            <div className="row">
-                <div className="col-xs-2 col-sm-2 col-md-4 col-lg-3 col-xl-2">
-                    <div style={{width: '50px', height: '50px', borderRadius: '50%', overflow: 'hidden'}}>
-                    {
-                        (usuarios.urlImage)
-                            ?
-                        <img src={usuarios.urlImage} alt="sunil" style={{objectFit: 'cover'}} />
-                            :
-                        <img src={perfil1} alt="sunil" />
-                    }
+            <div className="chat_people col-12">
+                <div className="row">
+                    <div className="chat_img col-xs-2 col-sm-2 col-md-4 col-lg-3 col-xl-2">
+                        <div style={{width: '50px', height: '50px', borderRadius: '50%', overflow: 'hidden'}}>
+                        {
+                            (usuarios.urlImage)
+                                ?
+                            <img src={usuarios.urlImage} alt="sunil" style={{objectFit: 'cover'}} />
+                                :
+                            <img src={perfil1} alt="sunil" />
+                        }
+                        </div>
+                        <span hidden = {notify.length === 0} className="badge bg-danger">{notify.length}</span>
                     </div>
-                    <span hidden = {notify.length === 0} className="badge bg-danger">{notify.length}</span>
-                </div>
-                <div className="chat_ib col-xs-10 col-sm-10 col-md-8 col-lg-9 col-xl-10">
-                    <h5 className='text-white'>{usuarios.name} {usuarios.lastName}</h5>
-                    {
-                        (istyping[0] === usuarios && typing?.typing === false)
-                            &&
-                            <>
-                        <span className="d-flex text-secondary">Escribiendo</span>
-                            </>
+                    <div className="chat_ib col-xs-10 col-sm-10 col-md-8 col-lg-9 col-xl-10">
+                        <h5 className='text-white'>{usuarios.name} {usuarios.lastName}</h5>
+                        {
+                            (istyping[0] === usuarios && typing?.typing === false)
+                                &&
+                                <>
+                            <span className="d-flex text-secondary">Escribiendo</span>
+                                </>
 
-                    }
-                    {
-                        (usuarios.online)
-                            ?
-                        <span className="text-success">Conectado</span>
-                            :
-                        <span className="text-danger">Desconectado</span>
-                    }
+                        }
+                        {
+                            (usuarios.online)
+                                ?
+                            <span className="text-success">Conectado</span>
+                                :
+                            <span className="text-danger">Desconectado</span>
+                        }
+                    </div>
                 </div>
             </div>
         </div>
