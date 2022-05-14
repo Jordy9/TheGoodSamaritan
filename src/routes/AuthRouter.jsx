@@ -38,8 +38,6 @@ export const AuthRouter = () => {
 
     const {newNotfification} = useSelector(state => state.nt)
 
-    const {id} = useSelector(state => state.cht)
-
     const {activeUser, uid, notificationPost} = useSelector(state => state.auth)
     const {Beleaver} = useSelector(state => state.bl)
     
@@ -91,15 +89,11 @@ export const AuthRouter = () => {
 
       useEffect(() => {
 
-        if (newNotfification?.from === id) {
-            return dispatch(RemoveNewNotificacion())
-        }
-
         if (newNotfification) {
             SoundMessage()
             dispatch(RemoveNewNotificacion())
         }
-    }, [newNotfification, dispatch, id])
+    }, [newNotfification, dispatch])
 
     return (
         <>
