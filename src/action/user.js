@@ -404,7 +404,22 @@ export const updatTracking = (biliever, discipleship, reset, tracking) => {
 
         if (reset) {
             socket?.emit('modal-reset', uid)
-            return
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 5000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            })
+            
+            return Toast.fire({
+                icon: 'success',
+                title: 'Usuario actualizado correctamente'
+            })
         }
 
         const resp = await fetchConToken(`users/update/${activeUser.id}`, {...activeUser, biliever, discipleship, tracking}, 'PUT')
