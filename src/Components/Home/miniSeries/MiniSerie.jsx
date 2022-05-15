@@ -64,6 +64,7 @@ export const MiniSerie = () => {
         slidesToShow: 4,
         slidesToScroll: 4,
         initialSlide: 0,
+        lazyLoad: true,
         responsive: [
           {
             breakpoint: 1024,
@@ -71,6 +72,7 @@ export const MiniSerie = () => {
               slidesToShow: (miniSeries?.length > 1) ? 2 : 1,
               slidesToScroll: 2,
               infinite: false,
+              lazyLoad: true,
             }
           },
           {
@@ -78,7 +80,8 @@ export const MiniSerie = () => {
             settings: {
               slidesToShow: (miniSeries?.length > 1) ? 2 : 1,
               slidesToScroll: 2,
-              initialSlide: 2
+              initialSlide: 2,
+              lazyLoad: true,
             }
           },
           {
@@ -87,7 +90,8 @@ export const MiniSerie = () => {
               infinite: (miniSeries?.length >= 4) ? true : false,
               centerMode: (miniSeries?.length >= 4) ? true : false,
               slidesToShow: (miniSeries?.length <= 4 && miniSeries?.length > 1) ? 1.2 : 1,
-              slidesToScroll: 1
+              slidesToScroll: 1,
+              lazyLoad: true,
             }
           }
         ]
