@@ -100,7 +100,7 @@ export const ModalSearch = () => {
                                             <span id='dateDeskLap' className='text-right mr-4'>{moment(activeSearch?.createdAt).format('MMMM Do YYYY, h:mm a')}</span>
                                         </div>
                                     </div>
-                                    <h1 className='text-center'>{activeSearch?.title}</h1>
+                                    <h1 className='text-center mx-2'>{activeSearch?.title}</h1>
                                 </div>
                             </div>
 

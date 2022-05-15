@@ -24,6 +24,7 @@ export const VideoWordOfTheDay = () => {
         slidesToShow: 4,
         slidesToScroll: 4,
         initialSlide: 0,
+        lazyLoad: true,
         responsive: [
           {
             breakpoint: 1024,
@@ -32,6 +33,7 @@ export const VideoWordOfTheDay = () => {
               slidesToScroll: 2,
               autoplay: true,
               autoplaySpeed: 5000,
+              lazyLoad: true,
             }
           },
           {
@@ -42,6 +44,7 @@ export const VideoWordOfTheDay = () => {
               initialSlide: 2,
               autoplay: true,
               autoplaySpeed: 5000,
+              lazyLoad: true,
             }
           },
           {
@@ -53,6 +56,7 @@ export const VideoWordOfTheDay = () => {
               slidesToScroll: 1,
               autoplay: (videos?.length >= 4) ? true : false,
               autoplaySpeed: 5000,
+              lazyLoad: true,
             }
           }
         ]

@@ -72,7 +72,7 @@ export const ModalMiniSerie = () => {
                       <span id='dateDeskLap' className='text-right mr-4'>{moment(activeSerie?.createdAt).format('MMMM Do YYYY, h:mm a')}</span>
                     </div>
                   </div>
-                  <h1 className='text-center'>{activeSerie?.title}</h1>
+                  <h1 className='text-center mx-2'>{activeSerie?.title}</h1>
                 </div>
               </div>
               

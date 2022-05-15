@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux'
 import { activeSearch, setShow } from '../../action/search'
 import { ModalSearch } from './modal/ModalSearch'
+import moment from 'moment'
 
 export const Search = () => {
 
@@ -41,9 +42,22 @@ export const Search = () => {
                 (title !== '')
                     ?
                 filtroDeBusqueda?.filter(filtroDeBusqueda => (title !== '') && (filtroDeBusqueda.title.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,"").includes(title.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,""))) && filtroDeBusqueda).map(filtro => {
+                    const fechainicio1 = moment(filtro?.updatedAt, 'YYYY-MM-DD')
+                    const fechafin2 = moment()
+
+                    const NuevoCap = fechafin2.diff(fechainicio1, 'day')
                     return (
                         <div key={filtro._id} onClick={() => handledSet(filtro)} className = 'col-xs-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 imgag my-3 mx-3 shadow p-4 bg-dark image-round flex-column text-white d-flex justify-content-center align-items-center'>
-                            <img style={{objectFit: 'cover', cursor: 'pointer', width: '100%', height: '300px'}} src={filtro.image} alt="" className='img-fluid image-round shadowImage' />
+                            <div>
+                                {
+                                    (NuevoCap === 0)
+                                        &&
+                                    <div style={{borderBottomLeftRadius: '40px', borderTopLeftRadius: '40px', position: 'absolute', zIndex: 1045, backgroundColor: 'red', right: 0, boxShadow: '0 4px 0 0 rgba(0,0,0,0.39)'}}>
+                                        <span className='p-2'>Nuevo capítulo</span>
+                                    </div>
+                                }
+                                <img style={{objectFit: 'cover', cursor: 'pointer', width: '100%', height: '300px'}} src={filtro.image} alt="" className='img-fluid image-round shadowImage' />
+                            </div>
                             <h5 className='text-center'>{filtro.title}</h5>
                         </div>
                     )

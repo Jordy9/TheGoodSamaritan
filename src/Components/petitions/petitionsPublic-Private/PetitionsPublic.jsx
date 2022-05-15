@@ -101,12 +101,14 @@ export const PetitionsPublic = () => {
         slidesToShow: 4,
         slidesToScroll: 4,
         initialSlide: 0,
+        lazyLoad: true,
         responsive: [
           {
             breakpoint: 1024,
             settings: {
                 slidesToShow: (MyPetitions?.length > 1) ? 2 : 1,
                 slidesToScroll: 2,
+                lazyLoad: true,
             }
           },
           {
@@ -114,7 +116,8 @@ export const PetitionsPublic = () => {
             settings: {
                 slidesToShow: (MyPetitions?.length > 1) ? 2 : 1,
                 slidesToScroll: 2,
-                initialSlide: 2
+                initialSlide: 2,
+                lazyLoad: true,
             }
           },
           {
@@ -123,7 +126,8 @@ export const PetitionsPublic = () => {
                 infinite: (MyPetitions?.length > 4) ? true : false,
                 centerMode: (MyPetitions?.length > 4) ? true : false,
                 slidesToShow: (MyPetitions?.length < 4 && MyPetitions?.length > 1) ? 1.2 : 1,
-                slidesToScroll: 1
+                slidesToScroll: 1,
+                lazyLoad: true,
             }
           }
         ]
@@ -136,12 +140,14 @@ export const PetitionsPublic = () => {
         slidesToShow: 4,
         slidesToScroll: 4,
         initialSlide: 0,
+        lazyLoad: true,
         responsive: [
           {
             breakpoint: 1024,
             settings: {
                 slidesToShow: (Peticiones?.length > 1) ? 2 : 1,
                 slidesToScroll: 2,
+                lazyLoad: true,
             }
           },
           {
@@ -149,7 +155,8 @@ export const PetitionsPublic = () => {
             settings: {
                 slidesToShow: (Peticiones?.length > 1) ? 2 : 1,
                 slidesToScroll: 2,
-                initialSlide: 2
+                initialSlide: 2,
+                lazyLoad: true,
             }
           },
           {
@@ -158,7 +165,8 @@ export const PetitionsPublic = () => {
                 infinite: (Peticiones?.length > 4) ? true : false,
                 centerMode: (Peticiones?.length > 4) ? true : false,
                 slidesToShow: (Peticiones?.length < 4 && Peticiones?.length > 1) ? 1.2 : 1,
-                slidesToScroll: 1
+                slidesToScroll: 1,
+                lazyLoad: true,
             }
           }
         ]
@@ -171,12 +179,14 @@ export const PetitionsPublic = () => {
         slidesToShow: 4,
         slidesToScroll: 4,
         initialSlide: 0,
+        lazyLoad: true,
         responsive: [
           {
             breakpoint: 1024,
             settings: {
                 slidesToShow: (PeticionesUser?.length > 1) ? 2 : 1,
                 slidesToScroll: 2,
+                lazyLoad: true,
             }
           },
           {
@@ -184,7 +194,8 @@ export const PetitionsPublic = () => {
             settings: {
                 slidesToShow: (PeticionesUser?.length > 1) ? 2 : 1,
                 slidesToScroll: 2,
-                initialSlide: 2
+                initialSlide: 2,
+                lazyLoad: true,
             }
           },
           {
@@ -193,7 +204,8 @@ export const PetitionsPublic = () => {
                 infinite: (PeticionesUser?.length > 4) ? true : false,
                 centerMode: (PeticionesUser?.length > 4) ? true : false,
                 slidesToShow: (PeticionesUser?.length < 4 && PeticionesUser?.length > 1) ? 1.2 : 1,
-                slidesToScroll: 1
+                slidesToScroll: 1,
+                lazyLoad: true,
             }
           }
         ]
@@ -232,25 +244,26 @@ export const PetitionsPublic = () => {
                         </div>
                     </div>
                 </div>
-                    <div className="row my-5">
+                
+                <div className="row my-5">
+                    {
+                        (MyPetitions?.length > 0)
+                            &&
+                        <h1 className='my-2'>Mis peticiones</h1>
+                    }
+                    <Slider {...settings}>
                         {
-                            (MyPetitions?.length > 0)
-                                &&
-                            <h1 className='my-2'>Mis peticiones</h1>
+                            MyPetitions?.map(peticion => {
+                                return (
+                                    <div key={peticion._id} className = 'col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12'>
+                                        <img data-bs-toggle="modal" data-bs-target="#exampleModal10" onClick={() => hanldedSetPetitionUser(peticion)} src={(activeUser?.urlImage) ? activeUser?.urlImage : perfil1} style={{objectFit: 'cover', height: '355px', width: '100%'}} className='img-fluid image-round imgag shadowImage' alt=''/>
+                                        <h5 className='text-center'>{peticion.title}</h5>
+                                    </div>
+                                )
+                            })
                         }
-                        <Slider {...settings}>
-                            {
-                                MyPetitions?.map(peticion => {
-                                    return (
-                                        <div key={peticion._id} className = 'col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12'>
-                                            <img data-bs-toggle="modal" data-bs-target="#exampleModal10" onClick={() => hanldedSetPetitionUser(peticion)} src={(activeUser?.urlImage) ? activeUser?.urlImage : perfil1} style={{objectFit: 'cover', height: '355px', width: '100%'}} className='img-fluid image-round imgag shadowImage' alt=''/>
-                                            <h5 className='text-center'>{peticion.title}</h5>
-                                        </div>
-                                    )
-                                })
-                            }
-                        </Slider>
-                    </div>
+                    </Slider>
+                </div>
 
                 <div className = 'row'>
                     {
