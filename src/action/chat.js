@@ -12,6 +12,32 @@ export const activeChat = (usuarios) => ({
     payload: usuarios
 })
 
+export const sendEmailAdminChat = (id) => {
+    return async(dispatch, getState) => {
+        const {usuarios} = getState().cht
+
+        const {activeUser} = getState().auth
+
+        const user = usuarios?.filter(usuarios => usuarios.id === id)
+
+        if (user[0]?.online === false) {
+
+            const subject = 'Una persona necesita hablar'
+    
+            const title = 'Una persona de la página necesita alguna palabra de Dios'
+    
+            const descripcion = `Dios te bendiga ${user[0]?.name}, ${activeUser?.name} necesita hablar contigo`
+    
+            const email = 'ccbsrd@gmail.com'
+    
+            const email2 = user[0]?.email
+    
+            await fetchConToken('sendEmail', {subject, title, email2, descripcion, email}, 'POST');
+        }
+
+    }
+}
+
 export const activeMessage = (message) => ({
     type: Types.chtActiveMessage,
     payload: message
