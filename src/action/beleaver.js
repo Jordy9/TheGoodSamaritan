@@ -9,7 +9,6 @@ export const startGetBeleaver = () => {
         if(body.ok) {
             dispatch(Beleaver(body.beleaver))
         }
-        console.log(body.beleaver)
     }
 }
 
