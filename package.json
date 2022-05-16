@@ -39,10 +39,9 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build && yarn PWA",
+    "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "PWA": "workbox injectManifest"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
