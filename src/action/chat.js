@@ -412,7 +412,7 @@ export const sendEmailAdminChat = (id) => {
                     <table bgcolor="#15212f" border="0" cellpadding="0" cellspacing="0" class="zpAlignPos" style="font-size:12px;padding:0px;border:0px;border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;word-break:break-word;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;" width="100%">
                   
                     <tbody><tr><td class="paddingcomp" style="border:0px;padding:7px 15px;line-height:21pt;border-top:0px none ;   border-bottom:0px none ;padding-top:9px;padding-bottom:9px;padding-right:50px;padding-left:25px;">
-                                     <div componentbgcolor="#15212f" componentlineheight="21pt" componentpaddingbottom="9px" componentpaddingleft="25px" componentpaddingright="50px" componentpaddingtop="9px" data-darkreader-inline-bgcolor style="background-color: rgb(21, 33, 47); --darkreader-inline-bgcolor:#111a26;"><p align="left" style="line-height:1.7;font-family:Arial,verdana;font-size:12px; color:#000000;padding:0px;margin: 0;text-align: left; line-height: 21pt;"><font color="#b8b2a9" data-darkreader-inline-color style="font-size: 12pt; --darkreader-inline-color:#b6b0a7;">Recuerda que queremos lo mejor para ti, darte una palabra de Dios para tu vida.</font></p></div>
+                                     <div componentbgcolor="#15212f" componentlineheight="21pt" componentpaddingbottom="9px" componentpaddingleft="25px" componentpaddingright="50px" componentpaddingtop="9px" data-darkreader-inline-bgcolor style="background-color: rgb(21, 33, 47); --darkreader-inline-bgcolor:#111a26;"><p align="left" style="line-height:1.7;font-family:Arial,verdana;font-size:12px; color:#000000;padding:0px;margin: 0;text-align: left; line-height: 21pt;"><font color="#b8b2a9" data-darkreader-inline-color style="font-size: 12pt; --darkreader-inline-color:#b6b0a7;">Recuerda que Dios nos ha delegado esta honra para servirle.</font></p></div>
                     </td></tr>
                 </tbody></table>
                      </div>
@@ -423,7 +423,7 @@ export const sendEmailAdminChat = (id) => {
                     <table bgcolor="#15212f" border="0" cellpadding="0" cellspacing="0" class="zpAlignPos" style="font-size:12px;padding:0px;border:0px;border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;word-break:break-word;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;" width="100%">
                   
                     <tbody><tr><td class="paddingcomp" style="border:0px;padding:7px 15px;line-height:19pt;border-top:0px none ;   border-bottom:0px none ;padding-top:9px;padding-bottom:9px;padding-right:90px;padding-left:25px;">
-                                     <div componentbgcolor="#15212f" componentpaddingbottom="9px" componentpaddingleft="25px" componentpaddingright="90px" componentpaddingtop="9px" data-darkreader-inline-bgcolor style="background-color: rgb(21, 33, 47); --darkreader-inline-bgcolor:#111a26;"><p align="left" style="font-family:Arial,verdana;font-size:12px; color:#000000;padding:0px;margin: 0;line-height: 19pt; text-align: left;"><font color="#c5c0b8" data-darkreader-inline-color face="Arial, Helvetica" style="--darkreader-inline-color:#bfbab1;"><span style="font-size: 16px;">&iexcl;Estamos para ti!</span></font></p></div>
+                                     <div componentbgcolor="#15212f" componentpaddingbottom="9px" componentpaddingleft="25px" componentpaddingright="90px" componentpaddingtop="9px" data-darkreader-inline-bgcolor style="background-color: rgb(21, 33, 47); --darkreader-inline-bgcolor:#111a26;"><p align="left" style="font-family:Arial,verdana;font-size:12px; color:#000000;padding:0px;margin: 0;line-height: 19pt; text-align: left;"><font color="#c5c0b8" data-darkreader-inline-color face="Arial, Helvetica" style="--darkreader-inline-color:#bfbab1;"><span style="font-size: 16px;">&iexcl;Somos un equipo, si necesitas ayuda, puedes escribir por el grupo!</span></font></p></div>
                     </td></tr>
                 </tbody></table>
                      </div>
@@ -467,7 +467,7 @@ export const sendEmailAdminChat = (id) => {
                                         <center style="color:#b5afa5;font-family:Arial;font-size:12pt;">Inicia Sesión</center>
                                       </v:roundrect>
                                 <![endif]-->
-                                <a align="center" href="https://www.ccbsbonao.com.do/Chat" style="padding:0px 0px;background-color:#020e22;width:206px;line-height:51px;font-size:12pt;font-family:Arial;color:#b5afa5;cursor:pointer;text-decoration:none;border-radius:4px;border:0px solid #181a1b;display:inline-block;mso-hide:all;text-align:center;" target="_blank">
+                                <a align="center" href="https://the-good-samaritan-backoffice.herokuapp.com/Chat" style="padding:0px 0px;background-color:#020e22;width:206px;line-height:51px;font-size:12pt;font-family:Arial;color:#b5afa5;cursor:pointer;text-decoration:none;border-radius:4px;border:0px solid #181a1b;display:inline-block;mso-hide:all;text-align:center;" target="_blank">
                                     <span style="color:#b5afa5;line-height:51px">
                                         Inicia Sesi&oacute;n
                                     </span>
