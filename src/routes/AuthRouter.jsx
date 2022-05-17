@@ -102,7 +102,7 @@ export const AuthRouter = () => {
             <div className = 'my-3'>
                 {(activeUser?.noBeleaver) && <ModalNoBeleave />}
                 {
-                    (!activeUser?.tracking)
+                    (!activeUser?.biliever)
                         &&
                     (activeUser?.dayNumber <= Beleaver?.length && activeUser?.noDayNumber === true)
                         &&
@@ -110,7 +110,7 @@ export const AuthRouter = () => {
                 }
                 {(activeUser?.dayNumber + 1 <= Beleaver?.length) 
                     && 
-                (activeUser?.tracking) 
+                (activeUser?.biliever) 
                     && 
                 <ModalBileve activeUser = {activeUser?.dayNumber} confirmationUpdateDay = {moment().format('YYYY-MM-DD') !== moment(activeUser?.sesionDate).format('YYYY-MM-DD') && activeUser?.dayNumber + 1 < Beleaver?.length && moment(activeUser?.sesionDate).format('YYYY-MM-DD') !== moment(activeUser?.createdAt).format('YYYY-MM-DD')} />}
                 <Switch>
