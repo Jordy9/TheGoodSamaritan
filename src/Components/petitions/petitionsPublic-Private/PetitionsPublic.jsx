@@ -257,7 +257,7 @@ export const PetitionsPublic = () => {
                                 return (
                                     <div key={peticion._id} className = 'col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12'>
                                         <img data-bs-toggle="modal" data-bs-target="#exampleModal10" onClick={() => hanldedSetPetitionUser(peticion)} src={(activeUser?.urlImage) ? activeUser?.urlImage : perfil1} style={{objectFit: 'cover', height: '355px', width: '100%'}} className='img-fluid image-round imgag shadowImage' alt=''/>
-                                        <h5 className='text-center'>{peticion.title}</h5>
+                                        <h5 style={{wordWrap: 'break-word'}} className='text-center'>{peticion.title}</h5>
                                     </div>
                                 )
                             })
@@ -278,7 +278,7 @@ export const PetitionsPublic = () => {
                                 return (
                                     <div key={peticion._id} className = 'col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12'>
                                         <img data-bs-toggle="modal" data-bs-target="#exampleModal7" onClick={() => hanldedSetPetition(peticion)} src={(imageFiltered[0]?.urlImage) ? imageFiltered[0]?.urlImage : perfil1} style = {{objectFit: 'cover', width: '100%', height: '355px'}} className='img-fluid image-round imgag shadowImage' alt=''/>
-                                        <h5 className='text-center d-flex'>{peticion.title}</h5>
+                                        <h5 style={{wordWrap: 'break-word'}} className='text-center d-flex'>{peticion.title}</h5>
                                     </div>
                                 )
                             })
@@ -299,7 +299,7 @@ export const PetitionsPublic = () => {
                                 return (
                                     <div key={peticion._id} className = 'col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12'>
                                         <img data-bs-toggle="modal" data-bs-target="#exampleModal7" onClick={() => hanldedSetPetition(peticion)} src={(imageFiltered[0]?.urlImage) ? imageFiltered[0]?.urlImage : perfil1} style = {{objectFit: 'cover', width: '100%', height: '355px'}} className='img-fluid image-round imgag shadowImage' alt=''/>
-                                        <h4 className='text-center'>{peticion.title}</h4>
+                                        <h4 style={{wordWrap: 'break-word'}} className='text-center'>{peticion.title}</h4>
                                     </div>
                                 )
                             })

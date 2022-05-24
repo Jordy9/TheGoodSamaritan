@@ -59,9 +59,12 @@ export const SearchComponent = () => {
     const [versiculo, setVersiculo] = useState()
     const [libroActual, setlibroActual] = useState(null)
 
-    const Versiculo = (capitulo, libro, libroCap) => {
+    const [cond, setCond] = useState(null)
+
+    const Versiculo = (capitulo, libro, libroCap, lol) => {
         setVersiculo(librosBiblia[libroCap][capitulo])
         setlibroActual(libro)
+        setCond(lol)
     }
 
     const arrowBackSearchFilter = () => {
@@ -76,8 +79,16 @@ export const SearchComponent = () => {
     }
 
     useEffect(() => {
+        const lol = document.getElementById(cond)
+        if (lol) {
+            lol?.scrollIntoView({block: "center", behavior: "smooth"})
+        }
+    }, [cond, libroActual])
+    
+
+    useEffect(() => {
         scrollToTopAnimatedPost()
-    }, [currentPage, versiculo])
+    }, [currentPage])
 
   return (
     <div className="row">
@@ -107,7 +118,7 @@ export const SearchComponent = () => {
                         {
                             versiculo?.map((versiculo, index) => {
                                 return (
-                                    <div key={versiculo + index} className='my-2'>
+                                    <div key={versiculo + index} id = {`${versiculo}`} style = {{textDecoration: (cond === versiculo) && 'underline'}} className='my-2'>
                                         {index + 1}. {versiculo}
                                     </div>
                                 )
@@ -124,10 +135,10 @@ export const SearchComponent = () => {
                     {
                         paginateVerse()?.map( (arreglo, index) => {
                             return (
-                                <div style={{cursor: 'pointer'}} onClick = {() => Versiculo(arreglo[2], libros[arreglo[1]], arreglo[1])} key={arreglo + index} className = 'shadow align-items-center p-4 my-2 bg-dark image-round flex-column hoverSearch'>
+                                <div id={`${arreglo[0]}`} style={{cursor: 'pointer'}} onClick = {() => Versiculo(arreglo[2], libros[arreglo[1]], arreglo[1], arreglo[0])} key={arreglo + index} className = 'shadow align-items-center p-4 my-2 bg-dark image-round flex-column hoverSearch'>
                                     <div className="row">
                                         <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                                            <blockquote className='blockquote d-flex justify-content-center'>
+                                            <blockquote className='blockquote d-flex justify-content-center' style={{textDecoration: (cond === arreglo[0]) && 'underline'}}>
                                             {
                                                 arreglo[0]
                                             }

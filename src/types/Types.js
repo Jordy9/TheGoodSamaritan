@@ -1,5 +1,11 @@
 export const Types = {
 
+    MGRespondMessages: '[MG] respond message',
+    MGStopRespondMessages: '[MG] stop respond message',
+    MGScrollMessageOutGing: '[MG] scroll message outgoing',
+    MGScrollMessageClear: '[MG] scroll message clear',
+    MGRemoveMessage: '[MG] remove message',
+    // 
     ivgetImageVideo: '[IV] get imageVideo',
     ivsetImageVideo: '[IV] set imageVideo',
     // 
@@ -90,6 +96,7 @@ export const Types = {
     miSetSerieShow: '[Mi] set serie show',
     miSetSerieHide: '[Mi] set serie hide',
     miSetSerieStart: '[Mi] set serie start',
+    miUpdateSerie: '[Mi] update serie',
     //
     sktgetBosquejos: '[SKT] get bosquejos',
     sktSetBosquejo: '[SKT] set bosquejo',

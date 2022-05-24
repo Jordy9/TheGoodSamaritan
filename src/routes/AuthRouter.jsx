@@ -15,7 +15,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { startUpdateUserDate, startUpdateUserNoBeleaver, updateDayNumber } from '../action/user';
 import { useEffect } from 'react';
 import { YoutubeVideo } from '../Components/youtubeVideo/YoutubeVideo';
-import { ChatPage } from '../Components/chat/ChatPage';
 import { Search } from '../Components/search/Search';
 import { Bible } from '../Components/bible/Bible';
 import { NotificationResponsive } from '../Components/notificationResponsive/NotificationResponsive';
@@ -27,6 +26,7 @@ import { useLocation } from 'react-router-dom';
 import { ModalBilieveReset } from '../Components/modalBeleave/ModalBilieveReset';
 import { SoundMessage } from '../Components/soundMessage/SoundMessage';
 import { RemoveNewNotificacion } from '../action/notifications';
+import { ChatScreen } from '../Components/chat2.0/ChatScreen';
 
 export const AuthRouter = () => {
 
@@ -118,7 +118,7 @@ export const AuthRouter = () => {
                     <Route path = '/Zoom' component = {Lives} />
                     <Route path = '/YoutubeVideos' component = {YoutubeVideo} />
                     <Route path = '/Petitions' component = {Petitions} />
-                    <Route path = '/Chat' component = {ChatPage} />
+                    <Route path = '/Chat' component = {ChatScreen} />
                     <Route path = '/Search' component = {Search} />
                     <Route path = '/Bible' component = {Bible} />
                     <Route path = '/NotificationResponsive' component = {NotificationResponsive} />

@@ -60,7 +60,7 @@ export const AppRouter = () => {
 
     useNotice(activeUser?.discipleship)
 
-    const {socket, online, conectarSocket, desconectarSocket} = useSocket('https://good-samaritan-backend.herokuapp.com')
+    const {socket, online, conectarSocket, desconectarSocket} = useSocket(`${process.env.REACT_APP_API_URL.split('/api')[0]}`)
 
     const token = localStorage.getItem('tokenn')
 

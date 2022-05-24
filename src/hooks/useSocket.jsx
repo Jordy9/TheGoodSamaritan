@@ -4,7 +4,7 @@ import io from 'socket.io-client';
 import { startGetCapsules } from '../action/capsule';
 import { UsuariosCargados } from '../action/chat';
 import { startGetEventos } from '../action/event';
-import { startGetMiniSeries } from '../action/miniSerie';
+import { startGetMiniSeries, updateSerie } from '../action/miniSerie';
 import { BorrarNotificaciones, NotificacionesCargadas } from '../action/notifications';
 import { startGetPetitions } from '../action/petition';
 import { startGetBosquejos } from '../action/sketch';
@@ -65,6 +65,12 @@ export const useSocket = ( serverPath ) => {
             dispatch(NotificacionesCargadas(notificaciones))
 
             dispatch(BorrarNotificaciones())
+        })
+    }, [ socket, dispatch])
+
+    useEffect(() => {
+        socket?.on('read-count-miniserie', (serie) => {
+            dispatch(updateSerie(serie))
         })
     }, [ socket, dispatch])
 

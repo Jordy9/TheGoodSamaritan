@@ -71,6 +71,14 @@ export const chatReducer = (state = initialState, action) => {
                 ...state,
                 chatActivo: null
             }
+
+        case Types.MGRemoveMessage:
+            return {
+                ...state,
+                mensajes: state.mensajes.filter(
+                    e => (e._id !== action.payload)
+                )
+            }
     
         default:
             return state;

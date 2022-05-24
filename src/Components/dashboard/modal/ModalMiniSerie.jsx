@@ -14,7 +14,13 @@ export const ModalMiniSerie = () => {
 
     const {activeSerie, Show} = useSelector(state => state.mi)
 
-    const [first, setfirst] = useState(0)
+    const {uid} = useSelector(state => state.auth)
+
+    const {socket} = useSelector(state => state.sk)
+
+    const readCountFilter = activeSerie?.readCount?.filter(rc => rc === uid)
+
+    const [first, setfirst] = useState((readCountFilter?.length === 0) ? activeSerie?.count : 0)
 
     const countArray = activeSerie?.descripcion?.length
 
@@ -41,6 +47,10 @@ export const ModalMiniSerie = () => {
       setfirst(0)
     }
 
+    useEffect(() => {
+        socket?.emit('read-count', activeSerie?._id, uid)
+    }, [socket, uid, activeSerie?._id])
+    
     const {usuarios} = useSelector(state => state.cht)
 
     const miniSerieCount = usuarios?.filter(user => user.id === activeSerie?.user)
@@ -88,7 +98,7 @@ export const ModalMiniSerie = () => {
                             }
                             
                             {
-                              (activeSerie)
+                              (activeSerie?.count)
                                 &&
                                 parse(activeSerie?.descripcion[first])
                             }

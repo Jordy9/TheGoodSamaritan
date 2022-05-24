@@ -51,13 +51,9 @@ export const NotificationResponsive = () => {
                                                 ?
                                             <>
                                                 <div className="col-8">
-                                                    <h5 className='text-white'>
+                                                    <h5 className='text-white' style={{wordBreak: 'break-word'}}>
                                                         {
-                                                        (notifications.title.length > 15)
-                                                            ?
-                                                            notifications.title.slice(0, 20) + '...'
-                                                            :
-                                                        notifications.title
+                                                            notifications.title
                                                         }
                                                     </h5>
                                                 </div>

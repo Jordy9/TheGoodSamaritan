@@ -1,15 +1,15 @@
 .activeBook {
-    background-color: gray !important;
+    background-color: #363535 !important;
     border-radius: 10px;
 }
 
 li:hover {
-    background-color: gray !important;
+    background-color: #363535 !important;
     border-radius: 10px;
 }
 
 .hoverSearch:hover {
-    background-color: gray !important;
+    background-color: #363535 !important;
 }
 
 button:active{

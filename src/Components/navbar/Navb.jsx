@@ -63,19 +63,11 @@ export const Navb = () => {
         }
     }, [notificaciones, uid]);
 
-    const [notifyChange, setNotifyChange] = useState(notificationCountChange)
-
     const onClick = () => {
         socket?.emit('Delete-Notifications-count', uid)
         setNotificationCountChange(false)
-        setNotifyChange(false)
     }
-
-    useEffect(() => {
-        setNotificationCountChange(false)
-    }, [notifyChange])
     
-
     const {pathname} = useLocation()
 
     const history = useHistory()
@@ -166,7 +158,7 @@ export const Navb = () => {
                                                                     ?
                                                                 <>
                                                                     <div className="col-8">
-                                                                        <h5 className='text-white'>
+                                                                        <h5 className='text-white' style={{width: '225px'}}>
                                                                             {
                                                                             (notifications.title.length > 15)
                                                                                 ?
@@ -183,7 +175,7 @@ export const Navb = () => {
                                                                 </>
                                                                 :
                                                                 <div className="col-12">
-                                                                    <h4 className='text-white'>
+                                                                    <h4 className='text-white' style={{wordBreak: 'break-word'}}>
                                                                         {
                                                                             notifications.title
                                                                         }

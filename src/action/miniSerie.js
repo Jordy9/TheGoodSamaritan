@@ -13,6 +13,11 @@ export const startGetMiniSeries = () => {
     }
 }
 
+export const updateSerie = (serie) => ({
+    type: Types.miUpdateSerie,
+    payload: serie
+})
+
 const miniSeries = (series) => ({
     type: Types.migetSeries,
     payload: series

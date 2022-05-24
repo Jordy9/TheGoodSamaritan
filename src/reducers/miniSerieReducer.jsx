@@ -38,6 +38,14 @@ export const miniSerieReducer = (state = initialState, action) => {
                 ...state,
                 miniSerieStart: action.payload
             }
+            
+        case Types.miUpdateSerie:
+            return {
+                ...state,
+                miniSeries: state.miniSeries.map(
+                    e => (e._id === action.payload._id) ? action.payload : e
+                )
+            }
     
         default:
             return state;

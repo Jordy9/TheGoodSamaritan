@@ -24,7 +24,7 @@ export const MiniSerie = () => {
 
   const [first, setfirst] = useState(0)
 
-  const [first2, setfirst2] = useState(0)
+  const [first2, setfirst2] = useState(miniSerieStart?.count)
 
   const countArray = activeSerie?.descripcion?.length
 
@@ -33,6 +33,11 @@ export const MiniSerie = () => {
   useEffect(() => {
     scrollToTopAnimatedPost()
   }, [first, first2])
+
+  useEffect(() => {
+    setfirst2(miniSerieStart?.count)
+  }, [miniSerieStart?.count])
+  
 
   const next = () => {
     if (countArray - 1 !== first) {

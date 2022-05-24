@@ -4,12 +4,13 @@ import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux';
 import Slider from 'react-slick'
 import { setSeries, setShow } from '../../../action/miniSerie';
+import { ModalMiniSerie } from '../modal/ModalMiniSerie';
 
 export const Carousel = () => {
 
   const dispatch = useDispatch()
 
-  const {miniSeries} = useSelector(state => state.mi)
+  const {miniSeries, activeSerie} = useSelector(state => state.mi)
   
 
   const handledSet = (miniSeries) => {
@@ -95,6 +96,12 @@ export const Carousel = () => {
                 })
               }
             </Slider>
+
+            {
+              (activeSerie)
+                  &&
+              <ModalMiniSerie />
+            }
         </div>   
     )
 }
