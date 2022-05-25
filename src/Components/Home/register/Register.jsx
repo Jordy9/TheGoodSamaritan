@@ -155,7 +155,7 @@ export const Register = () => {
                                     </div>
 
                                     <div className="row">
-                                        <div className="col form-group">
+                                        <div className="col-xs-12 col-sm-12 col-md-12 col-lg-4 col-xl-4 form-group">
                                             <label>País</label>
                                             <select {...getFieldProps('country')} id='select-country' className="form-select form-control bg-transparent text-white">
                                                 <option selected>Seleccione una opción</option>
@@ -170,7 +170,7 @@ export const Register = () => {
                                             {touched.country && errors.country && <span style={{color: 'red'}}>{errors.country}</span>}
                                         </div>
 
-                                        <div className="col form-group">
+                                        <div className="col-xs-12 col-sm-12 col-md-12 col-lg-4 col-xl-4 form-group">
                                             <label>Provincia</label>
                                             <select {...getFieldProps('city')} id='select-province' className="form-select form-control bg-transparent text-white">
                                                 <option selected>Seleccione una opción</option>
@@ -187,7 +187,7 @@ export const Register = () => {
                                             {touched.city && errors.city && <span style={{color: 'red'}}>{errors.city}</span>}
                                         </div>
 
-                                        <div className="col form-group">
+                                        <div className="col-xs-12 col-sm-12 col-md-12 col-lg-4 col-xl-4 form-group">
                                             <label >Número de teléfono</label>
                                             <MaskedInput
                                                 {...getFieldProps('number')}
