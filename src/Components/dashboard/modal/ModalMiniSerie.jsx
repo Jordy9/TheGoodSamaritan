@@ -98,9 +98,9 @@ export const ModalMiniSerie = () => {
                             }
                             
                             {
-                              (activeSerie?.count)
+                              (activeSerie)
                                 &&
-                                parse(activeSerie?.descripcion[first])
+                              parse(activeSerie?.descripcion[first])
                             }
 
                             <div className="row">
