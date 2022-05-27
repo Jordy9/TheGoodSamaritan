@@ -184,7 +184,7 @@ export const startUpdateUser = (name, lastName, date, email, address, country, c
 
             if (activeUser?.urlImage) {
                     
-                const res = await axios.post(`${process.env.REACT_APP_API_URL}/image/upload`, formData, {
+                const res = await axios.post(`${process.env.REACT_APP_API_URL}/image/upload/perfil`, formData, {
                     headers: {'x-token': token},
                     onUploadProgress: (e) =>
                     {dispatch(upload(Math.round( (e.loaded * 100) / e.total )))}
@@ -260,7 +260,7 @@ export const startUpdateUser = (name, lastName, date, email, address, country, c
                 }
 
             } else{
-                const res = await axios.post(`${process.env.REACT_APP_API_URL}/image/upload`, formData, {
+                const res = await axios.post(`${process.env.REACT_APP_API_URL}/image/upload/perfil`, formData, {
                     headers: {'x-token': token},
                     onUploadProgress: (e) =>
                         {dispatch(upload(Math.round( (e.loaded * 100) / e.total )))}
