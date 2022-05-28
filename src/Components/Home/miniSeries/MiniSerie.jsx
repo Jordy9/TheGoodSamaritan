@@ -108,8 +108,8 @@ export const MiniSerie = () => {
         )
       }
 
-      const fechainicio1 = moment(activeSerie?.updatedAt, 'YYYY-MM-DD')
-      const fechainicio2 = moment(miniSerieStart?.updatedAt, 'YYYY-MM-DD')
+      const fechainicio1 = moment(activeSerie?.updateCount, 'YYYY-MM-DD')
+      const fechainicio2 = moment(miniSerieStart?.updateCount, 'YYYY-MM-DD')
       const fechafin2 = moment()
 
       const NuevoCap = fechafin2.diff(fechainicio1, 'day')
@@ -208,7 +208,7 @@ export const MiniSerie = () => {
                   (miniSeries)
                     &&
                   miniSeries?.map(Serie => {
-                    const fechainicio1 = moment(Serie?.updatedAt, 'YYYY-MM-DD')
+                    const fechainicio1 = moment(Serie?.updateCount, 'YYYY-MM-DD')
                     const fechafin2 = moment()
 
                     const NuevoCap = fechafin2.diff(fechainicio1, 'day')
