@@ -74,7 +74,7 @@ export const Carousel = () => {
             <Slider {...settings}>
               {
                 miniSeries?.map(Serie => {
-                  const fechainicio1 = moment(Serie?.updatedAt, 'YYYY-MM-DD')
+                  const fechainicio1 = moment(Serie?.updateCount, 'YYYY-MM-DD')
                   const fechafin2 = moment()
 
                   const NuevoCap = fechafin2.diff(fechainicio1, 'day')
