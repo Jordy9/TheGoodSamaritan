@@ -76,6 +76,7 @@ export const NoteForm = ({setShow}) => {
                                                 language: 'es'
     
                                             },
+                                            contextmenu: false,
                                             language: 'es',
                                             plugins: 'autolink link image lists print preview',
                                             toolbar: 'undo redo | formatselect | fontselect | fontsizeselect ' +
