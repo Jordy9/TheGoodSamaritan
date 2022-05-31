@@ -119,7 +119,7 @@ export const MiniSerie = () => {
     return (
         <div className="container my-5"> 
             <div className = 'shadow d-flex p-2 my-2 bg-dark image-round flex-column'>
-            <span className='text-right mr-4 mb-2'>{moment(activeSerie?.createdAt).format('MMMM Do YYYY, h:mm a')}</span>
+            <span className='text-right mr-4 mb-2'>{moment(activeSerie?.createdAt || miniSerieStart?.createdAt).format('MMMM Do YYYY, h:mm a')}</span>
                 <h1 className='text-center'>
                   {
                     (activeSerie)
