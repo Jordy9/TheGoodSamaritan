@@ -6,6 +6,7 @@ import { UsuariosCargados } from '../action/chat';
 import { startGetEventos } from '../action/event';
 import { startGetMiniSeries, updateSerie } from '../action/miniSerie';
 import { BorrarNotificaciones, NotificacionesCargadas } from '../action/notifications';
+import { startGetNotificationsUser, StartUpdateNotificationUser } from '../action/notificationsUser';
 import { startGetPetitions } from '../action/petition';
 import { startGetBosquejos } from '../action/sketch';
 import { NotificationPublicAdmin } from '../action/user';
@@ -75,6 +76,15 @@ export const useSocket = ( serverPath ) => {
     }, [ socket, dispatch])
 
     useEffect(() => {
+        socket?.on('Deleted-Notifications-count', (notification) => {
+            
+            if (notification !== null) {
+                dispatch(StartUpdateNotificationUser(notification))
+            }
+        })
+    }, [ socket, dispatch])
+
+    useEffect(() => {
         socket?.on('notifications-Show', (notification) => {
 
             if (notification?.subtitle === 'Transmitiendo reunión de Zoom') {
@@ -95,6 +105,8 @@ export const useSocket = ( serverPath ) => {
                 dispatch(startGetVideoWordOfTheDay())
             }
 
+            dispatch(startGetNotificationsUser())
+            
             dispatch(NotificationPublicAdmin(notification))
         })
     }, [ socket, dispatch])

@@ -1,28 +1,33 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import moment from 'moment'
 import { useDispatch, useSelector } from 'react-redux'
-import { setNotificationsPost, updateUserNotification } from '../../action/user'
+import { setNotificationsPost } from '../../action/user'
 import { useHistory } from 'react-router-dom'
+import { UpdateNotifications } from '../../action/notificationsUser'
 
 export const NotificationResponsive = () => {
 
-    const {activeUser, uid} = useSelector(state => state.auth)
+    const {uid} = useSelector(state => state.auth)
     const {socket} = useSelector(state => state.sk)
 
     const dispatch = useDispatch()
 
     const history = useHistory()
 
-    const [activeUserChange, setActiveUserChange] = useState(activeUser)
+    const {notificaciones} = useSelector(state => state.nu)
 
     useEffect(() => {
-        socket?.on('notifications-user', (users) => {
+        let isMountede = true
+        socket?.on('notifications-user', () => {
 
-            const user = users?.find(user => user.id === uid)
-
-            dispatch(updateUserNotification(user))
-            setActiveUserChange(user)
+            if (isMountede) {
+                dispatch(UpdateNotifications(true))
+            }
         })
+
+        return () => {
+            isMountede = false
+        }
     }, [socket, dispatch, uid])
 
     const setNotify = (noti) => {
@@ -41,7 +46,7 @@ export const NotificationResponsive = () => {
             <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                 <div style={{overflowY: 'auto'}}>
                     {
-                        activeUserChange?.notifications?.map((notifications, index) => {
+                        notificaciones?.map((notifications, index) => {
                             return (
                                 <div className='shadow image-round my-2 bg-dark p-3 flex-column' onClick={() => setNotify(notifications)} style={{cursor: 'pointer'}} key={notifications+ index}>
                                     <h6 className='text-white text-center'>{notifications.subtitle}</h6>

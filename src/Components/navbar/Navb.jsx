@@ -2,13 +2,14 @@ import { Container, Dropdown, DropdownButton, Nav, Navbar } from 'react-bootstra
 import { NavLink } from 'react-router-dom'
 import './Navb.css'
 import { useDispatch } from 'react-redux'
-import { setActiveUser, setNotificationsPost, startLogout, updateUserNotification } from '../../action/user'
+import { setActiveUser, setNotificationsPost, startLogout } from '../../action/user'
 import { useSelector } from 'react-redux'
 import logo from '../../heroes/logo.png'
 import { useEffect, useState } from 'react'
 import moment from 'moment'
 import { useLocation, useHistory } from 'react-router'
 import { Sidebar } from '../sidebar/Sidebar'
+import { UpdateNotifications } from '../../action/notificationsUser'
 
 export const Navb = () => {
 
@@ -16,10 +17,10 @@ export const Navb = () => {
 
     const {activeUser, uid} = useSelector(state => state.auth)
 
-    const {notificaciones} = useSelector(state => state.nt)
+    const {notificaciones, updateNotifications} = useSelector(state => state.nu)
 
     const {socket} = useSelector(state => state.sk)
-
+    
     const logout = () => {
         dispatch(startLogout())
         localStorage.removeItem('noBeleaver')
@@ -30,21 +31,24 @@ export const Navb = () => {
         localStorage.removeItem('resetBeleaver')
     }
 
-    const [notificationCountChange, setNotificationCountChange] = useState(activeUser?.notificationsCount)
-    const [activeUserChange, setActiveUserChange] = useState(activeUser)
+    useEffect(() => {
 
+      if (notificaciones && notificaciones[0]?.users?.filter(not => not === uid)?.length !== 0) {
+        dispatch(UpdateNotifications(false))
+      }
+
+      if (notificaciones && notificaciones[0]?.users?.filter(not => not === uid)?.length === 0) {
+        dispatch(UpdateNotifications(true))
+      }
+    }, [dispatch, notificaciones, uid])
+    
     useEffect(() => {
 
         let isMountede = true
-        socket?.on('notifications-user', (users) => {
-            console.log(users)
+        socket?.on('notifications-user', () => {
 
             if (isMountede) {
-                const user = users?.find(user => user.id === uid)
-
-                dispatch(updateUserNotification(user))
-                setNotificationCountChange(true)
-                setActiveUserChange(user)
+                dispatch(UpdateNotifications(true))
             }
         })
 
@@ -64,8 +68,10 @@ export const Navb = () => {
     }, [notificaciones, uid]);
 
     const onClick = () => {
-        socket?.emit('Delete-Notifications-count', uid)
-        setNotificationCountChange(false)
+        if (notificaciones?.length !== 0) {
+            socket?.emit('Delete-Notifications-count', uid)
+            dispatch(UpdateNotifications(false))
+        }
     }
     
     const {pathname} = useLocation()
@@ -98,7 +104,7 @@ export const Navb = () => {
     
     return (
         <>
-            <Navbar className = 'col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12' expand="lg" bg = 'dark' variant="dark">
+            <Navbar expand="lg" bg = 'dark' variant="dark">
                 <Container fluid = {(width <= 991) ? true : false}>
                     <Navbar.Brand style = {{cursor: 'pointer', margin: 0, padding: 0}} >
                         <span className = 'Navb-tittle d-flex justify-content-end align-items-center'>
@@ -130,7 +136,7 @@ export const Navb = () => {
                                 className='mr-2 d-flex align-items-center'
                             >
                                 <i onClick={onClick} style={{fontSize: '20px', cursor: 'pointer', margin: 0}} className="bi bi-bell d-flex align-items-center">
-                                    <span style={{margin: 0}} className={`${(notificationCountChange === true) && 'p-1 bg-danger border border-light rounded-circle'}`}></span>
+                                    <span style={{margin: 0}} className={`${(updateNotifications === true) && 'p-1 bg-danger border border-light rounded-circle'}`}></span>
                                 </i>
                             </NavLink>
                         </Nav>
@@ -140,7 +146,7 @@ export const Navb = () => {
                                 className='mr-2 d-flex align-items-center'
                                 title = {
                                     <i onClick={onClick} style={{fontSize: '20px', cursor: 'pointer', margin: 0}} className="bi bi-bell d-flex align-items-center">
-                                        <span style={{margin: 0}} className={`${(notificationCountChange === true) && 'p-1 bg-danger border border-light rounded-circle'}`}></span>
+                                        <span style={{margin: 0}} className={`${(updateNotifications === true) && 'p-1 bg-danger border border-light rounded-circle'}`}></span>
                                     </i>}
                                 align={'end'}
                                 variant="dark"
@@ -148,7 +154,7 @@ export const Navb = () => {
                                 >
                                     <div style={{overflowY: 'scroll', height: '400px'}}>
                                         {
-                                            activeUserChange?.notifications?.map((notifications, index) => {
+                                            notificaciones?.map((notifications, index) => {
                                                 return (
                                                     <Dropdown.Item onClick={() => setNotify(notifications)} className='shadow my-2 bg-dark p-3 flex-column image-round' key={notifications+ index} style={{width: 'auto', height: 'auto'}}>
                                                         <h6 className='text-white text-center'>{notifications.subtitle}</h6>
@@ -201,8 +207,8 @@ export const Navb = () => {
                                 (width > 991)
                                     &&
                                 <>
-                                    <NavLink onClick={() => dispatch(setActiveUser())} to = '/Profile'>{(activeUser?.urlImage) ? <img src={activeUser?.urlImage} className='img-fluid rounded-circle mt-2' style = {{objectFit: 'cover', width: '32px', height: '32px', cursor: 'pointer'}} alt='' /> : <i className="bi bi-person-circle" style = {{fontSize: '32px', cursor: 'pointer', color: 'white'}}></i>}</NavLink>
-                                    <NavLink to = '/Home' onClick={logout} className = 'nav-link mt-1'>Cerrar sesión</NavLink>
+                                    <NavLink className = 'd-flex align-items-center' onClick={() => dispatch(setActiveUser())} to = '/Profile'>{(activeUser?.urlImage) ? <img src={activeUser?.urlImage} className='img-fluid rounded-circle' style = {{objectFit: 'cover', width: '32px', height: '32px', cursor: 'pointer'}} alt='' /> : <i className="bi bi-person-circle" style = {{fontSize: '32px', cursor: 'pointer', color: 'white', objectFit: 'cover'}}></i>}</NavLink>
+                                    <NavLink to = '/Home' onClick={logout} className = 'nav-link d-flex align-items-center'>Cerrar sesión</NavLink>
                                 </>
                             }
                         </Nav>

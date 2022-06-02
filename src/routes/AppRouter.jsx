@@ -50,6 +50,7 @@ import { startGetBeleaver } from '../action/beleaver';
 import { startGetImageVideo } from '../action/imageVideo';
 import { MiniSerie } from '../Components/Home/miniSeries/MiniSerie';
 import { useNotice } from '../hooks/useNotice';
+import { startGetNotificationsUser } from '../action/notificationsUser';
 
 moment.locale('es');
 
@@ -85,6 +86,7 @@ export const AppRouter = () => {
         dispatch(startGetNoBeleaverVideo())
         dispatch(startGetBeleaver())
         dispatch(startGetImageVideo())
+        dispatch(startGetNotificationsUser())
     }, [dispatch])
 
     useEffect(() => {

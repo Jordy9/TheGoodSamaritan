@@ -1,5 +1,9 @@
 export const Types = {
 
+    NUgetnotificationsUser: '[NU] get notifications',
+    NUupdateNotificationsUser: '[NU] update notifications',
+    NUupdateNotificationsUserUpdate: '[NU] update notifications update',
+    // 
     MGRespondMessages: '[MG] respond message',
     MGStopRespondMessages: '[MG] stop respond message',
     MGScrollMessageOutGing: '[MG] scroll message outgoing',

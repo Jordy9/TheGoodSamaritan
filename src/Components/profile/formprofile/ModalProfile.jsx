@@ -67,7 +67,7 @@ export const ModalProfile = () => {
                                     {
                                         ((getFieldProps('tracking').value) === true)
                                             ?
-                                        <label className="form-check-label">¿Quieres dejar de recibir seguimiento para crecer en el Señor?</label>
+                                        <label className="form-check-label">¿Quieres dejar de recibir seguimiento?</label>
                                             :
                                         <label className="form-check-label">¿Deseas seguimiento para crecer en el Señor?</label>
                                     }

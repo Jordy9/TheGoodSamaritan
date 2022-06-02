@@ -104,8 +104,8 @@ export const ModalBilieveReset = () => {
                 <div>
                     <h1 className='text-center'>¿Te gustaria tener seguimiento para poder ver cada dia informacion como esta, que aporte a tu crecimiento espiritual?</h1>
                     <div className='d-flex justify-content-center'>
-                        <button onClick={onClickNo} className='btn btn-danger form-control mr-2'>No</button>
-                        <button onClick={onClickYes} className='btn btn-primary form-control ml-2'>Si</button>
+                        <button onClick={onClickYes} className='btn btn-primary form-control mr-2'>Si</button>
+                        <button onClick={onClickNo} className='btn btn-danger form-control ml-2'>No</button>
                     </div>
                     <hr />
                     <h4 className='text-center'>{Beleaver[0]?.title}</h4>

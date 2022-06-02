@@ -12,6 +12,7 @@ import { miniSerieReducer } from '../reducers/miniSerieReducer';
 import { noBeleaverReducer } from '../reducers/noBeleaverReducer';
 import { noteReducer } from '../reducers/noteReducer';
 import { notificacionReducer } from '../reducers/notificacionReducer';
+import { notificationUserReducer } from '../reducers/notificationUserReducer ';
 import { petitionReducer } from '../reducers/petitionReducer';
 import { searchReducer } from '../reducers/searchReducer';
 import { sketchReducer } from '../reducers/sketchReducer';
@@ -46,7 +47,8 @@ const reducers = combineReducers({
     nb: noBeleaverReducer,
     bl: beleaverReducer,
     iv: ImageVideoReducer,
-    mg: messagesReducer
+    mg: messagesReducer,
+    nu: notificationUserReducer
 });
 
 export const store =  createStore(

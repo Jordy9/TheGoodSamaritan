@@ -102,7 +102,7 @@ export const AuthRouter = () => {
             <div className = 'my-3'>
                 {(activeUser?.noBeleaver) && <ModalNoBeleave />}
                 {
-                    (!activeUser?.biliever)
+                    (!activeUser?.tracking)
                         &&
                     (activeUser?.dayNumber <= Beleaver?.length && activeUser?.noDayNumber === true)
                         &&
