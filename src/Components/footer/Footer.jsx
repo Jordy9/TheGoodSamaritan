@@ -33,6 +33,7 @@ export const Footer = () => {
     const fbiYT = () => {
         window.open('https://www.youtube.com/c/Centrocristiano100')
     }
+
     return (
         <>
             <footer hidden = {Show} className="shadow p-4 bg-dark rounded-lg flex-column text-white pt-5">
@@ -56,10 +57,7 @@ export const Footer = () => {
                             <NavLink to='/RadioBonaoBlessing' className="text-white" style={{textDecoration: "none"}}> Radio Bonao Bendición</NavLink>
                         </p>
                         <p>
-                            <NavLink  to='/YoutubeVideos'className="text-white" style={{textDecoration: "none"}}> Cultos</NavLink>
-                        </p>
-                        <p>
-                            <NavLink  to='/NextSteps'className="text-white" style={{textDecoration: "none"}}> Oraciones, Estudios Biblicos, y más...</NavLink>
+                            <NavLink  to='/Devotionals'className="text-white" style={{textDecoration: "none"}}> Devocionales</NavLink>
                         </p>
 
                         </div>
@@ -83,13 +81,13 @@ export const Footer = () => {
                         <div className="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
                             <h5 className="text-uppercase mb-4 font-weight-bold text-primary" >Contacto</h5>
                             <p>
-                                <i className="fas fa-home mr-3"></i>República Dominicana, Bonao, Padre Fantino.
+                                <i className="fas fa-home mr-2"></i>República Dominicana, Bonao, Padre Fantino.
                             </p>
                             <p>
-                                <i className="fas fa-envelope mr-3"></i>centrocristiano777@gmail.com
+                                <i className="fas fa-envelope mr-2"></i>centrocristiano777@gmail.com
                             </p>
                             <p>
-                                <i className="fas fa-phone mr-3"></i>+1 (809)-296-1771
+                                <i className="fas fa-phone mr-2"></i>+1 (809)-296-1771
                             </p>
                         </div>
                         
