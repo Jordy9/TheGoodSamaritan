@@ -60,16 +60,16 @@ export const ListNotes = ({setShow}) => {
                 </thead>
                 <tbody>
                     {
-                        notes?.filter(notes => notes.user.id === uid).map(notes => {
+                        notes?.filter(notes => notes.user?.id === uid)?.map(notes => {
                             return (
-                                <tr key={notes._id}>
+                                <tr key={notes?._id}>
                                     <th>{notes?.title}</th>
                                     <th>{moment(notes?.createdAt).format('MMMM Do YYYY, h:mm a')}</th>
                                     <td>
                                         {
-                                        (h2p(notes?.descripcion).length > 9)
+                                        (h2p(notes?.descripcion)?.length > 9)
                                             ?
-                                        h2p(notes?.descripcion).slice(0, 40) + '...'
+                                        h2p(notes?.descripcion)?.slice(0, 40) + '...'
                                             :
                                         h2p(notes?.descripcion)
                                         }
