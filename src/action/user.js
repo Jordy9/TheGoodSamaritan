@@ -387,7 +387,7 @@ export const updatTracking = (biliever, discipleship, reset, tracking) => {
         const {socket} = getState().sk
 
         if (reset) {
-            socket?.emit('modal-reset', uid)
+            socket?.emit('modal-reset-perfil', uid)
             const Toast = Swal.mixin({
                 toast: true,
                 position: 'top-end',
