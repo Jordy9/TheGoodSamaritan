@@ -146,9 +146,8 @@ export const startUpdateUserDate = () => {
 
         const biliever = false
         const discipleship = false
-        const tracking = false
 
-        await fetchConToken(`users/update/${activeUser.id}`, {...activeUser, biliever, discipleship, tracking}, 'PUT')
+        await fetchConToken(`users/update/${activeUser?.id}`, {...activeUser, biliever, discipleship}, 'PUT')
     }
 }
 
@@ -160,7 +159,7 @@ export const startUpdateUserNoBeleaver = () => {
 
         const noBeleaver = false
 
-        const resp = await fetchConToken(`users/update/${activeUser.id}`, {name, lastName, date, email, address, country, city, number, biliever, discipleship, tracking, password, noBeleaver}, 'PUT')
+        const resp = await fetchConToken(`users/update/${activeUser?.id}`, {name, lastName, date, email, address, country, city, number, biliever, discipleship, tracking, password, noBeleaver}, 'PUT')
         const body = await resp.json()
 
         if(body.ok) {
@@ -194,7 +193,7 @@ export const startUpdateUser = (name, lastName, date, email, address, country, c
                     const urlImage = res.data.image.url
                     const idImage = res.data.image.id
                     
-                    const resp = await fetchConToken(`users/update/${activeUser.id}`, {name, lastName, date, email, address, country, city, number, biliever, discipleship, tracking, password, urlImage, idImage}, 'PUT')
+                    const resp = await fetchConToken(`users/update/${activeUser?.id}`, {name, lastName, date, email, address, country, city, number, biliever, discipleship, tracking, password, urlImage, idImage}, 'PUT')
                     const body = await resp.json()
 
                     
@@ -203,7 +202,7 @@ export const startUpdateUser = (name, lastName, date, email, address, country, c
                         dispatch(setActiveUser(body.users))
                         dispatch(UploadFish())
                         
-                        const ress = await axios.delete(`${process.env.REACT_APP_API_URL}/image/upload/${activeUser.idImage}`, {headers: {'x-token': token}})
+                        const ress = await axios.delete(`${process.env.REACT_APP_API_URL}/image/upload/${activeUser?.idImage}`, {headers: {'x-token': token}})
     
                         console.log(ress)
                         const Toast = Swal.mixin({
@@ -270,7 +269,7 @@ export const startUpdateUser = (name, lastName, date, email, address, country, c
                     const urlImage = res.data.image.url
                     const idImage = res.data.image.id
                 
-                    const resp = await fetchConToken(`users/update/${activeUser.id}`, {name, lastName, date, email, address, country, city, number, biliever, discipleship, tracking, password, urlImage, idImage}, 'PUT')
+                    const resp = await fetchConToken(`users/update/${activeUser?.id}`, {name, lastName, date, email, address, country, city, number, biliever, discipleship, tracking, password, urlImage, idImage}, 'PUT')
                     const body = await resp.json()
 
                     if(body.ok) {
@@ -334,8 +333,8 @@ export const startUpdateUser = (name, lastName, date, email, address, country, c
             
         } else {
             const urlImage = activeUser.urlImage
-            const idImage = activeUser.idImage
-            const resp = await fetchConToken(`users/update/${activeUser.id}`, {name, lastName, date, email, address, country, city, number, biliever, discipleship, tracking, password, urlImage, idImage}, 'PUT')
+            const idImage = activeUser?.idImage
+            const resp = await fetchConToken(`users/update/${activeUser?.id}`, {name, lastName, date, email, address, country, city, number, biliever, discipleship, tracking, password, urlImage, idImage}, 'PUT')
             const body = await resp.json()
 
             if(body.ok) {
@@ -406,7 +405,7 @@ export const updatTracking = (biliever, discipleship, reset, tracking) => {
             })
         }
 
-        const resp = await fetchConToken(`users/update/${activeUser.id}`, {...activeUser, biliever, discipleship, tracking}, 'PUT')
+        const resp = await fetchConToken(`users/update/${activeUser?.id}`, {...activeUser, biliever, discipleship, tracking}, 'PUT')
         const body = await resp.json()
 
         if(body.ok) {
