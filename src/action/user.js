@@ -191,11 +191,11 @@ export const startLoginFacebook = (response) => {
 }
 
 
-export const startRegister = (name, lastName, date, email, address, country, city, number, biliever, discipleship, tracking, noBeleaver, password, setfirst) => {
+export const startRegister = (name, lastName, email, noBeleaver, password, setfirst) => {
     return async(dispatch) => {
 
         const sesionDate = moment()
-        const resp = await fetchConToken('users/newUser', {name, lastName, date, email, address, country, city, number, biliever, discipleship, tracking, noBeleaver, password, sesionDate}, 'POST');
+        const resp = await fetchConToken('users/newUser', {name, lastName, email, noBeleaver, password, sesionDate}, 'POST');
         const body = await resp.json();
 
         if(body.ok) {
