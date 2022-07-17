@@ -109,9 +109,7 @@ export const LoginScreen = () => {
                                                 icon = {<i style={{fontSize: '20px'}} className="bi bi-facebook mr-1"></i>}
                                                 buttonStyle = {{width: 'auto', height: 'auto', display: 'flex', justifyContent: 'center', alignItems: 'center', borderRadius: '50px'}}
                                                 textButton = 'Iniciar sesión con Facebook'
-                                                // size = 'small'
-                                                isMobile
-                                                // disableMobileRedirect
+                                                disableMobileRedirect
                                             />
                                         </div>
                                     </div>
