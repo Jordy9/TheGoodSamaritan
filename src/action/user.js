@@ -66,6 +66,130 @@ export const startLogin = (email, password) => {
     }
 }
 
+export const startLoginGoogle = (response) => {
+    return async(dispatch) => {
+
+        const greeting = moment().hour()
+        let greet
+        if (greeting >= 0 && greeting <= 11) {
+            greet = '🌄 Buenos días'
+        } else if (greeting >= 12 && greeting <= 18) {
+            greet = '☀️ Buenas tardes'
+        } else if (greeting >= 19 && greeting <= 23) {
+            greet = '🌙 Buenas noches'
+        }
+
+        const resp = await fetchSinToken('users/googleAuth', response, 'POST');
+        const body = await resp.json();
+        
+        if(body.ok) {
+            localStorage.setItem('token', body.token)
+            localStorage.setItem('token-init-date', new Date().getTime());
+
+            await dispatch(login({
+                uid: body.uid,
+                name: body.name
+            }))
+            dispatch(setActiveUser())
+
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 5000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                  toast.addEventListener('mouseenter', Swal.stopTimer)
+                  toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+              })
+              
+              return Toast.fire({
+                title: `${greet} ${body.name}`
+              })             
+        } else {
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 5000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                  toast.addEventListener('mouseenter', Swal.stopTimer)
+                  toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+              })
+              
+              return Toast.fire({
+                icon: 'error',
+                title: `${body.msg}`
+              })
+        }
+    }
+}
+
+export const startLoginFacebook = (response) => {
+    return async(dispatch) => {
+
+        const greeting = moment().hour()
+        let greet
+        if (greeting >= 0 && greeting <= 11) {
+            greet = '🌄 Buenos días'
+        } else if (greeting >= 12 && greeting <= 18) {
+            greet = '☀️ Buenas tardes'
+        } else if (greeting >= 19 && greeting <= 23) {
+            greet = '🌙 Buenas noches'
+        }        
+
+        const resp = await fetchSinToken('users/facebookAuth', response, 'POST');
+        const body = await resp.json();
+        
+        if(body.ok) {
+            localStorage.setItem('token', body.token)
+            localStorage.setItem('token-init-date', new Date().getTime());
+
+            await dispatch(login({
+                uid: body.uid,
+                name: body.name
+            }))
+            dispatch(setActiveUser())
+
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 5000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                  toast.addEventListener('mouseenter', Swal.stopTimer)
+                  toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+              })
+              
+              return Toast.fire({
+                title: `${greet} ${body.name}`
+              })             
+        } else {
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 5000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                  toast.addEventListener('mouseenter', Swal.stopTimer)
+                  toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+              })
+              
+              return Toast.fire({
+                icon: 'error',
+                title: `${body.msg}`
+              })
+        }
+    }
+}
+
 
 export const startRegister = (name, lastName, date, email, address, country, city, number, biliever, discipleship, tracking, noBeleaver, password, setfirst) => {
     return async(dispatch) => {

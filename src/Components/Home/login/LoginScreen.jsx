@@ -3,7 +3,9 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import * as Yup from 'yup'
-import { startLogin } from '../../../action/user'
+import { startLogin, startLoginFacebook, startLoginGoogle } from '../../../action/user'
+import { GoogleLogin } from '@react-oauth/google';
+import FacebookLogin from 'react-facebook-login';
 
 export const LoginScreen = () => {
     const dispatch = useDispatch()
@@ -38,13 +40,24 @@ export const LoginScreen = () => {
         validationSchema: Yup.object({
         })
     })
+    
+    const onSuccessLogin = async (response) => {        
+        dispatch(startLoginGoogle(response))
+    }
+    const onErrorLogin = (response) => {
+        console.log(response)
+    }
+
+    const responseFacebook = (response) => {
+        dispatch(startLoginFacebook(response))
+      }
 
     return (
         <>
             <div className="container">
                 <div className="row">
                     <div className="col-12 my-5 d-flex justify-content-center">
-                        <div className = 'shadow p-2 mt-2 bg-dark image-round flex-column text-white' style = {{width: '400px', height: '525px'}}>
+                        <div className = 'shadow p-2 mt-2 bg-dark image-round flex-column text-white' style = {{width: '400px', height: 'auto'}}>
                             <h4 className = 'text-center my-4'>Iniciar sesión</h4>
                             <div className="container card-body">
                                 <form onSubmit={handleSubmit} className = 'my-4'>
@@ -73,6 +86,33 @@ export const LoginScreen = () => {
                                         <label className="form-check-label">Recuerdame</label>
                                     </div>
                                     <button type='submit' className = 'btn btn-outline-primary form-control mt-4' style = {{borderRadius: '50px'}}>Iniciar sesión</button>
+
+                                    <div className='text-center my-4'>Inicia sesión con las redes sociales</div>
+
+                                    <div className="row">
+                                        <div className="col-12 mb-4 d-flex justify-content-center">
+                                            <GoogleLogin
+                                                onSuccess={onSuccessLogin}
+                                                onError={onErrorLogin}
+                                                theme = 'filled_black'
+                                                size='medium'
+                                                useOneTap = {false}
+                                            />
+                                        </div>
+
+                                        <div className="col-12 d-flex justify-content-center">
+                                            <FacebookLogin
+                                                appId="776369450467981"
+                                                autoLoad={false}
+                                                callback={responseFacebook}
+                                                size = 'small'
+                                                icon = {<i style={{fontSize: '20px'}} className="bi bi-facebook mr-1"></i>}
+                                                buttonStyle = {{width: 'auto', height: 'auto', display: 'flex', justifyContent: 'center', alignItems: 'center', borderRadius: '50px'}}
+                                                textButton = 'Iniciar sesión con Facebook'
+                                                // size = 'small'
+                                            />
+                                        </div>
+                                    </div>
                                 </form>
 
                                 <div className = 'text-center my-4'>
@@ -82,6 +122,7 @@ export const LoginScreen = () => {
                                 <div className = 'text-center'>
                                     <NavLink to = '/ForgotPassword' style = {{borderRadius: '50px', textDecoration: 'none'}}>¿Olvidaste tu contraseña?</NavLink>
                                 </div>
+
                             </div>
                         </div>
                     </div>

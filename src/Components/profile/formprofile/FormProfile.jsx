@@ -139,7 +139,7 @@ export const FormProfile = () => {
                                     <div className="row">
                                         <div className="col form-group">
                                             <label>Edad</label>
-                                            <input type="text" readOnly value={age} className = 'form-control bg-transparent text-white' />
+                                            <input type="text" readOnly value={age || 0} className = 'form-control bg-transparent text-white' />
                                             {touched.age && errors.age && <span style={{color: 'red'}}>{errors.age}</span>}
                                         </div>
 
