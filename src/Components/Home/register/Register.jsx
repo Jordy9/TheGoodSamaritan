@@ -69,7 +69,6 @@ export const Register = () => {
                         .matches(/(?=.*[A-Z])/, "Debe contener como mínimo una letra mayúscula")
                         .matches(/(?=.*[a-z])/, "Debe contener como mínimo una letra minuscula")
                         .matches(/(?=.*[0-9])/, "Debe contener como mínimo un número")
-                        .matches(/(?=.*[@$!%*#?&])/, "Debe contener como mínimo un caracter especial @$!%*#?&")
                         .required('Requerido'),
             confirmPassword: Yup.string()
                         .oneOf([Yup.ref('password')], 'Las contraseñas deben ser iguales')
