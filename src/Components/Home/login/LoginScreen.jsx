@@ -110,6 +110,7 @@ export const LoginScreen = () => {
                                                 buttonStyle = {{width: 'auto', height: 'auto', display: 'flex', justifyContent: 'center', alignItems: 'center', borderRadius: '50px'}}
                                                 textButton = 'Iniciar sesión con Facebook'
                                                 // size = 'small'
+                                                disableMobileRedirect
                                             />
                                         </div>
                                     </div>
