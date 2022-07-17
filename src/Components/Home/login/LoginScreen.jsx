@@ -102,7 +102,7 @@ export const LoginScreen = () => {
 
                                         <div className="col-12 d-flex justify-content-center">
                                             <FacebookLogin
-                                                appId="776369450467981"
+                                                appId="587079659439993"
                                                 autoLoad={false}
                                                 callback={responseFacebook}
                                                 size = 'small'
