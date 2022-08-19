@@ -8,7 +8,7 @@
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
     "@tinymce/tinymce-react": "^3.13.1",
-    "@zoomus/websdk": "^2.4.0",
+    "@zoomus/websdk": "^2.6.0",
     "add": "^2.0.6",
     "axios": "^0.24.0",
     "bootstrap": "^5.1.3",
