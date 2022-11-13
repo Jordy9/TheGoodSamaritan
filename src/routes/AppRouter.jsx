@@ -1,6 +1,5 @@
 import moment from 'moment';
 import { useEffect } from 'react';
-import { Spinner } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import {
     BrowserRouter as Router,
@@ -51,6 +50,7 @@ import { startGetImageVideo } from '../action/imageVideo';
 import { MiniSerie } from '../Components/Home/miniSeries/MiniSerie';
 import { useNotice } from '../hooks/useNotice';
 import { startGetNotificationsUser } from '../action/notificationsUser';
+import { Spinner } from '../Components/spinner/Spinner';
 
 moment.locale('es');
 

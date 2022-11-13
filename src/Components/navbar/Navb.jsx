@@ -122,7 +122,7 @@ export const Navb = () => {
                                     <NavLink to = '/Zoom' className = 'nav-link'>Zoom</NavLink>
                                     <NavLink to = '/YoutubeVideos' className = 'nav-link'>Videos</NavLink>
                                     <NavLink to = '/Petitions' className = 'nav-link'>Peticiones de oración</NavLink>
-                                    <NavLink to = '/Chat' className = 'nav-link'>Chat <i className="bi bi-chat-text-fill" style={{color: (changeColor) && 'red'}}></i></NavLink>
+                                    {/* <NavLink to = '/Chat' className = 'nav-link'>Chat <i className="bi bi-chat-text-fill" style={{color: (changeColor) && 'red'}}></i></NavLink> */}
                                     <NavLink to = '/Bible' className = 'nav-link'>Biblia</NavLink>
                                     <NavLink to = '/Search' className = 'nav-link'>Buscador <i className="bi bi-search"></i></NavLink>
                                 </>

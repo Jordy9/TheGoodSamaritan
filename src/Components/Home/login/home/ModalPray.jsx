@@ -29,9 +29,9 @@ export const ModalPray = () => {
                         .max(50, 'Debe de tener 50 caracteres o menos')
                         .min(3, 'Debe de tener 3 caracteres o más')
                         .required('Requerido'),
-            number: Yup.string()
-                        .min(10, 'Debe de tener 10 caracteres')
-                        .required('Requerido'),
+            // number: Yup.string()
+            //             .min(10, 'Debe de tener 10 caracteres')
+            //             .required('Requerido'),
             descripcion: Yup.string()
                         .min(3, 'Debe de tener 3 caracteres o más')
                         .required('Requerido')

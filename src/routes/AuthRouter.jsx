@@ -118,7 +118,7 @@ export const AuthRouter = () => {
                     <Route path = '/Zoom' component = {Lives} />
                     <Route path = '/YoutubeVideos' component = {YoutubeVideo} />
                     <Route path = '/Petitions' component = {Petitions} />
-                    <Route path = '/Chat' component = {ChatScreen} />
+                    {/* <Route path = '/Chat' component = {ChatScreen} /> */}
                     <Route path = '/Search' component = {Search} />
                     <Route path = '/Bible' component = {Bible} />
                     <Route path = '/NotificationResponsive' component = {NotificationResponsive} />

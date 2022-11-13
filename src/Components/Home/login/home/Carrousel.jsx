@@ -7,11 +7,18 @@ import './home.css'
 export const Carrousel = () => {
 
     const {Mains} = useSelector(state => state.ma)
+
+    const filterMain = () => {
+        const allMain = [ ...Mains ]
+
+        return allMain.slice(0, 10)
+    }
+
     return (
         <div className='mb-5'>
             <Carousel fade = {true} touch = {true} className = 'shadowImage image-round'>
                 {
-                    Mains?.map(main => {
+                    filterMain()?.map(main => {
                         return (
                         <Carousel.Item key = {main._id}>
                             <img
