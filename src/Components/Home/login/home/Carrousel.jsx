@@ -18,6 +18,8 @@ export const Carrousel = () => {
         <div className='mb-5'>
             <Carousel fade = {true} touch = {true} className = 'shadowImage image-round'>
                 {
+                    (Mains)
+                        &&
                     filterMain()?.map(main => {
                         return (
                         <Carousel.Item key = {main._id}>
