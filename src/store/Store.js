@@ -3,6 +3,7 @@ import thunk from 'redux-thunk';
 import { beleaverReducer } from '../reducers/beleaverReducer';
 import { capsuleReducer } from '../reducers/capsuleReducer';
 import { chatReducer } from '../reducers/chatReducer';
+import { contactReducer } from '../reducers/contactReducer';
 import { eventReducer } from '../reducers/eventReducer';
 import { galleryReducer } from '../reducers/galleryReducer';
 import { ImageVideoReducer } from '../reducers/imageVideo';
@@ -48,7 +49,8 @@ const reducers = combineReducers({
     bl: beleaverReducer,
     iv: ImageVideoReducer,
     mg: messagesReducer,
-    nu: notificationUserReducer
+    nu: notificationUserReducer,
+    co: contactReducer
 });
 
 export const store =  createStore(

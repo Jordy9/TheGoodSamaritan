@@ -118,7 +118,7 @@ export const YoutubeVideo = () => {
                 ).map(youtube => {
                       return (
                           <div className = 'col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 my-5'>
-                              <img src={outube} onClick={() => handledSet(youtube)} style = {{objectFit: 'cover', width: '100%', height: '180px'}} className='img-fluid image-round imgag shadowImage' alt='' />
+                              <img src={youtube.image || outube} onClick={() => handledSet(youtube)} style = {{objectFit: 'cover', width: '100%', height: '180px'}} className='img-fluid image-round imgag shadowImage' alt='' />
                               <h5 className='text-center'>{youtube.title}</h5>
                           </div>
                       )

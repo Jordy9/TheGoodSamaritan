@@ -12,18 +12,6 @@ export const Sidebar = () => {
     const [show, setShow] = useState(false);
 
     const {activeUser, uid} = useSelector(state => state.auth)
-
-    const [changeColor, setChangeColor] = useState(false);
-
-    const {notificaciones} = useSelector(state => state.nt)
-
-    useEffect(() => {
-        if (notificaciones.filter(not => not.to === uid).length !== 0) {
-            notificaciones?.map(notificaciones => (notificaciones.to === uid && notificaciones.length !== 0) && setChangeColor(true))
-        } else {
-            setChangeColor(false)
-        }
-    }, [notificaciones, uid]);
     
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);

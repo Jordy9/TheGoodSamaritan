@@ -14,6 +14,15 @@ export const VideoWordOfTheDayReducer = (state = initialState, action) => {
                 videos: action.payload
             }
 
+        case Types.vwdcreateVideoWordOfTheDay:
+            return {
+                ...state,
+                videos: [
+                    ...state.videos,
+                    action.payload
+                ]
+            }
+
         case Types.vwdsetVideoWordOfTheDay:
             return {
                 ...state,
@@ -30,6 +39,42 @@ export const VideoWordOfTheDayReducer = (state = initialState, action) => {
             return {
                 ...state,
                 modalOpen: action.payload
+            }
+
+        case Types.vwdUpdateVideoWordOfTheDay:
+            return {
+                ...state,
+                videos: state.videos.map(
+                    e => (e._id ===  action.payload._id) ? action.payload : e
+                ),
+                activeVideo: action.payload
+            }  
+            
+        case Types.vwdDeleteVideoWordOfTheDay:
+            return {
+                ...state,
+                videos: state.videos.filter( 
+                    e => (e._id !== state.activeVideo._id)
+                ),
+                activeVideo: null
+            }
+
+        case Types.vwdUpload:
+            return {
+                ...state,
+                Porcentage: action.payload
+            }
+
+        case Types.vwdUploadFinish:
+            return {
+                ...state,
+                Porcentage: 0
+            }
+
+        case Types.vwdPaginateVideo:
+            return {
+                ...state,
+                Paginate: action.payload
             }
     
         default:

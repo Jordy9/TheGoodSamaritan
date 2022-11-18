@@ -13,6 +13,10 @@ body {
   overflow-x: hidden !important;
 }
 
+.flag {
+  width: 45px;
+}
+
 code {
   font-family: 'Roboto'!important;
 }

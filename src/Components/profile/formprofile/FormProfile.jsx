@@ -40,17 +40,19 @@ export const FormProfile = () => {
             tracking: activeUser?.tracking,
             password: activeUser?.password,
             confirmPassword: activeUser?.password,
+            role: activeUser?.role,
+            age: activeUser?.age,
             image: '',
         },
         enableReinitialize: true,
-        onSubmit: ({name, lastName, date, email, address, country, city, number, biliever, discipleship, tracking, password, image}) => {
+        onSubmit: ({name, lastName, date, email, address, country, city, number, biliever, discipleship, tracking, password, image, role, age}) => {
 
             if (image?.type?.includes('image') === false) {
                 const Toast = Swal.mixin({
                     toast: true,
                     position: 'top-end',
                     showConfirmButton: false,
-                    timer: 5000,
+                    timer: 2000,
                     timerProgressBar: true,
                     didOpen: (toast) => {
                       toast.addEventListener('mouseenter', Swal.stopTimer)
@@ -63,7 +65,7 @@ export const FormProfile = () => {
                     title: 'Imagen con formato incorrecto'
                   })
             } else {
-                dispatch(startUpdateUser(name, lastName, date, email.toLowerCase(), address, country, city, number, biliever, discipleship, tracking, password, image))
+                dispatch(startUpdateUser(name, lastName, date, email.toLowerCase(), address, country, city, number, biliever, discipleship, tracking, password, image, role, age))
             }
         },
         validationSchema: Yup.object({
@@ -117,9 +119,13 @@ export const FormProfile = () => {
                     <div className="mb-3" style = {{border: 'none'}}>
                         <div className = 'shadow p-2 mt-2 bg-dark image-round flex-column text-white'>
                             <h5 className="text-white text-center mt-2">Información personal</h5>
-                            <div className='d-flex justify-content-end align-items-center mx-3'>
-                                <i data-bs-toggle="modal" data-bs-target="#exampleModalProfileSettings" style={{position: 'absolute', zIndex: 1045, fontSize: '25px', cursor: 'pointer'}} className="bi bi-gear"></i>
-                            </div>
+                            {
+                                (activeUser?.role === 'Usuario')
+                                    &&    
+                                <div className='d-flex justify-content-end align-items-center mx-3'>
+                                    <i data-bs-toggle="modal" data-bs-target="#exampleModalProfileSettings" style={{position: 'absolute', zIndex: 1045, fontSize: '25px', cursor: 'pointer'}} className="bi bi-gear"></i>
+                                </div>
+                            }
                             <div className="card-body">
                                 <form onSubmit={handleSubmit} className = 'needs-validation'>
                                     <div className="row">

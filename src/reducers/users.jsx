@@ -4,9 +4,11 @@ const initialState = {
     checking: true,
     users: [],
     activeUser: '',
+    setUser: '',
     forgotPassword: '',
     Porcentage: 0,
-    notificationPost: ''
+    notificationPost: '',
+    modalOpen: false
 }
 
 export const usersReducer = (state = initialState, action) => {
@@ -40,10 +42,31 @@ export const usersReducer = (state = initialState, action) => {
                     e => (e.id ===  action.payload.id) ? action.payload : e
                 )
             }
+
+        case Types.authDeleteUser:
+            return {
+                ...state,
+                users: state.users.filter(
+                    e => (e.id !==  action.payload.id)
+                )
+            }
+
         case Types.authSetUser:
             return {
                 ...state,
                 activeUser: action.payload
+            }
+
+        case Types.authModalOpen:
+            return {
+                ...state,
+                modalOpen: action.payload
+            }
+
+        case Types.authActiveSetUser:
+            return {
+                ...state,
+                setUser: action.payload
             }
 
         case Types.authSetUserRegister:

@@ -3,7 +3,8 @@ import { Types } from "../types/Types";
 const initialState = {
     Youtube: null,
     activeYoutube: '',
-    youtubeStart: ''
+    youtubeStart: '',
+    Paginate: []
 }
 
 export const youtubeReducer = (state = initialState, action) => {
@@ -27,6 +28,37 @@ export const youtubeReducer = (state = initialState, action) => {
                 youtubeStart: action.payload
             }
 
+        case Types.ytcreateYoutube:
+            return {
+                ...state,
+                Youtube: [
+                    ...state.Youtube,
+                    action.payload
+                ]
+            }
+        
+        case Types.ytPaginateYoutube:
+            return {
+                ...state,
+                Paginate: action.payload
+            }
+
+        case Types.ytUpdateYoutube:
+            return {
+                ...state,
+                Youtube: state.Youtube.map(
+                    e => (e._id ===  action.payload._id) ? action.payload : e
+                ),
+                activeYoutube: action.payload
+            }  
+            
+        case Types.ytDeleteYoutube:
+            return {
+                ...state,
+                Youtube: state.Youtube.filter( 
+                    e => (e._id !== state.activeYoutube._id)
+                )
+            }
 
         default:
                 return state;

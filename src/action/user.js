@@ -34,7 +34,7 @@ export const startLogin = (email, password) => {
                 toast: true,
                 position: 'top-end',
                 showConfirmButton: false,
-                timer: 5000,
+                timer: 2000,
                 timerProgressBar: true,
                 didOpen: (toast) => {
                   toast.addEventListener('mouseenter', Swal.stopTimer)
@@ -50,7 +50,7 @@ export const startLogin = (email, password) => {
                 toast: true,
                 position: 'top-end',
                 showConfirmButton: false,
-                timer: 5000,
+                timer: 2000,
                 timerProgressBar: true,
                 didOpen: (toast) => {
                   toast.addEventListener('mouseenter', Swal.stopTimer)
@@ -96,7 +96,7 @@ export const startLoginGoogle = (response) => {
                 toast: true,
                 position: 'top-end',
                 showConfirmButton: false,
-                timer: 5000,
+                timer: 2000,
                 timerProgressBar: true,
                 didOpen: (toast) => {
                   toast.addEventListener('mouseenter', Swal.stopTimer)
@@ -112,7 +112,7 @@ export const startLoginGoogle = (response) => {
                 toast: true,
                 position: 'top-end',
                 showConfirmButton: false,
-                timer: 5000,
+                timer: 2000,
                 timerProgressBar: true,
                 didOpen: (toast) => {
                   toast.addEventListener('mouseenter', Swal.stopTimer)
@@ -158,7 +158,7 @@ export const startLoginFacebook = (response) => {
                 toast: true,
                 position: 'top-end',
                 showConfirmButton: false,
-                timer: 5000,
+                timer: 2000,
                 timerProgressBar: true,
                 didOpen: (toast) => {
                   toast.addEventListener('mouseenter', Swal.stopTimer)
@@ -174,7 +174,7 @@ export const startLoginFacebook = (response) => {
                 toast: true,
                 position: 'top-end',
                 showConfirmButton: false,
-                timer: 5000,
+                timer: 2000,
                 timerProgressBar: true,
                 didOpen: (toast) => {
                   toast.addEventListener('mouseenter', Swal.stopTimer)
@@ -204,7 +204,7 @@ export const startRegister = (name, lastName, email, noBeleaver, password, setfi
                 toast: true,
                 position: 'top-end',
                 showConfirmButton: false,
-                timer: 5000,
+                timer: 2000,
                 timerProgressBar: true,
                 didOpen: (toast) => {
                   toast.addEventListener('mouseenter', Swal.stopTimer)
@@ -222,7 +222,7 @@ export const startRegister = (name, lastName, email, noBeleaver, password, setfi
                 toast: true,
                 position: 'top-end',
                 showConfirmButton: false,
-                timer: 5000,
+                timer: 2000,
                 timerProgressBar: true,
                 didOpen: (toast) => {
                   toast.addEventListener('mouseenter', Swal.stopTimer)
@@ -294,7 +294,7 @@ export const startUpdateUserNoBeleaver = () => {
     }
 }
 
-export const startUpdateUser = (name, lastName, date, email, address, country, city, number, biliever, discipleship, tracking, password, file) => {
+export const startUpdateUser = (name, lastName, date, email, address, country, city, number, biliever, discipleship, tracking, password, file, role, age) => {
     return async(dispatch, getState) => {
         const {activeUser} = getState().auth
 
@@ -317,7 +317,7 @@ export const startUpdateUser = (name, lastName, date, email, address, country, c
                     const urlImage = res.data.image.url
                     const idImage = res.data.image.id
                     
-                    const resp = await fetchConToken(`users/update/${activeUser?.id}`, {name, lastName, date, email, address, country, city, number, biliever, discipleship, tracking, password, urlImage, idImage}, 'PUT')
+                    const resp = await fetchConToken(`users/update/${activeUser?.id}`, {name, lastName, date, email, address, country, city, number, biliever, discipleship, tracking, password, urlImage, idImage, role, age}, 'PUT')
                     const body = await resp.json()
 
                     
@@ -333,7 +333,7 @@ export const startUpdateUser = (name, lastName, date, email, address, country, c
                             toast: true,
                             position: 'top-end',
                             showConfirmButton: false,
-                            timer: 5000,
+                            timer: 2000,
                             timerProgressBar: true,
                             didOpen: (toast) => {
                             toast.addEventListener('mouseenter', Swal.stopTimer)
@@ -350,7 +350,7 @@ export const startUpdateUser = (name, lastName, date, email, address, country, c
                             toast: true,
                             position: 'top-end',
                             showConfirmButton: false,
-                            timer: 5000,
+                            timer: 2000,
                             timerProgressBar: true,
                             didOpen: (toast) => {
                             toast.addEventListener('mouseenter', Swal.stopTimer)
@@ -368,7 +368,7 @@ export const startUpdateUser = (name, lastName, date, email, address, country, c
                         toast: true,
                         position: 'top-end',
                         showConfirmButton: false,
-                        timer: 5000,
+                        timer: 2000,
                         timerProgressBar: true,
                         didOpen: (toast) => {
                         toast.addEventListener('mouseenter', Swal.stopTimer)
@@ -393,7 +393,7 @@ export const startUpdateUser = (name, lastName, date, email, address, country, c
                     const urlImage = res.data.image.url
                     const idImage = res.data.image.id
                 
-                    const resp = await fetchConToken(`users/update/${activeUser?.id}`, {name, lastName, date, email, address, country, city, number, biliever, discipleship, tracking, password, urlImage, idImage}, 'PUT')
+                    const resp = await fetchConToken(`users/update/${activeUser?.id}`, {name, lastName, date, email, address, country, city, number, biliever, discipleship, tracking, password, urlImage, idImage, role, age}, 'PUT')
                     const body = await resp.json()
 
                     if(body.ok) {
@@ -404,7 +404,7 @@ export const startUpdateUser = (name, lastName, date, email, address, country, c
                             toast: true,
                             position: 'top-end',
                             showConfirmButton: false,
-                            timer: 5000,
+                            timer: 2000,
                             timerProgressBar: true,
                             didOpen: (toast) => {
                             toast.addEventListener('mouseenter', Swal.stopTimer)
@@ -421,7 +421,7 @@ export const startUpdateUser = (name, lastName, date, email, address, country, c
                             toast: true,
                             position: 'top-end',
                             showConfirmButton: false,
-                            timer: 5000,
+                            timer: 2000,
                             timerProgressBar: true,
                             didOpen: (toast) => {
                             toast.addEventListener('mouseenter', Swal.stopTimer)
@@ -439,7 +439,7 @@ export const startUpdateUser = (name, lastName, date, email, address, country, c
                         toast: true,
                         position: 'top-end',
                         showConfirmButton: false,
-                        timer: 5000,
+                        timer: 2000,
                         timerProgressBar: true,
                         didOpen: (toast) => {
                         toast.addEventListener('mouseenter', Swal.stopTimer)
@@ -458,7 +458,7 @@ export const startUpdateUser = (name, lastName, date, email, address, country, c
         } else {
             const urlImage = activeUser.urlImage
             const idImage = activeUser?.idImage
-            const resp = await fetchConToken(`users/update/${activeUser?.id}`, {name, lastName, date, email, address, country, city, number, biliever, discipleship, tracking, password, urlImage, idImage}, 'PUT')
+            const resp = await fetchConToken(`users/update/${activeUser?.id}`, {name, lastName, date, email, address, country, city, number, biliever, discipleship, tracking, password, urlImage, idImage, role, age}, 'PUT')
             const body = await resp.json()
 
             if(body.ok) {
@@ -468,7 +468,7 @@ export const startUpdateUser = (name, lastName, date, email, address, country, c
                     toast: true,
                     position: 'top-end',
                     showConfirmButton: false,
-                    timer: 5000,
+                    timer: 2000,
                     timerProgressBar: true,
                     didOpen: (toast) => {
                     toast.addEventListener('mouseenter', Swal.stopTimer)
@@ -485,7 +485,7 @@ export const startUpdateUser = (name, lastName, date, email, address, country, c
                     toast: true,
                     position: 'top-end',
                     showConfirmButton: false,
-                    timer: 5000,
+                    timer: 2000,
                     timerProgressBar: true,
                     didOpen: (toast) => {
                     toast.addEventListener('mouseenter', Swal.stopTimer)
@@ -502,6 +502,57 @@ export const startUpdateUser = (name, lastName, date, email, address, country, c
     }
 }
 
+export const updateUserAdminRoute = (name, lastName, date, email, address, country, city, number, biliever, discipleship, tracking, password, file, role, age) => {
+    return async (dispatch, getState) => {
+
+        const { setUser } = getState().auth;
+
+        const urlImage = setUser?.urlImage
+        const idImage = setUser?.idImage
+
+            const resp = await fetchConToken(`users/update/${setUser?.id}`, {name, lastName, date, email, address, country, city, number, biliever, discipleship, tracking, password, urlImage, idImage, role, age}, 'PUT')
+            const body = await resp.json()
+
+            if(body.ok) {
+                dispatch(updateUser(body.users))
+                dispatch(ActiveSetUser(body.users))
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 2000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                })
+                
+                return Toast.fire({
+                    icon: 'success',
+                    title: 'Usuario actualizado correctamente'
+                })
+            } else {
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 2000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                })
+                
+                return Toast.fire({
+                    icon: 'error',
+                    title: `${body.msg}`
+                })
+            }
+    }
+}
+
 export const updatTracking = (biliever, discipleship, reset, tracking) => {
     return async (dispatch, getState) => {
 
@@ -515,7 +566,7 @@ export const updatTracking = (biliever, discipleship, reset, tracking) => {
                 toast: true,
                 position: 'top-end',
                 showConfirmButton: false,
-                timer: 5000,
+                timer: 2000,
                 timerProgressBar: true,
                 didOpen: (toast) => {
                 toast.addEventListener('mouseenter', Swal.stopTimer)
@@ -539,7 +590,7 @@ export const updatTracking = (biliever, discipleship, reset, tracking) => {
                 toast: true,
                 position: 'top-end',
                 showConfirmButton: false,
-                timer: 5000,
+                timer: 2000,
                 timerProgressBar: true,
                 didOpen: (toast) => {
                 toast.addEventListener('mouseenter', Swal.stopTimer)
@@ -556,7 +607,7 @@ export const updatTracking = (biliever, discipleship, reset, tracking) => {
                 toast: true,
                 position: 'top-end',
                 showConfirmButton: false,
-                timer: 5000,
+                timer: 2000,
                 timerProgressBar: true,
                 didOpen: (toast) => {
                 toast.addEventListener('mouseenter', Swal.stopTimer)
@@ -629,6 +680,10 @@ const login = (user) => ({
     payload: user
 })
 
+export const ActiveSetUser = (user) => ({
+    type: Types.authActiveSetUser,
+    payload: user
+})
 
 export const startLogout = () => {
     return (dispatch) => {
@@ -643,6 +698,10 @@ const logout = () => ({
     type: Types.authLogout
 })
 
+export const authModalOpen = (opcion) => ({
+    type: Types.authModalOpen,
+    payload: opcion
+})
 
 export const setActiveUser = () => {
     return async(dispatch, getState) => {
@@ -680,7 +739,7 @@ export const forgotPassword = (email) => {
                 toast: true,
                 position: 'top-end',
                 showConfirmButton: false,
-                timer: 5000,
+                timer: 2000,
                 timerProgressBar: true,
                 didOpen: (toast) => {
                 toast.addEventListener('mouseenter', Swal.stopTimer)
@@ -697,7 +756,7 @@ export const forgotPassword = (email) => {
                 toast: true,
                 position: 'top-end',
                 showConfirmButton: false,
-                timer: 5000,
+                timer: 2000,
                 timerProgressBar: true,
                 didOpen: (toast) => {
                 toast.addEventListener('mouseenter', Swal.stopTimer)
@@ -729,7 +788,7 @@ export const newPassword = (password) => {
                 toast: true,
                 position: 'top-end',
                 showConfirmButton: false,
-                timer: 5000,
+                timer: 2000,
                 timerProgressBar: true,
                 didOpen: (toast) => {
                 toast.addEventListener('mouseenter', Swal.stopTimer)
@@ -756,7 +815,7 @@ export const newPassword = (password) => {
                     toast: true,
                     position: 'top-end',
                     showConfirmButton: false,
-                    timer: 5000,
+                    timer: 2000,
                     timerProgressBar: true,
                     didOpen: (toast) => {
                     toast.addEventListener('mouseenter', Swal.stopTimer)
@@ -787,7 +846,7 @@ export const NotificationPublicAdmin = (notification) => {
                 toast: true,
                 position: 'bottom-end',
                 showConfirmButton: false,
-                timer: 5000,
+                timer: 2000,
                 showCloseButton: true,
                 background: '#292b2c',
                 width: 380
@@ -808,7 +867,7 @@ export const NotificationPublicAdmin = (notification) => {
                 toast: true,
                 position: 'bottom-end',
                 showConfirmButton: false,
-                timer: 5000,
+                timer: 2000,
                 showCloseButton: true,
                 background: '#292b2c',
                 width: 380
@@ -822,6 +881,64 @@ export const NotificationPublicAdmin = (notification) => {
                     </div>
                 `
             })
+        }
+    }
+}
+
+const deleteUser = (user) => ({
+    type: Types.authDeleteUser,
+    payload: user
+})
+
+export const startDeleteUser = (user) => {
+    return async(dispatch, getState) => {
+
+        const {activeUser} = getState().auth 
+
+        let resp
+
+        resp = await fetchConToken(`users/delete/${user.id}`, activeUser, 'DELETE')
+
+        const body = await resp.json()
+
+        if(body.ok) {
+            dispatch(deleteUser(user))
+            dispatch(authModalOpen(false))
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 2000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                  toast.addEventListener('mouseenter', Swal.stopTimer)
+                  toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+              })
+              
+              return Toast.fire({
+                icon: 'success',
+                title: 'Usuario eliminado correctamente'
+              })
+            } else {
+
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 2000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                  toast.addEventListener('mouseenter', Swal.stopTimer)
+                  toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+              })
+              
+              return Toast.fire({
+                icon: 'error',
+                title: 'No tiene privilegios para eliminar a este usuario'
+              })
+
         }
     }
 }
