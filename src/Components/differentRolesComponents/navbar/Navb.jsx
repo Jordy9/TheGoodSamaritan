@@ -85,8 +85,8 @@ export const Navb = () => {
             <Sidebar />
                 <Navbar.Brand style = {{cursor: 'pointer', margin: 0, padding: 0}} >
                     <span className = 'Navb-tittle d-flex justify-content-end align-items-center'>
-                        <img id='logo-logo' src={logo} className='img-fluid' style={{width: 'auto', height: '40px', marginLeft: '60px'}} alt="" />
-                        <NavLink id='title-logo' style = {{textDecoration: 'none', color: 'white'}} to = '/Dashboard'>Centro Cristiano El Buen Samaritano</NavLink>
+                        <img id='logo-logo' src={logo} className='img-fluid' style={{width: 'auto', height: '40px', marginLeft: (width < 991) ? '20px' : '60px'}} alt="" />
+                        <NavLink id='tituloNav' style = {{textDecoration: 'none', color: 'white'}} to = '/Dashboard'>Centro Cristiano El Buen Samaritano</NavLink>
                     </span>
                 </Navbar.Brand>
 
@@ -181,14 +181,15 @@ export const Navb = () => {
                     </DropdownButton>
                 }
 
-
                 <Nav id='nav-hidden-right'>
                     <NavLink onClick={() => dispatch(setActiveUser())} to = '/Profile'>{(activeUser?.urlImage) ? <img src={activeUser?.urlImage} className='img-fluid rounded-circle mt-2' style = {{width: '32px', height: '32px', cursor: 'pointer', margin: 0}} alt='' /> : <i className="bi bi-person-circle" style = {{fontSize: '32px', cursor: 'pointer', color: 'white', margin: 0}}></i>}</NavLink>
                     <NavLink to = '/Login' onClick = {handledLogout} className = 'nav-link mt-1'>Cerrar sesión</NavLink>
                 </Nav>
 
                 <DropdownButton
-                    title = ''
+                    title = {
+                        <i className="bi bi-caret-down-fill"></i>
+                    }
                     align={'end'}
                     variant="outline-secondary"
                     id="input-group-dropdown-1"

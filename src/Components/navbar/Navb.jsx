@@ -150,7 +150,7 @@ export const Navb = () => {
                                     </i>}
                                 align={'end'}
                                 variant="dark"
-                                id="input-group-dropdown-1"
+                                id="input-group-dropdown-User"
                                 >
                                     <div style={{overflowY: 'scroll', height: '400px'}}>
                                         {
