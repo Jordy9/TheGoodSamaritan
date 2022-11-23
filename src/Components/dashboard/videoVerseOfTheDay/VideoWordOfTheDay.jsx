@@ -1,13 +1,15 @@
 import React from 'react'
+import { useEffect } from 'react';
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import Slider from 'react-slick';
-import { ModalOpenVideo, setVideoWordOfTheDay } from '../../../action/VideoWordOfTheDay';
+import { ModalOpenVideo, setVideoWordOfTheDay, startGetPaginateVideos } from '../../../action/VideoWordOfTheDay';
 import './VideoWordOfTheDay.css'
 
 export const VideoWordOfTheDay = () => {
 
-  const {videos} = useSelector(state => state.vwd)
+  const {videos, Paginate} = useSelector(state => state.vwd)
 
   const dispatch = useDispatch()
 
@@ -16,23 +18,22 @@ export const VideoWordOfTheDay = () => {
     dispatch(ModalOpenVideo(true))
   }
 
+  const [activeIndex, setActiveIndex] = useState(0)
+  
     var settings = {
-        infinite: (videos?.length >= 4) ? true : false,
-        autoplay: (videos?.length >= 4) ? true : false,
-        autoplaySpeed: 5000,
+        infinite: false,
         speed: 500,
         slidesToShow: 4,
-        slidesToScroll: 4,
+        slidesToScroll: 2,
         initialSlide: 0,
         lazyLoad: true,
+        afterChange: (index) => setActiveIndex(index),
         responsive: [
           {
             breakpoint: 1024,
             settings: {
               slidesToShow: (videos?.length > 1) ? 2 : 1,
               slidesToScroll: 2,
-              autoplay: true,
-              autoplaySpeed: 5000,
               lazyLoad: true,
             }
           },
@@ -42,26 +43,27 @@ export const VideoWordOfTheDay = () => {
               slidesToShow: (videos?.length > 1) ? 2 : 1,
               slidesToScroll: 2,
               initialSlide: 2,
-              autoplay: true,
-              autoplaySpeed: 5000,
               lazyLoad: true,
             }
           },
           {
             breakpoint: 480,
             settings: {
-              infinite: (videos?.length >= 4) ? true : false,
               centerMode: (videos?.length >= 4) ? true : false,
               slidesToShow: (videos?.length <= 4 && videos?.length > 1) ? 1.2 : 1,
               slidesToScroll: 1,
-              autoplay: (videos?.length >= 4) ? true : false,
-              autoplaySpeed: 5000,
               lazyLoad: true,
             }
           }
         ]
       };
 
+  useEffect(() => {
+    if (activeIndex === (videos?.length - 4) && Number(Paginate?.page) < Paginate?.total) {
+      dispatch(startGetPaginateVideos(Number(Paginate?.page) + 1))
+    }
+  }, [activeIndex])
+  
   return (
     <div className='my-5'>
       {
@@ -74,11 +76,12 @@ export const VideoWordOfTheDay = () => {
                 {
                   videos?.map( videos => {
                     return (
-                      <div key={videos._id} className="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                        <div className='imgag'>
-                          <video onClick={() => handledSet(videos)} src={videos?.image} className = 'image-round shadowImage' style={{width: '100%', height: '355px', objectFit: 'cover'}}></video>
+                      <div key={videos._id} className="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 my-2">
+                        <div className='borderCards'>
+                          <video onClick={() => handledSet(videos)} src={videos?.image} style={{width: '100%', height: '355px', objectFit: 'cover', borderTopLeftRadius: '40px', borderTopRightRadius: '40px'}}></video>
+
+                          <h5 className='p-2 textCard'>{videos.title}</h5>
                         </div>
-                        <h5 className='text-center'>{videos.title}</h5>
                       </div>
                     )
                   })

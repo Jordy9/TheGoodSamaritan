@@ -9,10 +9,25 @@ export const startGetPaginateVideos = (page) => {
         const body = await resp.json()
 
         if(body.ok) {
+            dispatch(createVideoWordOfTheDay(body.video))
+            dispatch(PaginateVideos({
+              page: body.page,
+              total: body.total
+            }))
+        }
+    }
+}
+
+export const startGetPaginateVideosSearch = (page, searchParam) => {
+    return async(dispatch) => {
+        const resp = await fetchSinToken(`VideoWordOfTheDay/search?page=${page || 1}&size=10&searchParam=${searchParam || ''}`)
+        const body = await resp.json()
+
+        if(body.ok) {
             dispatch(VideoWordOfTheDay(body.video))
             dispatch(PaginateVideos({
-                page: body.page,
-                total: body.total
+              page: body.page,
+              total: body.total
             }))
         }
     }
@@ -22,17 +37,6 @@ const PaginateVideos = (videos) => ({
     type: Types.vwdPaginateVideo,
     payload: videos
 })
-
-export const startGetVideoWordOfTheDay = () => {
-    return async(dispatch) => {
-        const resp = await fetchSinToken('VideoWordOfTheDay')
-        const body = await resp.json()
-
-        if(body.ok) {
-            dispatch(VideoWordOfTheDay(body.video))
-        }
-    }
-}
 
 const UploadFish = () => ({
     type: Types.vwdUploadFinish

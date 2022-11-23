@@ -76,6 +76,31 @@ code {
     box-shadow: 2px 8px 4px 2px rgba(0,0,0,0.39);
   }
 
+  .borderCards {
+    background-color: #212529;
+    border-radius: 40px;
+    padding: 0.5rem !important;
+    cursor: pointer;
+    transition: box-shadow .5s;
+  }
+
+  .textCard {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: 100%;
+    text-align: center;
+  }
+
+  .borderCards:hover {
+    box-shadow: 2px 8px 4px 2px rgba(0,0,0,0.3);
+  }
+
+  .cardRound {
+    border-top-left-radius: 40px;
+    border-top-right-radius: 40px;
+  }
+
   #select-rol {
     border: none;
     border-bottom: 1px solid;

@@ -51,7 +51,7 @@ export const Galleryy = () => {
             }
             loader = {<Spinner />}
           >
-            <div className="container p-3 my-5">
+            <div className="p-3 my-5">
                   {
                     (img)
                       &&
@@ -61,9 +61,9 @@ export const Galleryy = () => {
                         <div className="row">
                           {imgIfinity()?.map(image => {
                             return (
-                                <div key={image.image} style={{height: '500px'}} className="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 my-2">
-                                  <img src={image.image} className='img-fluid my-2 image-round imgag' style={{objectFit: 'cover', height: '100%', width: '100%', cursor: 'pointer'}} alt="" />
-                                </div>
+                              <div key={image.image} style={{padding: '5px'}} className="col-xs-12 col-sm-12 col-md-6 col-lg-3 col-xl-3 col-xxl-3">
+                                <img src={image.image} style={{cursor: 'pointer', marginTop: '5px', width: '100%'}} alt="" />
+                              </div>
                             )
                           })}
                         </div>

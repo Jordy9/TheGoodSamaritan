@@ -1,17 +1,18 @@
 import React from 'react'
 import ReactPaginate from 'react-paginate';
-import { useDispatch, useSelector } from 'react-redux';
-import { startGetPaginateMiniserieSearch } from '../../../../action/miniSerie';
+import { useDispatch } from 'react-redux';
+import { getImageApi } from '../../../../../action/miniSerie';
 
-export const PaginateSeries = ({searchParam}) => {
+export const Pagination = ({searchParam, newImage, setNewImage}) => {
 
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
 
-    const {Paginate} = useSelector(state => state.mi)
+    const total = Math.ceil(newImage?.totalHits/20)
 
     const handlePageClick = (event) => {
-        const newOffset = (event.selected + 1);
-        dispatch(startGetPaginateMiniserieSearch(newOffset, searchParam))
+        const newOffset = (event.selected + 1)
+
+        dispatch(getImageApi(searchParam, setNewImage, newOffset))
     };
 
     return (
@@ -21,7 +22,7 @@ export const PaginateSeries = ({searchParam}) => {
                 nextLabel="Siguiente"
                 onPageChange={handlePageClick}
                 pageRangeDisplayed={5}
-                pageCount={Paginate?.total}
+                pageCount={total}
                 previousLabel="Anterior"
                 containerClassName='pagination justify-content-center'
                 pageClassName='page-item'
@@ -33,6 +34,7 @@ export const PaginateSeries = ({searchParam}) => {
                 breakClassName='page-item'
                 breakLinkClassName='page-link'
                 activeClassName='active'
+                initialPage={0}
             />
         </>
     )

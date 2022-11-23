@@ -80,79 +80,91 @@ export const ModalSearch = () => {
                         scrollable = {true}
                         contentClassName='bg-dark'
                         centered
-                        size="xl"
+                        size={`${(activeSearch?.descripcion) ? 'xl' : 'lg' }`}
                         show={Show}
                         onHide={() => onHideModal()}
                         aria-labelledby="example-modal-sizes-title-lg"
                     >
                         <Modal.Header id='modal-header-video' closeButton>
                         </Modal.Header>
-                            <div className="row">
-                                <div className="col-12">
-                                    <div className="row">
-                                        <div className="col-6 d-flex justify-content-start align-items-center">
-                                            <img src={(searchCount[0]?.urlImage) ? searchCount[0]?.urlImage : perfil1} style = {{objectFit: 'cover', width: '50px', height: '50px', borderRadius: '50%'}} className='img-fluid image-round imgag shadowImage mx-2' alt=''/>
-                                            <span className='text-center'>Pr. {searchCount[0]?.name} {searchCount[0]?.lastName}</span>
+                            {
+                                (activeSearch?.descripcion)
+                                    ?
+                                <div className="row">
+                                    <div className="col-12">
+                                        <div className="row">
+                                            <div className="col-6 d-flex justify-content-start align-items-center">
+                                                <img src={(searchCount[0]?.urlImage) ? searchCount[0]?.urlImage : perfil1} style = {{objectFit: 'cover', width: '50px', height: '50px', borderRadius: '50%'}} className='img-fluid image-round imgag shadowImage mx-2' alt=''/>
+                                                <span className='text-center'>Pr. {searchCount[0]?.name} {searchCount[0]?.lastName}</span>
+                                            </div>
+                                    
+                                            <div className="col-6 d-flex justify-content-end align-items-center">
+                                                <span id='dateMobile' className='text-right mr-4'>{moment(activeSearch?.createdAt).format('MMMM Do YYYY')}</span>
+                                                <span id='dateDeskLap' className='text-right mr-4'>{moment(activeSearch?.createdAt).format('MMMM Do YYYY, h:mm a')}</span>
+                                            </div>
                                         </div>
-                                
-                                        <div className="col-6 d-flex justify-content-end align-items-center">
-                                            <span id='dateMobile' className='text-right mr-4'>{moment(activeSearch?.createdAt).format('MMMM Do YYYY')}</span>
-                                            <span id='dateDeskLap' className='text-right mr-4'>{moment(activeSearch?.createdAt).format('MMMM Do YYYY, h:mm a')}</span>
-                                        </div>
+                                        <h1 className='text-center mx-2'>{activeSearch?.title}</h1>
                                     </div>
-                                    <h1 className='text-center mx-2'>{activeSearch?.title}</h1>
                                 </div>
-                            </div>
+                                    :
+                                <Modal.Title className='text-center'>{activeSearch?.title}</Modal.Title>
+                            }
 
                         <Modal.Body id='description-Serie'>                         
                             <div className="modal-body">
-                                <div className="row">
-                                    {
-                                        (Array.isArray(activeSearch?.descripcion))
-                                            &&
-                                        (first === 0)
-                                            &&
-                                        <img src={activeSearch?.image} style = {{objectFit: 'cover', height: '100%', width: '100%'}} className="image-round img-fluid" alt="..." />
-                                    }
-                                    <div className={(Array.isArray(activeSearch?.descripcion)) ? 'col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 my-3' : 'col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 my-3'}>
+                                {
+                                    (activeSearch?.descripcion)
+                                        ?
+                                    <div className="row">
                                         {
                                             (Array.isArray(activeSearch?.descripcion))
-                                                ?
-                                            <>
-                                                {parse(activeSearch?.descripcion[first])}
-                                                <div className="row">
-                                                    <div className="col-6 justify-content-start">
-                                                        <button className='btn btn-outline-secondary' style={{borderRadius: '10px', color: 'white'}} hidden = {(first <= 0)} onClick = {prev}><i className="fa-solid fa-angle-left"></i> Anterior</button>
-                                                    </div>
+                                                &&
+                                            (first === 0)
+                                                &&
+                                            <img src={activeSearch?.image} style = {{objectFit: 'cover', height: '100%', width: '100%'}} className="image-round img-fluid" alt="..." />
+                                        }
+                                        <div className={(Array.isArray(activeSearch?.descripcion)) ? 'col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 my-3' : 'col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 my-3'}>
+                                            {
+                                                (Array.isArray(activeSearch?.descripcion))
+                                                    ?
+                                                <>
+                                                    {parse(activeSearch?.descripcion[first])}
+                                                    <div className="row">
+                                                        <div className="col-6 justify-content-start">
+                                                            <button className='btn btn-outline-secondary' style={{borderRadius: '10px', color: 'white'}} hidden = {(first <= 0)} onClick = {prev}><i className="fa-solid fa-angle-left"></i> Anterior</button>
+                                                        </div>
 
-                                                    <div className="col-6 justify-content-end text-end">
-                                                        <button className='btn btn-outline-secondary' style={{borderRadius: '10px', color: 'white'}} hidden = {(countArray - 1 === first)} onClick = {next}>Siguiente <i className="fa-solid fa-angle-right"></i></button>
+                                                        <div className="col-6 justify-content-end text-end">
+                                                            <button className='btn btn-outline-secondary' style={{borderRadius: '10px', color: 'white'}} hidden = {(countArray - 1 === first)} onClick = {next}>Siguiente <i className="fa-solid fa-angle-right"></i></button>
+                                                        </div>
                                                     </div>
+                                                </>
+                                                    :
+                                                (activeSearch)
+                                                    &&
+                                                <div className="carousel-item active">
+                                                    <img src={activeSearch.image} style = {{objectFit: 'cover', height: '100%', width: '100%'}} className="image-round img-fluid" alt="..." />
                                                 </div>
-                                            </>
-                                                :
-                                            (activeSearch)
-                                                &&
-                                            <div className="carousel-item active">
-                                                <img src={activeSearch.image} style = {{objectFit: 'cover', height: '100%', width: '100%'}} className="image-round img-fluid" alt="..." />
-                                            </div>
-                                        }
-                                    </div>
+                                            }
+                                        </div>
 
-                                    <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-3">
-                                        {
-                                            (Array.isArray(activeSearch?.descripcion) === false)
-                                                &&
-                                            <>
-                                                {
-                                                    (activeSearch)
-                                                        &&
-                                                    parse(activeSearch?.descripcion)
-                                                }
-                                            </>
-                                        }
+                                        <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-3">
+                                            {
+                                                (Array.isArray(activeSearch?.descripcion) === false)
+                                                    &&
+                                                <>
+                                                    {
+                                                        (activeSearch)
+                                                            &&
+                                                        parse(activeSearch?.descripcion)
+                                                    }
+                                                </>
+                                            }
+                                        </div>
                                     </div>
-                                </div>
+                                        :
+                                    <video autoPlay src={activeSearch?.image} className = 'image-round' controls style={{width: '100%', height: '100%'}}></video>
+                                }
                             </div>
                         </Modal.Body>
                     </Modal>

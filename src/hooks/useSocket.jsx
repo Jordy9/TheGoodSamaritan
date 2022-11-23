@@ -1,17 +1,11 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import io from 'socket.io-client';
-import { startGetCapsules } from '../action/capsule';
 import { UsuariosCargados } from '../action/chat';
-import { startGetEventos } from '../action/event';
-import { startGetMiniSeries, updateSerie } from '../action/miniSerie';
+import { updateSerie } from '../action/miniSerie';
 import { BorrarNotificaciones, NotificacionesCargadas } from '../action/notifications';
 import { startGetNotificationsUser, StartUpdateNotificationUser } from '../action/notificationsUser';
-import { startGetPetitions } from '../action/petition';
-import { startGetBosquejos } from '../action/sketch';
 import { NotificationPublicAdmin } from '../action/user';
-import { startGetVideoWordOfTheDay } from '../action/VideoWordOfTheDay';
-import { startGetYoutube } from '../action/youtubeImage';
 import { startGetZoom } from '../action/zoom';
 
 
@@ -89,20 +83,6 @@ export const useSocket = ( serverPath ) => {
 
             if (notification?.subtitle === 'Transmitiendo reunión de Zoom') {
                 dispatch(startGetZoom())
-            } else if (notification?.subtitle === 'Nueva MiniSerie agregada') {
-                dispatch(startGetMiniSeries())
-            } else if (notification?.subtitle === 'Nuevo Bosquejo agregado') {
-                dispatch(startGetBosquejos())
-            } else if (notification?.subtitle === 'Nueva Cápsula agregada') {
-                dispatch(startGetCapsules())
-            } else if (notification?.subtitle === 'Nueva Peticion agregada') {
-                dispatch(startGetPetitions())
-            } else if (notification?.subtitle === 'Nuevo Evento agregado') {
-                dispatch(startGetEventos())
-            } else if (notification?.subtitle === 'Nuevo video de youtube agregado') {
-                dispatch(startGetYoutube())
-            } else if (notification?.subtitle === 'Nueva Palabra del Día agregada') {
-                dispatch(startGetVideoWordOfTheDay())
             }
 
             dispatch(startGetNotificationsUser())

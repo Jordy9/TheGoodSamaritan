@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import Slider from 'react-slick';
-import { SetActiveYoutube } from '../../action/youtubeImage';
+import { SetActiveYoutube, startGetPaginateYoutube } from '../../action/youtubeImage';
 import outube from '../../heroes/Youtube.png'
 
 
@@ -11,9 +11,11 @@ export const YoutubeVideo = () => {
 
   const [title, setTitle] = useState('')
 
-  const {Youtube} = useSelector(state => state.yt)
-  const {activeYoutube} = useSelector(state => state.yt)
+  const {Youtube, Paginate} = useSelector(state => state.yt)
   const {youtubeStart} = useSelector(state => state.yt)
+  const {activeYoutube} = useSelector(state => state.yt)
+
+  console.log(youtubeStart)
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -23,23 +25,22 @@ export const YoutubeVideo = () => {
     dispatch(SetActiveYoutube(youtube))
   }
 
+  const [activeIndex, setActiveIndex] = useState(0)
+
     var settings = {
-        infinite: (Youtube?.length >= 4) ? true : false,
-        autoplay: (Youtube?.length >= 4) ? true : false,
-        autoplaySpeed: 5000,
+        infinite: false,
         speed: 500,
         slidesToShow: 4,
-        slidesToScroll: 4,
+        slidesToScroll: 2,
         initialSlide: 0,
         lazyLoad: true,
+        afterChange: (index) => setActiveIndex(index),
         responsive: [
           {
             breakpoint: 1024,
             settings: {
               slidesToShow: (Youtube?.length > 1) ? 2 : 1,
               slidesToScroll: 2,
-              autoplay: true,
-              autoplaySpeed: 5000,
               lazyLoad: true,
             }
           },
@@ -49,20 +50,15 @@ export const YoutubeVideo = () => {
               slidesToShow: (Youtube?.length > 1) ? 2 : 1,
               slidesToScroll: 2,
               initialSlide: 2,
-              autoplay: true,
-              autoplaySpeed: 5000,
               lazyLoad: true,
             }
           },
           {
             breakpoint: 480,
             settings: {
-              infinite: (Youtube?.length >= 4) ? true : false,
               centerMode: (Youtube?.length >= 4) ? true : false,
               slidesToShow: (Youtube?.length <= 4 && Youtube?.length > 1) ? 1.2 : 1,
               slidesToScroll: 1,
-              autoplay: (Youtube?.length >= 4) ? true : false,
-              autoplaySpeed: 5000,
               lazyLoad: true,
             }
           }
@@ -81,6 +77,12 @@ export const YoutubeVideo = () => {
       return () => window.removeEventListener('resize', changeWidth)
       
   }, [width]);
+
+  useEffect(() => {
+    if (activeIndex === (Youtube?.length - 4) && Number(Paginate?.page) < Paginate?.total) {
+      dispatch(startGetPaginateYoutube(Number(Paginate?.page) + 1))
+    }
+  }, [activeIndex])
 
     return (
         <div className="container">
@@ -118,8 +120,10 @@ export const YoutubeVideo = () => {
                 ).map(youtube => {
                       return (
                           <div className = 'col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 my-5'>
-                              <img src={youtube.image || outube} onClick={() => handledSet(youtube)} style = {{objectFit: 'cover', width: '100%', height: '180px'}} className='img-fluid image-round imgag shadowImage' alt='' />
-                              <h5 className='text-center'>{youtube.title}</h5>
+                            <div className='borderCards'>
+                              <img src={youtube.image || outube} onClick={() => handledSet(youtube)} style = {{objectFit: 'cover', maxHeight: '355px', maxWidth: 'auto', height: 'auto', width: 'auto'}} className='img-fluid cardRound' alt='' />
+                              <h5 className='p-2 textCard'>{youtube.title}</h5>
+                            </div>
                           </div>
                       )
                   })

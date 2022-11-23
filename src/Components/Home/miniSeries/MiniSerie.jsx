@@ -5,22 +5,22 @@ import {useSelector} from 'react-redux'
 import { useDispatch } from 'react-redux';
 import parse from 'html-react-parser'
 import { scrollToTopAnimatedPost } from '../../../helper/ScrollToBottom';
-import { setSeries } from '../../../action/miniSerie';
+import { MiniSerieStart, setSeries, startGetPaginateMiniSeries } from '../../../action/miniSerie';
 import { Spinner } from '../../spinner/Spinner';
 import moment from 'moment';
 
 export const MiniSerie = () => {
   const dispatch = useDispatch()
 
-  const {miniSeries, activeSerie, miniSerieStart} = useSelector(state => state.mi)
+  const {miniSeries, activeSerie, miniSerieStart, Paginate} = useSelector(state => state.mi)
+
+  useEffect(() => {
+    dispatch(MiniSerieStart(miniSeries[0]))
+  }, [miniSeries])
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [activeSerie]);
-
-  const handledSet = (Serie) => {
-    dispatch(setSeries(Serie))
-  }
 
   const [first, setfirst] = useState(0)
 
@@ -29,6 +29,11 @@ export const MiniSerie = () => {
   const countArray = activeSerie?.descripcion?.length
 
   const countArrayStart = miniSerieStart?.descripcion?.length
+
+  const handledSet = (Serie) => {
+    setfirst(0)
+    dispatch(setSeries(Serie))
+  }
 
   useEffect(() => {
     scrollToTopAnimatedPost()
@@ -63,51 +68,46 @@ export const MiniSerie = () => {
     }
   }
 
-    var settings = {
-        infinite: false,
-        speed: 500,
-        slidesToShow: 4,
-        slidesToScroll: 4,
-        initialSlide: 0,
-        lazyLoad: true,
-        responsive: [
-          {
-            breakpoint: 1024,
-            settings: {
-              slidesToShow: (miniSeries?.length > 1) ? 2 : 1,
-              slidesToScroll: 2,
-              infinite: false,
-              lazyLoad: true,
-            }
-          },
-          {
-            breakpoint: 600,
-            settings: {
-              slidesToShow: (miniSeries?.length > 1) ? 2 : 1,
-              slidesToScroll: 2,
-              initialSlide: 2,
-              lazyLoad: true,
-            }
-          },
-          {
-            breakpoint: 480,
-            settings: {
-              infinite: (miniSeries?.length >= 4) ? true : false,
-              centerMode: (miniSeries?.length >= 4) ? true : false,
-              slidesToShow: (miniSeries?.length <= 4 && miniSeries?.length > 1) ? 1.2 : 1,
-              slidesToScroll: 1,
-              lazyLoad: true,
-            }
-          }
-        ]
-      };
-      
-      if (miniSerieStart === null) {
-        return (
-          <Spinner />
-        )
-      }
+  const [activeIndex, setActiveIndex] = useState(0)
 
+  var settings = {
+    infinite: false,
+    speed: 500,
+    slidesToShow: 4,
+    slidesToScroll: 2,
+    initialSlide: 0,
+    lazyLoad: true,
+    afterChange: (index) => setActiveIndex(index),
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: (miniSeries?.length > 1) ? 2 : 1,
+          slidesToScroll: 2,
+          lazyLoad: true,
+        }
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: (miniSeries?.length > 1) ? 2 : 1,
+          slidesToScroll: 2,
+          initialSlide: 2,
+          lazyLoad: true,
+        }
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          centerMode: (miniSeries?.length >= 4) ? true : false,
+          slidesToShow: (miniSeries?.length <= 4 && miniSeries?.length > 1) ? 1.2 : 1,
+          slidesToScroll: 1,
+          lazyLoad: true,
+        }
+      }
+    ]
+  };
+    
       const fechainicio1 = moment(activeSerie?.updateCount, 'YYYY-MM-DD')
       const fechainicio2 = moment(miniSerieStart?.updateCount, 'YYYY-MM-DD')
       const fechafin2 = moment()
@@ -115,6 +115,19 @@ export const MiniSerie = () => {
       const NuevoCap = fechafin2.diff(fechainicio1, 'day')
 
       const NuevoCap1 = fechafin2.diff(fechainicio2, 'day')
+
+      useEffect(() => {
+        if (activeIndex === (miniSeries?.length - 4) && Number(Paginate?.page) < Paginate?.total) {
+          dispatch(startGetPaginateMiniSeries(Number(Paginate?.page) + 1))
+        }
+      }, [activeIndex])
+
+      
+      if (miniSerieStart === null) {
+        return (
+          <Spinner />
+        )
+      }
 
     return (
         <div className="container my-5"> 
@@ -213,8 +226,8 @@ export const MiniSerie = () => {
 
                     const NuevoCap = fechafin2.diff(fechainicio1, 'day')
                     return (
-                      <div key={Serie._id} className = 'col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12'>
-                        <div className='imgag'>
+                      <div key={Serie._id} className = 'col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 my-3'>
+                        <div className='borderCards'>
                           {
                             (NuevoCap === 0)
                               &&
@@ -222,9 +235,10 @@ export const MiniSerie = () => {
                               <span className='p-2'>Nuevo capítulo</span>
                             </div>
                           }
-                          <img src={Serie.image} onClick={() => handledSet(Serie)} className="shadowImage image-round img-fluid" alt="..." style={{objectFit: 'cover', height: '355px', width: '100%'}} />
+                          <img src={Serie.image} onClick={() => handledSet(Serie)} className="cardRound img-fluid" alt="..." style={{objectFit: 'cover', height: '355px', width: '100%'}} />
+
+                          <h5 className='p-2 textCard'>{Serie.title}</h5>
                         </div>
-                          <h5 className='text-center'>{Serie.title}</h5>
                       </div>
                     )
                   })

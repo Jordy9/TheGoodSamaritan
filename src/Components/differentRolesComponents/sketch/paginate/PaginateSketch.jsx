@@ -3,7 +3,7 @@ import ReactPaginate from 'react-paginate';
 import { useDispatch, useSelector } from 'react-redux';
 import { startGetPaginateBosquejos } from '../../../../action/sketch';
 
-export const PaginateSketch = () => {
+export const PaginateSketch = ({searchParam}) => {
 
     const dispatch = useDispatch()
 
@@ -11,7 +11,7 @@ export const PaginateSketch = () => {
 
     const handlePageClick = (event) => {
         const newOffset = (event.selected + 1);
-        dispatch(startGetPaginateBosquejos(newOffset))
+        dispatch(startGetPaginateBosquejos(newOffset, searchParam))
     };
 
     return (

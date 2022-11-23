@@ -3,32 +3,37 @@ import Swal from "sweetalert2"
 import { fetchConToken, fetchSinToken } from "../helper/fetch"
 import { Types } from "../types/Types"
 
-export const startGetYoutube = () => {
-    return async(dispatch) => {
-        const resp = await fetchSinToken('youtube')
-        const body = await resp.json()
-
-        if(body.ok) {
-            dispatch(Youtube(body.youtube))
-            dispatch(YoutubeStart(body.youtube[0]))
-
-        }
-    }
-}
-
 export const startGetPaginateYoutube = (page) => {
     return async(dispatch) => {
         const resp = await fetchSinToken(`youtube/you?page=${page || 1}`)
         const body = await resp.json()
 
+        const startVideo = body.youtube[0]
+
         if(body.ok) {
-            dispatch(Youtube(body.youtube))
+            dispatch(createYoutube(body.youtube))
+            dispatch(YoutubeStart(startVideo))
             dispatch(PaginateYoutube({
                 page: body.page,
                 total: body.total
             }))
         }
     }
+}
+
+export const startGetPaginateYoutubeSearch = (page, searchParam) => {
+  return async(dispatch) => {
+      const resp = await fetchSinToken(`youtube/search?page=${page || 1}&size=10&searchParam=${searchParam || ''}`)
+      const body = await resp.json()
+
+      if(body.ok) {
+        dispatch(Youtube(body.youtube))
+        dispatch(PaginateYoutube({
+          page: body.page,
+          total: body.total
+        }))
+      }
+  }
 }
 
 const PaginateYoutube = (youtube) => ({

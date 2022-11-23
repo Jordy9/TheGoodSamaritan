@@ -1,7 +1,7 @@
 import { Types } from "../types/Types";
 
 const initialState = {
-    Youtube: null,
+    Youtube: [],
     activeYoutube: '',
     youtubeStart: '',
     Paginate: []
@@ -13,7 +13,7 @@ export const youtubeReducer = (state = initialState, action) => {
         case Types.ytgetYoutube:
             return {
             ...state,
-            Youtube: [...action.payload]
+            Youtube: action.payload
         }
 
         case Types.ytSetYoutube:
@@ -33,7 +33,7 @@ export const youtubeReducer = (state = initialState, action) => {
                 ...state,
                 Youtube: [
                     ...state.Youtube,
-                    action.payload
+                    ...action.payload
                 ]
             }
         

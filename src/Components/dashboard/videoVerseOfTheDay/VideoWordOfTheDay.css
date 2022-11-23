@@ -1,3 +1,6 @@
-/* video {
-    border-radius: 22px;
-} */
+.hoverCard:hover {
+    
+    border-bottom-left-radius: 40px;
+    border-bottom-right-radius: 40px;
+    background-color: #212529;
+}

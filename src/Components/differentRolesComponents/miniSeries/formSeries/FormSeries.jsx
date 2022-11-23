@@ -7,6 +7,7 @@ import * as Yup from 'yup'
 import tinymce from 'tinymce/tinymce';
 import Swal from 'sweetalert2';
 import { sendEmail } from '../../../../action/sendEmail';
+import { ModalImage } from './ModalImage';
 
 export const FormSeries = () => {
 
@@ -18,6 +19,8 @@ export const FormSeries = () => {
 
     const [imag, setimag] = useState()
 
+    const [selectedImage, setSelectedImage] = useState('')
+
     const {handleSubmit, resetForm, getFieldProps, touched, errors, setFieldValue} = useFormik({
         initialValues: {
             title: '',
@@ -27,36 +30,19 @@ export const FormSeries = () => {
         enableReinitialize: true,
         onSubmit: ({title, descripcion, image}) => {
             if (activeUser?.role === 'Pastor') {
-                if (image.type.includes('image') === false) {
-                    const Toast = Swal.mixin({
-                        toast: true,
-                        position: 'top-end',
-                        showConfirmButton: false,
-                        timer: 2000,
-                        timerProgressBar: true,
-                        didOpen: (toast) => {
-                          toast.addEventListener('mouseenter', Swal.stopTimer)
-                          toast.addEventListener('mouseleave', Swal.resumeTimer)
-                        }
-                      })
-                      
-                      return Toast.fire({
-                        icon: 'error',
-                        title: 'Imagen con formato incorrecto'
-                      })
-                } else {
-                    dispatch(startCreateMiniSerie(title, descripcion, image))
-                    resetForm({
-                        title: '',
-                        descripcion: tinymce.activeEditor.setContent(''),
-                        image: document.getElementsByName('image').value = ''
-                    })
-                    setfirst([])
-                    setfirst([getFieldProps('descripcion').value = ''])
-                    setimag()
-                    dispatch(sendEmail(title, null, 'Nueva miniserie agregada, titulada:'))
-                }
+                dispatch(startCreateMiniSerie(title, descripcion, image))
+                resetForm({
+                    title: '',
+                    descripcion: tinymce.activeEditor.setContent(''),
+                    image: document.getElementsByName('image').value = ''
+                })
+                setfirst([])
+                setfirst([getFieldProps('descripcion').value = ''])
+                setimag()
+                setSelectedImage('')
+                dispatch(sendEmail(title, null, 'Nueva miniserie agregada, titulada:'))
             } else {
+
                 const Toast = Swal.mixin({
                     toast: true,
                     position: 'top-end',
@@ -64,16 +50,18 @@ export const FormSeries = () => {
                     timer: 2000,
                     timerProgressBar: true,
                     didOpen: (toast) => {
-                      toast.addEventListener('mouseenter', Swal.stopTimer)
-                      toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
                     }
-                  })
-                  
-                  return Toast.fire({
+                    })
+                    
+                    return Toast.fire({
                     icon: 'error',
                     title: 'No tiene el privilegio de crear esta miniserie'
-                  })
+                    })
             }
+
+            
         },
         validationSchema: Yup.object({
             title: Yup.string()
@@ -88,10 +76,6 @@ export const FormSeries = () => {
         })
     })
 
-    const handledImage = () => {
-        document.querySelector('#fileSelector').click()
-    }
-
     const [first, setfirst] = useState([getFieldProps('descripcion').value])
 
     const agregar = () => {
@@ -103,6 +87,8 @@ export const FormSeries = () => {
         newFormValues.pop();
         setfirst(newFormValues)
     }
+
+    const [modalOpen, setModalOpen] = useState(false)
 
     return (
         <>
@@ -119,10 +105,7 @@ export const FormSeries = () => {
                 <div className="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
                     <div className="form-group">
                         <label>Imagen</label>
-                        <button type='button' className='btn btn-outline-primary form-control' onClick={handledImage}>Seleccionar imagen</button>
-                        <input accept="image/*" id='fileSelector' hidden = {true} type="file" className='form-control bg-transparent text-white' name='image' onChange={(e) => {
-                            setFieldValue('image', e.currentTarget.files[0], (e.currentTarget.files[0]) ? setimag(URL.createObjectURL(e.currentTarget.files[0]) || '') : setimag())
-                        }} />
+                        <button type='button' className='btn btn-outline-primary form-control' onClick={() => setModalOpen(true)}>Seleccionar imagen</button>
                         {touched.image && errors.image && <span style={{color: 'red'}}>{errors.image}</span>}
                     </div>
                 </div>
@@ -143,7 +126,7 @@ export const FormSeries = () => {
                 <div className="col-12">
                     <div className="form-group d-flex justify-content-center">
                         {/* <img src = {imag} style = {{ cursor: 'pointer', height: '200px', maxWidth: '400px' }} className = 'img-fluid rounded' alt=''/> */}
-                        <img src = {imag || ''} className="img-fluid rounded" alt="" style = {{ cursor: 'pointer', maxHeight: '225px'}} />
+                        <img src = {selectedImage || imag || ''} className="img-fluid rounded" alt="" style = {{ cursor: 'pointer', maxHeight: '225px'}} />
                     </div> 
                 </div>
             </div>
@@ -189,6 +172,8 @@ export const FormSeries = () => {
             </div>
             <button type='submit' className = 'btn btn-outline-primary form-control my-3'>Guardar</button>
         </form>
+
+        <ModalImage setFieldValue = {setFieldValue} setimag = {setimag} modalOpen={modalOpen} setModalOpen = {setModalOpen} setSelectedImage = {setSelectedImage} />
         </>
     )
 }

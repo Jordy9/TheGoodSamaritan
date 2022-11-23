@@ -1,47 +1,33 @@
-import { useState } from 'react'
-import { useEffect, useRef } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 
 export const useInfiniteScroll = () => {
 
     const refElement = useRef()
 
-    const [currentCount, setCurrentCount] = useState(0)
-    
     const [isLoading, setIsLoading] = useState(false)
+
+    const handleScroll =useCallback(
+      () => {
+        if (isLoading) return
+
+        if ((window.innerHeight + window.scrollY) >= refElement.current.offsetHeight - 200){
+          setIsLoading(true)
+        }
+      },
+      [isLoading],
+    )
 
     useEffect(() => {
         
-        window.addEventListener('scroll', () => {
-          if (!isLoading && (window.innerHeight + window.scrollY + 500) >= refElement.current.offsetHeight){
+      window.addEventListener('scroll', handleScroll);
 
-            setIsLoading(true)
+      return () => window.removeEventListener('scroll', handleScroll)
 
-            setTimeout(() => {
-              setCurrentCount(prevCount => prevCount + 25)
-              setIsLoading(false)
-            }, 1500);
-  
-          }
-        });
-
-        return window.removeEventListener('scroll', () => {
-          if ((window.innerHeight + window.scrollY + 500) >= refElement.current.offsetHeight){
-
-            setIsLoading(true)
-
-            setTimeout(() => {
-              setCurrentCount(prevCount => prevCount + 25)
-              setIsLoading(false)
-            }, 1500);
-  
-          }
-        })
-
-    }, [isLoading])
+    }, [isLoading, handleScroll])
 
   return {
     refElement,
     isLoading,
-    currentCount
+    setIsLoading
   }
 }

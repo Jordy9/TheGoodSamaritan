@@ -1,27 +1,27 @@
-import React, { useEffect, useState } from 'react'
-import { useDispatch } from 'react-redux';
-import { startGetPaginateYoutube } from '../../../../action/youtubeImage';
+import React, { useState } from 'react'
+import { startGetPaginateYoutubeSearch } from '../../../../action/youtubeImage';
+import { useDebounce } from '../../../../hooks/useDebounce';
 import { YoutubeModal } from '../modal/YoutubeModal';
 import { PaginateYoutube } from '../paginate/PaginateYoutube';
 import { ModalListContainer } from './ModalListContainer';
 
 export const YoutubeList = () => {
 
-  const dispatch = useDispatch()
+    const { onQueryChange } = useDebounce(startGetPaginateYoutubeSearch)
 
-  const [title, setTitle] = useState('')
+    const [searchParam, setSearchParam] = useState('')
 
-  useEffect(() => {
-    dispatch(startGetPaginateYoutube())
-
-  }, [dispatch])
+    const onChange = (target) => {
+      onQueryChange(target)
+      setSearchParam(target.value)
+    }
 
     return (
         <>
           <h1 style = {{marginTop: '30px'}}>Listado de links de videos</h1>
           <div className="input-group justify-content-end mb-3">
             <div className="form-outline">
-              <input placeholder='Buscador' type="search" value={title} onChange={({target}) => setTitle(target.value)} className="form-control bg-transparent text-white" />
+              <input placeholder='Buscador' type="search" onChange={({target}) => onChange(target)} className="form-control bg-transparent text-white" />
             </div>
           </div>
           <div className="table-responsive">
@@ -35,14 +35,14 @@ export const YoutubeList = () => {
                 </tr>
               </thead>
               <tbody>
-                <ModalListContainer title = {title} />
+                <ModalListContainer />
               </tbody>
             </table>
           </div>
 
              <YoutubeModal />
 
-             <PaginateYoutube />
+             <PaginateYoutube searchParam = {searchParam} />
         </>
     )
 }

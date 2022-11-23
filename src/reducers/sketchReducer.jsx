@@ -1,7 +1,7 @@
 import { Types } from "../types/Types";
 
 const initialState = {
-    Bosquejos: null,
+    Bosquejos: [],
     activeBosquejo: '',
     Paginate: [],
     Porcentage: 0
@@ -22,6 +22,15 @@ export const sketchReducer = (state = initialState, action) => {
             }
 
         case Types.sktcreateBosquejo:
+            return {
+                ...state,
+                Bosquejos: [
+                    ...state.Bosquejos,
+                    ...action.payload
+                ]
+            }
+
+        case Types.sktcreateBosquejonew:
             return {
                 ...state,
                 Bosquejos: [

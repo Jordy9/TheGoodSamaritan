@@ -1,9 +1,9 @@
 import React from 'react'
 import ReactPaginate from 'react-paginate';
 import { useDispatch, useSelector } from 'react-redux';
-import { startGetPaginateYoutube } from '../../../../action/youtubeImage';
+import { startGetPaginateYoutubeSearch } from '../../../../action/youtubeImage';
 
-export const PaginateYoutube = () => {
+export const PaginateYoutube = ({searchParam}) => {
 
     const dispatch = useDispatch()
 
@@ -11,7 +11,7 @@ export const PaginateYoutube = () => {
 
     const handlePageClick = (event) => {
         const newOffset = (event.selected + 1);
-        dispatch(startGetPaginateYoutube(newOffset))
+        dispatch(startGetPaginateYoutubeSearch(newOffset, searchParam))
     };
 
     return (

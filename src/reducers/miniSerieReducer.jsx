@@ -1,7 +1,7 @@
 import { Types } from "../types/Types";
 
 const initialState = {
-    miniSeries: null,
+    miniSeries: [],
     activeSerie: '',
     miniSerieStart: null,
     Show: false,
@@ -18,6 +18,15 @@ export const miniSerieReducer = (state = initialState, action) => {
             }
         
         case Types.micreateSerie:
+            return {
+                ...state,
+                miniSeries: [
+                    ...state.miniSeries,
+                    ...action.payload
+                ]
+            }
+
+        case Types.micreateSerieNew:
             return {
                 ...state,
                 miniSeries: [

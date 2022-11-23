@@ -1,26 +1,28 @@
-import React, { useEffect, useState } from 'react'
-import { useDispatch } from 'react-redux';
-import { startGetPaginateBosquejos } from '../../../../action/sketch';
+import React from 'react'
+import { useState } from 'react';
+import { startGetPaginateBosquejoSearch } from '../../../../action/sketch';
+import { useDebounce } from '../../../../hooks/useDebounce';
 import { SketchModal } from '../modal/SketchModal';
 import { PaginateSketch } from '../paginate/PaginateSketch';
 import { ModalListContainer } from './ModalListContainer';
 
 export const SketchsList = () => {
 
-  const dispatch = useDispatch()
+    const { onQueryChange } = useDebounce(startGetPaginateBosquejoSearch)
 
-  const [title, setTitle] = useState('')
+    const [searchParam, setSearchParam] = useState('')
 
-  useEffect(() => {
-    dispatch(startGetPaginateBosquejos())
-  }, [dispatch])
+    const onChange = (target) => {
+      onQueryChange(target)
+      setSearchParam(target.value)
+    }
 
     return (
         <>
           <h1 style = {{marginTop: '30px'}}>Listado de Bosquejos</h1>
           <div className="input-group justify-content-end mb-3">
             <div className="form-outline">
-              <input placeholder='Buscador' type="search" value={title} onChange={({target}) => setTitle(target.value)} className="form-control bg-transparent text-white" />
+              <input placeholder='Buscador' type="search" onChange={({target}) => onChange(target)} className="form-control bg-transparent text-white" />
             </div>
           </div>
           <div className="table-responsive">
@@ -35,14 +37,14 @@ export const SketchsList = () => {
                 </tr>
               </thead>
               <tbody>
-                <ModalListContainer title={title} />
+                <ModalListContainer />
               </tbody>
             </table>
           </div>
 
              <SketchModal />
 
-             <PaginateSketch />
+             <PaginateSketch searchParam = {searchParam} />
         </>
     )
 }

@@ -19,7 +19,7 @@ export const VideoWordOfTheDayReducer = (state = initialState, action) => {
                 ...state,
                 videos: [
                     ...state.videos,
-                    action.payload
+                    ...action.payload
                 ]
             }
 

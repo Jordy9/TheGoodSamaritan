@@ -12,12 +12,12 @@ import { activeMessage, isTyping } from '../action/chat';
 import { startGetEventos } from '../action/event';
 import { startGetGallery } from '../action/gallery';
 import { startGetMains } from '../action/main';
-import { startGetMiniSeries } from '../action/miniSerie';
+import { startGetPaginateMiniSeries } from '../action/miniSerie';
 import { startGetPetitionesUser, startGetPetitions } from '../action/petition';
-import { startGetBosquejos } from '../action/sketch';
+import { startGetPaginateBosquejos } from '../action/sketch';
 import { startSocket } from '../action/socket';
 import { setActiveUser, startAuthCheking, startGetUsers } from '../action/user';
-import { startGetYoutube } from '../action/youtubeImage';
+import { startGetPaginateYoutube } from '../action/youtubeImage';
 // import { startGetYoutube } from '../action/youtubeImage';
 import { startGetZoom } from '../action/zoom';
 import { Footer } from '../Components/footer/Footer';
@@ -43,7 +43,7 @@ import 'moment/locale/es'
 import { cargarNotificaciones } from '../action/notifications';
 import { startGetVerseofTheDay } from '../action/verseofTheDay';
 import { startGetNotes } from '../action/notas';
-import { startGetVideoWordOfTheDay } from '../action/VideoWordOfTheDay';
+import { startGetPaginateVideos } from '../action/VideoWordOfTheDay';
 import { startGetNoBeleaverVideo } from '../action/NoBeleaver';
 import { startGetBeleaver } from '../action/beleaver';
 import { startGetImageVideo } from '../action/imageVideo';
@@ -51,6 +51,7 @@ import { MiniSerie } from '../Components/Home/miniSeries/MiniSerie';
 import { useNotice } from '../hooks/useNotice';
 import { startGetNotificationsUser } from '../action/notificationsUser';
 import { Spinner } from '../Components/spinner/Spinner';
+import axios from 'axios';
 
 moment.locale('es');
 
@@ -67,9 +68,9 @@ export const AppRouter = () => {
 
     useEffect(() => {
         dispatch(startAuthCheking());
-        dispatch(startGetMiniSeries())
+        dispatch(startGetPaginateMiniSeries())
         dispatch(startGetEventos())
-        dispatch(startGetBosquejos())
+        dispatch(startGetPaginateBosquejos())
         dispatch(startGetZoom())
         dispatch(startGetPetitionesUser())
         dispatch(startGetPetitions())
@@ -78,11 +79,11 @@ export const AppRouter = () => {
         dispatch(startGetCapsules())
         dispatch(startGetUsers())
         dispatch(setActiveUser())
-        dispatch(startGetYoutube())
+        dispatch(startGetPaginateYoutube())
         dispatch(cargarNotificaciones())
         dispatch(startGetVerseofTheDay())
         dispatch(startGetNotes())
-        dispatch(startGetVideoWordOfTheDay())
+        dispatch(startGetPaginateVideos())
         dispatch(startGetNoBeleaverVideo())
         dispatch(startGetBeleaver())
         dispatch(startGetImageVideo())

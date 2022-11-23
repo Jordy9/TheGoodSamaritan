@@ -1,26 +1,28 @@
-import React, { useEffect, useState } from 'react'
-import { useDispatch } from 'react-redux';
-import { startGetPaginateVideos } from '../../../../action/VideoWordOfTheDay';
+import React from 'react'
+import { useState } from 'react';
+import { startGetPaginateVideosSearch } from '../../../../action/VideoWordOfTheDay';
+import { useDebounce } from '../../../../hooks/useDebounce';
 import { VideoWordOfTheDayModal } from '../modal/VideoWordOfTheDayModalModal';
 import { PaginateVideo } from '../paginate/PaginateVideo';
 import { ModalListContainer } from './ModalListContainer';
 
 export const VideoWordOfTheDayList = () => {
-  
-  const dispatch = useDispatch()
 
-  const [title, setTitle] = useState('')
+    const { onQueryChange } = useDebounce(startGetPaginateVideosSearch)
 
-  useEffect(() => {
-    dispatch(startGetPaginateVideos())
-  }, [dispatch])
+    const [searchParam, setSearchParam] = useState('')
+
+    const onChange = (target) => {
+      onQueryChange(target)
+      setSearchParam(target.value)
+    }
 
     return (
         <>
           <h1 style = {{marginTop: '30px'}}>Listado de Palabra Del Día</h1>
           <div className="input-group justify-content-end mb-3">
             <div className="form-outline">
-              <input placeholder='Buscador' type="search" value={title} onChange={({target}) => setTitle(target.value)} className="form-control bg-transparent text-white" />
+              <input placeholder='Buscador' type="search" onChange={({target}) => onChange(target)} className="form-control bg-transparent text-white" />
             </div>
           </div>
           <div className="table-responsive">
@@ -34,14 +36,13 @@ export const VideoWordOfTheDayList = () => {
                 </tr>
               </thead>
               <tbody>
-                <ModalListContainer title = {title} />
+                <ModalListContainer />
               </tbody>
             </table>
           </div>
+            <VideoWordOfTheDayModal />
 
-             <VideoWordOfTheDayModal />
-
-             <PaginateVideo />
+            <PaginateVideo searchParam = {searchParam} />
         </>
     )
 }
