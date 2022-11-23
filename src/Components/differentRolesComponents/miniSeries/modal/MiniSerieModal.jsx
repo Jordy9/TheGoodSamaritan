@@ -36,7 +36,7 @@ export const MiniSerieModal = () => {
             if (activeUser?.role === 'Pastor' && activeSerie?.user === uid) {
 
                 dispatch(startUpdateSerie(title, descripcion, image))
-                // dispatch(sendEmail(title, 'Nuevo contenido'))
+                dispatch(sendEmail(title, 'Nuevo contenido'))
             } else {
                 const Toast = Swal.mixin({
                     toast: true,

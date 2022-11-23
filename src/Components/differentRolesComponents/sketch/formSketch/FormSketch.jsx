@@ -33,7 +33,7 @@ export const FormSketch = () => {
             if (activeUser?.role === 'Pastor') {
 
                 dispatch(startCreateBosquejo(title, descripcion, image))
-                // dispatch(sendEmail(title, null, 'Nuevo bosquejo agregado, titulado:'))
+                dispatch(sendEmail(title, null, 'Nuevo bosquejo agregado, titulado:'))
                 setSelectedImage('')
                 setimag()
             } else {
