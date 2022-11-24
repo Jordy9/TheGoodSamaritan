@@ -7,7 +7,9 @@ import { Types } from "../types/Types"
 export const getImageApi = (searchParam, setnewImage, page) => {
   return async(dispatch) => {
 
-    const { data } = await axios.get(`https://pixabay.com/api/?key=31553456-6c1c8a5d0a38b1f411c5a2bbf&q=${searchParam}&page=${page || 1}&per_page=20&safesearch=true`)
+    let newSearchParams = encodeURIComponent(searchParam)
+
+    const { data } = await axios.get(`https://pixabay.com/api/?key=31553456-6c1c8a5d0a38b1f411c5a2bbf&q=${newSearchParams}&page=${page || 1}&per_page=20&safesearch=true&lang=es`)
 
     setnewImage(data)
   }
