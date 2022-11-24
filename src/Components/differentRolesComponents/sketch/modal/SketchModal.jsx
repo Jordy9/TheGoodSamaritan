@@ -129,7 +129,7 @@ export const SketchModal = () => {
                                     <div className="card-body">
                                         <form onSubmit = {handleSubmit}>
                                             <div className = 'row'>
-                                                <div className="col-6">
+                                                <div className="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6">
                                                     <div className="form-group">
                                                         <label>Título</label>
                                                         <input type="text" className = 'form-control bg-transparent text-white' {...getFieldProps('title')} />
@@ -137,7 +137,7 @@ export const SketchModal = () => {
                                                     </div>
                                                 </div>
 
-                                                <div className="col-6">
+                                                <div className="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6">
                                                     <div className="form-group">
                                                         <label>Imagen</label>
                                                         <button type='button' className='btn btn-outline-primary form-control' onClick={() => setModalOpen(true)}>Seleccionar imagen</button>
@@ -199,21 +199,25 @@ export const SketchModal = () => {
                                 :
                             <>
                                 <div style={{height: '500px'}}>
-                                    <div style={{display: 'flex', justifyContent: 'space-between'}}>
-                                        <div className="col-4">
-                                            <div className="form-group">
-                                                <button type='button' className='btn btn-outline-primary form-control' onClick={handledImage}>Subir imagen</button>
-                                                <input accept="image/*" id='fileSelector' hidden = {true} type="file" className='form-control bg-transparent text-white' name='image' onChange={(e) => handledSelectedUpload(e)}/>
-                                            </div>
-                                        </div>
+                                    <div className="row">
+                                        <div className="col-12">
+                                            <div className = 'row' style={{display: 'flex', justifyContent: 'space-between'}}>
+                                                <div className = 'col-xs-12 col-sm-12 col-md-6 col-lg-5 col-xl-5 col-xxl-5'>
+                                                    <div className="form-group">
+                                                        <button type='button' className='btn btn-outline-primary form-control' onClick={handledImage}>Subir imagen</button>
+                                                        <input accept="image/*" id='fileSelector' hidden = {true} type="file" className='form-control bg-transparent text-white' name='image' onChange={(e) => handledSelectedUpload(e)}/>
+                                                    </div>
+                                                </div>
 
-                                        <div className="input-group justify-content-end mb-3">
-                                            <div className="form-outline">
-                                                <input placeholder='Buscador' type="search" onChange={({target}) => onQueryChange(target)} className="form-control bg-transparent text-white" />
+                                                <div className = 'col-xs-12 col-sm-12 col-md-6 col-lg-5 col-xl-5 col-xxl-5'>
+                                                    <div className="form-outline">
+                                                        <input placeholder='Buscador' type="search" onChange={({target}) => onQueryChange(target)} className="form-control bg-transparent text-white" />
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-
+                                    
                                     <div className="row">
                                         {
                                             (newImage?.hits?.length !== 0)

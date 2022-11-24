@@ -16,7 +16,7 @@ export const Carrousel = () => {
 
     return (
         <div className='mb-5'>
-            <Carousel fade = {true} touch = {true} className = 'shadowImage image-round'>
+            <Carousel fade = {true} touch = {true} className = 'text-center'>
                 {
                     (Mains)
                         &&
@@ -24,8 +24,8 @@ export const Carrousel = () => {
                         return (
                         <Carousel.Item key = {main._id}>
                             <img
-                                style={{objectFit: 'cover', height: '100%', width: '100%'}}
-                                className="img-fluid image-round"
+                                style={{objectFit: 'contain', maxHeight: '96.81vh', maxWidth: '100%', height: 'auto', width: 'auto'}}
+                                className="image-round img-fluid"
                                 src = {main.image}
                                 alt="First slide"
                                 />

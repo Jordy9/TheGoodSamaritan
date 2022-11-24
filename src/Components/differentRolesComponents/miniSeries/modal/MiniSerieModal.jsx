@@ -233,17 +233,21 @@ export const MiniSerieModal = () => {
                             </div>
                                 :
                             <div style={{height: '500px'}}>
-                                <div style={{display: 'flex', justifyContent: 'space-between'}}>
-                                    <div className="col-4">
-                                        <div className="form-group">
-                                            <button type='button' className='btn btn-outline-primary form-control' onClick={handledImage}>Subir imagen</button>
-                                            <input accept="image/*" id='fileSelector' hidden = {true} type="file" className='form-control bg-transparent text-white' name='image' onChange={(e) => handledSelectedUpload(e)}/>
-                                        </div>
-                                    </div>
+                                <div className="row">
+                                    <div className="col-12">
+                                        <div className = 'row' style={{display: 'flex', justifyContent: 'space-between'}}>
+                                            <div className = 'col-xs-12 col-sm-12 col-md-6 col-lg-5 col-xl-5 col-xxl-5'>
+                                                <div className="form-group">
+                                                    <button type='button' className='btn btn-outline-primary form-control' onClick={handledImage}>Subir imagen</button>
+                                                    <input accept="image/*" id='fileSelector' hidden = {true} type="file" className='form-control bg-transparent text-white' name='image' onChange={(e) => handledSelectedUpload(e)}/>
+                                                </div>
+                                            </div>
 
-                                    <div className="input-group justify-content-end mb-3">
-                                        <div className="form-outline">
-                                            <input placeholder='Buscador' type="search" onChange={({target}) => onQueryChange(target)} className="form-control bg-transparent text-white" />
+                                            <div className = 'col-xs-12 col-sm-12 col-md-6 col-lg-5 col-xl-5 col-xxl-5'>
+                                                <div className="form-outline">
+                                                    <input placeholder='Buscador' type="search" onChange={({target}) => onQueryChange(target)} className="form-control bg-transparent text-white" />
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
