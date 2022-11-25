@@ -19,18 +19,33 @@ const Gallerys = (galeria) => ({
     payload: galeria
 })
 
-export const startGetPaginateGallery = (page) => {
+export const startGetPaginateGallery = (page, size) => {
     return async(dispatch) => {
-        const resp = await fetchSinToken(`galeria/ga?page=${page || 1}`)
-        const body = await resp.json()
+      const resp = await fetchSinToken(`galeria/ga?page=${page || 1}&size=${size || 10}`)
+      const body = await resp.json()
 
-        if(body.ok) {
-            dispatch(Gallerys(body.galeria))
-            dispatch(PaginateGallery({
-                page: body.page,
-                total: body.total
-            }))
-        }
+      if(body.ok) {
+          dispatch(createGallery(body.galeria))
+          dispatch(PaginateGallery({
+              page: body.page,
+              total: body.total
+          }))
+      }
+    }
+}
+
+export const startGetPaginateGalleryNew = (page, size) => {
+    return async(dispatch) => {
+      const resp = await fetchSinToken(`galeria/ga?page=${page || 1}&size=${size || 10}`)
+      const body = await resp.json()
+
+      if(body.ok) {
+          dispatch(Gallerys(body.galeria))
+          dispatch(PaginateGallery({
+              page: body.page,
+              total: body.total
+          }))
+      }
     }
 }
 
@@ -48,21 +63,23 @@ export const startCreateGallery = (title, file) => {
             formData.append('file', file)
             formData.append('title', title)
 
-            const res = await axios.post(`${process.env.REACT_APP_API_URL}/image/upload/gallery`, formData, {
-              headers: {'x-token': token},
-              onUploadProgress: (e) =>
-                {dispatch(upload(Math.round( (e.loaded * 100) / e.total )))}
-            })
+            const res = await Promise.all([
+                axios.post(`${process.env.REACT_APP_API_URL}/image/upload/gallery`, formData, {
+                  headers: {'x-token': token},
+                  onUploadProgress: (e) =>
+                    {dispatch(upload(Math.round( (e.loaded * 100) / e.total )))}
+                })
+            ])
             
-            if(res.data.ok) {
-                const image = res.data.image.url
-                const idImage = res.data.image.id
+            if(res[0].data.ok) {
+                const image = res[0].data.image.url
+                const idImage = res[0].data.image.id
                 const resp = await fetchConToken('galeria', {title, image, idImage}, 'POST');
                 const body = await resp.json()
 
                 if (body.ok) {
 
-                    dispatch(createGallery(body))
+                    dispatch(createGalleryNew(body))
 
                     dispatch(UploadFish())
     
@@ -117,6 +134,11 @@ const upload = (progress) => ({
 
 const createGallery = (galeria) => ({
     type: Types.gacreateGallery,
+    payload: galeria
+})
+
+const createGalleryNew = (galeria) => ({
+    type: Types.gacreateGalleryNew,
     payload: galeria
 })
 

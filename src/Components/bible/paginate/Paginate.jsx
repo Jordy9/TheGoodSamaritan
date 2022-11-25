@@ -23,7 +23,6 @@ export const Paginate = ({total, setCurrentPage}) => {
                 breakLabel="..."
                 nextLabel="Siguiente"
                 onPageChange={handlePageClick}
-                pageRangeDisplayed={1}
                 pageCount={totalPage}
                 previousLabel="Anterior"
                 containerClassName='pagination justify-content-center'

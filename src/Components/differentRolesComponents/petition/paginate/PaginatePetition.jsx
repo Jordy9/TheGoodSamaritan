@@ -20,7 +20,6 @@ export const PaginatePetition = () => {
                 breakLabel="..."
                 nextLabel="Siguiente"
                 onPageChange={handlePageClick}
-                pageRangeDisplayed={5}
                 pageCount={Paginate?.total}
                 previousLabel="Anterior"
                 containerClassName='pagination justify-content-center'

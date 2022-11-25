@@ -49,11 +49,11 @@ export const useSocket = ( serverPath ) => {
         socket?.on('disconnect', () => setOnline( false ));
     }, [ socket ])
 
-    useEffect(() => {
-        socket?.on('lista-usuarios', (usuarios) => {
-            dispatch(UsuariosCargados(usuarios))
-        })
-    }, [ socket, dispatch ])
+    // useEffect(() => {
+    //     socket?.on('lista-usuarios', (usuarios) => {
+    //         dispatch(UsuariosCargados(usuarios))
+    //     })
+    // }, [ socket, dispatch ])
 
     useEffect(() => {
         socket?.on('lista-notificaciones', (notificaciones) => {

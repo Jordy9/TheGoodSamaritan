@@ -106,6 +106,10 @@ code {
     border-bottom: 1px solid;
     outline: none !important;
   }
+
+  .cardMouse:hover {
+    box-shadow: rgb(0 0 0 / 30%) 0px 0px 8px;;
+  }
   
   select .dropdown-toggle:focus { outline: none !important; }
   

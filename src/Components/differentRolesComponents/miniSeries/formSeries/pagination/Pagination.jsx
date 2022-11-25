@@ -21,7 +21,6 @@ export const Pagination = ({searchParam, newImage, setNewImage}) => {
                 breakLabel="..."
                 nextLabel="Siguiente"
                 onPageChange={handlePageClick}
-                pageRangeDisplayed={5}
                 pageCount={total}
                 previousLabel="Anterior"
                 containerClassName='pagination justify-content-center'

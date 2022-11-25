@@ -3,11 +3,11 @@ import { fetchConToken } from "../helper/fetch"
 export const sendEmail = (content, content2, content3) => {
     return async(dispatch, getState) => {
 
-        const {usuarios} = getState().cht
+        const { users } = getState().auth
 
         const subject = 'Nuevo contenido para tu crecimiento espiritual'
 
-        const filtroUserEmail = usuarios.filter(usuarios => usuarios?.tracking === true)
+        const filtroUserEmail = users.filter(usuarios => usuarios?.tracking === true)
 
         let arregloFiltroUserEmail = []
 

@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactPaginate from 'react-paginate';
 import { useDispatch, useSelector } from 'react-redux';
-import { startGetPaginateGallery } from '../../../../action/gallery';
+import { startGetPaginateGalleryNew } from '../../../../action/gallery';
 
 export const PaginateGallery = () => {
 
@@ -11,7 +11,7 @@ export const PaginateGallery = () => {
 
     const handlePageClick = (event) => {
         const newOffset = (event.selected + 1);
-        dispatch(startGetPaginateGallery(newOffset))
+        dispatch(startGetPaginateGalleryNew(newOffset))
     };
 
     return (
@@ -20,7 +20,6 @@ export const PaginateGallery = () => {
                 breakLabel="..."
                 nextLabel="Siguiente"
                 onPageChange={handlePageClick}
-                pageRangeDisplayed={5}
                 pageCount={Paginate?.total}
                 previousLabel="Anterior"
                 containerClassName='pagination justify-content-center'

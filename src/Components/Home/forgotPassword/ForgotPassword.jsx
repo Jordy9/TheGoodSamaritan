@@ -1,6 +1,7 @@
 import { useFormik } from 'formik'
 import React from 'react'
 import { useDispatch } from 'react-redux'
+import { NavLink } from 'react-router-dom'
 import * as Yup from 'yup'
 import { forgotPassword } from '../../../action/user'
 import logo from '../../../heroes/logo.png'
@@ -46,7 +47,9 @@ export const ForgotPassword = () => {
 
                                     </div>
 
-                                    <button type='submit' className = 'btn btn-outline-primary form-control my-2' style = {{borderRadius: '50px'}}>Enviar</button>
+                                    <button type='submit' className = 'btn btn-outline-primary form-control mt-3' style = {{borderRadius: '50px'}}>Enviar</button>
+
+                                    <NavLink to='/Login' className='d-flex justify-content-center my-3' style={{color: 'white', textAlign: 'center'}}>¿Sabes tu contraseña? inicia sesión</NavLink>
                                 </form>
                             </div>
                         </div>

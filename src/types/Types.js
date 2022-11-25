@@ -91,6 +91,7 @@ export const Types = {
     // 
     ytgetYoutube: '[YT] get Youtube',
     ytcreateYoutube: '[YT] create Youtube',
+    ytcreateYoutubeNew: '[YT] create Youtube new',
     ytSetYoutube: '[YT] set Youtube',
     ytSetYoutubeForm: '[YT] set Youtube form',
     ytClearSetYoutube: '[YT] clear set Youtube',
@@ -117,6 +118,7 @@ export const Types = {
     gagetGallerys: '[GA] get Gallerys',
     gaSetGallery: '[GA] set Gallery',
     gacreateGallery: '[GA] create Gallery',
+    gacreateGalleryNew: '[GA] create Gallery new',
     gaSetGalleryForm: '[GA] set Gallery form',
     gaClearSetGallery: '[GA] clear set Gallery',
     gaUpdateGallery: '[GA] update Gallery',

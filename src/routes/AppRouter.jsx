@@ -10,7 +10,7 @@ import {
 import { startGetCapsules } from '../action/capsule';
 import { activeMessage, isTyping } from '../action/chat';
 import { startGetEventos } from '../action/event';
-import { startGetGallery } from '../action/gallery';
+import { startGetPaginateGallery } from '../action/gallery';
 import { startGetMains } from '../action/main';
 import { startGetPaginateMiniSeries } from '../action/miniSerie';
 import { startGetPetitionesUser, startGetPetitions } from '../action/petition';
@@ -51,7 +51,6 @@ import { MiniSerie } from '../Components/Home/miniSeries/MiniSerie';
 import { useNotice } from '../hooks/useNotice';
 import { startGetNotificationsUser } from '../action/notificationsUser';
 import { Spinner } from '../Components/spinner/Spinner';
-import axios from 'axios';
 
 moment.locale('es');
 
@@ -67,6 +66,7 @@ export const AppRouter = () => {
     const token = localStorage.getItem('tokenn')
 
     useEffect(() => {
+        dispatch(startGetUsers())
         dispatch(startAuthCheking());
         dispatch(startGetPaginateMiniSeries())
         dispatch(startGetEventos())
@@ -75,9 +75,8 @@ export const AppRouter = () => {
         dispatch(startGetPetitionesUser())
         dispatch(startGetPetitions())
         dispatch(startGetMains())
-        dispatch(startGetGallery())
+        dispatch(startGetPaginateGallery())
         dispatch(startGetCapsules())
-        dispatch(startGetUsers())
         dispatch(setActiveUser())
         dispatch(startGetPaginateYoutube())
         dispatch(cargarNotificaciones())
@@ -139,7 +138,7 @@ export const AppRouter = () => {
                     <Route exact path = '/Schedule' component = {Schedule} />
                     <Route exact path = '/Gallery' component = {Galleryy} />
                     <Route exact path = '/ForgotPassword' component = {ForgotPassword} />
-                    <Route exact path = {`/resetPassword/${token}`} component = {ResetPassword} />
+                    <Route exact path = '/resetPassword/:id' component = {ResetPassword} />
 
                     <PrivateRoute path = '/' component = {AuthRouter} isAuthenticated = {!!uid} />
 

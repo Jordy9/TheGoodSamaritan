@@ -1,7 +1,7 @@
 import { Types } from '../types/Types';
 
 const initialState = {
-    Gallery: null,
+    Gallery: [],
     activeGallery: '',
     Paginate: [],
     Porcentage: 0
@@ -16,6 +16,15 @@ export const galleryReducer = (state = initialState, action) => {
             }
 
         case Types.gacreateGallery:
+            return {
+                ...state,
+                Gallery: [
+                    ...state.Gallery,
+                    ...action.payload
+                ]
+            }
+
+        case Types.gacreateGalleryNew:
             return {
                 ...state,
                 Gallery: [

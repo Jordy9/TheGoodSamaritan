@@ -85,7 +85,7 @@ export const startCreateYoutube = (urlImage) => {
 
         if (body.ok) {
 
-            dispatch(createYoutube(body))
+            dispatch(createYoutubeNew(body))
             const subtitle = 'Nuevo video de youtube agregado'
 
             const content = body.youtube
@@ -133,6 +133,11 @@ export const startCreateYoutube = (urlImage) => {
 
 const createYoutube = (youtube) => ({
     type: Types.ytcreateYoutube,
+    payload: youtube
+})
+
+const createYoutubeNew = (youtube) => ({
+    type: Types.ytcreateYoutubeNew,
     payload: youtube
 })
 

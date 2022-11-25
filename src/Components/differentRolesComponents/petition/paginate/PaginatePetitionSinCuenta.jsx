@@ -20,7 +20,6 @@ export const PaginatePetitionSinCuenta = () => {
                 breakLabel="..."
                 nextLabel="Siguiente"
                 onPageChange={handlePageClick}
-                pageRangeDisplayed={5}
                 pageCount={PaginateSinCuenta?.total}
                 previousLabel="Anterior"
                 containerClassName='pagination justify-content-center'

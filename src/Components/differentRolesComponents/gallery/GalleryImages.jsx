@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { startCreateGallery } from '../../../action/gallery'
 import { useFormik } from 'formik';
@@ -13,19 +13,25 @@ export const GalleryImages = () => {
 
     const dispatch = useDispatch()
 
-    const [imag, setimag] = useState([])
-
     const [imagen, setimagen] = useState([])
 
-    useEffect(() => {
-        let arreglo = []
-      for (let index = 0; index < imag?.length; index++) {
-          const element = imag[index];
+    const [previewImages, setPreviewImages] = useState([])
 
-          arreglo.push([URL.createObjectURL(element)])    
+    const onSeletedImages = (imgs) => {
+        const selectedFilesArray = Array.from(imgs)
+    
+        const imagesArray = selectedFilesArray.map(file => {
+          return URL.createObjectURL(file)
+        })
+    
+        const allFilesArray = [...previewImages, ...imagesArray]
+    
+        setPreviewImages(allFilesArray)
       }
-      setimagen(arreglo)
-    }, [imag])
+    
+      const removeImage = (img) => {
+        setPreviewImages(previewImages?.filter(image => image !== img))
+      }
 
     const {handleSubmit, resetForm, getFieldProps, touched, errors, setFieldValue} = useFormik({
         initialValues: {
@@ -36,10 +42,12 @@ export const GalleryImages = () => {
         onSubmit: ({title, image}) => {
             if (activeUser?.role === 'Gestorcontenido' || activeUser?.role === 'Administrador') {
 
+                console.log(image)
+
                 for (let index = 0; index < image.length; index++) {
                     const imagen = image[index];
                     
-                    if (imagen.type.includes('image') === false) {
+                    if (imagen.type.includes('image/x-icon') === true || imagen.type.includes('image') === false) {
                         const Toast = Swal.mixin({
                             toast: true,
                              position: 'top-end',
@@ -83,7 +91,7 @@ export const GalleryImages = () => {
                 title: '', 
                 image: document.getElementsByName('image').value = ''
             })
-            setimag()
+            setPreviewImages([])
         },
         validationSchema: Yup.object({
             image: Yup.string()
@@ -105,8 +113,8 @@ export const GalleryImages = () => {
                     <div className="form-group">
                         <label>Imagen</label>
                         <button type='button' className='btn btn-outline-primary form-control' onClick={handledImage}>Seleccionar imagen</button>
-                        <input multiple accept="image/*" id='fileSelector' hidden = {true} type="file" className='form-control bg-transparent text-white' name='image' onChange={(e) => {
-                            setFieldValue('image', e.currentTarget.files, (e.currentTarget.files.length > 0) ? setimag(e.currentTarget.files || '') : setimag())
+                        <input multiple accept="image/*" id='fileSelector' hidden = {true} type="file" className='form-control bg-transparent text-white' name='image' onChange={({target}) => {
+                            setFieldValue('image', target?.files, onSeletedImages(target?.files))
                         }} />
                         {touched.image && errors.image && <span style={{color: 'red'}}>{errors.image}</span>}
                     </div> 
@@ -128,12 +136,13 @@ export const GalleryImages = () => {
                 
                 
                 {
-                    (imagen)
+                    (previewImages?.length !== 0)
                         &&
-                    imagen?.map((imagen, index) => {
+                        previewImages?.map((imagen, index) => {
                         return (
-                            <div key={imagen + index} className="col-3 d-flex justify-content-center">
-                                <img key={imagen} src = {imagen || ''} className="img-fluid rounded my-2" alt="" style = {{ cursor: 'pointer', height: '225px', width: '100%'}} />
+                            <div key={imagen + index} className="col-3 p-4 cardMouse my-2">
+                                <img key={imagen} src={imagen} alt="" className='img-fluid' style={{width: '100px', height: '100px', position: 'relative'}} />
+                                <i onClick={() => removeImage(imagen)} style={{position: 'absolute', top: 0, right: 5, fontSize: '20px', cursor: 'pointer'}} className="bi bi-x-circle-fill text-danger"></i>
                             </div>
                         )
                     })

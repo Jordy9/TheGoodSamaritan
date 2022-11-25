@@ -36,6 +36,15 @@ export const youtubeReducer = (state = initialState, action) => {
                     ...action.payload
                 ]
             }
+            
+        case Types.ytcreateYoutubeNew:
+            return {
+                ...state,
+                Youtube: [
+                    ...state.Youtube,
+                    action.payload
+                ]
+            }
         
         case Types.ytPaginateYoutube:
             return {

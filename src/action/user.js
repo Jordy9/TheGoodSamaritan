@@ -730,11 +730,8 @@ export const forgotPassword = (email) => {
         const resp = await fetchSinToken('resetPassword', {email}, 'POST')
         const body = await resp.json()
 
-        localStorage.setItem('tokenn', body.token)
-        localStorage.setItem('tokennINIT', (new Date().getTime()))
 
         if(body.ok) {
-            dispatch(forgot(body.token))
             const Toast = Swal.mixin({
                 toast: true,
                 position: 'top-end',
@@ -772,45 +769,17 @@ export const forgotPassword = (email) => {
     }
 }
 
-export const newPassword = (password) => {
+export const newPassword = (id, name, lastName, date, email, password, role, team, urlImage, tokenUser) => {
     return async(dispatch, getState) => {
 
-        const {users} = getState().auth
+        try {
 
-        const token = localStorage.getItem('tokenn')
+            const resp = await axios.put(`${process.env.REACT_APP_API_URL}/users/resetPassword/${id}`, {name, lastName, date, email, password, role, team, urlImage, tokenUser}, {headers: {'token-user': tokenUser}})
 
-        const tokenTiempo = localStorage.getItem('tokennINIT')
+            if (resp.data.ok) {
 
-        if (moment(Number(tokenTiempo)).fromNow() === '10 minutes ago' || moment(Number(tokenTiempo)).fromNow() < '10 minutes ago') {
-            localStorage.removeItem('tokenn')
-            localStorage.removeItem('tokennINIT')
-            const Toast = Swal.mixin({
-                toast: true,
-                position: 'top-end',
-                showConfirmButton: false,
-                timer: 2000,
-                timerProgressBar: true,
-                didOpen: (toast) => {
-                toast.addEventListener('mouseenter', Swal.stopTimer)
-                toast.addEventListener('mouseleave', Swal.resumeTimer)
-                }
-            })
-        
-            return Toast.fire({
-                icon: 'error',
-                title: 'El tiempo para el cambio de contraseña expiró'
-            })
-        } else if (token && tokenTiempo) {
-            const tokenVerify = users?.find(user => user.tokenUser === token)
-
-            const {email} = tokenVerify
-
-            const resp = await fetchSinToken('resetPassword/new', {password, email}, 'POST')
-            const body = await resp.json()
-
-            if (body.ok) {
-                localStorage.removeItem('tokenn')
-                localStorage.removeItem('tokennINIT')
+                dispatch(updateUser(resp.data.usuario))
+    
                 const Toast = Swal.mixin({
                     toast: true,
                     position: 'top-end',
@@ -822,12 +791,29 @@ export const newPassword = (password) => {
                     toast.addEventListener('mouseleave', Swal.resumeTimer)
                     }
                 })
-            
+                
                 return Toast.fire({
                     icon: 'success',
-                    title: 'Contraseña guardada correctamente'
+                    title: 'Usuario actualizado correctamente'
                 })
             }
+        } catch ({response}) {
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 2000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            })
+            
+            return Toast.fire({
+                icon: 'error',
+                title: response.data.msg
+            })
         }
 
     }
