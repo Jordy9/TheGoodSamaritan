@@ -23,7 +23,7 @@ export const Galleryy = () => {
     return (
         <>
           <InfiniteScroll dataLength={img?.length || 0} hasMore = {Number(Paginate?.page) < Paginate?.total} next = {
-            () => dispatch(startGetPaginateGallery(Number(Paginate?.page) + 1, 25)) }
+            () => dispatch(startGetPaginateGallery(Number(Paginate?.page) + 1)) }
             loader = {<Spinner />}
           >
             <div className="p-3 my-5">
@@ -33,12 +33,12 @@ export const Galleryy = () => {
                     <>
                       <SimpleReactLightbox>
                         <SRLWrapper options={options}>
-                          <div className="row">
+                          <div className="gallery">
                             {img?.map(image => {
                               return (
-                                <div key={image.image} style={{padding: '5px'}} className="col-xs-12 col-sm-12 col-md-6 col-lg-3 col-xl-3 col-xxl-3">
-                                  <img src={image.image} style={{cursor: 'pointer', marginTop: '5px', width: '100%'}} alt="" />
-                                </div>
+                                // <div key={image.image} style={{padding: '5px'}} className = 'gallery'>
+                                  <img key={image.image} src={image.image} className = 'imageGallery' alt="" />
+                                // </div>
                               )
                             })}
                           </div>

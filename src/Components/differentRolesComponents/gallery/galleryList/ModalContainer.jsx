@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useDispatch } from 'react-redux'
 import Swal from 'sweetalert2'
 import { SetActiveGallery, startDeleteGallery } from '../../../../action/gallery'
@@ -24,7 +24,7 @@ export const ModalContainer = (props) => {
           confirmButtonText: 'Eliminar'
         }).then((result) => {
           if (result.isConfirmed) {
-            dispatch(startDeleteGallery())
+            dispatch(startDeleteGallery(props))
           }
         })
       }

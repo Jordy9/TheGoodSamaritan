@@ -116,7 +116,7 @@ export const GalleryModal = () => {
                                             
                                             <div className="col-12">
                                                 <div className="form-group  d-flex justify-content-center">
-                                                    <img src = {imag || activeGallery.image || ''} className="img-fluid rounded" alt="" style = {{ cursor: 'pointer', maxHeight: '225px'}} />
+                                                    <img src = {imag || activeGallery?.image || ''} className="img-fluid rounded" alt="" style = {{ cursor: 'pointer', maxHeight: '225px'}} />
                                                 </div> 
                                             </div>
                                         </div>

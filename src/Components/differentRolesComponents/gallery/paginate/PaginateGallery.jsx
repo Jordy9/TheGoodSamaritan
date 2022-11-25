@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactPaginate from 'react-paginate';
 import { useDispatch, useSelector } from 'react-redux';
-import { startGetPaginateGalleryNew } from '../../../../action/gallery';
+import { startGetPaginateGallery } from '../../../../action/gallery';
 
 export const PaginateGallery = () => {
 
@@ -11,7 +11,7 @@ export const PaginateGallery = () => {
 
     const handlePageClick = (event) => {
         const newOffset = (event.selected + 1);
-        dispatch(startGetPaginateGalleryNew(newOffset))
+        dispatch(startGetPaginateGallery(newOffset))
     };
 
     return (

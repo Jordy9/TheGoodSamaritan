@@ -19,28 +19,13 @@ const Gallerys = (galeria) => ({
     payload: galeria
 })
 
-export const startGetPaginateGallery = (page, size) => {
+export const startGetPaginateGallery = (page) => {
     return async(dispatch) => {
-      const resp = await fetchSinToken(`galeria/ga?page=${page || 1}&size=${size || 10}`)
+      const resp = await fetchSinToken(`galeria/ga?page=${page || 1}`)
       const body = await resp.json()
 
       if(body.ok) {
           dispatch(createGallery(body.galeria))
-          dispatch(PaginateGallery({
-              page: body.page,
-              total: body.total
-          }))
-      }
-    }
-}
-
-export const startGetPaginateGalleryNew = (page, size) => {
-    return async(dispatch) => {
-      const resp = await fetchSinToken(`galeria/ga?page=${page || 1}&size=${size || 10}`)
-      const body = await resp.json()
-
-      if(body.ok) {
-          dispatch(Gallerys(body.galeria))
           dispatch(PaginateGallery({
               page: body.page,
               total: body.total
@@ -292,20 +277,19 @@ const updateGallery = (galeria) => ({
 })
 
 
-export const startDeleteGallery = () => {
+export const startDeleteGallery = (props) => {
     return async(dispatch, getState) => {
-        const {activeGallery} = getState().ga
 
         const token = localStorage.getItem('token') || '';
 
-        if(activeGallery.idImage) {
+        if(props.idImage) {
           
-          const resp = await fetchConToken(`galeria/${activeGallery._id}`, activeGallery, 'DELETE')
+          const resp = await fetchConToken(`galeria/${props._id}`, props, 'DELETE')
           const body = await resp.json()
           
           if(body.ok) {
-            dispatch(deleteGallery(activeGallery))
-            await axios.delete(`${process.env.REACT_APP_API_URL}/image/upload/${activeGallery.idImage}`, {headers: {'x-token': token}})
+            dispatch(deleteGallery(props))
+            await axios.delete(`${process.env.REACT_APP_API_URL}/image/upload/${props.idImage}`, {headers: {'x-token': token}})
                 const Toast = Swal.mixin({
                     toast: true,
                     position: 'top-end',
@@ -341,11 +325,11 @@ export const startDeleteGallery = () => {
               })
             }
         } else {
-            const resp = await fetchConToken(`galeria/${activeGallery._id}`, activeGallery, 'DELETE')
+            const resp = await fetchConToken(`galeria/${props._id}`, props, 'DELETE')
             const body = await resp.json()
     
             if(body.ok) {
-                dispatch(deleteGallery(activeGallery))
+                dispatch(deleteGallery(props))
                 const Toast = Swal.mixin({
                     toast: true,
                     position: 'top-end',

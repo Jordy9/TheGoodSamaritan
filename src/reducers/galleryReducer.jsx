@@ -61,12 +61,13 @@ export const galleryReducer = (state = initialState, action) => {
             }  
             
         case Types.gaDeleteGallery:
+            console.log(action.payload)
             return {
                 ...state,
                 Gallery: state.Gallery.filter( 
-                    e => (e._id !== state.activeGallery._id)
+                    e => (e._id !== action.payload._id)
                 ),
-                activeSerie: null
+                activeGallery: null
             }
 
         case Types.gaUpload:

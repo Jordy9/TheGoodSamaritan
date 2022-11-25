@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux';
-import { startGetPaginateGalleryNew } from '../../../../action/gallery';
+import { startGetPaginateGallery } from '../../../../action/gallery';
 import { GalleryModal } from '../modal/GalleryModal';
 import { PaginateGallery } from '../paginate/PaginateGallery';
 import { ModalListContainer } from './ModalListContainer';
@@ -10,7 +10,7 @@ export const GalleryList = () => {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(startGetPaginateGalleryNew())
+    dispatch(startGetPaginateGallery())
 
   }, [dispatch])
 

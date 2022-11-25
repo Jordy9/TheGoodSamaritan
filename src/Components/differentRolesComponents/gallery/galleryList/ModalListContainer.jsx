@@ -9,9 +9,9 @@ export const ModalListContainer = () => {
             {
                 (Gallery)
                     &&
-                    Gallery.map(gallery => {
+                    Gallery.map((gallery, index) => {
                         return (
-                            <ModalContainer key = {gallery._id} {...gallery} />
+                            <ModalContainer key = {gallery._id + index} {...gallery} />
                         )
                     })
             }

@@ -42,8 +42,6 @@ export const GalleryImages = () => {
         onSubmit: ({title, image}) => {
             if (activeUser?.role === 'Gestorcontenido' || activeUser?.role === 'Administrador') {
 
-                console.log(image)
-
                 for (let index = 0; index < image.length; index++) {
                     const imagen = image[index];
                     
@@ -65,7 +63,7 @@ export const GalleryImages = () => {
                             title: 'Imagen con formato incorrecto'
                           })
                     } else {
-                    dispatch(startCreateGallery(title, imagen))
+                        dispatch(startCreateGallery(title, imagen))
                     }
                 }
 

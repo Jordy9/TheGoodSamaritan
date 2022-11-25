@@ -1,0 +1,17 @@
+.imageGallery {
+    max-width: 100%;
+    margin-bottom: 0.5em;
+    display: block;
+    transition: outline 1s;
+    outline: 2px solid rgb(41, 40, 40);
+}
+
+.imageGallery:hover {
+    outline: 2px solid rgb(194, 192, 192);
+    cursor: pointer;
+}
+
+.gallery {
+    columns: 5 320px;
+    column-gap: 0.5em;
+}
