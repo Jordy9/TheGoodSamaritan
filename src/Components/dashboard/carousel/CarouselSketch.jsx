@@ -73,10 +73,10 @@ export const CarouselSketch = () => {
               {
                 Bosquejos?.map(bosquejo => {
                   return (
-                    <div key={bosquejo._id} className = 'col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 my-2'>
+                    <div key={bosquejo?._id} className = 'col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 my-2'>
                       <div className='borderCards'>
-                        <img src={bosquejo.image} onClick={() => handledSet(bosquejo)} data-bs-toggle="modal" data-bs-target="#exampleModal2" className="cardRound img-fluid" alt="..." style={{objectFit: 'cover', height: '355px', width: '100%'}} />
-                        <h5 className='p-2 textCard'>{bosquejo.title}</h5>
+                        <img src={bosquejo?.image} onClick={() => handledSet(bosquejo)} data-bs-toggle="modal" data-bs-target="#exampleModal2" className="cardRound img-fluid" alt="..." style={{objectFit: 'cover', height: '355px', width: '100%'}} />
+                        <h5 className='p-2 textCard'>{bosquejo?.title}</h5>
                       </div>
                     </div>
                   )

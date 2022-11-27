@@ -7,11 +7,11 @@ export const ModalListContainer = () => {
     return (
         <>
             {
-                (Bosquejos)
+                (Bosquejos?.length !== 0)
                     &&
-                    Bosquejos.map(Bosquejo => {
+                    Bosquejos.map((Bosquejo, index) => {
                         return (
-                            <ModalContainer key = {Bosquejo._id} {...Bosquejo} />
+                            <ModalContainer key = {Bosquejo?._id + index} {...Bosquejo} />
                         )
                     })
             }

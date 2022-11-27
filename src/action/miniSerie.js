@@ -4,14 +4,18 @@ import Swal from "sweetalert2"
 import { fetchConToken, fetchSinToken } from "../helper/fetch"
 import { Types } from "../types/Types"
 
-export const getImageApi = (searchParam, setnewImage, page) => {
+export const getImageApi = (searchParam, setnewImage, page, changeSwitch) => {
   return async(dispatch) => {
 
     let newSearchParams = encodeURIComponent(searchParam)
 
-    const { data } = await axios.get(`https://pixabay.com/api/?key=31553456-6c1c8a5d0a38b1f411c5a2bbf&q=${newSearchParams}&page=${page || 1}&per_page=20&safesearch=true&lang=es`)
-
-    setnewImage(data)
+    if (!changeSwitch) {
+      const { data } = await axios.get(`https://pixabay.com/api/?key=31553456-6c1c8a5d0a38b1f411c5a2bbf&q=${newSearchParams}&page=${page || 1}&per_page=20&safesearch=true&lang=es`)
+      setnewImage(data)
+    } else {
+      const { data } = await axios.get(`https://api.unsplash.com/search/photos?query=${newSearchParams}&client_id=EpVfB-lVXXkHDwLSMeAQm2nYUNLPBnA6lz1hPeCAZJw&page=${page || 1}&per_page=5&lang=es`)
+      setnewImage({hits: data.results, total: data.total_pages, totalHits: data.total})
+    }
   }
 }
 
@@ -75,74 +79,16 @@ export const setShow = () => ({
 })
 
 export const setHide = () => ({
-    type: Types.miSetSerieHide
+  type: Types.miSetSerieHide
 })
 
 export const startCreateMiniSerie = (title, descripcion, file) => {
     return async(dispatch, getState) => {
 
-        const {socket} = getState().sk
-
         const updateCount = moment()
 
         const token = localStorage.getItem('token') || '';
 
-        if (typeof file === 'string') {
-          const image = file
-          const idImage = 'noUpload'
-          const resp = await fetchConToken('miniSerie', {title, image, idImage, descripcion, updateCount}, 'POST');
-          const body = await resp.json()
-
-          if (body.ok) {
-  
-            dispatch(getMiniSerieNew(body.miniSerie))
-
-            const subtitle = 'Nueva MiniSerie agregada'
-
-            const content = body.miniSerie
-
-            const payload = {title, subtitle, image, content}
-
-            socket?.emit('notifications-admin-to-user', payload)
-
-            dispatch(UploadFish())
-
-            const Toast = Swal.mixin({
-                toast: true,
-                position: 'top-end',
-                showConfirmButton: false,
-                timer: 2000,
-                timerProgressBar: true,
-                didOpen: (toast) => {
-                  toast.addEventListener('mouseenter', Swal.stopTimer)
-                  toast.addEventListener('mouseleave', Swal.resumeTimer)
-                }
-              })
-              
-              return Toast.fire({
-                icon: 'success',
-                title: 'Mini Serie creada correctamente'
-              })
-              
-          } else {
-              const Toast = Swal.mixin({
-                  toast: true,
-                  position: 'top-end',
-                  showConfirmButton: false,
-                  timer: 2000,
-                  timerProgressBar: true,
-                  didOpen: (toast) => {
-                    toast.addEventListener('mouseenter', Swal.stopTimer)
-                    toast.addEventListener('mouseleave', Swal.resumeTimer)
-                  }
-                })
-                
-                return Toast.fire({
-                  icon: 'error',
-                  title: `${body.msg}`
-                })
-          }
-        } else {
           const formData = new FormData()
           formData.append('file', file)
           formData.append('title', title)
@@ -162,14 +108,6 @@ export const startCreateMiniSerie = (title, descripcion, file) => {
               if (body.ok) {
   
                   dispatch(getMiniSerieNew(body.miniSerie))
-  
-                  const subtitle = 'Nueva MiniSerie agregada'
-  
-                  const content = body.miniSerie
-  
-                  const payload = {title, subtitle, image, content}
-  
-                  socket?.emit('notifications-admin-to-user', payload)
   
                   dispatch(UploadFish())
   
@@ -211,7 +149,6 @@ export const startCreateMiniSerie = (title, descripcion, file) => {
   
               
           }
-        }
 
     }
 }
@@ -244,7 +181,6 @@ export const clearSetActiveSerie = () => ({
     type: Types.miClearSetSerie
 });
 
-
 export const startUpdateSerie = (title, descripcion, fileupload) => {
     return async(dispatch, getState) => {
 
@@ -254,195 +190,91 @@ export const startUpdateSerie = (title, descripcion, fileupload) => {
 
         const {activeUser} = getState().auth
 
-        const {socket} = getState().sk
-
         const updateCount = moment()
 
         const token = localStorage.getItem('token') || '';
 
         if (activeSerie?.user === activeUser?.id) {
           if(fileupload) {
-
-            if (activeSerie?.idImage === 'noUpload' && typeof fileupload === 'string') {
-              const image = fileupload
-              const idImage = 'noUpload'
-              const resp = await fetchConToken(`miniSerie/${activeSerie._id}`, {title, image, idImage, descripcion, updateCount, count}, 'PUT');
-              const body = await resp.json()
-
-              if (body.ok) {
-
-                dispatch(updateSerie(body.miniSerie))
-
-
-                const Toast = Swal.mixin({
-                    toast: true,
-                    position: 'top-end',
-                    showConfirmButton: false,
-                    timer: 2000,
-                    timerProgressBar: true,
-                    didOpen: (toast) => {
-                      toast.addEventListener('mouseenter', Swal.stopTimer)
-                      toast.addEventListener('mouseleave', Swal.resumeTimer)
-                    }
-                  })
-                  
-                  return Toast.fire({
-                    icon: 'success',
-                    title: 'Mini Serie actualizada correctamente'
-                  })
-              } else {
-                  const Toast = Swal.mixin({
-                      toast: true,
-                      position: 'top-end',
-                      showConfirmButton: false,
-                      timer: 2000,
-                      timerProgressBar: true,
-                      didOpen: (toast) => {
-                        toast.addEventListener('mouseenter', Swal.stopTimer)
-                        toast.addEventListener('mouseleave', Swal.resumeTimer)
-                      }
-                    })
-                    
-                    return Toast.fire({
-                      icon: 'error',
-                      title: body.msg
-                    })
-              }
-            } else if (activeSerie?.idImage !== 'noUpload' && typeof fileupload === 'string') {
-              const image = fileupload
-              const idImage = 'noUpload'
-              const resp = await fetchConToken(`miniSerie/${activeSerie._id}`, {title, image, idImage, descripcion, updateCount, count}, 'PUT');
-              const body = await resp.json()
-
-              if (body.ok) {
-
-                dispatch(updateSerie(body.miniSerie))
-
-
-                await axios.delete(`${process.env.REACT_APP_API_URL}/image/upload/${activeSerie.idImage}`, {headers: {'x-token': token}})
-                const Toast = Swal.mixin({
-                    toast: true,
-                    position: 'top-end',
-                    showConfirmButton: false,
-                    timer: 2000,
-                    timerProgressBar: true,
-                    didOpen: (toast) => {
-                      toast.addEventListener('mouseenter', Swal.stopTimer)
-                      toast.addEventListener('mouseleave', Swal.resumeTimer)
-                    }
-                  })
-                  
-                  return Toast.fire({
-                    icon: 'success',
-                    title: 'Mini Serie actualizada correctamente'
-                  })
-              } else {
-                  const Toast = Swal.mixin({
-                      toast: true,
-                      position: 'top-end',
-                      showConfirmButton: false,
-                      timer: 2000,
-                      timerProgressBar: true,
-                      didOpen: (toast) => {
-                        toast.addEventListener('mouseenter', Swal.stopTimer)
-                        toast.addEventListener('mouseleave', Swal.resumeTimer)
-                      }
-                    })
-                    
-                    return Toast.fire({
-                      icon: 'error',
-                      title: body.msg
-                    })
-              }
-            } else {
-              const formData = new FormData()
-              formData.append('file', fileupload)
-              formData.append('title', activeSerie.title)
-              
-              const res = await axios.post(`${process.env.REACT_APP_API_URL}/image/upload/seriesBosquejos`, formData, {
-                headers: {'x-token': token},
-                onUploadProgress: (e) =>
-                {dispatch(upload(Math.round( (e.loaded * 100) / e.total )))}
-              })
-              
-              if(res.data.ok) {
-                const image = res.data.image.url
-                const idImage = res.data.image.id
-                const resp = await fetchConToken(`miniSerie/${activeSerie._id}`, {title, image, idImage, descripcion, updateCount, count}, 'PUT');
-                const body = await resp.json()
-                
-                if (body.ok) {
-                  
-                  dispatch(updateSerie(body.miniSerie))
-                  dispatch(UploadFish())
-  
-                  const subtitle = 'Nueva MiniSerie agregada'
-  
-                  const content = body.miniSerie
-  
-                  const payload = {title, subtitle, image, content}
-                  
-                  socket?.emit('notifications-admin-to-user-update', payload)
-                  if (activeSerie?.idImage && activeSerie?.idImage !== 'noUpload') {
-                    const ress = await axios.delete(`${process.env.REACT_APP_API_URL}/image/upload/${activeSerie.idImage}`, {headers: {'x-token': token}})
-                    console.log(ress)
-                  }
-                  const Toast = Swal.mixin({
-                              toast: true,
-                              position: 'top-end',
-                              showConfirmButton: false,
-                              timer: 2000,
-                              timerProgressBar: true,
-                              didOpen: (toast) => {
-                                toast.addEventListener('mouseenter', Swal.stopTimer)
-                                toast.addEventListener('mouseleave', Swal.resumeTimer)
-                              }
-                            })
-                            
-                            return Toast.fire({
-                              icon: 'success',
-                              title: 'Mini Serie actualizada correctamente'
-                            })
-                      } else {
-                          const Toast = Swal.mixin({
-                              toast: true,
-                              position: 'top-end',
-                              showConfirmButton: false,
-                              timer: 2000,
-                              timerProgressBar: true,
-                              didOpen: (toast) => {
-                                toast.addEventListener('mouseenter', Swal.stopTimer)
-                                toast.addEventListener('mouseleave', Swal.resumeTimer)
-                              }
-                            })
-                            
-                            return Toast.fire({
-                              icon: 'error',
-                              title: `${body.msg}`
-                            })
-                      }
-              
-                  } else {
-                      const Toast = Swal.mixin({
-                          toast: true,
-                          position: 'top-end',
-                          showConfirmButton: false,
-                          timer: 2000,
-                          timerProgressBar: true,
-                          didOpen: (toast) => {
-                            toast.addEventListener('mouseenter', Swal.stopTimer)
-                            toast.addEventListener('mouseleave', Swal.resumeTimer)
-                          }
-                        })
-                        
-                        return Toast.fire({
-                          icon: 'error',
-                          title: `${res.errors}`
-                        })
-                  }
-            }
+            const formData = new FormData()
+            formData.append('file', fileupload)
+            formData.append('title', activeSerie.title)
             
+            const res = await axios.post(`${process.env.REACT_APP_API_URL}/image/upload/seriesBosquejos`, formData, {
+              headers: {'x-token': token},
+              onUploadProgress: (e) =>
+              {dispatch(upload(Math.round( (e.loaded * 100) / e.total )))}
+            })
+            
+            if(res.data.ok) {
+              const image = res.data.image.url
+              const idImage = res.data.image.id
+              const resp = await fetchConToken(`miniSerie/${activeSerie._id}`, {title, image, idImage, descripcion, updateCount, count}, 'PUT');
+              const body = await resp.json()
+              
+              if (body.ok) {
+                
+                dispatch(updateSerie(body.miniSerie))
+                dispatch(UploadFish())
 
+                if (activeSerie?.idImage) {
+                  const ress = await axios.delete(`${process.env.REACT_APP_API_URL}/image/upload/${activeSerie.idImage}`, {headers: {'x-token': token}})
+                  console.log(ress)
+                }
+
+                const Toast = Swal.mixin({
+                  toast: true,
+                  position: 'top-end',
+                  showConfirmButton: false,
+                  timer: 2000,
+                  timerProgressBar: true,
+                  didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                  }
+                })
+                
+                return Toast.fire({
+                  icon: 'success',
+                  title: 'Mini Serie actualizada correctamente'
+                })
+              } else {
+                  const Toast = Swal.mixin({
+                  toast: true,
+                  position: 'top-end',
+                  showConfirmButton: false,
+                  timer: 2000,
+                  timerProgressBar: true,
+                  didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                  }
+                  })
+                
+                  return Toast.fire({
+                    icon: 'error',
+                    title: `${body.msg}`
+                  })
+              }
+            
+                } else {
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 2000,
+                        timerProgressBar: true,
+                        didOpen: (toast) => {
+                          toast.addEventListener('mouseenter', Swal.stopTimer)
+                          toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
+                      })
+                      
+                      return Toast.fire({
+                        icon: 'error',
+                        title: `${res.errors}`
+                      })
+                }
           } else {
             const {image, idImage} = activeSerie
             const resp = await fetchConToken(`miniSerie/${activeSerie._id}`, {title, image, idImage, descripcion, updateCount, count}, 'PUT');
@@ -451,7 +283,6 @@ export const startUpdateSerie = (title, descripcion, fileupload) => {
             if (body.ok) {
 
                 dispatch(updateSerie(body.miniSerie))
-
 
                 const Toast = Swal.mixin({
                     toast: true,
@@ -516,12 +347,10 @@ export const startDeleteSerie = () => {
 
         const {activeUser} = getState().auth
 
-        const {socket} = getState().sk
-
         const token = localStorage.getItem('token') || '';
 
         if (activeSerie?.user === activeUser?.id) {
-            if(activeSerie.idImage && activeSerie?.idImage !== 'noUpload') {
+            if(activeSerie.idImage) {
                 await axios.delete(`${process.env.REACT_APP_API_URL}/image/upload/${activeSerie.idImage}`, {headers: {'x-token': token}})
     
                 const resp = await fetchConToken(`miniSerie/${activeSerie._id}`, activeSerie, 'DELETE')
@@ -529,7 +358,6 @@ export const startDeleteSerie = () => {
         
                 if(body.ok) {
                     dispatch(deleteSerie(activeSerie))
-                    socket?.emit('notifications-admin-to-user-delete', activeSerie._id)
                     const Toast = Swal.mixin({
                         toast: true,
                         position: 'top-end',
@@ -571,7 +399,6 @@ export const startDeleteSerie = () => {
         
                 if(body.ok) {
                     dispatch(deleteSerie(activeSerie))
-                    socket?.emit('notifications-admin-to-user-delete', activeSerie._id)
                     const Toast = Swal.mixin({
                         toast: true,
                         position: 'top-end',

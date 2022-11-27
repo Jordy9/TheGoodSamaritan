@@ -1,27 +1,39 @@
 import React from 'react'
+import { useEffect } from 'react'
 import { useState } from 'react'
 import { useRef } from 'react'
 import { Modal } from 'react-bootstrap'
 import { useDispatch } from 'react-redux'
 import { getImageApi } from '../../../../action/miniSerie'
+import { ImageGallery } from './ImageGallery'
 import { Pagination } from './pagination/Pagination'
 
 export const ModalImage = ({setFieldValue, setimag, modalOpen, setModalOpen, setSelectedImage}) => {
 
     const dispatch = useDispatch();
 
-    const hanldeClose = () => {
-        setModalOpen(false)
-    }
-
     const [newImage, setNewImage] = useState({
         hits: [],
         total: 0,
         totalHits: 0, 
-        
     })
 
+    const first = useRef()
+
+    const [changeSwitch, setChangeSwitch] = useState(false)
+
     const [searchParam, setsearchParam] = useState('')
+
+    const hanldeClose = () => {
+        setModalOpen(false)
+        setChangeSwitch(false)
+        setNewImage({
+            hits: [],
+            total: 0,
+            totalHits: 0, 
+        })
+        setsearchParam('')
+    }
     
     const debounceRef = useRef()
 
@@ -36,14 +48,43 @@ export const ModalImage = ({setFieldValue, setimag, modalOpen, setModalOpen, set
         }
 
         debounceRef.current = setTimeout(() => {
-            dispatch(getImageApi(target.value, setNewImage))
+            dispatch(getImageApi(target.value, setNewImage, null, changeSwitch))
         }, 350);
     }
 
-    const handledSelected = (webformatURL) => {
+    const handledSelected = (webformatURL, id) => {
         setSelectedImage(webformatURL)
-        setFieldValue('image', webformatURL)
         setModalOpen(false)
+
+        const toDataURL = (url) => fetch(url)
+            .then(response => response.blob())
+            .then(blob => new Promise((resolve, reject) => {
+                const reader = new FileReader()
+                reader.onloadend = () => resolve(reader.result)
+                reader.onerror = reject
+                reader.readAsDataURL(blob)
+            }))
+
+        // ***Here is code for converting "Base64" to javascript "File Object".***
+
+        const dataURLtoFile = (dataurl, filename) => {
+            let arr = dataurl.split(','), mime = arr[0].match(/:(.*?);/)[1],
+            bstr = atob(arr[1]), n = bstr.length, u8arr = new Uint8Array(n);
+            while(n--){
+                u8arr[n] = bstr.charCodeAt(n);
+            }
+            return new File([u8arr], filename, {type:mime});
+        }
+
+        // *** Calling both function ***
+
+        toDataURL(webformatURL)
+        .then(dataUrl => {
+            let fileData = dataURLtoFile(dataUrl, `${id}.jpg`);
+            if (fileData) {
+                setFieldValue('image', fileData)
+            }
+        })
     }
 
     const handledSelectedUpload = (e) => {
@@ -56,6 +97,12 @@ export const ModalImage = ({setFieldValue, setimag, modalOpen, setModalOpen, set
         document.querySelector('#fileSelector').click()
     }
 
+    useEffect(() => {
+        if (searchParam?.length > 0) {
+            dispatch(getImageApi(searchParam, setNewImage, null, changeSwitch))
+        }
+    }, [changeSwitch])
+    
   return (
     <Modal
         contentClassName='bg-dark'
@@ -69,6 +116,15 @@ export const ModalImage = ({setFieldValue, setimag, modalOpen, setModalOpen, set
         <Modal.Header id='modal-header-video' closeButton>
         </Modal.Header>
             <Modal.Title className='mx-3'>
+                <div className = 'row'>
+                   <div className = 'col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12' style={{display: 'flex', justifyContent: 'space-between'}}>
+                        <label className="form-check-label">Buscar imagenes en pixabay</label>
+                        <div onChange={({target}) => setChangeSwitch(target.checked)} className="form-check form-switch">
+                            <input defaultChecked = {changeSwitch} className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" />
+                        </div>
+                        <label className="form-check-label">Buscar imagenes en unsplash</label>
+                   </div>
+                </div>
                 <div className="row">
                     <div className="col-12">
                         <div className = 'row' style={{display: 'flex', justifyContent: 'space-between'}}>
@@ -89,25 +145,9 @@ export const ModalImage = ({setFieldValue, setimag, modalOpen, setModalOpen, set
                 </div>
 
             </Modal.Title>
-        <Modal.Body style={{height: '500px'}}> 
+        <Modal.Body id='modalImage' style={{height: '500px'}}> 
             <div className="row">
-                {
-                    (newImage?.hits?.length !== 0)
-                        ?
-                    newImage?.hits?.map(({webformatURL}) => {
-                        return (
-                            <div onClick={() => handledSelected(webformatURL)} key={webformatURL} className = 'col-xs-12 col-sm-12 col-md-6 col-lg-3 col-xl-3 col-xxl-3 mt-2'>
-                                <img src={webformatURL} className = 'rounded' style = {{width: '100%', height: '100%', cursor: 'pointer'}} alt="" />
-                            </div>
-                        )
-                    })
-                        :
-                    <>
-                        <h1 className="text-center image-round bg-dark p-4">
-                            Por favor escriba una referencia de la imagen que necesita o suba alguna que tenga.
-                        </h1>
-                    </>
-                }
+                <ImageGallery changeSwitch={changeSwitch} handledSelected = {handledSelected} newImage = {newImage} />
             </div>
 
         </Modal.Body>
@@ -116,7 +156,7 @@ export const ModalImage = ({setFieldValue, setimag, modalOpen, setModalOpen, set
             {
                 (newImage?.totalHits !== 0)
                     &&
-                <Pagination searchParam={searchParam} newImage = {newImage} setNewImage = {setNewImage} />
+                <Pagination searchParam={searchParam} newImage = {newImage} setNewImage = {setNewImage} changeSwitch = {changeSwitch} number = {(changeSwitch) ? 5 : 20} />
             }
         </Modal.Footer>
     </Modal>
