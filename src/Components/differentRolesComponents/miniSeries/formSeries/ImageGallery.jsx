@@ -1,6 +1,7 @@
 import React from 'react'
 
 export const ImageGallery = ({ changeSwitch, newImage, handledSelected }) => {
+    console.log(newImage)
   return (
     <>
         {
@@ -26,9 +27,10 @@ export const ImageGallery = ({ changeSwitch, newImage, handledSelected }) => {
                 ?
             newImage?.hits?.map(({urls, id}) => {
                 const webformatURL = urls?.full
+                const toImage = urls?.regular
                 return (
                     <div onClick={() => handledSelected(webformatURL, id)} key={webformatURL} className = 'col-xs-12 col-sm-12 col-md-6 col-lg-3 col-xl-3 col-xxl-3 mt-2'>
-                        <img src={webformatURL} className = 'rounded' style = {{width: '100%', height: '100%', cursor: 'pointer'}} alt="" />
+                        <img src={toImage} className = 'rounded' style = {{width: '100%', height: '100%', cursor: 'pointer'}} alt="" />
                     </div>
                 )
             })
