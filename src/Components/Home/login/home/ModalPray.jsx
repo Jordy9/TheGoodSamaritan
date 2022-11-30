@@ -1,9 +1,8 @@
 import { useFormik } from 'formik'
-import React from 'react'
+import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { startCreatePetition } from '../../../../action/petition'
 import * as Yup from 'yup'
-import MaskedInput from 'react-text-mask'
 
 export const ModalPray = () => {
 
@@ -11,18 +10,18 @@ export const ModalPray = () => {
 
     const {handleSubmit, resetForm, getFieldProps, touched, errors} = useFormik({
         initialValues: {
-            name: '', 
-            number: '', 
-            descripcion: ''
+            title: '', 
+            descripcion: '',
+            role: 'Anónimo',
+            id: 'Anónimo'
         },
         enableReinitialize: true,
-        onSubmit: ({name, number, descripcion}) => {
-            dispatch(startCreatePetition(name, number, descripcion))
-            resetForm({
-                name: '', 
-                number: '', 
-                descripcion: ''
-            })
+        onSubmit: ({name, title, descripcion, role, id}) => {
+            dispatch(startCreatePetition(name, title, descripcion, id, role))
+                resetForm({
+                    title: '', 
+                    descripcion: ''
+                })
         },
         validationSchema: Yup.object({
             name: Yup.string()
@@ -34,9 +33,10 @@ export const ModalPray = () => {
             //             .required('Requerido'),
             descripcion: Yup.string()
                         .min(3, 'Debe de tener 3 caracteres o más')
-                        .required('Requerido')
         })
     })
+
+    const [showDescripcion, setShowDescripcion] = useState(false)
 
     return (
         <>
@@ -54,33 +54,41 @@ export const ModalPray = () => {
                                     <div className="card-body">
                                         <form onSubmit={handleSubmit} className = 'needs-validation'>
                                             <div className="row">
-                                                <div className="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 form-group">
-                                                    <label>Nombre</label>
-                                                    <input autoComplete='off' type="text" {...getFieldProps('name')} placeholder = 'Juan' className = 'form-control bg-transparent text-white' />
-                                                    {touched.name && errors.name && <span style={{color: 'red'}}>{errors.name}</span>}
+                                                <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 form-group">
+                                                    <label>Motivo de oración</label>
+                                                    <input autoComplete='off' type="text" {...getFieldProps('title')} placeholder = 'Oración por fortaleza' className = 'form-control bg-transparent text-white' />
+                                                    {touched.title && errors.title && <span style={{color: 'red'}}>{errors.title}</span>}
                                                 </div>
+                                            </div>
 
-                                                <div className="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 form-group">
-                                                    <label>Número de teléfono</label>
-                                                    <MaskedInput
-                                                        {...getFieldProps('number')}
-                                                        autoComplete = 'off'
-                                                        className = 'form-control bg-transparent text-white'
-                                                        placeholder = '(809)-222-3333)'
-                                                        mask={['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]}
-                                                    />
-                                                    {touched.number && errors.number && <span style={{color: 'red'}}>{errors.number}</span>}
+                                            <div className = 'row'>
+                                                <div className = 'col-12 form-group'>
+                                                    <h4>¿Te gustaria dar más detalle sobre tu petición de oración?</h4>
+                                                        <div style={{display: 'flex'}}>
+                                                            <div className="form-check mr-4">
+                                                                <input defaultChecked = {(showDescripcion)} onClick={() => setShowDescripcion(true)} className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="option1" />
+                                                                <label className="form-check-label">Si</label>
+                                                            </div>
+                                                            <div className="form-check">
+                                                                <input defaultChecked = {(!showDescripcion)} onClick={() => setShowDescripcion(false)} className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" value="option2" />
+                                                                <label className="form-check-label">No</label>
+                                                            </div>
+                                                        </div>
                                                 </div>
                                             </div>
-                                                
-                                            <div className="row">
-                                                <div className="col-12 form-group">
-                                                    <label>Descripción</label>
-                                                    <textarea style = {{resize: 'none'}} type="text" rows = '5' {...getFieldProps('descripcion')} placeholder = 'Tu descripción aqui' className = 'form-control bg-transparent text-white' />
-                                                    {touched.descripcion && errors.descripcion && <span style={{color: 'red'}}>{errors.descripcion}</span>}
+
+                                            {
+                                                (showDescripcion)
+                                                    &&
+                                                <div className="row">
+                                                    <div className="col-12 form-group">
+                                                        <label>Descripción</label>
+                                                        <textarea style = {{resize: 'none'}} type="text" rows = '5' {...getFieldProps('descripcion')} placeholder = 'Tu descripción aqui' className = 'form-control bg-transparent text-white' />
+                                                        {touched.descripcion && errors.descripcion && <span style={{color: 'red'}}>{errors.descripcion}</span>}
+                                                    </div>
                                                 </div>
-                                            </div>
-                    
+                                            }
+
                                             <button type='submit' className = 'btn btn-outline-primary form-control'>Enviar</button>
                                         </form>
                                     </div>
