@@ -10,6 +10,7 @@ export const ModalPray = () => {
 
     const {handleSubmit, resetForm, getFieldProps, touched, errors} = useFormik({
         initialValues: {
+            name: 'Anónimo',
             title: '', 
             descripcion: '',
             role: 'Anónimo',
@@ -24,7 +25,7 @@ export const ModalPray = () => {
                 })
         },
         validationSchema: Yup.object({
-            name: Yup.string()
+            title: Yup.string()
                         .max(50, 'Debe de tener 50 caracteres o menos')
                         .min(3, 'Debe de tener 3 caracteres o más')
                         .required('Requerido'),

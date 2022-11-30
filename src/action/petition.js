@@ -93,7 +93,9 @@ export const startCreatePetition = (name, title, descripcion, id, role) => {
         const body = await resp.json()
         
         if (body.ok) {
+          if (id !== 'Anónimo') {
             dispatch(CreatePaginatePetitionsNew(body.peticion))
+          }
             const Toast = Swal.mixin({
                 toast: true,
                 position: 'top-end',
