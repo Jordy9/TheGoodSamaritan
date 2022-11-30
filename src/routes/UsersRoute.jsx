@@ -17,10 +17,10 @@ import { useEffect } from 'react';
 import { YoutubeVideo } from '../Components/youtubeVideo/YoutubeVideo';
 import { Search } from '../Components/search/Search';
 import { Bible } from '../Components/bible/Bible';
-import { NotificationResponsive } from '../Components/notificationResponsive/NotificationResponsive';
+// import { NotificationResponsive } from '../Components/notificationResponsive/NotificationResponsive';
 import { ModalNoBeleave } from '../Components/modalBeleave/ModalNoBeleave';
 import { startGetPetitionesUser } from '../action/petition';
-import { NotificationPost } from '../Components/notificationPost/NotificationPost';
+// import { NotificationPost } from '../Components/notificationPost/NotificationPost';
 import { useHistory } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 import { ModalBilieveReset } from '../Components/modalBeleave/ModalBilieveReset';
@@ -76,10 +76,6 @@ export const UsersRoute = () => {
     }, [dispatch, activeUser?.noBeleaver, nb])
 
     useEffect(() => {
-      dispatch(startGetPetitionesUser())
-    }, [uid, dispatch])
-
-    useEffect(() => {
         if (pathname === '/NotificationPost' && notificationPost === '') {
           history.push('/Dashboard')
         }
@@ -120,8 +116,8 @@ export const UsersRoute = () => {
                     {/* <Route path = '/Chat' component = {ChatScreen} /> */}
                     <Route path = '/Search' component = {Search} />
                     <Route path = '/Bible' component = {Bible} />
-                    <Route path = '/NotificationResponsive' component = {NotificationResponsive} />
-                    <Route path = '/NotificationPost/:id' component = {NotificationPost} />
+                    {/* <Route path = '/NotificationResponsive' component = {NotificationResponsive} />
+                    <Route path = '/NotificationPost/:id' component = {NotificationPost} /> */}
                     <Route path = '/Profile' component = {Profile} />
 
                     <Redirect to = '/Dashboard' />

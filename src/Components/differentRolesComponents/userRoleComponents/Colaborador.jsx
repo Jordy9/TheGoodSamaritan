@@ -34,9 +34,7 @@ export const Colaborador = () => {
         </Offcanvas.Header>
 
         <ul className="list-group list-group-flush">
-            <NavLink to = '/PetitionsList' className = 'list-group-item decoration-line list-focus' activeClassName = 'true'><i className="bi bi-list-ul"> </i>Listado de Peticiones de oración de pastores</NavLink>
-            <NavLink to = '/PetitionsListUser' className = 'list-group-item decoration-line list-focus' activeClassName = 'true'><i className="bi bi-list-ul"> </i>Listado de Peticiones de oración de usuarios</NavLink>
-            <NavLink to = '/PetitionsListwhithoutAccount' className = 'list-group-item decoration-line list-focus' activeClassName = 'true'><i className="bi bi-list-ul"> </i>Listado de Peticiones de oración de usuarios sin cuenta</NavLink>
+            <NavLink to = '/PetitionsList' className = 'list-group-item decoration-line list-focus' activeClassName = 'true'><i className="bi bi-list-ul"> </i>Listado de Peticiones de oración</NavLink>
         </ul>
 
         <Offcanvas.Header>

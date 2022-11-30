@@ -9,7 +9,7 @@ import { UsersRoute } from './UsersRoute'
 export const AuthRouter = () => {
 
     const { activeUser } = useSelector(state => state.auth);
-
+    
   return (
     <>
         {

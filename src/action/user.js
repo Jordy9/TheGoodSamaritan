@@ -720,6 +720,11 @@ const activeUser = (user) => ({
     payload: user
 })
 
+export const showFoote = (opcion) => ({
+    type: Types.authshowFooter,
+    payload: opcion
+})
+
 const activeUserRegister = (user) => ({
     type: Types.authSetUserRegister,
     payload: user

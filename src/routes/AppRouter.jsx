@@ -13,7 +13,6 @@ import { startGetEventos } from '../action/event';
 import { startGetPaginateGallery } from '../action/gallery';
 import { startGetMains } from '../action/main';
 import { startGetPaginateMiniSeries } from '../action/miniSerie';
-import { startGetPetitionesUser, startGetPetitions } from '../action/petition';
 import { startGetPaginateBosquejos } from '../action/sketch';
 import { startSocket } from '../action/socket';
 import { setActiveUser, startAuthCheking, startGetUsers } from '../action/user';
@@ -51,13 +50,14 @@ import { MiniSerie } from '../Components/Home/miniSeries/MiniSerie';
 import { useNotice } from '../hooks/useNotice';
 import { startGetNotificationsUser } from '../action/notificationsUser';
 import { Spinner } from '../Components/spinner/Spinner';
+import { startGetPaginatePetitions, startGetPaginatePetitionsUser } from '../action/petition';
 
 moment.locale('es');
 
 export const AppRouter = () => {
 
     const dispatch = useDispatch()
-    const {checking, uid, activeUser} = useSelector(state => state.auth)
+    const {checking, uid, activeUser, showFooter} = useSelector(state => state.auth)
 
     useNotice(activeUser?.discipleship)
 
@@ -66,14 +66,22 @@ export const AppRouter = () => {
     const token = localStorage.getItem('tokenn')
 
     useEffect(() => {
+        if (uid) {
+            dispatch(startGetPaginatePetitionsUser(1, uid))
+        }
+    }, [dispatch, uid])
+
+    useEffect(() => {
+        dispatch(startGetPaginatePetitions())
+    }, [dispatch])
+
+    useEffect(() => {
         dispatch(startGetUsers())
         dispatch(startAuthCheking());
         dispatch(startGetPaginateMiniSeries())
         dispatch(startGetEventos())
         dispatch(startGetPaginateBosquejos())
         dispatch(startGetZoom())
-        dispatch(startGetPetitionesUser())
-        dispatch(startGetPetitions())
         dispatch(startGetMains())
         dispatch(startGetPaginateGallery())
         dispatch(startGetCapsules())
@@ -116,7 +124,7 @@ export const AppRouter = () => {
             dispatch(isTyping(typing))
         })
     }, [socket, dispatch])
-    
+
     if (checking) {
         return <Spinner />
     }
@@ -146,9 +154,14 @@ export const AppRouter = () => {
                 </Switch>
 
             </div>
-            <div className = 'mt-5'>
-                <Footer />
-            </div>
+
+            {
+                (showFooter)
+                    &&
+                <div className = 'mt-5'>
+                    <Footer />
+                </div>
+            }
 
         </Router>
     )

@@ -8,12 +8,10 @@ import { Lives } from '../Components/lives/Lives'
 import { Petitions } from '../Components/petitions/Petitions'
 import { YoutubeVideo } from '../Components/youtubeVideo/YoutubeVideo'
 import { Search } from '../Components/search/Search'
-import { NotificationPost } from '../Components/notificationPost/NotificationPost'
-import { NotificationResponsive } from '../Components/notificationResponsive/NotificationResponsive'
+// import { NotificationPost } from '../Components/notificationPost/NotificationPost'
+// import { NotificationResponsive } from '../Components/notificationResponsive/NotificationResponsive'
 import { Profile } from '../Components/profile/Profile'
 import { PetitionList } from '../Components/differentRolesComponents/petition/petitionsList/PetitionList'
-import { PetitionListSinCuenta } from '../Components/differentRolesComponents/petition/petitionsListSinCuenta/PetitionListSinCuenta'
-import { PetitionListUser } from '../Components/differentRolesComponents/petition/petitionsListUser/PetitionListUser'
 import { ContactList } from '../Components/differentRolesComponents/contact/contactList/ContactList'
 
 export const ColaboradorRoute = () => {
@@ -30,12 +28,10 @@ export const ColaboradorRoute = () => {
                 {/* <Route path = '/Chat' component = {ChatScreen} /> */}
                 <Route path = '/Search' component = {Search} />
                 <Route path = '/Bible' component = {Bible} />
-                <Route path = '/NotificationResponsive' component = {NotificationResponsive} />
-                <Route path = '/NotificationPost/:id' component = {NotificationPost} />
+                {/* <Route path = '/NotificationResponsive' component = {NotificationResponsive} />
+                <Route path = '/NotificationPost/:id' component = {NotificationPost} /> */}
                 <Route path = '/Profile' component = {Profile} />
                 <Route path = '/PetitionsList' component = {PetitionList} />
-                <Route path = '/PetitionsListUser' component = {PetitionListUser} />
-                <Route path = '/PetitionsListwhithoutAccount' component = {PetitionListSinCuenta} />
                 <Route path = '/ContactList' component = {ContactList} />
 
                 <Redirect to = '/Dashboard' />

@@ -19,15 +19,13 @@ import { MainList } from '../Components/differentRolesComponents/main/mainsList/
 import { Navb } from '../Components/differentRolesComponents/navbar/Navb'
 import { NoBeleaverVideo } from '../Components/differentRolesComponents/noBeleaver/NoBeleaverVideo'
 import { PetitionList } from '../Components/differentRolesComponents/petition/petitionsList/PetitionList'
-import { PetitionListSinCuenta } from '../Components/differentRolesComponents/petition/petitionsListSinCuenta/PetitionListSinCuenta'
-import { PetitionListUser } from '../Components/differentRolesComponents/petition/petitionsListUser/PetitionListUser'
 import { VideoWordOfTheDay } from '../Components/differentRolesComponents/videoWordOfTheDay/VideoWordOfTheDay'
 import { VideoWordOfTheDayList } from '../Components/differentRolesComponents/videoWordOfTheDay/videoWordOfTheDayList/VideoWordOfTheDayList'
 import { Youtube } from '../Components/differentRolesComponents/youtube/Youtube'
 import { YoutubeList } from '../Components/differentRolesComponents/youtube/youtubeList/YoutubeList'
 import { Lives } from '../Components/lives/Lives'
-import { NotificationPost } from '../Components/notificationPost/NotificationPost'
-import { NotificationResponsive } from '../Components/notificationResponsive/NotificationResponsive'
+// import { NotificationPost } from '../Components/notificationPost/NotificationPost'
+// import { NotificationResponsive } from '../Components/notificationResponsive/NotificationResponsive'
 import { Petitions } from '../Components/petitions/Petitions'
 import { Profile } from '../Components/profile/Profile'
 import { Search } from '../Components/search/Search'
@@ -47,15 +45,13 @@ export const AdminRoute = () => {
                     {/* <Route path = '/Chat' component = {ChatScreen} /> */}
                     <Route path = '/Search' component = {Search} />
                     <Route path = '/Bible' component = {Bible} />
-                    <Route path = '/NotificationResponsive' component = {NotificationResponsive} />
-                    <Route path = '/NotificationPost/:id' component = {NotificationPost} />
+                    {/* <Route path = '/NotificationResponsive' component = {NotificationResponsive} />
+                    <Route path = '/NotificationPost/:id' component = {NotificationPost} /> */}
                     <Route path = '/Profile' component = {Profile} />
                     <Route path = '/Usuarios' component = {Usuarios} />
                     <Route path = '/WordOfTheDay' component = {VideoWordOfTheDay} />
                     <Route path = '/WordOfTheDayList' component = {VideoWordOfTheDayList} />
                     <Route path = '/PetitionsList' component = {PetitionList} />
-                    <Route path = '/PetitionsListUser' component = {PetitionListUser} />
-                    <Route path = '/PetitionsListwhithoutAccount' component = {PetitionListSinCuenta} />
                     <Route path = '/Event' component = {Events} />
                     <Route path = '/EventsList' component = {EventsList} />
                     <Route path = '/LivesZoom' component = {LivesZoom} />

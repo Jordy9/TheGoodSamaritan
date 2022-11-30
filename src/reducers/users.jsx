@@ -8,7 +8,8 @@ const initialState = {
     forgotPassword: '',
     Porcentage: 0,
     notificationPost: '',
-    modalOpen: false
+    modalOpen: false,
+    showFooter: true
 }
 
 export const usersReducer = (state = initialState, action) => {
@@ -102,6 +103,12 @@ export const usersReducer = (state = initialState, action) => {
             return {
                 ...state,
                 Porcentage: 0
+            }
+
+        case Types.authshowFooter:
+            return {
+                ...state,
+                showFooter: action.payload
             }
 
         case Types.authsetNotificationPost:

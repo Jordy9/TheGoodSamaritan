@@ -6,7 +6,6 @@ export const Petitions = () => {
         <>
             <h1>Peticiones de oración</h1>
             <PetitionsPublic />
-   
         </>
     )
 }

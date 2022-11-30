@@ -1,12 +1,12 @@
-import { Container, Dropdown, DropdownButton, Nav, Navbar } from 'react-bootstrap'
+import { Container, Nav, Navbar } from 'react-bootstrap'
 import { NavLink } from 'react-router-dom'
 import './Navb.css'
 import { useDispatch } from 'react-redux'
 import { setActiveUser, setNotificationsPost, startLogout } from '../../action/user'
 import { useSelector } from 'react-redux'
 import logo from '../../heroes/logo.png'
+import user from '../../heroes/Userr.png'
 import { useEffect, useState } from 'react'
-import moment from 'moment'
 import { useLocation, useHistory } from 'react-router'
 import { Sidebar } from '../sidebar/Sidebar'
 import { UpdateNotifications } from '../../action/notificationsUser'
@@ -129,7 +129,7 @@ export const Navb = () => {
                             }
                         </Nav>
 
-                        <Nav id="input-group-dropdown-responsive">
+                        {/* <Nav id="input-group-dropdown-responsive">
                             <NavLink
                                 style={{textDecoration: 'none', color: 'white'}}
                                 to = '/NotificationResponsive'
@@ -139,10 +139,10 @@ export const Navb = () => {
                                     <span style={{margin: 0}} className={`${(updateNotifications === true) && 'p-1 bg-danger border border-light rounded-circle'}`}></span>
                                 </i>
                             </NavLink>
-                        </Nav>
+                        </Nav> */}
 
                         <Nav>
-                            <DropdownButton
+                            {/* <DropdownButton
                                 className='mr-2 d-flex align-items-center'
                                 title = {
                                     <i onClick={onClick} style={{fontSize: '20px', cursor: 'pointer', margin: 0}} className="bi bi-bell d-flex align-items-center">
@@ -195,7 +195,7 @@ export const Navb = () => {
                                             })
                                         }
                                     </div>
-                            </DropdownButton>
+                            </DropdownButton> */}
 
                             {
                                 (width <= 991)
@@ -207,7 +207,7 @@ export const Navb = () => {
                                 (width > 991)
                                     &&
                                 <>
-                                    <NavLink className = 'd-flex align-items-center' onClick={() => dispatch(setActiveUser())} to = '/Profile'>{(activeUser?.urlImage) ? <img src={activeUser?.urlImage} className='img-fluid rounded-circle' style = {{objectFit: 'cover', width: '32px', height: '32px', cursor: 'pointer'}} alt='' /> : <i className="bi bi-person-circle" style = {{fontSize: '32px', cursor: 'pointer', color: 'white', objectFit: 'cover'}}></i>}</NavLink>
+                                    <NavLink className = 'd-flex align-items-center' onClick={() => dispatch(setActiveUser())} to = '/Profile'>{(activeUser?.urlImage || user) && <img src={activeUser?.urlImage || user} className='img-fluid' style = {{objectFit: 'cover', width: '32px', height: '32px', cursor: 'pointer', clipPath: 'circle()'}} alt='' />}</NavLink>
                                     <NavLink to = '/Home' onClick={logout} className = 'nav-link d-flex align-items-center'>Cerrar sesión</NavLink>
                                 </>
                             }

@@ -169,7 +169,9 @@ export const Types = {
     ptSetPetitionesUser: '[PT] set Petitiones User',
     ptSetPetitionSinCuenta: '[PT] set Petition Sin Cuenta',
     ptClearSetPetition: '[PT] clear set Petition',
-    ptCreatePetition: '[PT create Petition', 
+    ptCreatePetition: '[PT create Petition u',
+    ptCreatePetitionNew: '[PT create Petition',
+    ptCreatePetitionMyPetitions: '[PT create Petition my petitions',
     ptUpdatePetition: '[PT Update Petition', 
     ptDeletePetition: '[PT Delete Petition', 
     ptPaginatePetition: '[PT] paginate petition',
@@ -222,5 +224,6 @@ export const Types = {
     authUpload: '[Auth] upload auth',
     authUploadFinish: '[Auth] upload finish auth',
     authsetNotificationPost: '[Auth] set notifications post',
-    authStartUpdateUserNotification: '[Auth] update user notification'
+    authStartUpdateUserNotification: '[Auth] update user notification',
+    authshowFooter: '[Auth] show footer'
 }

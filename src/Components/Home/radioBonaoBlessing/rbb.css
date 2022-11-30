@@ -1,0 +1,38 @@
+.wrapper-player {
+    height: 427.7px !important;
+}
+
+audio {
+    width: 90%;
+  }
+  
+  audio::-webkit-media-controls-enclosure {
+    color: white;
+    background: none;
+  }
+
+  #spin {
+    animation: spin 4.5s linear infinite;
+  }
+  
+  @media (max-width: 991px) {
+  
+    #noDisplay {
+      display: none !important;
+    }
+    .img-peque {
+      width: 230px;
+      height: 230px;
+      object-fit: cover;
+    }
+  }
+  
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+  
+    100% {
+      transform: rotate(360deg);
+    }
+  }

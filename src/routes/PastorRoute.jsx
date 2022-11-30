@@ -9,8 +9,8 @@ import { Navb } from '../Components/differentRolesComponents/navbar/Navb'
 import { Sketch } from '../Components/differentRolesComponents/sketch/Sketch'
 import { SketchsList } from '../Components/differentRolesComponents/sketch/sketchsList/SketchsList'
 import { Lives } from '../Components/lives/Lives'
-import { NotificationPost } from '../Components/notificationPost/NotificationPost'
-import { NotificationResponsive } from '../Components/notificationResponsive/NotificationResponsive'
+// import { NotificationPost } from '../Components/notificationPost/NotificationPost'
+// import { NotificationResponsive } from '../Components/notificationResponsive/NotificationResponsive'
 import { Petitions } from '../Components/petitions/Petitions'
 import { Profile } from '../Components/profile/Profile'
 import { Search } from '../Components/search/Search'
@@ -29,8 +29,8 @@ export const PastorRoute = () => {
                     <Route path = '/Petitions' component = {Petitions} />
                     <Route path = '/Search' component = {Search} />
                     <Route path = '/Bible' component = {Bible} />
-                    <Route path = '/NotificationResponsive' component = {NotificationResponsive} />
-                    <Route path = '/NotificationPost/:id' component = {NotificationPost} />
+                    {/* <Route path = '/NotificationResponsive' component = {NotificationResponsive} />
+                    <Route path = '/NotificationPost/:id' component = {NotificationPost} /> */}
                     <Route path = '/Profile' component = {Profile} />
                     <Route path = '/MiniSerie' component = {MiniSeries} />
                     <Route path = '/MiniSeriesList' component = {MiniSeriesList} />

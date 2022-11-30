@@ -2,14 +2,14 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import Swal from 'sweetalert2'
 import h2p from 'html2plaintext'
-import { SetActivePetition, startDeletePetition } from '../../../../action/petition'
+import { SetActivePetition, setPetitionUser, startDeletePetition } from '../../../../action/petition'
 import moment from 'moment'
 
 export const ModalContainer = (props) => {
 
   const {socket} = useSelector(state => state.sk)
 
-  const {_id, title, createdAt, descripcion, check} = props
+  const {_id, title, createdAt, descripcion, check, name} = props
 
     const dispatch = useDispatch()
 
@@ -23,7 +23,6 @@ export const ModalContainer = (props) => {
       setCheckcont(check)
     }, [check])
     
-
     const handledChangeCheck = () => {
       if (checkcont === false) {
         setCheckcont(true)
@@ -34,7 +33,7 @@ export const ModalContainer = (props) => {
     }
 
     const Handleddelete = () => {
-      dispatch(SetActivePetition(props))
+      dispatch(setPetitionUser(props))
         Swal.fire({
           title: '¿Esta seguro que desea eliminar esta petición de oración?',
           icon: 'warning',
@@ -51,6 +50,7 @@ export const ModalContainer = (props) => {
     return (
         <>
           <tr style={{backgroundColor: (checkcont) && 'green'}}>
+              <th>{name}</th>
               <th>{title}</th>
               <td>{moment(createdAt).format('MMMM Do YYYY, h:mm a')}</td>
               <td>

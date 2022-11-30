@@ -8,8 +8,8 @@ import { Lives } from '../Components/lives/Lives'
 import { Petitions } from '../Components/petitions/Petitions'
 import { YoutubeVideo } from '../Components/youtubeVideo/YoutubeVideo'
 import { Search } from '../Components/search/Search'
-import { NotificationPost } from '../Components/notificationPost/NotificationPost'
-import { NotificationResponsive } from '../Components/notificationResponsive/NotificationResponsive'
+// import { NotificationPost } from '../Components/notificationPost/NotificationPost'
+// import { NotificationResponsive } from '../Components/notificationResponsive/NotificationResponsive'
 import { Profile } from '../Components/profile/Profile'
 import { VideoWordOfTheDay } from '../Components/differentRolesComponents/videoWordOfTheDay/VideoWordOfTheDay'
 import { VideoWordOfTheDayList } from '../Components/differentRolesComponents/videoWordOfTheDay/videoWordOfTheDayList/VideoWordOfTheDayList'
@@ -41,8 +41,8 @@ export const GestorContenido = () => {
                 {/* <Route path = '/Chat' component = {ChatScreen} /> */}
                 <Route path = '/Search' component = {Search} />
                 <Route path = '/Bible' component = {Bible} />
-                <Route path = '/NotificationResponsive' component = {NotificationResponsive} />
-                <Route path = '/NotificationPost/:id' component = {NotificationPost} />
+                {/* <Route path = '/NotificationResponsive' component = {NotificationResponsive} />
+                <Route path = '/NotificationPost/:id' component = {NotificationPost} /> */}
                 <Route path = '/Profile' component = {Profile} />
                 <Route path = '/WordOfTheDay' component = {VideoWordOfTheDay} />
                 <Route path = '/WordOfTheDayList' component = {VideoWordOfTheDayList} />

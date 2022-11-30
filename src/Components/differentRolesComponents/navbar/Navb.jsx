@@ -4,8 +4,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { NavLink, useHistory, useLocation } from 'react-router-dom'
 import { setActiveUser, setNotificationsPost, startLogout } from '../../../action/user'
 import logo from '../../../heroes/logo.png'
+import user from '../../../heroes/Userr.png'
 import { Sidebar } from '../sidebar/Sidebar'
-import moment from 'moment'
 import './Navb.css'
 import { UpdateNotifications } from '../../../action/notificationsUser'
 
@@ -106,7 +106,7 @@ export const Navb = () => {
                     }
                 </Nav>
 
-                {
+                {/* {
                     (activeUser?.role === 'Administrador' || activeUser?.role === 'Colaborador')
                         &&    
                     <Nav id="input-group-dropdown-responsive">
@@ -120,9 +120,9 @@ export const Navb = () => {
                             </i>
                         </NavLink>
                     </Nav>
-                }
+                } */}
 
-                {
+                {/* {
                     (activeUser?.role === 'Administrador' || activeUser?.role === 'Colaborador')
                         &&
                     <DropdownButton
@@ -179,10 +179,10 @@ export const Navb = () => {
                             }
                         </div>
                     </DropdownButton>
-                }
+                } */}
 
                 <Nav id='nav-hidden-right'>
-                    <NavLink onClick={() => dispatch(setActiveUser())} to = '/Profile'>{(activeUser?.urlImage) ? <img src={activeUser?.urlImage} className='img-fluid rounded-circle mt-2' style = {{width: '32px', height: '32px', cursor: 'pointer', margin: 0}} alt='' /> : <i className="bi bi-person-circle" style = {{fontSize: '32px', cursor: 'pointer', color: 'white', margin: 0}}></i>}</NavLink>
+                    <NavLink onClick={() => dispatch(setActiveUser())} to = '/Profile'>{(activeUser?.urlImage || user) && <img src={activeUser?.urlImage || user} className='img-fluid rounded-circle mt-2' style = {{width: '32px', height: '32px', cursor: 'pointer', margin: 0}} alt='' />}</NavLink>
                     <NavLink to = '/Login' onClick = {handledLogout} className = 'nav-link mt-1'>Cerrar sesión</NavLink>
                 </Nav>
 

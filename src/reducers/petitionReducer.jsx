@@ -1,11 +1,12 @@
 import { Types } from '../types/Types';
 
 const initialState = {
-    Peticiones: null,
-    PeticionesUser: null,
-    MyPetitions: null,
+    Peticiones: [],
+    MyPetitions: [],
     activePetitions: '',
-    activePetitionsUser: ''
+    activePetitionsUser: '',
+    Paginate: [],
+    PaginateUser: []
 }
 
 export const petitionReducer = (state = initialState, action) => {
@@ -16,24 +17,42 @@ export const petitionReducer = (state = initialState, action) => {
                 Peticiones: action.payload
             }
 
-        case Types.ptgetMyPetitions:
+        case Types.ptPaginatePetition:
             return {
                 ...state,
-                MyPetitions: action.payload
+                Paginate: action.payload
             }
 
-        case Types.ptgetPetitionesUser:
+        case Types.ptPaginatePetitionUser:
             return {
                 ...state,
-                PeticionesUser: action.payload
+                PaginateUser: action.payload
+            }
+
+        case Types.ptCreatePetitionNew:
+            return {
+                ...state,
+                MyPetitions: [
+                    action.payload,
+                    ...state.MyPetitions,
+                ]
             }
 
         case Types.ptCreatePetition:
             return {
                 ...state,
+                Peticiones: [
+                    ...state.Peticiones,
+                    ...action.payload
+                ]
+            }
+
+        case Types.ptCreatePetitionMyPetitions:
+            return {
+                ...state,
                 MyPetitions: [
                     ...state.MyPetitions,
-                    action.payload
+                    ...action.payload
                 ]
             }
 
@@ -43,7 +62,7 @@ export const petitionReducer = (state = initialState, action) => {
                 activePetitions: action.payload
             }
 
-        case Types.ptSetPetitionUser:
+        case Types.ptSetPetitionesUser:
             return {
                 ...state,
                 activePetitionsUser: action.payload
@@ -56,7 +75,7 @@ export const petitionReducer = (state = initialState, action) => {
                     e => (e._id === action.payload._id) ? action.payload : e
                 ),
 
-                PeticionesUser: state.PeticionesUser.map(
+                Peticiones: state.Peticiones.map(
                     e => (e._id === action.payload._id) ? action.payload : e
                 )
             }
@@ -68,7 +87,7 @@ export const petitionReducer = (state = initialState, action) => {
                     e => (e._id !== state.activePetitionsUser._id)
                 ),
                 
-                PeticionesUser: state.PeticionesUser.filter( 
+                Peticiones: state.Peticiones.filter( 
                     e => (e._id !== state.activePetitionsUser._id)
                 )
             }

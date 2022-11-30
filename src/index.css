@@ -46,15 +46,6 @@ code {
 ::-webkit-scrollbar-thumb:hover {
   background: #0275d8; 
 }
-  
-
-  audio:hover, audio:focus, audio:active {
-    transform: scale(1.05);
-  }
-
-  audio {
-    transition: all 0.5s linear;
-  }
 
   #swal2-html-container {
     overflow: hidden;

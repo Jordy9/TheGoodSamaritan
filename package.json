@@ -15,6 +15,7 @@
     "country-flag-icons": "^1.4.21",
     "crypto": "^1.0.1",
     "formik": "^2.2.9",
+    "griffith": "^1.29.0",
     "howler": "^2.2.3",
     "html-react-parser": "^1.4.3",
     "html2plaintext": "^2.1.4",

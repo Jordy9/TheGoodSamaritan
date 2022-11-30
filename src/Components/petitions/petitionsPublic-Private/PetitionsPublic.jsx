@@ -2,22 +2,19 @@ import React, { useEffect, useState } from 'react'
 import './Petitions.css'
 import Slider from "react-slick";
 import { useDispatch, useSelector } from 'react-redux'
-import { setPetition, setPetitionUser, startCreatePetitionUser, startGetPetitionesUser, startGetPetitions } from '../../../action/petition';
 import { ModalPetition } from '../modal/ModalPetition';
 import { useFormik } from 'formik';
 import * as Yup from 'yup'
 import { PetitionModalUser } from '../modal/ModalPetitionUser';
-import perfil1 from '../../../heroes/User.png'
 import moment from 'moment';
 import Swal from 'sweetalert2';
+import { setPetition, setPetitionUser, startCreatePetition, startGetPaginatePetitions, startGetPaginatePetitionsUser } from '../../../action/petition';
 
 export const PetitionsPublic = () => {
 
-    const {Peticiones, PeticionesUser, MyPetitions} = useSelector(state => state.pt)
+    const {Peticiones, MyPetitions, Paginate, PaginateUser} = useSelector(state => state.pt)
 
-    const {usuarios} = useSelector(state => state.cht)
-
-    const {activeUser, users} = useSelector(state => state.auth)
+    const {activeUser} = useSelector(state => state.auth)
 
     const [peticionesfiltradas, setpeticionesfiltradas] = useState()
     
@@ -32,20 +29,17 @@ export const PetitionsPublic = () => {
 
         setpeticionesfiltradas(peticionesfiltradas)
 
-    }, [MyPetitions, PeticionesUser])
+    }, [MyPetitions])
 
     const dispatch = useDispatch()
 
-    useEffect(() => {
-        dispatch(startGetPetitions())
-        dispatch(startGetPetitionesUser())
-      }, [dispatch])
+    const [showAnonimo, setShowAnonimo] = useState(false)
 
     const {handleSubmit, resetForm, getFieldProps, touched, errors} = useFormik({
         initialValues: {
             name: activeUser?.name, 
             title: '', 
-            descripcion: ''
+            descripcion: '',
         },
         enableReinitialize: true,
         onSubmit: ({name, title, descripcion}) => {
@@ -67,11 +61,19 @@ export const PetitionsPublic = () => {
                     title: 'Solo se permiten 10 peticiones por usuario durante el día'
                   })
             } else {
-                dispatch(startCreatePetitionUser(name, title, descripcion))
+                let id = activeUser?.id
+                let role = activeUser?.role
+                if (showAnonimo) {
+                    name = 'Anónimo'
+                    role = 'Anónimo'
+                }
+                dispatch(startCreatePetition(name, title, descripcion, id, role))
                 resetForm({
                     title: '', 
                     descripcion: ''
                 })
+                setShowAnonimo(false)
+                setShowDescripcion(false)
             }
             
         },
@@ -82,7 +84,6 @@ export const PetitionsPublic = () => {
                         .required('Requerido'),
             descripcion: Yup.string()
                         .min(3, 'Debe de tener 3 caracteres o más')
-                        .required('Requerido')
         })
     })
 
@@ -94,13 +95,18 @@ export const PetitionsPublic = () => {
         dispatch(setPetitionUser(petition))
     }  
 
+    const [activeIndex, setActiveIndex] = useState(0)
+
+    const [activeIndex2, setActiveIndex2] = useState(0)
+
     var settings = {
         dots: false,
         infinite: false,
         speed: 500,
         slidesToShow: 4,
-        slidesToScroll: 4,
+        slidesToScroll: 2,
         initialSlide: 0,
+        afterChange: (index) => setActiveIndex(index),
         lazyLoad: true,
         responsive: [
           {
@@ -138,8 +144,9 @@ export const PetitionsPublic = () => {
         infinite: false,
         speed: 500,
         slidesToShow: 4,
-        slidesToScroll: 4,
+        slidesToScroll: 2,
         initialSlide: 0,
+        afterChange: (index) => setActiveIndex2(index),
         lazyLoad: true,
         responsive: [
           {
@@ -172,46 +179,19 @@ export const PetitionsPublic = () => {
         ]
       };
 
-    var settings3 = {
-        dots: false,
-        infinite: false,
-        speed: 500,
-        slidesToShow: 4,
-        slidesToScroll: 4,
-        initialSlide: 0,
-        lazyLoad: true,
-        responsive: [
-          {
-            breakpoint: 1024,
-            settings: {
-                slidesToShow: (PeticionesUser?.length > 1) ? 2 : 1,
-                slidesToScroll: 2,
-                lazyLoad: true,
-            }
-          },
-          {
-            breakpoint: 600,
-            settings: {
-                slidesToShow: (PeticionesUser?.length > 1) ? 2 : 1,
-                slidesToScroll: 2,
-                initialSlide: 2,
-                lazyLoad: true,
-            }
-          },
-          {
-            breakpoint: 480,
-            settings: {
-                infinite: (PeticionesUser?.length > 4) ? true : false,
-                centerMode: (PeticionesUser?.length > 4) ? true : false,
-                slidesToShow: (PeticionesUser?.length < 4 && PeticionesUser?.length > 1) ? 1.2 : 1,
-                slidesToScroll: 1,
-                lazyLoad: true,
-            }
-          }
-        ]
-      };
+      const [showDescripcion, setShowDescripcion] = useState(false)
 
-      const petitionsCount = PeticionesUser?.filter(p => p.user.id !== activeUser?.id)
+      useEffect(() => {
+        if (activeIndex2 === (Peticiones?.length - 4) && Number(Paginate?.page) < Paginate?.total) {
+          dispatch(startGetPaginatePetitions(Number(Paginate?.page) + 1))
+        }
+      }, [activeIndex2])
+
+      useEffect(() => {
+        if (activeIndex === (MyPetitions?.length - 4) && Number(PaginateUser?.page) < PaginateUser?.total) {
+          dispatch(startGetPaginatePetitionsUser(Number(PaginateUser?.page) + 1))
+        }
+      }, [activeIndex])
 
     return (
         <div className="container"> 
@@ -222,21 +202,56 @@ export const PetitionsPublic = () => {
                                 <div className="card-body">
                                     <form onSubmit={handleSubmit} className = 'needs-validation'>
                                         <div className="row">
-
                                             <div className="col form-group">
                                                 <label>Motivo de oración</label>
                                                 <input type="text" {...getFieldProps('title')} placeholder = 'Oración por fortaleza' className = 'form-control bg-transparent text-white ' />
                                                 {touched.title && errors.title && <span style={{color: 'red'}}>{errors.title}</span>}
                                             </div>
                                         </div>
-                                        
-                                        <div className="row">
-                                            <div className="col form-group">
-                                                <label>Descripción</label>
-                                                <textarea style = {{resize: 'none'}} type="text" rows = '5' {...getFieldProps('descripcion')} placeholder = 'Tu descripción aqui' className = 'form-control bg-transparent text-white' />
-                                                {touched.descripcion && errors.descripcion && <span style={{color: 'red'}}>{errors.descripcion}</span>}
-                                            </div>
+
+                                        <div className = 'row'>
+                                           <div className = 'col-12 form-group'>
+                                              <h4>¿Te gustaria dar más detalle sobre tu petición de oración?</h4>
+                                                <div style={{display: 'flex'}}>
+                                                    <div className="form-check mr-4">
+                                                        <input defaultChecked = {(showDescripcion)} onClick={() => setShowDescripcion(true)} className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="option1" />
+                                                        <label className="form-check-label">Si</label>
+                                                    </div>
+                                                    <div className="form-check">
+                                                        <input defaultChecked = {(!showDescripcion)} onClick={() => setShowDescripcion(false)} className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" value="option2" />
+                                                        <label className="form-check-label">No</label>
+                                                    </div>
+                                                </div>
+                                           </div>
                                         </div>
+
+                                        <div className = 'row'>
+                                           <div className = 'col-12 form-group'>
+                                              <h4>¿Pedir oración de forma anónima?</h4>
+                                                <div style={{display: 'flex'}}>
+                                                    <div className="form-check mr-4">
+                                                        <input defaultChecked = {(showAnonimo)} onClick={() => setShowAnonimo(true)} className="form-check-input" type="radio" name="flexRadioDefault2" id="flexRadioDefault3" value="option3" />
+                                                        <label className="form-check-label">Si</label>
+                                                    </div>
+                                                    <div className="form-check">
+                                                        <input defaultChecked = {(!showAnonimo)} onClick={() => setShowAnonimo(false)} className="form-check-input" type="radio" name="flexRadioDefault2" id="flexRadioDefault4" value="option4" />
+                                                        <label className="form-check-label">No</label>
+                                                    </div>
+                                                </div>
+                                           </div>
+                                        </div>
+
+                                        {
+                                            (showDescripcion)
+                                                &&
+                                            <div className="row">
+                                                <div className="col form-group">
+                                                    <label>Descripción</label>
+                                                    <textarea style = {{resize: 'none'}} type="text" rows = '5' {...getFieldProps('descripcion')} placeholder = 'Tu descripción aqui' className = 'form-control bg-transparent text-white' />
+                                                    {touched.descripcion && errors.descripcion && <span style={{color: 'red'}}>{errors.descripcion}</span>}
+                                                </div>
+                                            </div>
+                                        }
                                         <button type='submit' className = 'btn btn-outline-primary form-control' style = {{borderRadius: '50px'}}>Enviar</button>
                                     </form>
                                 </div>
@@ -256,8 +271,9 @@ export const PetitionsPublic = () => {
                             MyPetitions?.map(peticion => {
                                 return (
                                     <div key={peticion._id} className = 'col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12'>
-                                        <img data-bs-toggle="modal" data-bs-target="#exampleModal10" onClick={() => hanldedSetPetitionUser(peticion)} src={(activeUser?.urlImage) ? activeUser?.urlImage : perfil1} style={{objectFit: 'cover', height: '355px', width: '100%'}} className='img-fluid image-round imgag shadowImage' alt=''/>
-                                        <h5 style={{wordWrap: 'break-word'}} className='text-center'>{peticion.title}</h5>
+                                        <div data-bs-toggle="modal" data-bs-target="#exampleModal10" onClick={() => hanldedSetPetitionUser(peticion)} className='p-2' style={{backgroundColor: '#212529', borderRadius: '1rem'}}>
+                                            <h5 style={{wordWrap: 'break-word', cursor: 'pointer'}} className='text-center textCard mt-1'>{peticion.title}</h5>
+                                        </div>
                                     </div>
                                 )
                             })
@@ -269,37 +285,16 @@ export const PetitionsPublic = () => {
                     {
                         (Peticiones?.length > 0)
                             &&
-                        <h1 className='my-5'>Listado de peticiones de pastores</h1>
+                        <h1 className='my-5'>Listado de peticiones de oración</h1>
                     }
                     <Slider {...settings2}>
                         {
                             Peticiones?.map(peticion => {
-                                const imageFiltered = usuarios?.filter(user => user.id === peticion.user.id)
                                 return (
                                     <div key={peticion._id} className = 'col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12'>
-                                        <img data-bs-toggle="modal" data-bs-target="#exampleModal7" onClick={() => hanldedSetPetition(peticion)} src={(imageFiltered[0]?.urlImage) ? imageFiltered[0]?.urlImage : perfil1} style = {{objectFit: 'cover', width: '100%', height: '355px'}} className='img-fluid image-round imgag shadowImage' alt=''/>
-                                        <h5 style={{wordWrap: 'break-word'}} className='text-center d-flex'>{peticion.title}</h5>
-                                    </div>
-                                )
-                            })
-                        }
-                    </Slider>
-                </div>
-
-                <div className = 'row'>
-                    {
-                        (petitionsCount?.length > 0)
-                            &&
-                        <h1 className='my-5'>Listado de peticiones de usuarios</h1>
-                    }
-                    <Slider {...settings3}>
-                        {
-                            PeticionesUser?.filter(p => p.user.id !== activeUser?.id).map(peticion => {
-                                const imageFiltered = users?.filter(user => user.id === peticion.user.id)
-                                return (
-                                    <div key={peticion._id} className = 'col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12'>
-                                        <img data-bs-toggle="modal" data-bs-target="#exampleModal7" onClick={() => hanldedSetPetition(peticion)} src={(imageFiltered[0]?.urlImage) ? imageFiltered[0]?.urlImage : perfil1} style = {{objectFit: 'cover', width: '100%', height: '355px'}} className='img-fluid image-round imgag shadowImage' alt=''/>
-                                        <h4 style={{wordWrap: 'break-word'}} className='text-center'>{peticion.title}</h4>
+                                        <div data-bs-toggle="modal" data-bs-target="#exampleModal7" onClick={() => hanldedSetPetition(peticion)} className='p-2' style={{backgroundColor: '#212529', borderRadius: '1rem'}}>
+                                            <h5 style={{wordWrap: 'break-word', cursor: 'pointer'}} className='text-center textCard mt-1'>{peticion.title}</h5>
+                                        </div>
                                     </div>
                                 )
                             })

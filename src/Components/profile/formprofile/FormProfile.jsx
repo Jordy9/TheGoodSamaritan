@@ -112,11 +112,11 @@ export const FormProfile = () => {
     return (
         <>
             <div className="row">
-                <div className="col-xs-12 col-sm-12 col-md-5 col-lg-3 col-xl-3">
+                <div className="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
                     <ProfileImg imag = {imag} />
                 </div>
 
-                <div className="col-xs-12 col-sm-12 col-md-7 col-lg-9 col-xl-9">
+                <div className="col-xs-12 col-sm-12 col-md-6 col-lg-8 col-xl-9">
                     <div className="mb-3" style = {{border: 'none'}}>
                         <div className = 'shadow p-2 mt-2 bg-dark image-round flex-column text-white'>
                             <h5 className="text-white text-center mt-2">Información personal</h5>

@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactPaginate from 'react-paginate';
 import { useDispatch, useSelector } from 'react-redux';
-import { startGetPaginatePetitions } from '../../../../action/petition';
+import { startGetPaginatePetitionsAdmin } from '../../../../action/petition';
 
 export const PaginatePetition = () => {
 
@@ -11,7 +11,7 @@ export const PaginatePetition = () => {
 
     const handlePageClick = (event) => {
         const newOffset = (event.selected + 1);
-        dispatch(startGetPaginatePetitions(newOffset))
+        dispatch(startGetPaginatePetitionsAdmin(newOffset))
     };
 
     return (
@@ -20,7 +20,7 @@ export const PaginatePetition = () => {
                 breakLabel="..."
                 nextLabel="Siguiente"
                 onPageChange={handlePageClick}
-                pageCount={Paginate?.total}
+                pageCount={Number(Paginate?.total)}
                 previousLabel="Anterior"
                 containerClassName='pagination justify-content-center'
                 pageClassName='page-item'
