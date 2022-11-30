@@ -7,6 +7,9 @@ import { scrollToTopAnimated } from '../../../helper/ScrollToBottom'
 import { Modal } from 'react-bootstrap'
 import { setHide } from '../../../action/miniSerie'
 import perfil1 from '../../../heroes/User.png'
+import { MiniserieNormal } from '../componentsModal/MiniserieNormal'
+import { useResponsive } from '../../../hooks/useResponsive'
+import { MiniserieResponsive } from '../componentsModal/MiniserieResponsive'
 
 export const ModalMiniSerie = () => {
 
@@ -14,7 +17,7 @@ export const ModalMiniSerie = () => {
 
     const {activeSerie, Show} = useSelector(state => state.mi)
 
-    const {uid} = useSelector(state => state.auth)
+    const {uid, users} = useSelector(state => state.auth)
 
     const {socket} = useSelector(state => state.sk)
 
@@ -51,18 +54,19 @@ export const ModalMiniSerie = () => {
         socket?.emit('read-count', activeSerie?._id, uid)
     }, [socket, uid, activeSerie?._id])
     
-    const {usuarios} = useSelector(state => state.cht)
+    const miniSerieCount = users?.filter(user => user.id === activeSerie?.user)
 
-    const miniSerieCount = usuarios?.filter(user => user.id === activeSerie?.user)
+    const [ respWidth ] = useResponsive()
+
+    const [heightScroll, setHeightScroll] = useState(0)
 
     return (
 
       <>
           <Modal
-            scrollable = {true}
             contentClassName='bg-dark'
             centered
-            size="xl"
+            fullscreen
             show={Show}
             onHide={() => onHideModal()}
             aria-labelledby="example-modal-sizes-title-lg"
@@ -82,41 +86,53 @@ export const ModalMiniSerie = () => {
                       <span id='dateDeskLap' className='text-right mr-4'>{moment(activeSerie?.createdAt).format('MMMM Do YYYY, h:mm a')}</span>
                     </div>
                   </div>
-                  <h1 className='text-center mx-2'>{activeSerie?.title}</h1>
+                    {
+                      (respWidth > 991)
+                          ?
+                      <h1 className='text-center'>{activeSerie?.title}</h1>
+                          :
+                      (heightScroll > 200 || first > 0)
+                          &&
+                      <h1 className='text-center'>{activeSerie?.title}</h1>
+                    }
                 </div>
               </div>
               
-            <Modal.Body id='descripcion-serie'>                         
-              <div className="modal-body">
-                  <div className="row">
-                      <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 form-group">
-                        <div>
-                            {
-                              (first === 0)
-                                &&
-                              <img src={activeSerie?.image} style = {{objectFit: 'cover', height: '100%', width: '100%'}} className="image-round img-fluid mb-3" alt="..." />
-                            }
-                            
-                            {
-                              (activeSerie)
-                                &&
-                              parse(activeSerie?.descripcion[first])
-                            }
+            <Modal.Body onScroll={({target}) => setHeightScroll(target?.scrollTop)} id='descripcion-serie'>    
 
-                            <div className="row">
-                              <div className="col-6 justify-content-start">
-                                <button className='btn btn-outline-secondary' style={{borderRadius: '10px', color: 'white'}} hidden = {(first <= 0)} onClick = {prev}><i className="fa-solid fa-angle-left"></i> Anterior</button>
-                              </div>
-
-                              <div className="col-6 justify-content-end text-end">
-                                <button className='btn btn-outline-secondary' style={{borderRadius: '10px', color: 'white'}} hidden = {(countArray - 1 === first)} onClick = {next}>Siguiente <i className="fa-solid fa-angle-right"></i></button>
-                              </div>
-                            </div>
-                        </div>
-                      </div>
-                  </div>  
-              </div>
+              {
+                (respWidth > 991)
+                  ?
+                <div className="modal-body">
+                    <MiniserieNormal 
+                      activeSerie={activeSerie} 
+                      first = {first} 
+                      parse = {parse} 
+                    />
+                </div>
+                  :
+                <>
+                  <MiniserieResponsive
+                    activeSerie={activeSerie} 
+                    first = {first} 
+                    parse = {parse} 
+                  />
+                  <div className='mt-3'>
+                    {
+                      (activeSerie)
+                        &&
+                      parse(activeSerie?.descripcion[first])
+                    }
+                  </div>
+                </>
+              }                     
             </Modal.Body>
+
+            <Modal.Footer style={{display: 'flex', justifyContent: 'space-between', border: 'none'}}>
+              <button className='btn btn-outline-secondary' style={{borderRadius: '10px', color: 'white'}} hidden = {(first <= 0)} onClick = {prev}><i className="fa-solid fa-angle-left"></i> Anterior</button>
+
+              <button className='btn btn-outline-secondary ml-auto' style={{borderRadius: '10px', color: 'white'}} hidden = {(countArray - 1 === first)} onClick = {next}>Siguiente <i className="fa-solid fa-angle-right"></i></button>
+            </Modal.Footer>
           </Modal>
       </> 
     )

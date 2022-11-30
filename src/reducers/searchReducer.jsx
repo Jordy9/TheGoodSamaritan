@@ -32,7 +32,8 @@ export const searchReducer = (state = initialState, action) => {
         case Types.bdSetHide:
             return {
                 ...state,
-                Show: false
+                Show: false,
+                activeSearch: null
             }
     
         default:

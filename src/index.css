@@ -101,6 +101,14 @@ code {
     border-top-right-radius: 40px;
   }
 
+  .selectQualityClick {
+    background-color: rgb(156, 153, 153);
+  }
+
+  .selectQuality:hover {
+    background-color: rgb(156, 153, 153);
+  }
+
   #select-rol {
     border: none;
     border-bottom: 1px solid;

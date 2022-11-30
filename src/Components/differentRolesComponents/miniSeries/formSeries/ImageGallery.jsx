@@ -26,7 +26,7 @@ export const ImageGallery = ({ changeSwitch, newImage, handledSelected }) => {
             (newImage?.hits?.length !== 0)
                 ?
             newImage?.hits?.map(({urls, id}) => {
-                const webformatURL = urls?.full
+                const webformatURL = urls?.regular
                 const toImage = urls?.regular
                 return (
                     <div onClick={() => handledSelected(webformatURL, id)} key={webformatURL} className = 'col-xs-12 col-sm-12 col-md-6 col-lg-3 col-xl-3 col-xxl-3 mt-2'>

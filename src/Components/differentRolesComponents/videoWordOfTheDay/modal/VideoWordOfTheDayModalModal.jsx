@@ -17,6 +17,8 @@ export const VideoWordOfTheDayModal = () => {
 
     const [vide, setvide] = useState()
 
+    const [processVideo, setProcessVideo] = useState(false)
+
     const {handleSubmit, getFieldProps, touched, errors, setFieldValue} = useFormik({
         initialValues: {
             title: activeVideo?.title, 
@@ -44,7 +46,7 @@ export const VideoWordOfTheDayModal = () => {
                         title: 'Video con formato incorrecto'
                       })
                 } else {
-                dispatch(startUpdateVideoWordOfTheDay(title, video))
+                    dispatch(startUpdateVideoWordOfTheDay(title, video, setProcessVideo))
                 }
             } else {
                 const Toast = Swal.mixin({
@@ -121,19 +123,31 @@ export const VideoWordOfTheDayModal = () => {
                                             <div className="row">
 
                                                 {
+                                                    (processVideo)
+                                                        &&
+                                                    <di className="col-12 mb-2">
+                                                        <label className='d-flex justify-content-center'>Procesando video</label>
+                                                        <div className="progress">
+                                                            <div className="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-label="Animated striped example" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style={{width: '100%'}}></div>
+                                                        </div>
+                                                    </di>
+                                                }
+                                                
+
+                                                {
                                                     (Porcentage > 0)
                                                         &&
                                                     <div className="col-12 mb-2">
                                                         <label className='d-flex justify-content-center'>Subiendo video</label>
                                                         <div className="progress">
-                                                            <div className="progress-bar" role="progressbar" style={{width: `${Porcentage}%`}} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{Porcentage}%</div>
+                                                            <div className="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style={{width: `${Porcentage}%`}} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{Porcentage}%</div>
                                                         </div>
                                                     </div>
                                                 }
                                                 <div className="col-12">
                                                     <div className="form-group d-flex justify-content-center">
                                                         {/* <img src = {vide} style = {{ cursor: 'pointer', height: '200px', maxWidth: '400px' }} className = 'img-fluid rounded' alt=''/> */}
-                                                        <video src = {vide || activeVideo?.image} className="img-fluid rounded" alt="" style = {{ cursor: 'pointer', maxHeight: '225px'}}></video>
+                                                        <video src = {vide || activeVideo?.image[0]} className="img-fluid rounded" alt="" style = {{ cursor: 'pointer', maxHeight: '225px'}}></video>
                                                     </div> 
                                                 </div>
                                             </div>

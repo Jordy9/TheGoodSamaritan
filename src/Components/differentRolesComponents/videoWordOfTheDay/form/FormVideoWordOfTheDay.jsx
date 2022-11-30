@@ -16,6 +16,8 @@ export const FormVideoWordOfTheDay = () => {
 
     const [vide, setvide] = useState()
 
+    const [processVideo, setProcessVideo] = useState(false)
+
     const {handleSubmit, resetForm, getFieldProps, touched, errors, setFieldValue} = useFormik({
         initialValues: {
             title: '', 
@@ -42,8 +44,8 @@ export const FormVideoWordOfTheDay = () => {
                         title: 'Video con formato incorrecto'
                       })
                 } else {
-                dispatch(startCreateVideoWordOfTheDay(title, video))
-                dispatch(sendEmail(title, null, 'Nueva Palabra del día agregada, titulada:'))
+                dispatch(startCreateVideoWordOfTheDay(title, video, setProcessVideo))
+                // dispatch(sendEmail(title, null, 'Nueva Palabra del día agregada, titulada:'))
                 }
             } else {
                 const Toast = Swal.mixin({
@@ -110,13 +112,25 @@ export const FormVideoWordOfTheDay = () => {
             </div>
 
             <div className="row">
+
+                {
+                    (processVideo)
+                        &&
+                    <di className="col-12 mb-2">
+                        <label className='d-flex justify-content-center'>Procesando video</label>
+                        <div className="progress">
+                            <div className="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-label="Animated striped example" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style={{width: '100%'}}></div>
+                        </div>
+                    </di>
+                }
+
                 {
                     (Porcentage > 0)
                         &&
                     <div className="col-12 mb-2">
                         <label className='d-flex justify-content-center'>Subiendo video</label>
                         <div className="progress">
-                            <div className="progress-bar" role="progressbar" style={{width: `${Porcentage}%`}} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{Porcentage}%</div>
+                            <div className="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style={{width: `${Porcentage}%`}} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{Porcentage}%</div>
                         </div>
                     </div>
                 }

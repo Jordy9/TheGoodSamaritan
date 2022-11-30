@@ -19,6 +19,8 @@ export const GalleryImages = () => {
 
     const onSeletedImages = (imgs) => {
         const selectedFilesArray = Array.from(imgs)
+
+        setimagen(prevImg => [...prevImg, ...imgs])
     
         const imagesArray = selectedFilesArray.map(file => {
           return URL.createObjectURL(file)
@@ -33,10 +35,12 @@ export const GalleryImages = () => {
         setPreviewImages(previewImages?.filter(image => image !== img))
       }
 
-    const {handleSubmit, resetForm, getFieldProps, touched, errors, setFieldValue} = useFormik({
+      console.log(imagen)
+
+    const {handleSubmit, resetForm, touched, errors} = useFormik({
         initialValues: {
             title: '',
-            image: ''
+            image: imagen
         },
         enableReinitialize: true,
         onSubmit: ({title, image}) => {
@@ -87,12 +91,13 @@ export const GalleryImages = () => {
             }
             resetForm({
                 title: '', 
-                image: document.getElementsByName('image').value = ''
+                image: document.getElementsByName('image').value = '',
             })
+            setimagen([])
             setPreviewImages([])
         },
         validationSchema: Yup.object({
-            image: Yup.string()
+            image: Yup.array()
                         .required('Requerido')
         })
     })
@@ -112,7 +117,7 @@ export const GalleryImages = () => {
                         <label>Imagen</label>
                         <button type='button' className='btn btn-outline-primary form-control' onClick={handledImage}>Seleccionar imagen</button>
                         <input multiple accept="image/*" id='fileSelector' hidden = {true} type="file" className='form-control bg-transparent text-white' name='image' onChange={({target}) => {
-                            setFieldValue('image', target?.files, onSeletedImages(target?.files))
+                            onSeletedImages(target?.files)
                         }} />
                         {touched.image && errors.image && <span style={{color: 'red'}}>{errors.image}</span>}
                     </div> 
@@ -127,7 +132,7 @@ export const GalleryImages = () => {
                     <div className="col-12 mb-2">
                         <label className='d-flex justify-content-center'>Subiendo imagen</label>
                         <div className="progress">
-                            <div className="progress-bar" role="progressbar" style={{width: `${Porcentage}%`}} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{Porcentage}%</div>
+                            <div className="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style={{width: `${Porcentage}%`}} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{Porcentage}%</div>
                         </div>
                     </div>
                 }

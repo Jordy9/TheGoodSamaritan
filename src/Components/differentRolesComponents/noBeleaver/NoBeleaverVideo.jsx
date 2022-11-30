@@ -121,7 +121,7 @@ export const NoBeleaverVideo = () => {
                         <div className="col-12 mb-2">
                             <label className='d-flex justify-content-center'>Subiendo video</label>
                             <div className="progress">
-                                <div className="progress-bar" role="progressbar" style={{width: `${Porcentage}%`}} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{Porcentage}%</div>
+                                <div className="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style={{width: `${Porcentage}%`}} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{Porcentage}%</div>
                             </div>
                         </div>
                     }

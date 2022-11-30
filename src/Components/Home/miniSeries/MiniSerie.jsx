@@ -8,6 +8,11 @@ import { scrollToTopAnimatedPost } from '../../../helper/ScrollToBottom';
 import { MiniSerieStart, setSeries, startGetPaginateMiniSeries } from '../../../action/miniSerie';
 import { Spinner } from '../../spinner/Spinner';
 import moment from 'moment';
+import { useResponsive } from '../../../hooks/useResponsive';
+import { MiniserieNormal } from '../../dashboard/componentsModal/MiniserieNormal';
+import { MiniserieResponsive } from '../../dashboard/componentsModal/MiniserieResponsive';
+import { MiniNormal } from './MiniNormal';
+import { MiniResponsive } from './MiniResponsive';
 
 export const MiniSerie = () => {
   const dispatch = useDispatch()
@@ -122,6 +127,7 @@ export const MiniSerie = () => {
         }
       }, [activeIndex])
 
+      const [ respWidth ] = useResponsive()
       
       if (miniSerieStart === null) {
         return (
@@ -140,49 +146,57 @@ export const MiniSerie = () => {
                     activeSerie?.title
                         :
                     miniSerieStart?.title || ''
-
                   }
                 </h1>
                 <div className="row">
                   <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                     <div className="p-4">
-                        {
-                          (activeSerie)
-                            ?
-                          (first === 0)
-                              &&
-                          <>
+                      {
+                        (respWidth > 991)
+                          ?
+                        <div className="modal-body">
+                          <MiniNormal
+                            activeSerie={activeSerie} 
+                            first = {first} 
+                            parse = {parse}
+                            first2 = {first2}
+                            NuevoCap = {NuevoCap}
+                            NuevoCap1 = {NuevoCap1}
+                            miniSerieStart = {miniSerieStart}
+                          />
+
+                          <div className='mt-3'>
                             {
-                              (NuevoCap === 0)
-                                &&
-                              <div style={{borderBottomLeftRadius: '40px', borderTopLeftRadius: '40px', position: 'absolute', zIndex: 1045, backgroundColor: 'red', right: 0, boxShadow: '0 4px 0 0 rgba(0,0,0,0.39)'}}>
-                                <h4 className='p-2 my-1'>Nuevo capítulo</h4>
-                              </div>
+                              (activeSerie)
+                                ?
+                              parse(activeSerie?.descripcion[first])
+                                :
+                              parse(miniSerieStart?.descripcion[first2] || '')
                             }
-                            <img src={activeSerie?.image} style = {{objectFit: 'cover', height: '100%', width: '100%'}} className="image-round img-fluid my-2" alt="..." />
-                          </>
-                            :
-                          (first2 === 0)
-                              &&
-                          <>
+                          </div>
+                        </div>
+                          :
+                        <>
+                          <MiniResponsive
+                            activeSerie={activeSerie} 
+                            first = {first} 
+                            parse = {parse}
+                            first2 = {first2}
+                            NuevoCap = {NuevoCap}
+                            NuevoCap1 = {NuevoCap1}
+                            miniSerieStart = {miniSerieStart}
+                          />
+                          <div className='mt-3'>
                             {
-                              (NuevoCap1 === 0)
-                                &&
-                              <div style={{borderBottomLeftRadius: '40px', borderTopLeftRadius: '40px', position: 'absolute', zIndex: 1045, backgroundColor: 'red', right: 0, boxShadow: '0 4px 0 0 rgba(0,0,0,0.39)'}}>
-                                <h4 className='p-2 my-1'>Nuevo capítulo</h4>
-                              </div>
+                              (activeSerie)
+                                ?
+                              parse(activeSerie?.descripcion[first])
+                                :
+                              parse(miniSerieStart?.descripcion[first2] || '')
                             }
-                            <img src={miniSerieStart?.image} style = {{objectFit: 'cover', height: '100%', width: '100%'}} className="image-round img-fluid my-2" alt="..." />
-                          </>
-                        }
-                        
-                        {
-                          (activeSerie)
-                            ?
-                          parse(activeSerie?.descripcion[first])
-                            :
-                          parse(miniSerieStart?.descripcion[first2] || '')
-                        }
+                          </div>
+                        </>
+                      }      
 
                         <div className="row">
                           {

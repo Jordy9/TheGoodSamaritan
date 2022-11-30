@@ -33,12 +33,12 @@ export const Galleryy = () => {
                     <>
                       <SimpleReactLightbox>
                         <SRLWrapper options={options}>
-                          <div className="gallery">
+                          <div className="row">
                             {img?.map(image => {
                               return (
-                                // <div key={image.image} style={{padding: '5px'}} className = 'gallery'>
-                                  <img key={image.image} src={image.image} className = 'imageGallery' alt="" />
-                                // </div>
+                                <div key={image.image} style={{padding: '5px'}} className = 'col-4'>
+                                  <img key={image.image} src={image.image} style = {{width: '100%', height: '300px', objectFit: 'cover'}} className = 'img-fluid' alt="" />
+                                </div>
                               )
                             })}
                           </div>

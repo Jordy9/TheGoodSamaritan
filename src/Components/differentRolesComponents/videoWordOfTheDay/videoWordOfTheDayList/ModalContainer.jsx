@@ -15,7 +15,6 @@ export const ModalContainer = (props) => {
     }
 
     const Handleddelete = () => {
-      dispatch(SetActiveVideoWordOfTheDay(props))
         Swal.fire({
           title: '¿Esta seguro que desea eliminar este video?',
           icon: 'warning',
@@ -25,7 +24,7 @@ export const ModalContainer = (props) => {
           confirmButtonText: 'Eliminar'
         }).then((result) => {
           if (result.isConfirmed) {
-            dispatch(startDeleteVideoWordOfTheDay())
+            dispatch(startDeleteVideoWordOfTheDay(props))
           }
         })
       }
@@ -34,7 +33,7 @@ export const ModalContainer = (props) => {
           <tr>
               <th>{title}</th>
               <th>{moment(createdAt).format('MMMM Do YYYY, h:mm a')}</th>
-              <td><video autoPlay = {false} src={image} style = {{height: '60px', width: '60px'}}></video></td>
+              <td><video autoPlay = {false} src={image[0]} style = {{height: '60px', width: '60px'}}></video></td>
               <td>
                   <button onClick = {handledSet} className = 'btn btn-outline-primary mr-1 mt-2' data-bs-toggle="modal" data-bs-target="#exampleModalVideoWordOfTheDayModal" style = {{borderRadius: '100%'}}><i className="bi bi-eye" style = {{color: '#0D6EFD'}}></i></button>
                   <button onClick = {Handleddelete} className = 'btn btn-outline-danger ml-1 mt-2' style = {{borderRadius: '100%'}}><i className="bi bi-trash" style = {{color: 'red'}}></i></button>

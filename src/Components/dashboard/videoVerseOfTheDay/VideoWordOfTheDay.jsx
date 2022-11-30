@@ -78,7 +78,7 @@ export const VideoWordOfTheDay = () => {
                     return (
                       <div key={videos._id} className="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 my-2">
                         <div className='borderCards'>
-                          <video onClick={() => handledSet(videos)} src={videos?.image} style={{width: '100%', height: '355px', objectFit: 'cover', borderTopLeftRadius: '40px', borderTopRightRadius: '40px'}}></video>
+                          <video onClick={() => handledSet(videos)} src={videos?.image[0]} style={{width: '100%', height: '355px', objectFit: 'cover', borderTopLeftRadius: '40px', borderTopRightRadius: '40px'}}></video>
 
                           <h5 className='p-2 textCard'>{videos.title}</h5>
                         </div>

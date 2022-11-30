@@ -52,86 +52,92 @@ export const SetActiveVideoWordOfTheDay = (video) => ({
     payload: video
 });
 
-export const startCreateVideoWordOfTheDay = (title, file) => {
+export const startCreateVideoWordOfTheDay = (title, file, setProcessVideo) => {
     return async(dispatch, getState) => {
 
-        const {socket} = getState().sk
-
         const token = localStorage.getItem('token') || '';
+
+        setProcessVideo(true)
 
             const formData = new FormData()
             formData.append('file', file)
             formData.append('title', title)
 
-            const res = await axios.post(`${process.env.REACT_APP_API_URL}/image/upload/video`, formData, {
-              headers: {'x-token': token},
-              onUploadProgress: (e) =>
-                {dispatch(upload(Math.round( (e.loaded * 100) / e.total )))}
-            })
-            
-            if(res.data.ok) {
-                const image = res.data.image.url
-                const idImage = res.data.image.id
-                const resp = await fetchConToken('VideoWordOfTheDay', {title, image, idImage}, 'POST');
-                const body = await resp.json()
+            const ress = await axios.post(`${process.env.REACT_APP_API_URL}/image/upload/resize`, formData, {headers: {'x-token': token}})
 
-                if (body.ok) {
+            if (ress.data.ok) {
+              setProcessVideo(false)
 
-                    dispatch(createVideoWordOfTheDay(body.video))
-
-                    const subtitle = 'Nueva Palabra del Día agregada'
-
-                    const content = body.video
-
-                    const payload = {title, subtitle, content}
-
-                    socket?.emit('notifications-admin-to-user', payload)
-
-                    dispatch(UploadFish())
-                    
-                    const Toast = Swal.mixin({
-                        toast: true,
-                        position: 'top-end',
-                        showConfirmButton: false,
-                        timer: 2000,
-                        timerProgressBar: true,
-                        didOpen: (toast) => {
-                          toast.addEventListener('mouseenter', Swal.stopTimer)
-                          toast.addEventListener('mouseleave', Swal.resumeTimer)
-                        }
-                      })
+              const res = await axios.post(`${process.env.REACT_APP_API_URL}/image/upload/video`, formData, {
+                headers: {'x-token': token},
+                onUploadProgress: (e) =>
+                  {dispatch(upload(Math.round( (e.loaded * 100) / e.total )))}
+              })
+              
+              if(res.data.ok) {
+                  let image = []
+                  let idImage = []
+                  res.data.image.map(img => image.push(img.url))
+                  res.data.image.map(img => idImage.push(img.id))
+                  const resp = await fetchConToken('VideoWordOfTheDay', {title, image, idImage}, 'POST');
+                  const body = await resp.json()
+  
+                  if (body.ok) {
+  
+                      dispatch(createVideoWordOfTheDayNew(body.video))
+  
+                      dispatch(UploadFish())
                       
-                      return Toast.fire({
-                        icon: 'success',
-                        title: 'Video creado correctamente'
-                      })
-                      
-                } else {
-                    const Toast = Swal.mixin({
-                        toast: true,
-                        position: 'top-end',
-                        showConfirmButton: false,
-                        timer: 2000,
-                        timerProgressBar: true,
-                        didOpen: (toast) => {
-                          toast.addEventListener('mouseenter', Swal.stopTimer)
-                          toast.addEventListener('mouseleave', Swal.resumeTimer)
-                        }
-                      })
-                      
-                      return Toast.fire({
-                        icon: 'error',
-                        title: `${body.msg}`
-                      })
-                }
-
-                
+                      const Toast = Swal.mixin({
+                          toast: true,
+                          position: 'top-end',
+                          showConfirmButton: false,
+                          timer: 2000,
+                          timerProgressBar: true,
+                          didOpen: (toast) => {
+                            toast.addEventListener('mouseenter', Swal.stopTimer)
+                            toast.addEventListener('mouseleave', Swal.resumeTimer)
+                          }
+                        })
+                        
+                        return Toast.fire({
+                          icon: 'success',
+                          title: 'Video creado correctamente'
+                        })
+                        
+                  } else {
+                      const Toast = Swal.mixin({
+                          toast: true,
+                          position: 'top-end',
+                          showConfirmButton: false,
+                          timer: 2000,
+                          timerProgressBar: true,
+                          didOpen: (toast) => {
+                            toast.addEventListener('mouseenter', Swal.stopTimer)
+                            toast.addEventListener('mouseleave', Swal.resumeTimer)
+                          }
+                        })
+                        
+                        return Toast.fire({
+                          icon: 'error',
+                          title: `${body.msg}`
+                        })
+                  }
+  
+                  
+              }
             }
+
     }
 }
 
 const createVideoWordOfTheDay = (video) => ({
     type: Types.vwdcreateVideoWordOfTheDay,
+    payload: video
+})
+
+const createVideoWordOfTheDayNew = (video) => ({
+    type: Types.vwdcreateVideoWordOfTheDayNew,
     payload: video
 })
 
@@ -155,101 +161,105 @@ export const ModalCloseVideo = (state) => ({
     payload: state
 })
 
-export const startUpdateVideoWordOfTheDay = (title, fileupload) => {
+export const startUpdateVideoWordOfTheDay = (title, fileupload, setProcessVideo) => {
     return async(dispatch, getState) => {
 
         const {activeVideo} = getState().vwd
 
-        const {socket} = getState().sk
-
         const token = localStorage.getItem('token') || '';
 
         if(fileupload) {
+          setProcessVideo(true)
           
           const formData = new FormData()
           formData.append('file', fileupload)
           formData.append('title', activeVideo.title)
-          
-          const res = await axios.post(`${process.env.REACT_APP_API_URL}/image/upload/video`, formData, {
-            headers: {'x-token': token},
-            onUploadProgress: (e) =>
-            {dispatch(upload(Math.round( (e.loaded * 100) / e.total )))}
-          })
-          
-          if(res.data.ok) {
-            const image = res.data.image.url
-            const idImage = res.data.image.id
-            const resp = await fetchConToken(`VideoWordOfTheDay/${activeVideo._id}`, {title, image, idImage}, 'PUT');
-            const body = await resp.json()
+
+          const ress = await axios.post(`${process.env.REACT_APP_API_URL}/image/upload/resize`, formData, {headers: {'x-token': token}})
+
+          if (ress.data.ok) {
+            setProcessVideo(false)
+
+            const res = await axios.post(`${process.env.REACT_APP_API_URL}/image/upload/video`, formData, {
+              headers: {'x-token': token},
+              onUploadProgress: (e) =>
+              {dispatch(upload(Math.round( (e.loaded * 100) / e.total )))}
+            })
             
-            if (body.ok) {
+            if(res.data.ok) {
+              let image = []
+              let idImage = []
+              res.data.image.map(img => image.push(img.url))
+              res.data.image.map(img => idImage.push(img.id))
+              const resp = await fetchConToken(`VideoWordOfTheDay/${activeVideo._id}`, {title, image, idImage}, 'PUT');
+              const body = await resp.json()
               
-              dispatch(updateVideoWordOfTheDay(body.video))
-              dispatch(UploadFish())
-
-              const subtitle = 'Nueva Palabra del Día agregada'
-
-              const content = body.video
-
-              const payload = {title, subtitle, content}
-
-              socket?.emit('notifications-admin-to-user-update', payload)
-              const ress = await axios.delete(`${process.env.REACT_APP_API_URL}/image/upload/${activeVideo.idImage}`, {headers: {'x-token': token}})
-              console.log(ress)
-              const Toast = Swal.mixin({
-                            toast: true,
-                            position: 'top-end',
-                            showConfirmButton: false,
-                            timer: 2000,
-                            timerProgressBar: true,
-                            didOpen: (toast) => {
-                              toast.addEventListener('mouseenter', Swal.stopTimer)
-                              toast.addEventListener('mouseleave', Swal.resumeTimer)
-                            }
-                          })
-                          
-                          return Toast.fire({
-                            icon: 'success',
-                            title: 'Video actualizado correctamente'
-                          })
-                    } else {
-                        const Toast = Swal.mixin({
-                            toast: true,
-                            position: 'top-end',
-                            showConfirmButton: false,
-                            timer: 2000,
-                            timerProgressBar: true,
-                            didOpen: (toast) => {
-                              toast.addEventListener('mouseenter', Swal.stopTimer)
-                              toast.addEventListener('mouseleave', Swal.resumeTimer)
-                            }
-                          })
-                          
-                          return Toast.fire({
-                            icon: 'error',
-                            title: `${body.msg}`
-                          })
-                    }
-            
-                } else {
-                    const Toast = Swal.mixin({
-                        toast: true,
-                        position: 'top-end',
-                        showConfirmButton: false,
-                        timer: 2000,
-                        timerProgressBar: true,
-                        didOpen: (toast) => {
-                          toast.addEventListener('mouseenter', Swal.stopTimer)
-                          toast.addEventListener('mouseleave', Swal.resumeTimer)
-                        }
-                      })
-                      
-                      return Toast.fire({
-                        icon: 'error',
-                        title: `${res.errors}`
-                      })
+              if (body.ok) {
+                
+                dispatch(updateVideoWordOfTheDay(body.video))
+                dispatch(UploadFish())
+  
+                for (let index = 0; index < activeVideo.idImage.length; index++) {
+                  const element = activeVideo.idImage[index];
+                  const ress = await axios.delete(`${process.env.REACT_APP_API_URL}/image/upload/${element}`, {headers: {'x-token': token}})
+                  console.log(ress)
                 }
-
+  
+                const Toast = Swal.mixin({
+                  toast: true,
+                  position: 'top-end',
+                  showConfirmButton: false,
+                  timer: 2000,
+                  timerProgressBar: true,
+                  didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                  }
+                })
+                
+                return Toast.fire({
+                  icon: 'success',
+                  title: 'Video actualizado correctamente'
+                })
+                      } else {
+                          const Toast = Swal.mixin({
+                              toast: true,
+                              position: 'top-end',
+                              showConfirmButton: false,
+                              timer: 2000,
+                              timerProgressBar: true,
+                              didOpen: (toast) => {
+                                toast.addEventListener('mouseenter', Swal.stopTimer)
+                                toast.addEventListener('mouseleave', Swal.resumeTimer)
+                              }
+                            })
+                            
+                            return Toast.fire({
+                              icon: 'error',
+                              title: `${body.msg}`
+                            })
+                      }
+              
+                  } else {
+                      const Toast = Swal.mixin({
+                          toast: true,
+                          position: 'top-end',
+                          showConfirmButton: false,
+                          timer: 2000,
+                          timerProgressBar: true,
+                          didOpen: (toast) => {
+                            toast.addEventListener('mouseenter', Swal.stopTimer)
+                            toast.addEventListener('mouseleave', Swal.resumeTimer)
+                          }
+                        })
+                        
+                        return Toast.fire({
+                          icon: 'error',
+                          title: `${res.errors}`
+                        })
+                  }
+          }
+          
         } else {
             const {image, idImage} = activeVideo
             const resp = await fetchConToken(`VideoWordOfTheDay/${activeVideo._id}`, {title, image, idImage}, 'PUT');
@@ -259,13 +269,6 @@ export const startUpdateVideoWordOfTheDay = (title, fileupload) => {
 
                 dispatch(updateVideoWordOfTheDay(body.video))
 
-                const subtitle = 'Nueva Palabra del Día agregada'
-
-                const content = body.video
-
-                const payload = {title, subtitle, content}
-
-                socket?.emit('notifications-admin-to-user-update', payload)
                 const Toast = Swal.mixin({
                     toast: true,
                     position: 'top-end',
@@ -309,23 +312,24 @@ const updateVideoWordOfTheDay = (video) => ({
     payload: video
 })
 
-export const startDeleteVideoWordOfTheDay = () => {
+export const startDeleteVideoWordOfTheDay = (props) => {
     return async(dispatch, getState) => {
-        const {activeVideo} = getState().vwd
-
-        const {socket} = getState().sk
 
         const token = localStorage.getItem('token') || '';
 
-        if(activeVideo.idImage) {
-            await axios.delete(`${process.env.REACT_APP_API_URL}/image/upload/${activeVideo.idImage}`, {headers: {'x-token': token}})
+        if(props.idImage?.length !== 0) {
 
-            const resp = await fetchConToken(`VideoWordOfTheDay/${activeVideo._id}`, activeVideo, 'DELETE')
+            for (let index = 0; index < props.idImage.length; index++) {
+              const element = props.idImage[index];
+              
+              await axios.delete(`${process.env.REACT_APP_API_URL}/image/upload/${element}`, {headers: {'x-token': token}})
+            }
+
+            const resp = await fetchConToken(`VideoWordOfTheDay/${props._id}`, props, 'DELETE')
             const body = await resp.json()
     
             if(body.ok) {
-                dispatch(deleteVideoWordOfTheDay(activeVideo))
-                socket?.emit('notifications-admin-to-user-delete', activeVideo._id)
+                dispatch(deleteVideoWordOfTheDay(props))
                 const Toast = Swal.mixin({
                     toast: true,
                     position: 'top-end',
@@ -362,11 +366,10 @@ export const startDeleteVideoWordOfTheDay = () => {
             }
 
         } else {
-            const resp = await fetchConToken(`VideoWordOfTheDay/${activeVideo._id}`, activeVideo, 'DELETE')
+            const resp = await fetchConToken(`VideoWordOfTheDay/${props._id}`, props, 'DELETE')
     
             if(resp.ok) {
-                dispatch(VideoWordOfTheDay(activeVideo))
-                socket?.emit('notifications-admin-to-user-delete', activeVideo._id)
+                dispatch(VideoWordOfTheDay(props))
                 const Toast = Swal.mixin({
                     toast: true,
                     position: 'top-end',

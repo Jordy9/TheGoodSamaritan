@@ -48,6 +48,9 @@ export const Search = () => {
                     const fechafin2 = moment()
 
                     const NuevoCap = fechafin2.diff(fechainicio1, 'day')
+
+                    console.log(filtro?.image)
+
                     return (
                         <div key={filtro._id} onClick={() => handledSet(filtro)} className = 'col-xs-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 my-3 mx-3 text-white'>
                             <div className='borderCards'>
@@ -60,9 +63,9 @@ export const Search = () => {
                                 }
 
                                 {
-                                    (filtro?.image?.includes('.mp4'))
+                                    (filtro?.image[0]?.includes('.mp4'))
                                         ?
-                                    <video src={filtro?.image} style={{width: '100%', height: '355px', objectFit: 'cover', borderTopLeftRadius: '40px', borderTopRightRadius: '40px'}}></video>
+                                    <video src={filtro?.image[0]} style={{width: '100%', height: '355px', objectFit: 'cover', borderTopLeftRadius: '40px', borderTopRightRadius: '40px'}}></video>
                                         :
                                     <img style={{objectFit: 'cover', cursor: 'pointer', width: '100%', height: '355px'}} src={filtro.image} alt="" className='img-fluid cardRound' />
                                 }
@@ -78,7 +81,11 @@ export const Search = () => {
                 </h1>
             }
         </div>
-        <ModalSearch />
+        {
+            (activeSearch)
+                &&
+            <ModalSearch />
+        }
       </>
   )
 }

@@ -42,6 +42,7 @@ export const Types = {
     vwdgetVideoWordOfTheDay: '[VWD] get VideoWordOfTheDay',
     vwdsetVideoWordOfTheDay: '[VWD] set VideoWordOfTheDay',
     vwdcreateVideoWordOfTheDay: '[VWD] create VideoWordOfTheDay',
+    vwdcreateVideoWordOfTheDayNew: '[VWD] create VideoWordOfTheDayNew',
     vwdSetVideoWordOfTheDay: '[VWD] set VideoWordOfTheDay',
     vwdModalOpen: '[VWD] modal open',
     vwdModalClose: '[VWD] modal close',
