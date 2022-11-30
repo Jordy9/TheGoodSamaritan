@@ -174,7 +174,15 @@ export const ModalSearch = () => {
                                                 <span id='dateDeskLap' className='text-right mr-4'>{moment(activeSearch?.createdAt).format('MMMM Do YYYY, h:mm a')}</span>
                                             </div>
                                         </div>
-                                        <h1 className='text-center mx-2'>{activeSearch?.title}</h1>
+                                        {
+                                            (respWidth > 991)
+                                                ?
+                                            <h1 className='text-center'>{activeSearch?.title}</h1>
+                                                :
+                                            (heightScroll > 190 || first > 0)
+                                                &&
+                                            <h1 className='text-center'>{activeSearch?.title}</h1>
+                                        }
                                     </div>
                                 </div>
                                     :
@@ -202,9 +210,9 @@ export const ModalSearch = () => {
                                                         :
                                                     <>
                                                         <MiniserieResponsive
-                                                        activeSerie={activeSearch} 
-                                                        first = {first} 
-                                                        parse = {parse} 
+                                                            activeSerie={activeSearch} 
+                                                            first = {first} 
+                                                            parse = {parse} 
                                                         />
                                                         <div className='mt-3'>
                                                         {
