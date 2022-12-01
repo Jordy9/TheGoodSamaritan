@@ -5,7 +5,7 @@ export const sendEmailToPetition = (name) => {
 
         const {users} = getState().auth
 
-        const user = users?.filter(usuarios => usuarios?.role === 'Colaborador' && usuarios?.role === 'Administrador')
+        const user = users?.filter(usuarios => usuarios?.role === 'Colaborador' || usuarios?.role === 'Administrador')
 
         let arregloFiltroUserEmail = []
 
