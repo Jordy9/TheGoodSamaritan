@@ -450,13 +450,13 @@ export const sendEmailToPetition = (name) => {
                     <tbody><tr>
                         <td align="left" class="txtsize" style="border:0px;padding:0px;color:#b5afa5;font-family:Arial;text-align:left;border-radius:4px;text-align:left;cursor:pointer;">
                                 <!--[if mso]>
-                                    <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="https://www.ccbsbonao.com.do/Chat" style="border-radius:4px;height:51px;v-text-anchor:middle;width:206px" arcsize="4%" strokecolor="#181a1b" strokeweight ="0px" fillcolor="#020e22">
+                                    <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="https://www.ccbsbonao.com.do/PetitionsList" style="border-radius:4px;height:51px;v-text-anchor:middle;width:206px" arcsize="4%" strokecolor="#181a1b" strokeweight ="0px" fillcolor="#020e22">
                                     <v:stroke dashstyle="solid" />
                                     <w:anchorlock/>
                                     <center style="color:#b5afa5;font-family:Arial;font-size:12pt;">Inicia Sesión</center>
                                     </v:roundrect>
                             <![endif]-->
-                            <a align="center" href="https://the-good-samaritan-backoffice.herokuapp.com/Chat" style="padding:0px 0px;background-color:#020e22;width:206px;line-height:51px;font-size:12pt;font-family:Arial;color:#b5afa5;cursor:pointer;text-decoration:none;border-radius:4px;border:0px solid #181a1b;display:inline-block;mso-hide:all;text-align:center;" target="_blank">
+                            <a align="center" href="https://www.ccbsbonao.com.do/PetitionsList" style="padding:0px 0px;background-color:#020e22;width:206px;line-height:51px;font-size:12pt;font-family:Arial;color:#b5afa5;cursor:pointer;text-decoration:none;border-radius:4px;border:0px solid #181a1b;display:inline-block;mso-hide:all;text-align:center;" target="_blank">
                                 <span style="color:#b5afa5;line-height:51px">
                                     Inicia Sesi&oacute;n
                                 </span>
