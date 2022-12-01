@@ -13,20 +13,14 @@ export const RadioBonaoBlessing = () => {
 
     const [isPlaying, setIsPlaying] = useState(false)
 
-    const [show, setShow] = useState(true)
-
     const { pathname } = useLocation()
 
     useEffect(() => {
       if (pathname === '/RadioBonaoBlessing') {
-        setShow(false)
         dispatch(showFoote(false))
       } 
 
-      return () => {
-        setShow(true)
-        dispatch(showFoote(true))
-        }
+      return () => dispatch(showFoote(true))
     }, [dispatch, pathname])
     
     return (

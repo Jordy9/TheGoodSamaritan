@@ -9,6 +9,7 @@ import { PetitionModalUser } from '../modal/ModalPetitionUser';
 import moment from 'moment';
 import Swal from 'sweetalert2';
 import { setPetition, setPetitionUser, startCreatePetition, startGetPaginatePetitions, startGetPaginatePetitionsUser } from '../../../action/petition';
+import { sendEmailToPetition } from '../../../action/sendEmailToPetition';
 
 export const PetitionsPublic = () => {
 
@@ -68,6 +69,7 @@ export const PetitionsPublic = () => {
                     role = 'Anónimo'
                 }
                 dispatch(startCreatePetition(name, title, descripcion, id, role))
+                dispatch(sendEmailToPetition(name))
                 resetForm({
                     title: '', 
                     descripcion: ''

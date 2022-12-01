@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { startCreatePetition } from '../../../../action/petition'
 import * as Yup from 'yup'
+import { sendEmailToPetition } from '../../../../action/sendEmailToPetition'
 
 export const ModalPray = () => {
 
@@ -19,6 +20,7 @@ export const ModalPray = () => {
         enableReinitialize: true,
         onSubmit: ({name, title, descripcion, role, id}) => {
             dispatch(startCreatePetition(name, title, descripcion, id, role))
+            dispatch(sendEmailToPetition(name))
                 resetForm({
                     title: '', 
                     descripcion: ''

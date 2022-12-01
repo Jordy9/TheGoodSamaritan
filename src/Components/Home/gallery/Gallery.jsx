@@ -7,6 +7,7 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import { Spinner } from '../../spinner/Spinner';
 import { startGetPaginateGallery } from '../../../action/gallery';
 import { useDispatch } from 'react-redux';
+import ResponsiveGallery from 'react-responsive-gallery'
 
 export const Galleryy = () => {
 
@@ -19,6 +20,12 @@ export const Galleryy = () => {
         showDownloadButton: false
       }
     };
+
+    const photos = img?.map(image => {
+      return ({
+        src: image.image,
+      })
+    })
   
     return (
         <>
@@ -33,15 +40,7 @@ export const Galleryy = () => {
                     <>
                       <SimpleReactLightbox>
                         <SRLWrapper options={options}>
-                          <div className="row">
-                            {img?.map(image => {
-                              return (
-                                <div key={image.image} style={{padding: '5px'}} className = 'col-4'>
-                                  <img key={image.image} src={image.image} style = {{width: '100%', height: '300px', objectFit: 'cover'}} className = 'img-fluid' alt="" />
-                                </div>
-                              )
-                            })}
-                          </div>
+                          <ResponsiveGallery images={photos} />
                         </SRLWrapper>
                       </SimpleReactLightbox>
                     </>
