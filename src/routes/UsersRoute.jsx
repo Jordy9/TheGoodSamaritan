@@ -17,10 +17,7 @@ import { useEffect } from 'react';
 import { YoutubeVideo } from '../Components/youtubeVideo/YoutubeVideo';
 import { Search } from '../Components/search/Search';
 import { Bible } from '../Components/bible/Bible';
-// import { NotificationResponsive } from '../Components/notificationResponsive/NotificationResponsive';
 import { ModalNoBeleave } from '../Components/modalBeleave/ModalNoBeleave';
-import { startGetPetitionesUser } from '../action/petition';
-// import { NotificationPost } from '../Components/notificationPost/NotificationPost';
 import { useHistory } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 import { ModalBilieveReset } from '../Components/modalBeleave/ModalBilieveReset';
@@ -37,7 +34,7 @@ export const UsersRoute = () => {
 
     const {newNotfification} = useSelector(state => state.nt)
 
-    const {activeUser, uid, notificationPost} = useSelector(state => state.auth)
+    const {activeUser, notificationPost} = useSelector(state => state.auth)
     const {Beleaver} = useSelector(state => state.bl)
     
     const StateNow = localStorage.getItem('State')
@@ -80,7 +77,6 @@ export const UsersRoute = () => {
           history.push('/Dashboard')
         }
       }, [notificationPost, history, pathname])
-
 
       useEffect(() => {
 

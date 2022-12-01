@@ -19,7 +19,7 @@ const NoBeleaverVideo = (video) => ({
     payload: video
 })
 
-export const startCreateNoBeleaverVideo = (title, file) => {
+export const startCreateNoBeleaverVideo = (title, file, setProcessVideo) => {
     return async(dispatch, getState) => {
 
         const {Video} = getState().nb
@@ -28,69 +28,78 @@ export const startCreateNoBeleaverVideo = (title, file) => {
 
         const token = localStorage.getItem('token') || '';
 
+        setProcessVideo(true)
+
         const formData = new FormData()
         formData.append('file', file)
         formData.append('title', title)
 
         if(video) {
 
-            const res = await axios.post(`${process.env.REACT_APP_API_URL}/image/upload/video`, formData, {
-                headers: {'x-token': token},
-                onUploadProgress: (e) =>
-                {dispatch(upload(Math.round( (e.loaded * 100) / e.total )))}
-            })
-            
-            if(res.data.ok) {
-                const image = res.data.image.url
-                const idImage = res.data.image.id
-                const resp = await fetchConToken(`VideoNoBeleaver/${video._id}`, {title, image, idImage}, 'PUT');
-                const body = await resp.json()
+            const ress = await axios.post(`${process.env.REACT_APP_API_URL}/image/upload/resize`, formData, {headers: {'x-token': token}})
+
+            if (ress.data.ok) {
+                setProcessVideo(false)
+
+                const res = await axios.post(`${process.env.REACT_APP_API_URL}/image/upload/video`, formData, {
+                    headers: {'x-token': token},
+                    onUploadProgress: (e) =>
+                    {dispatch(upload(Math.round( (e.loaded * 100) / e.total )))}
+                })
                 
-                if (body.ok) {
-                    dispatch(createNoBeleaverVideo(body.videoNoBeleaver))
+                if(res.data.ok) {
+                    const image = res.data.image.url
+                    const idImage = res.data.image.id
+                    const resp = await fetchConToken(`VideoNoBeleaver/${video._id}`, {title, image, idImage}, 'PUT');
+                    const body = await resp.json()
                     
-                    dispatch(startGetNoBeleaverVideo())
-                    
-                    dispatch(UploadFish())
-                    
-                    const ress = await axios.delete(`${process.env.REACT_APP_API_URL}/image/upload/${video.idImage}`, {headers: {'x-token': token}})
-                    console.log(ress)
-                        const Toast = Swal.mixin({
-                            toast: true,
-                            position: 'top-end',
-                            showConfirmButton: false,
-                            timer: 2000,
-                            timerProgressBar: true,
-                            didOpen: (toast) => {
-                            toast.addEventListener('mouseenter', Swal.stopTimer)
-                            toast.addEventListener('mouseleave', Swal.resumeTimer)
-                            }
-                        })
+                    if (body.ok) {
+                        dispatch(createNoBeleaverVideo(body.videoNoBeleaver))
                         
-                        return Toast.fire({
-                            icon: 'success',
-                            title: 'Video creado correctamente'
-                        })
-                    } else {
-                        const Toast = Swal.mixin({
-                            toast: true,
-                            position: 'top-end',
-                            showConfirmButton: false,
-                            timer: 2000,
-                            timerProgressBar: true,
-                            didOpen: (toast) => {
-                            toast.addEventListener('mouseenter', Swal.stopTimer)
-                            toast.addEventListener('mouseleave', Swal.resumeTimer)
-                            }
-                        })
+                        dispatch(startGetNoBeleaverVideo())
                         
-                        return Toast.fire({
-                            icon: 'error',
-                            title: body.msg
-                        })
+                        dispatch(UploadFish())
+                        
+                        const ress = await axios.delete(`${process.env.REACT_APP_API_URL}/image/upload/${video.idImage}`, {headers: {'x-token': token}})
+                        console.log(ress)
+                            const Toast = Swal.mixin({
+                                toast: true,
+                                position: 'top-end',
+                                showConfirmButton: false,
+                                timer: 2000,
+                                timerProgressBar: true,
+                                didOpen: (toast) => {
+                                toast.addEventListener('mouseenter', Swal.stopTimer)
+                                toast.addEventListener('mouseleave', Swal.resumeTimer)
+                                }
+                            })
+                            
+                            return Toast.fire({
+                                icon: 'success',
+                                title: 'Video creado correctamente'
+                            })
+                        } else {
+                            const Toast = Swal.mixin({
+                                toast: true,
+                                position: 'top-end',
+                                showConfirmButton: false,
+                                timer: 2000,
+                                timerProgressBar: true,
+                                didOpen: (toast) => {
+                                toast.addEventListener('mouseenter', Swal.stopTimer)
+                                toast.addEventListener('mouseleave', Swal.resumeTimer)
+                                }
+                            })
+                            
+                            return Toast.fire({
+                                icon: 'error',
+                                title: body.msg
+                            })
+                        }
+                        
                     }
-                    
-                }
+            }
+
         } else {
             const res = await axios.post(`${process.env.REACT_APP_API_URL}/image/upload/video`, formData, {
                 headers: {'x-token': token},

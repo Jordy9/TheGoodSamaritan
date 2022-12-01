@@ -49,7 +49,7 @@ export const ModalNoBeleave = () => {
         </Modal.Header>
         <Modal.Body> 
             <h1 className='text-center'>{video.title}</h1>
-            <ReactPlayer controls style={{cursor: 'pointer'}} width = '100%' height = '100%' url={video?.image} />
+            <ReactPlayer controls style={{cursor: 'pointer'}} width = '100%' height = '100%' url={video?.image[2]} />
         </Modal.Body>
         </Modal>
   )

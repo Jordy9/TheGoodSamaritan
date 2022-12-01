@@ -59,7 +59,7 @@ export const VideoWordOfTheDay = () => {
       };
 
   useEffect(() => {
-    if (activeIndex === (videos?.length - 4) && Number(Paginate?.page) < Paginate?.total) {
+    if (activeIndex >= (videos?.length - 5) && Number(Paginate?.page) < Paginate?.total) {
       dispatch(startGetPaginateVideos(Number(Paginate?.page) + 1))
     }
   }, [activeIndex])

@@ -122,7 +122,7 @@ export const MiniSerie = () => {
       const NuevoCap1 = fechafin2.diff(fechainicio2, 'day')
 
       useEffect(() => {
-        if (activeIndex === (miniSeries?.length - 4) && Number(Paginate?.page) < Paginate?.total) {
+        if (activeIndex >= (miniSeries?.length - 5) && Number(Paginate?.page) < Paginate?.total) {
           dispatch(startGetPaginateMiniSeries(Number(Paginate?.page) + 1))
         }
       }, [activeIndex])

@@ -57,7 +57,7 @@ export const CarouselSketch = () => {
       };
 
       useEffect(() => {
-        if (activeIndex === (Bosquejos?.length - 4) && Number(Paginate?.page) < Paginate?.total) {
+        if (activeIndex >= (Bosquejos?.length - 5) && Number(Paginate?.page) < Paginate?.total) {
           dispatch(startGetPaginateBosquejos(Number(Paginate?.page) + 1))
         }
       }, [activeIndex])

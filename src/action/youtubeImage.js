@@ -36,6 +36,28 @@ export const startGetPaginateYoutubeSearch = (page, searchParam) => {
   }
 }
 
+export const startGetPaginateYoutubeSearchCarrousel = (page, searchParam, search) => {
+  return async(dispatch) => {
+      const resp = await fetchSinToken(`youtube/search?page=${page || 1}&size=10&searchParam=${searchParam || ''}`)
+      const body = await resp.json()
+
+      if(body.ok) {
+        if (!search) {
+          dispatch(Youtube(body.youtube))
+
+        } else {
+          const startVideo = body.youtube[0]
+          dispatch(createYoutube(body.youtube))
+          dispatch(YoutubeStart(startVideo))
+        }
+        dispatch(PaginateYoutube({
+          page: body.page,
+          total: body.total
+        }))
+      }
+  }
+}
+
 const PaginateYoutube = (youtube) => ({
     type: Types.ytPaginateYoutube,
     payload: youtube

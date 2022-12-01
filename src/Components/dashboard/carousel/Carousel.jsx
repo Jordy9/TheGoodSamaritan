@@ -12,7 +12,6 @@ export const Carousel = () => {
 
   const {miniSeries, activeSerie, Paginate} = useSelector(state => state.mi)
   
-
   const handledSet = (miniSeries) => {
     dispatch(setSeries(miniSeries))
     dispatch(setShow())
@@ -59,7 +58,7 @@ export const Carousel = () => {
       };
 
       useEffect(() => {
-        if (activeIndex === (miniSeries?.length - 4) && Number(Paginate?.page) < Paginate?.total) {
+        if (activeIndex >= (miniSeries?.length - 5) && Number(Paginate?.page) < Paginate?.total) {
           dispatch(startGetPaginateMiniSeries(Number(Paginate?.page) + 1))
         }
       }, [activeIndex])

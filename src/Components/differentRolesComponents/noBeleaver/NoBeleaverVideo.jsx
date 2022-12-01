@@ -17,6 +17,8 @@ export const NoBeleaverVideo = () => {
     const {Video, Porcentage} = useSelector(state => state.nb)
     
     const video = Video[0]
+
+    const [processVideo, setProcessVideo] = useState(false)
     
     const {handleSubmit, resetForm, getFieldProps, touched, errors, setFieldValue} = useFormik({
         initialValues: {
@@ -45,7 +47,7 @@ export const NoBeleaverVideo = () => {
                         title: 'Imagen con formato incorrecto'
                       })
                 } else {
-                dispatch(startCreateNoBeleaverVideo(title, image))
+                dispatch(startCreateNoBeleaverVideo(title, image, setProcessVideo))
                 }
             } else {
                 const Toast = Swal.mixin({
@@ -114,6 +116,17 @@ export const NoBeleaverVideo = () => {
                 </div>
 
                 <div className="row">
+
+                    {
+                        (processVideo)
+                            &&
+                        <di className="col-12 mb-2">
+                            <label className='d-flex justify-content-center'>Procesando video</label>
+                            <div className="progress">
+                                <div className="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-label="Animated striped example" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style={{width: '100%'}}></div>
+                            </div>
+                        </di>
+                    }
 
                     {
                         (Porcentage > 0)

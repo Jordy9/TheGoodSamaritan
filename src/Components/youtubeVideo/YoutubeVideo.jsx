@@ -1,21 +1,18 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import Slider from 'react-slick';
-import { SetActiveYoutube, startGetPaginateYoutube } from '../../action/youtubeImage';
+import { SetActiveYoutube, startGetPaginateYoutube, startGetPaginateYoutubeSearchCarrousel } from '../../action/youtubeImage';
 import outube from '../../heroes/Youtube.png'
-
 
 export const YoutubeVideo = () => {
 
   const dispatch = useDispatch()
 
-  const [title, setTitle] = useState('')
+  const [searchParam, setSearchParam] = useState('')
 
   const {Youtube, Paginate} = useSelector(state => state.yt)
   const {youtubeStart} = useSelector(state => state.yt)
   const {activeYoutube} = useSelector(state => state.yt)
-
-  console.log(youtubeStart)
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -79,10 +76,29 @@ export const YoutubeVideo = () => {
   }, [width]);
 
   useEffect(() => {
-    if (activeIndex === (Youtube?.length - 4) && Number(Paginate?.page) < Paginate?.total) {
-      dispatch(startGetPaginateYoutube(Number(Paginate?.page) + 1))
+    if (activeIndex >= (Youtube?.length - 5) && Number(Paginate?.page) < Paginate?.total) {
+
+      if (searchParam === '') {
+        dispatch(startGetPaginateYoutube(Number(Paginate?.page) + 1))
+      } else {
+        dispatch(startGetPaginateYoutubeSearchCarrousel(Number(Paginate?.page) + 1, searchParam, 'search'))
+      }
     }
   }, [activeIndex])
+
+  const debounceRef = useRef()
+
+  const onQueryChange = (target) => {
+      if (debounceRef.current) {
+          clearTimeout(debounceRef.current)
+      }
+
+      setSearchParam(target.value)
+
+      debounceRef.current = setTimeout(() => {
+        dispatch(startGetPaginateYoutubeSearchCarrousel(1, target.value))
+      }, 350);
+  }
 
     return (
         <div className="container">
@@ -99,25 +115,18 @@ export const YoutubeVideo = () => {
               </div>
           </div>
 
-          {
-            (Youtube?.length > 0)
-              &&
-            <>
-              <h1 style={{marginTop: '70px'}}>Buscador</h1>
-              <div className="row">
-                  <div className="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
-                      <div className="input-group">
-                          <input placeholder='Buscar por título' type="search" value={title} onChange={({target}) => setTitle(target.value)} className="form-control bg-transparent text-white" />
-                      </div>
+          <h1 style={{marginTop: '70px'}}>Buscador</h1>
+          <div className="row">
+              <div className="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                  <div className="input-group">
+                      <input placeholder='Buscar por título' type="search" onChange={({target}) => onQueryChange(target)} className="form-control bg-transparent text-white" />
                   </div>
               </div>
-            </>
-          }
-
+          </div>
+          
           <Slider {...settings}>
               {
-                Youtube?.filter(Youtube => (title === '') ? Youtube : (Youtube?.title.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,"").includes(title.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,""))) && Youtube
-                ).map(youtube => {
+                Youtube?.map(youtube => {
                       return (
                           <div className = 'col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 my-5'>
                             <div className='borderCards'>

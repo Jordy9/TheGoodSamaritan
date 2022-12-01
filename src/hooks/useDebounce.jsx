@@ -12,8 +12,6 @@ export const useDebounce = (GetSearch) => {
             clearTimeout(debounceRef.current)
         }
 
-        console.log(target.value)
-
         debounceRef.current = setTimeout(() => {
             dispatch(GetSearch(1, target.value))
         }, 350);

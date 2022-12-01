@@ -184,13 +184,13 @@ export const PetitionsPublic = () => {
       };
 
       useEffect(() => {
-        if (activeIndex2 === (Peticiones?.length - 4) && Number(Paginate?.page) < Paginate?.total) {
+        if (activeIndex2 >= (Peticiones?.length - 5) && Number(Paginate?.page) < Paginate?.total) {
           dispatch(startGetPaginatePetitions(Number(Paginate?.page) + 1))
         }
       }, [activeIndex2])
 
       useEffect(() => {
-        if (activeIndex === (MyPetitions?.length - 4) && Number(PaginateUser?.page) < PaginateUser?.total) {
+        if (activeIndex >= (MyPetitions?.length - 5) && Number(PaginateUser?.page) < PaginateUser?.total) {
           dispatch(startGetPaginatePetitionsUser(Number(PaginateUser?.page) + 1))
         }
       }, [activeIndex])
