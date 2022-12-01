@@ -36,6 +36,8 @@ export const PetitionsPublic = () => {
 
     const [showAnonimo, setShowAnonimo] = useState(false)
 
+    const [showDescripcion, setShowDescripcion] = useState(false)
+
     const {handleSubmit, resetForm, getFieldProps, touched, errors} = useFormik({
         initialValues: {
             name: activeUser?.name, 
@@ -68,7 +70,7 @@ export const PetitionsPublic = () => {
                     name = 'Anónimo'
                     role = 'Anónimo'
                 }
-                dispatch(startCreatePetition(name, title, descripcion, id, role))
+                dispatch(startCreatePetition(name, title, descripcion, id, role, showDescripcion))
                 dispatch(sendEmailToPetition(name))
                 resetForm({
                     title: '', 
@@ -181,8 +183,6 @@ export const PetitionsPublic = () => {
         ]
       };
 
-      const [showDescripcion, setShowDescripcion] = useState(false)
-
       useEffect(() => {
         if (activeIndex2 === (Peticiones?.length - 4) && Number(Paginate?.page) < Paginate?.total) {
           dispatch(startGetPaginatePetitions(Number(Paginate?.page) + 1))
@@ -274,6 +274,17 @@ export const PetitionsPublic = () => {
                                 return (
                                     <div key={peticion._id} className = 'col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12'>
                                         <div data-bs-toggle="modal" data-bs-target="#exampleModal10" onClick={() => hanldedSetPetitionUser(peticion)} className='p-2' style={{backgroundColor: '#212529', borderRadius: '1rem'}}>
+                                            {
+                                            (peticion?.check)
+                                                ?
+                                            <div style={{cursor: 'pointer', borderBottomLeftRadius: '40px', borderTopLeftRadius: '40px', position: 'absolute', zIndex: 1045, backgroundColor: 'green', top: 0, right: 0, boxShadow: '0 4px 0 0 rgba(0,0,0,0.39)'}}>
+                                                <span style={{fontSize: '13px'}} className='p-2'>Lista</span>
+                                            </div>
+                                                :
+                                            <div style={{cursor: 'pointer', borderBottomLeftRadius: '40px', borderTopLeftRadius: '40px', position: 'absolute', zIndex: 1045, backgroundColor: 'red', top: 0, right: 0, boxShadow: '0 4px 0 0 rgba(0,0,0,0.39)'}}>
+                                                <span style={{fontSize: '13px'}} className='p-2'>En espera</span>
+                                            </div>
+                                            }
                                             <h5 style={{wordWrap: 'break-word', cursor: 'pointer'}} className='text-center textCard mt-1'>{peticion.title}</h5>
                                         </div>
                                     </div>

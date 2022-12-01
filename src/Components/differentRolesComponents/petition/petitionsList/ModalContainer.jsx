@@ -9,7 +9,7 @@ export const ModalContainer = (props) => {
 
   const {socket} = useSelector(state => state.sk)
 
-  const {_id, title, createdAt, descripcion, check, name} = props
+  const {_id, title, createdAt, descripcion, check, name, showDesc} = props
 
     const dispatch = useDispatch()
 
@@ -51,15 +51,15 @@ export const ModalContainer = (props) => {
         <>
           <tr style={{backgroundColor: (checkcont) && 'green'}}>
               <th>{name}</th>
-              <th>{title}</th>
+              <th className='textCard1'>{title}</th>
               <td>{moment(createdAt).format('MMMM Do YYYY, h:mm a')}</td>
-              <td>
+              <td className='textCard1'>
                 {
-                  (h2p(descripcion).length > 9)
+                  (showDesc)
                     ?
-                  h2p(descripcion).slice(0, 40) + '...'
-                    :
                   h2p(descripcion)
+                    :
+                  ''
                 }
               </td>
               <td>

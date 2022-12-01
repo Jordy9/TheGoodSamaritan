@@ -179,6 +179,7 @@ export const Types = {
     ptPaginatePetitionSinCuenta: '[PT] paginate petition sin cuenta',
     ptDeletePetitionesUser: '[PT] delete Petitiones User',
     ptDeletePetitionSinCuenta: '[PT] delete Petition Sin Cuenta',
+    ptLogout: '[PT] logout petitions',
     //
     migetSeries: '[Mi] get series',
     miSetSerie: '[Mi] set serie',

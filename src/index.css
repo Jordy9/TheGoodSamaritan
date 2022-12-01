@@ -83,6 +83,14 @@ code {
     text-align: center;
   }
 
+  .textCard1 {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: 100px;
+    text-align: center;
+  }
+
   .borderCards:hover {
     box-shadow: 2px 8px 4px 2px rgba(0,0,0,0.3);
   }

@@ -91,6 +91,17 @@ export const petitionReducer = (state = initialState, action) => {
                     e => (e._id !== state.activePetitionsUser._id)
                 )
             }
+
+        case Types.ptLogout:
+            return {
+                ...state,
+                Peticiones: [],
+                MyPetitions: [],
+                activePetitions: '',
+                activePetitionsUser: '',
+                Paginate: [],
+                PaginateUser: []
+            }
     
         default:
             return state;

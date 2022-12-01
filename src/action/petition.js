@@ -86,10 +86,10 @@ export const clearSetActivePetition = () => ({
   type: Types.ptClearSetPetition
 });
 
-export const startCreatePetition = (name, title, descripcion, id, role) => {
+export const startCreatePetition = (name, title, descripcion, id, role, showDesc) => {
     return async(dispatch) => {
 
-        const resp = await fetchConToken('peticion', {name, title, descripcion, id, role}, 'POST');
+        const resp = await fetchConToken('peticion', {name, title, descripcion, id, role, showDesc}, 'POST');
         const body = await resp.json()
         
         if (body.ok) {
@@ -143,12 +143,12 @@ export const setPetitionUser = (petition) => ({
   payload: petition
 })
 
-export const startUpdatePetition = (name, title, descripcion, id, role) => {
+export const startUpdatePetition = (name, title, descripcion, id, role, showDesc) => {
     return async(dispatch, getState) => {
 
         const {activePetitionsUser} = getState().pt
   
-        const resp = await fetchConToken(`peticion/${activePetitionsUser._id}`, {name, title, descripcion, id, role}, 'PUT');
+        const resp = await fetchConToken(`peticion/${activePetitionsUser._id}`, {name, title, descripcion, id, role, showDesc}, 'PUT');
         const body = await resp.json()
 
         if (body.ok) {

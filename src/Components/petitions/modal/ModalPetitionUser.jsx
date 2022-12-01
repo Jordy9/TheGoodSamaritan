@@ -4,6 +4,7 @@ import { startDeletePetition, startUpdatePetition } from '../../../action/petiti
 import { useFormik } from 'formik';
 import * as Yup from 'yup'
 import Swal from 'sweetalert2';
+import { useEffect } from 'react';
 
 export const PetitionModalUser = () => {
 
@@ -13,9 +14,24 @@ export const PetitionModalUser = () => {
 
     const dispatch = useDispatch()
 
-    const [showDescripcion, setShowDescripcion] = useState((activePetitionsUser.name === 'Anónimo') ? false : true)
+    const [showDescripcion, setShowDescripcion] = useState()
 
-    const [showAnonimo, setShowAnonimo] = useState((activePetitionsUser.role === 'Anónimo') ? false : true)
+    const [showAnonimo, setShowAnonimo] = useState()
+
+    useEffect(() => {
+      if (activePetitionsUser?.descripcion?.length > 0) {
+        setShowDescripcion(true)
+      } else {
+        setShowDescripcion(false)
+      }
+
+      if (activePetitionsUser.role === 'Anónimo' || activePetitionsUser.name === 'Anónimo') {
+        setShowAnonimo(true)
+      } else {
+        setShowAnonimo(false)
+      }
+
+    }, [activePetitionsUser])
 
     const {handleSubmit, getFieldProps, touched, errors} = useFormik({
         initialValues: {
@@ -32,7 +48,7 @@ export const PetitionModalUser = () => {
                 name = 'Anónimo'
                 role = 'Anónimo'
             }
-            dispatch(startUpdatePetition(name, title, descripcion, id, role))
+            dispatch(startUpdatePetition(name, title, descripcion, id, role, showDescripcion))
         },
         validationSchema: Yup.object({
             title: Yup.string()

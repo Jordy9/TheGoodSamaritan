@@ -68,12 +68,9 @@ export const AppRouter = () => {
     useEffect(() => {
         if (uid) {
             dispatch(startGetPaginatePetitionsUser(1, uid))
+            dispatch(startGetPaginatePetitions())
         }
     }, [dispatch, uid])
-
-    useEffect(() => {
-        dispatch(startGetPaginatePetitions())
-    }, [dispatch])
 
     useEffect(() => {
         dispatch(startGetUsers())

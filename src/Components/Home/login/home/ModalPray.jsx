@@ -9,6 +9,8 @@ export const ModalPray = () => {
 
     const dispatch = useDispatch()
 
+    const [showDescripcion, setShowDescripcion] = useState(false)
+
     const {handleSubmit, resetForm, getFieldProps, touched, errors} = useFormik({
         initialValues: {
             name: 'Anónimo',
@@ -19,7 +21,7 @@ export const ModalPray = () => {
         },
         enableReinitialize: true,
         onSubmit: ({name, title, descripcion, role, id}) => {
-            dispatch(startCreatePetition(name, title, descripcion, id, role))
+            dispatch(startCreatePetition(name, title, descripcion, id, role, showDescripcion))
             dispatch(sendEmailToPetition(name))
                 resetForm({
                     title: '', 
@@ -38,8 +40,6 @@ export const ModalPray = () => {
                         .min(3, 'Debe de tener 3 caracteres o más')
         })
     })
-
-    const [showDescripcion, setShowDescripcion] = useState(false)
 
     return (
         <>

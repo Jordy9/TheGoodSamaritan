@@ -690,12 +690,17 @@ export const startLogout = () => {
         localStorage.removeItem('token')
         localStorage.removeItem('token-init-date')
         dispatch(logout())
+        dispatch(Petitionlogout())
         localStorage.removeItem('Show')
     }
 }
 
 const logout = () => ({
     type: Types.authLogout
+})
+
+const Petitionlogout = () => ({
+    type: Types.ptLogout
 })
 
 export const authModalOpen = (opcion) => ({
@@ -734,7 +739,6 @@ export const forgotPassword = (email) => {
     return async(dispatch) => {
         const resp = await fetchSinToken('resetPassword', {email}, 'POST')
         const body = await resp.json()
-
 
         if(body.ok) {
             const Toast = Swal.mixin({
