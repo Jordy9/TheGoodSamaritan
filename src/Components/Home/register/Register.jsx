@@ -65,10 +65,6 @@ export const Register = () => {
                         .email('La dirección de email no es válida')
                         .required('Requerido'),
             password: Yup.string()
-                        .min(8, 'Debe de tener 8 caracteres o más')
-                        .matches(/(?=.*[A-Z])/, "Debe contener como mínimo una letra mayúscula")
-                        .matches(/(?=.*[a-z])/, "Debe contener como mínimo una letra minuscula")
-                        .matches(/(?=.*[0-9])/, "Debe contener como mínimo un número")
                         .required('Requerido'),
             confirmPassword: Yup.string()
                         .oneOf([Yup.ref('password')], 'Las contraseñas deben ser iguales')
@@ -109,12 +105,12 @@ export const Register = () => {
                                         </div>
                                     </div>
 
-                                    <div className="row">
+                                    {/* <div className="row">
                                         <div className="col form-check">
                                             <input {...getFieldProps('noBeleaver')} type="checkbox" className="form-check-input" id="exampleCheck4" />
                                             <label className="form-check-label">¿Deseas darle tu vida al Señor?</label>
                                         </div>
-                                    </div>
+                                    </div> */}
 
                                     <div className="row mt-3">
                                         <div className="col form-group">
