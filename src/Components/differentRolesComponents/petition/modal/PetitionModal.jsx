@@ -26,7 +26,7 @@ export const PetitionModal = () => {
                                             <div className="col-6">
                                                 <div className="form-group">
                                                     <label>Título</label>
-                                                    <input type="text" className = 'form-control bg-transparent text-white' value={activeUser?.title} />
+                                                    <input type="text" className = 'form-control bg-transparent text-white' value={activePetitions?.title} />
                                                 </div>
                                             </div>
 
